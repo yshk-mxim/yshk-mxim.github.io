@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yakov Shkolnikov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script>
+// ================================================================
+//  ✏️  EDIT YOUR CONTENT HERE
+//  Change text, links, images. Add/remove items. Don't touch below.
+// ================================================================
+
+const SITE = {
+
+  // --- HEADER ---
+  name: "Yakov Shkolnikov",
+  photo: "photo.jpg",  // same folder, or "" to hide
+  credentials: "PhD, Princeton · IEEE Senior Member · PE",
+  intro: "I build production AI systems, transform how organizations adopt them, and make it safe to experiment. Then I write about what I learn, including what doesn't work.",
+
+  // --- LINKS BAR ---
+  links: [
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/yakovshkolnikov/" },
+    { label: "Substack", url: "https://theincompleteguidetoai.substack.com" },
+    { label: "GitHub", url: "https://github.com/YOURUSERNAME" },
+    { label: "Google Scholar", url: "https://scholar.google.com/citations?user=YOURID" }
+  ],
+
+  // --- TABS ---
+  // Each tab has: id, label, description, and items.
+  // Items can have: title, url, description, tag, image (all optional except title).
+  // image: put file in same folder and reference by name, or use a full URL.
+
+  tabs: [
+    {
+      id: "systems",
+      label: "Systems & Production",
+      description: "Edge inference, agentic frameworks, and AI that runs in production for years, not demos.",
+      items: [
+        {
+          title: "Scaling Agentic AI Across an Enterprise",
+          description: "What it actually takes to move agentic technology from a pilot to organization-wide adoption: governance, security, enablement, and the cultural work nobody talks about.",
+          tag: "Enterprise",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Agentic Orchestration Framework",
+          description: "Enterprise alternative to LangGraph. Lets non-ML engineers build production AI workflows. Open-source release in progress.",
+          tag: "Open Source",
+          url: "https://github.com/YOURUSERNAME/REPO",
+          image: ""
+        },
+        {
+          title: "Production ML: Forecasting and Supply Chain Optimization",
+          description: "Ensemble forecasting system designed for longevity, still running after a decade. Companion supply chain optimization algorithms for inventory risk-sizing, pricing integrity, and margin protection. Designed as integrated systems where ML, data engineering, and business logic are treated as a unified whole.",
+          tag: "Production ML",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Neural DSP for Edge Deployment",
+          description: "Replacing traditional signal processing pipelines with learned models for embedded systems. Targeting Cortex-M class MCUs and small NPUs. Neurosymbolic approaches that preserve physics constraints while reducing compute by orders of magnitude.",
+          tag: "Edge AI",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Classical Baseline vs. RL: Franka Pick-and-Place in Isaac Sim",
+          description: "150 lines of classical control logic for a Franka Panda doing randomized pick-and-place. No training, no reward function. The baseline tells you exactly where learning earns its complexity budget.",
+          tag: "Robotics",
+          url: "https://www.linkedin.com/feed/update/urn:li:activity:7435715830954479616/",
+          image: ""
+        },
+        {
+          title: "Stateful Agent Architecture for Low-Latency Retrieval",
+          description: "Memory-safe context management for agentic workflows. Persistent state segmentation with retrieval from short contexts at low latency and low hallucination. Treats jailbreak detection as a buffer overflow problem.",
+          tag: "Architecture",
+          url: "",
+          image: ""
+        }
+      ]
+    },
+    {
+      id: "research",
+      label: "Research & Writing",
+      description: "50+ peer-reviewed papers, ongoing research in efficient architectures, and a Substack about what AI actually does when you test it.",
+      items: [
+        {
+          title: "The Incomplete Guide to AI",
+          description: "An honest guide through the dark wood of AI. Open-sourced experiments, hands-on learning, guidance as far as human reason can go.",
+          tag: "Substack",
+          url: "https://theincompleteguidetoai.substack.com",
+          image: ""
+        },
+        {
+          title: "You Are Brilliant, Keep Going",
+          description: "",
+          tag: "Substack",
+          url: "https://theincompleteguidetoai.substack.com/p/you-are-brilliant-keep-going",
+          image: ""
+        },
+
+        {
+          title: "Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision",
+          description: "Guest article in Frictionless Data. Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number.",
+          tag: "Guest Article",
+          url: "https://zanehall.substack.com/p/escaping-analysis-paralysis",
+          image: ""
+        },
+        {
+          title: "Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices",
+          description: "Multi-agent LLM systems on edge devices can only fit 3 agents in FP16 at 8K context. Persisting quantized KV caches to disk and reloading directly into the attention layer eliminates redundant prefill computation.",
+          tag: "arXiv",
+          url: "https://arxiv.org/abs/2603.04428",
+          image: ""
+        },
+        {
+          title: "Probing Frozen Features for Continuous Physical Measurement",
+          description: "",
+          tag: "arXiv",
+          url: "https://arxiv.org/abs/2603.06459",
+          image: ""
+        },
+        {
+          title: "Haar Wavelet Architectures for Resource-Constrained Inference",
+          description: "Replacing transformer self-attention with Haar wavelet decomposition for audio and time-series. O(n) complexity vs O(n²). Targeting Interspeech/ICASSP. Paper in preparation.",
+          tag: "Research",
+          url: "",
+          image: ""
+        },
+        {
+          title: "One Month IRL: Independent Research Lab Update",
+          description: "What an independent AI research lab actually looks like. Hardware, budget, what worked, what didn't.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/one-month-irl-independent-research-lab-update-yakov-shkolnikov-tdzme",
+          image: ""
+        },
+        {
+          title: "Server Speed, Multi-Turn Agentic AI, and the Extremely Agent Class",
+          description: "",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/server-speed-multi-turn-agentic-ai-extremely-agent-class-shkolnikov-5ymje/",
+          image: ""
+        },
+        {
+          title: "Your AI Agent Passed Every Test. It Failed Anyway.",
+          description: "",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/your-ai-agent-passed-every-test-failed-anyway-yakov-shkolnikov-vmpuc/",
+          image: ""
+        },
+        {
+          title: "Google Scholar, Full Publication List",
+          description: "50+ peer-reviewed papers across signal processing, computer vision, medical devices, and AI. h-index 18.",
+          tag: "Publications",
+          url: "https://scholar.google.com/citations?user=YOURID",
+          image: ""
+        }
+      ]
+    },
+    {
+      id: "medical",
+      label: "Medical & Safety-Critical AI",
+      description: "Implantable devices, cardiovascular monitoring, surgical AI, and systems where getting it wrong isn't an option.",
+      items: [
+        {
+          title: "LifeWave Biomedical",
+          description: "Agentic AI, biomarker-driven heart failure system-of-care. Scalable to all patients in all care settings.",
+          tag: "Consulting Head of AI Architecture & Engineering",
+          url: "https://lifewavebiomedical.com",
+          image: ""
+        },
+        {
+          title: "2 Provisional Patents, Safety Invariants for Agentic Workflows",
+          description: "",
+          tag: "Patent",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Computer Vision & Audio Sensing for Implantable Devices",
+          description: "Peer-reviewed publications in medical technology.",
+          tag: "Research",
+          url: "",
+          image: ""
+        },
+        {
+          title: "IMU Dynamics Simulation with Bayesian Inference",
+          description: "NumPyro-based simulation of noisy IMU measurements with known physics. SVI parameter estimation and smoothed calibrated state estimates for medical wearables.",
+          tag: "Research",
+          url: "",
+          image: ""
+        }
+      ]
+    },
+    {
+      id: "advisory",
+      label: "Consulting & Advisory",
+      description: "Technical consulting in Edge AI, Enterprise AI, and data systems. Deployment and governance. Safety critical applications.",
+      items: [
+        {
+          title: "Technical Expert Consulting",
+          description: "IP litigation, licensing disputes, and technology valuation for manufacturers, investors, and legal teams. Nine years of translating engineering complexity into business decisions.",
+          tag: "Consulting",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Cybersecurity Advisory",
+          description: "Identifying security and compliance risks through pattern recognition, coordinating investigations, and delivering analysis through remediation.",
+          tag: "Security",
+          url: "",
+          image: ""
+        },
+        {
+          title: "US Patent 7,936,274, Physical Identity Card Protection",
+          description: "Commercialized and licensed.",
+          tag: "Patent",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Shadow AI Reduction Through Culture, Not Surveillance",
+          description: "Organizations that frame AI governance as innovation enablement see less shadow AI than those that frame it as risk mitigation. Enablement-first governance frameworks.",
+          tag: "Governance",
+          url: "",
+          image: ""
+        }
+      ]
+    },
+    {
+      id: "mentorship",
+      label: "Mentorship",
+      description: "Mentoring is not charity. It is how I stay sharp, test my own principles, and learn from problems I am not currently solving.",
+      items: [
+        {
+          title: "The Selfish Case for Mentorship",
+          description: "During the worst reorgs of my career, I found my balance not by seeking advice but by giving it. Guiding others through chaos forced me to see patterns I missed while drowning in my own uncertainty. Mentees test principles you thought were settled. That discomfort is where the growth lives. For both of you.",
+          tag: "Essay",
+          url: "https://www.linkedin.com/pulse/selfish-case-mentorship-yakov-shkolnikov-pssfc/",
+          image: ""
+        },
+        {
+          title: "Who I Mentor",
+          description: "People more senior than me, people starting out, people in my industry and far outside it. A VP navigating a manufacturing merger and a junior PM dealing with a tech pivot are having the same conversation in different vocabulary. The variety is the point.",
+          tag: "",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Open Invitation",
+          description: "If you are working on a problem in AI, engineering leadership, career transitions, or navigating organizational chaos, I am happy to talk. I do not charge for mentorship. Pick someone six months behind you on a problem you just solved. Give them thirty minutes. See what you learn. If that person is you, reach out.",
+          tag: "Let's Talk",
+          url: "https://www.linkedin.com/in/yakovshkolnikov/",
+          image: ""
+        }
+      ]
+    },
+    {
+      id: "philosophy",
+      label: "Philosophy",
+      description: "What I believe about AI, work, and the gap between what we build and what we understand.",
+      items: [
+        {
+          title: "AI should automate, not decide.",
+          description: "Every model trained on similar data produces a statistically average recommendation. If your competitors use the same AI to make the same decisions, you are all converging on the same strategy. Use AI to write code, process data, automate workflows. Do not let it replace judgment. The companies that win will be the ones disciplined enough to think for themselves.",
+          tag: "Conviction",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Empathy without expertise is just vibes.",
+          description: "A professor told me early in my career: stay current with technology. You can always become less technical, but once you abandon it entirely, you become just another leader relying on sentiment. The moment you cannot follow the technical discussion, you have lost the ability to make informed decisions. I have kept my hands in the work for 20+ years because of that advice.",
+          tag: "Principle",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Incomplete guides are the only honest ones.",
+          description: "The name is not modesty. It is a structural claim. The field moves too fast for completeness and anyone promising it is selling something. Dante had Virgil, who represented human reason, and human reason has limits. I will take you as far as I can. The rest of the journey is yours.",
+          tag: "The Incomplete Guide",
+          url: "https://theincompleteguidetoai.substack.com",
+          image: ""
+        },
+        {
+          title: "Build systems that outlast you.",
+          description: "The ML forecasting system I built in 2014 is still in production. Eleven years and counting. That was not an accident. It was designed for robustness, interpretability, and the assumption that I would not be there to maintain it. The same applies to organizations. I have built three from scratch. Each one operates without me. That is the point.",
+          tag: "Principle",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Safety-critical means the constraints are the product.",
+          description: "In medical devices, the reliability requirement is not a feature. It is the entire architecture. Implantable-device-grade constraints shaped how I think about every system I build, including enterprise GenAI. Zero hallucination is not a nice-to-have when the output faces a patient, a customer, or a board.",
+          tag: "Conviction",
+          url: "",
+          image: ""
+        },
+        {
+          title: "The LLM assumes it knows what you want. It does not.",
+          description: "You work with colleagues who share your context through training, education, and interaction. An AI model trained on the corpus of the internet has a different understanding of your task. One of the largest sources of error is the gap between what you meant and what the model inferred. Make it clarify before it executes.",
+          tag: "The Incomplete Guide",
+          url: "https://theincompleteguidetoai.substack.com/p/SLUG",
+          image: ""
+        },
+        {
+          title: "Innovation culture reduces shadow AI. Surveillance does not.",
+          description: "If employees sense AI adoption is about cost reduction that might affect headcount, they protect themselves with unapproved tools. The organizations that reduce shadow AI fastest are the ones that invest in people: training, approved tools, clear guidelines, protected time to learn. Governance works when paired with enablement.",
+          tag: "Governance",
+          url: "",
+          image: ""
+        }
+      ]
+    },
+    {
+      id: "lab",
+      label: "The Lab",
+      description: "How to do real AI research without a corporate budget. My current setup and what each piece is for.",
+      items: [
+        {
+          title: "Claude Code (Max Plan, $200/mo)",
+          description: "Primary development environment. Agentic coding, long-duration workflows, orchestration framework development. The tool I use to build tools.",
+          tag: "Daily Driver",
+          url: "https://claude.ai",
+          image: ""
+        },
+        {
+          title: "MacBook Pro M4 Pro 12-Core / 48GB",
+          description: "273 GB/s unified memory bandwidth. Metal acceleration for MLX. Runs 7B-12B quantized models locally for inference and LoRA fine-tuning. Paged attention, batch inference, privacy-sensitive medical AI work.",
+          tag: "Local Compute",
+          url: "",
+          image: ""
+        },
+        {
+          title: "RTX 3080 (10GB VRAM), CUDA Workstation",
+          description: "CUDA training for sub-3B models. QLoRA fine-tuning. Isaac Sim for robotics simulation (Franka pick-and-place experiments). The 10GB ceiling forces discipline about what actually needs GPU training vs. what doesn't.",
+          tag: "Local Compute",
+          url: "",
+          image: ""
+        },
+        {
+          title: "Lambda Labs, A100 Cloud",
+          description: "Secure and confidential GPU rental up through GH200. On-demand access for experiments that exceed local VRAM. Pre-configured PyTorch environment, SSH in and run.",
+          tag: "Cloud GPU",
+          url: "https://lambda.ai",
+          image: ""
+        },
+        {
+          title: "Vast.ai, Budget GPU Rentals",
+          description: "Marketplace for renting consumer and datacenter GPUs at a fraction of cloud pricing. Good for longer training runs where you need hours, not minutes. Setup guide coming soon.",
+          tag: "Cloud GPU",
+          url: "https://vast.ai",
+          image: ""
+        },
+        {
+          title: "DeepSeek API",
+          description: "Low-cost inference for high-volume experiments and benchmarking. Useful for running comparison baselines against local models.",
+          tag: "API",
+          url: "https://platform.deepseek.com",
+          image: ""
+        },
+        {
+          title: "Anthropic Claude API",
+          description: "Production-grade inference for agentic workflows and orchestration framework. Sonnet for high-volume, Opus for complex reasoning chains.",
+          tag: "API",
+          url: "https://docs.anthropic.com",
+          image: ""
+        },
+        {
+          title: "OpenAI API",
+          description: "Comparison baseline. Multi-vendor orchestration testing. The agentic framework was designed to be model-agnostic, so testing across providers is part of the methodology.",
+          tag: "API",
+          url: "https://platform.openai.com",
+          image: ""
+        },
+        {
+          title: "NVIDIA Isaac Sim",
+          description: "Robotics simulation for classical-vs-learned baseline experiments. Franka Panda pick-and-place, sensor simulation, reinforcement learning environments. Runs on the RTX 3080.",
+          tag: "Simulation",
+          url: "https://developer.nvidia.com/isaac-sim",
+          image: ""
+        },
+        {
+          title: "MLX (Apple Silicon ML Framework)",
+          description: "Apple's native ML framework optimized for Metal. Used for local inference, LoRA fine-tuning on M4 Pro, and running quantized models for privacy-sensitive medical AI experiments without cloud dependency.",
+          tag: "Framework",
+          url: "https://github.com/ml-explore/mlx",
+          image: ""
+        },
+        {
+          title: "PyTorch + CUDA",
+          description: "The standard. When a paper publishes results, this is how you verify them. Also for writing quick custom kernels when a customer problem needs something that doesn't exist in a library yet.",
+          tag: "Framework",
+          url: "https://pytorch.org",
+          image: ""
+        },
+        {
+          title: "The Philosophy: Constrained Compute Forces Better Research",
+          description: "A 10GB GPU and a $200/mo Claude subscription is not a limitation. It is a forcing function. If your experiment needs an H100 cluster to show results, the result probably isn't robust. Every system I build is designed to run on hardware a single researcher can afford.",
+          tag: "Principle",
+          url: "",
+          image: ""
+        }
+      ]
+    }
+  ]
+
+};
+
+// ================================================================
+//  END OF CONTENT — do not edit below this line
+// ================================================================
+</script>
+
+<style>
+:root {
+  --ink: #1c1917;
+  --paper: #fafaf8;
+  --warm: #f5f3ef;
+  --muted: #78716c;
+  --accent: #7f1d1d;
+  --accent-light: #fef2f2;
+  --rule: #e7e5e4;
+  --serif: 'Crimson Pro', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* Container */
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+/* Header */
+header { padding: 72px 0 40px; }
+.h-row { display: flex; gap: 28px; align-items: flex-start; }
+.h-photo {
+  width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+  flex-shrink: 0; border: 2px solid var(--rule);
+  opacity: 0; transition: opacity 0.4s;
+}
+.h-photo.ok { opacity: 1; }
+.h-photo.no { display: none; }
+.h-text { flex: 1; }
+.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; letter-spacing: -0.025em; line-height: 1.15; }
+.h-creds { font-size: 0.82rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.02em; }
+.h-intro { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; font-style: italic; color: var(--muted); margin-top: 14px; line-height: 1.55; }
+
+/* Links bar */
+.links { display: flex; gap: 20px; flex-wrap: wrap; padding: 18px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: 28px; }
+.links a {
+  font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none;
+  letter-spacing: 0.04em; text-transform: uppercase; transition: opacity 0.2s;
+}
+.links a:hover { opacity: 0.55; }
+
+/* Tabs */
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--rule); margin-top: 36px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tab {
+  padding: 14px 22px 12px; font-size: 0.88rem; font-weight: 500; color: var(--muted);
+  cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+  white-space: nowrap; transition: color 0.15s, border-color 0.15s; user-select: none;
+}
+.tab:hover { color: var(--ink); }
+.tab.on { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Tab content */
+.panel { display: none; padding: 36px 0 48px; }
+.panel.on { display: block; }
+.panel-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.6; margin-bottom: 28px; font-family: var(--serif); font-style: italic; }
+
+/* Cards */
+.card {
+  display: flex; gap: 20px; padding: 20px 0;
+  border-bottom: 1px solid var(--rule); transition: background 0.15s;
+}
+.card:last-child { border-bottom: none; }
+.card:hover { background: var(--warm); margin: 0 -12px; padding: 20px 12px; border-radius: 6px; }
+.card-img {
+  width: 120px; height: 80px; border-radius: 4px; object-fit: cover;
+  flex-shrink: 0; background: var(--rule);
+}
+.card-body { flex: 1; min-width: 0; }
+.card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.card-title { font-size: 0.95rem; font-weight: 500; line-height: 1.35; }
+.card-title a { color: var(--ink); text-decoration: none; transition: color 0.15s; }
+.card-title a:hover { color: var(--accent); }
+.card-tag {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent); background: var(--accent-light); padding: 2px 8px; border-radius: 3px;
+  white-space: nowrap;
+}
+.card-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.55; margin-top: 6px; }
+
+/* Footer */
+footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--rule); margin-top: 12px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  header { padding: 48px 0 28px; }
+  .h-row { flex-direction: column; align-items: center; text-align: center; }
+  .h-photo { width: 80px; height: 80px; }
+  .h-name { font-size: 1.6rem; }
+  .h-intro { font-size: 1rem; }
+  .links { justify-content: center; }
+  .tab { padding: 12px 16px 10px; font-size: 0.82rem; }
+  .card { flex-direction: column; gap: 12px; }
+  .card-img { width: 100%; height: 160px; }
+  .card:hover { margin: 0 -8px; padding: 16px 8px; }
+}
+
+/* Animations */
+.fi { opacity: 0; transform: translateY(10px); animation: fu 0.45s ease forwards; }
+@keyframes fu { to { opacity: 1; transform: translateY(0); } }
+.fi:nth-child(1){animation-delay:.04s} .fi:nth-child(2){animation-delay:.08s}
+.fi:nth-child(3){animation-delay:.12s} .fi:nth-child(4){animation-delay:.16s}
+.fi:nth-child(5){animation-delay:.2s} .fi:nth-child(6){animation-delay:.24s}
+.fi:nth-child(7){animation-delay:.28s} .fi:nth-child(8){animation-delay:.32s}
+.fi:nth-child(9){animation-delay:.36s} .fi:nth-child(10){animation-delay:.4s}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+(function(){
+  var S = SITE, el = document.getElementById('app');
+
+  // Links
+  var lk = S.links.map(function(l){ return '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.label+'</a>'; }).join('');
+
+  // Tabs
+  var tb = S.tabs.map(function(t,i){ return '<div class="tab'+(i===0?' on':'')+'" data-t="'+t.id+'">'+t.label+'</div>'; }).join('');
+
+  // Panels
+  var pn = S.tabs.map(function(t,i){
+    var cards = t.items.map(function(c){
+      var hasImg = c.image && c.image.length > 0;
+      var img = hasImg ? '<img class="card-img" src="'+c.image+'" alt="">' : '';
+      var ttl = c.url ? '<a href="'+c.url+'" target="_blank" rel="noopener">'+c.title+'</a>' : c.title;
+      var tag = c.tag ? '<span class="card-tag">'+c.tag+'</span>' : '';
+      var desc = c.description ? '<div class="card-desc">'+c.description+'</div>' : '';
+      return '<div class="card fi">'+img+'<div class="card-body"><div class="card-top"><div class="card-title">'+ttl+'</div>'+tag+'</div>'+desc+'</div></div>';
+    }).join('');
+    var desc = t.description ? '<div class="panel-desc">'+t.description+'</div>' : '';
+    return '<div class="panel'+(i===0?' on':'')+'" id="p-'+t.id+'">'+desc+cards+'</div>';
+  }).join('');
+
+  // Photo
+  var ph = S.photo ? '<img class="h-photo" src="'+S.photo+'" alt="" id="ph">' : '';
+
+  el.innerHTML =
+    '<header>' +
+      '<div class="h-row">'+ph+
+        '<div class="h-text">'+
+          '<div class="h-name">'+S.name+'</div>'+
+          '<div class="h-creds">'+S.credentials+'</div>'+
+          '<div class="h-intro">'+S.intro+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="links">'+lk+'</div>'+
+    '</header>'+
+    '<nav class="tabs">'+tb+'</nav>'+
+    pn+
+    '<footer>&copy; '+new Date().getFullYear()+' '+S.name+'</footer>';
+
+  // Photo load
+  var p = document.getElementById('ph');
+  if(p){ p.onload=function(){p.classList.add('ok')}; p.onerror=function(){p.classList.add('no')}; }
+
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+      tab.classList.add('on');
+      var panel = document.getElementById('p-'+tab.dataset.t);
+      panel.classList.add('on');
+      // Re-trigger animations
+      panel.querySelectorAll('.card').forEach(function(c){
+        c.classList.remove('fi');
+        void c.offsetWidth;
+        c.classList.add('fi');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
