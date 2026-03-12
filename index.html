@@ -486,10 +486,8 @@ header { padding: 72px 0 40px; }
 .card-body { flex: 1; min-width: 0; }
 .card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .card-title { font-size: 0.95rem; font-weight: 500; line-height: 1.35; }
-.card-title a { color: var(--ink); text-decoration: none; transition: color 0.15s; }
-.card-title a::after { content: " \2192"; font-size: 0.8em; color: var(--accent); opacity: 0.6; transition: opacity 0.15s; }
-.card-title a:hover { color: var(--accent); }
-.card-title a:hover::after { opacity: 1; }
+.card-title a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+.card-title a:hover { text-decoration: underline; }
 .card.has-link { cursor: pointer; }
 .card.has-link:hover { border-left: 3px solid var(--accent); padding-left: 9px; }
 .card-tag {
