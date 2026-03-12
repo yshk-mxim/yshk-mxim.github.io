@@ -543,8 +543,12 @@ h1.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; lett
 .card-title a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; transition: text-decoration-color 0.15s; }
 .card-title a:hover { text-decoration-color: var(--accent); }
 .card-title .ext-icon { font-size: 0.75em; margin-left: 2px; }
-.card.has-link { cursor: pointer; border-left: 2px solid var(--accent); padding-left: 16px; }
-.card.has-link:hover { background: var(--warm); margin: 0 -12px; padding: 20px 12px 20px 14px; border-radius: 6px; }
+.card.has-link {
+  cursor: pointer; border: 1px solid var(--rule); border-radius: 8px;
+  padding: 16px; margin: 8px 0; background: var(--paper);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.card.has-link:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
 .card-action {
   display: inline-flex; align-items: center; gap: 4px; margin-top: 6px;
   font-size: 0.76rem; font-weight: 500; color: var(--accent); letter-spacing: 0.01em;
@@ -570,7 +574,8 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   .tab { padding: 12px 16px 10px; font-size: 0.82rem; }
   .card { flex-direction: column; gap: 12px; }
   .card-img { width: 100%; height: 160px; }
-  .card.has-link:hover { margin: 0 -8px; padding: 16px 8px 16px 14px; }
+  .card.has-link { padding: 14px; margin: 8px 0; }
+  .card.has-link:hover { margin: 8px 0; }
 }
 
 /* Skip link */
