@@ -4,6 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yakov Shkolnikov</title>
+<meta name="description" content="Yakov Shkolnikov — AI systems, edge inference, agentic frameworks, and research. PhD, Princeton. IEEE Senior Member.">
+<meta name="author" content="Yakov Shkolnikov">
+<meta name="theme-color" content="#7f1d1d">
+<link rel="canonical" href="https://yshk-mxim.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%237f1d1d'/><text x='50' y='68' font-family='Georgia,serif' font-size='48' font-weight='400' fill='%23fafaf8' text-anchor='middle'>YS</text></svg>">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Yakov Shkolnikov">
+<meta property="og:description" content="Production AI systems, edge inference, agentic frameworks, and research.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yshk-mxim.github.io/">
+<meta property="og:image" content="https://yshk-mxim.github.io/images/orchestration.jpg">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yakov Shkolnikov">
+<meta name="twitter:description" content="Production AI systems, edge inference, agentic frameworks, and research.">
+<meta name="twitter:image" content="https://yshk-mxim.github.io/images/orchestration.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Yakov Shkolnikov",
+  "url": "https://yshk-mxim.github.io",
+  "sameAs": [
+    "https://www.linkedin.com/in/yakov-shkolnikov/",
+    "https://github.com/yshk-mxim",
+    "https://scholar.google.com/citations?user=zTtAbu4AAAAJ&hl=en",
+    "https://theincompleteguidetoai.substack.com"
+  ],
+  "jobTitle": "AI Architecture and Strategy",
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Princeton University" },
+    { "@type": "CollegeOrUniversity", "name": "Cornell University" }
+  ],
+  "knowsAbout": ["Artificial Intelligence", "Edge Inference", "Agentic AI", "Medical Devices", "Signal Processing"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -421,7 +463,7 @@ const SITE = {
   --ink: #1c1917;
   --paper: #fafaf8;
   --warm: #f5f3ef;
-  --muted: #78716c;
+  --muted: #6b6560;
   --accent: #7f1d1d;
   --accent-light: #fef2f2;
   --rule: #e7e5e4;
@@ -445,27 +487,30 @@ header { padding: 72px 0 40px; }
 .h-photo.ok { opacity: 1; }
 .h-photo.no { display: none; }
 .h-text { flex: 1; }
-.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; letter-spacing: -0.025em; line-height: 1.15; }
+h1.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; letter-spacing: -0.025em; line-height: 1.15; }
 .h-creds { font-size: 0.82rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.02em; }
 .h-intro { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; font-style: italic; color: var(--muted); margin-top: 14px; line-height: 1.55; }
 
 /* Links bar */
 .links { display: flex; gap: 20px; flex-wrap: wrap; padding: 18px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: 28px; }
 .links a {
-  font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none;
-  letter-spacing: 0.04em; text-transform: uppercase; transition: opacity 0.2s;
+  font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: underline;
+  text-decoration-color: var(--rule); text-underline-offset: 2px;
+  letter-spacing: 0.04em; text-transform: uppercase; transition: text-decoration-color 0.2s;
 }
-.links a:hover { opacity: 0.55; }
+.links a:hover { text-decoration-color: var(--accent); }
 
 /* Tabs */
 .tabs-wrap { position: relative; margin-top: 36px; }
-.tabs-wrap::after {
-  content: ''; position: absolute; right: 0; top: 0; bottom: 2px;
-  width: 48px; pointer-events: none;
-  background: linear-gradient(to right, transparent, var(--paper));
-  transition: opacity 0.2s;
+.tabs-arrow {
+  position: absolute; right: 0; top: 0; bottom: 2px; width: 36px;
+  background: linear-gradient(to right, transparent, var(--paper) 40%);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: flex-end;
+  font-size: 1.1rem; color: var(--muted); padding-right: 4px; transition: opacity 0.2s;
+  z-index: 1;
 }
-.tabs-wrap.scrolled-end::after { opacity: 0; }
+.tabs-arrow:hover { color: var(--accent); }
+.tabs-arrow.hidden { opacity: 0; pointer-events: none; }
 .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--rule); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
@@ -495,8 +540,9 @@ header { padding: 72px 0 40px; }
 .card-body { flex: 1; min-width: 0; }
 .card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .card-title { font-size: 0.95rem; font-weight: 500; line-height: 1.35; }
-.card-title a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
-.card-title a:hover { text-decoration: underline; }
+.card-title a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; transition: text-decoration-color 0.15s; }
+.card-title a:hover { text-decoration-color: var(--accent); }
+.card-title .ext-icon { font-size: 0.75em; margin-left: 2px; }
 .card.has-link { cursor: pointer; }
 .card.has-link:hover { border-left: 3px solid var(--accent); padding-left: 9px; }
 .card-tag {
@@ -523,6 +569,25 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   .card:hover { margin: 0 -8px; padding: 16px 8px; }
 }
 
+/* Skip link */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; padding: 8px 16px;
+  background: var(--accent); color: #fff; font-size: 0.85rem; z-index: 100;
+  text-decoration: none; border-radius: 0 0 4px 0;
+}
+.skip-link:focus { left: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* Focus styles */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.tab:focus-visible { outline-offset: -2px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fi { animation: none; opacity: 1; transform: none; }
+  * { transition-duration: 0.01ms !important; }
+}
+
 /* Animations */
 .fi { opacity: 0; transform: translateY(10px); animation: fu 0.45s ease forwards; }
 @keyframes fu { to { opacity: 1; transform: translateY(0); } }
@@ -540,17 +605,17 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   var S = SITE, el = document.getElementById('app');
 
   // Links
-  var lk = S.links.map(function(l){ return '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.label+'</a>'; }).join('');
+  var lk = S.links.map(function(l){ return '<a href="'+l.url+'" target="_blank" rel="noopener">'+l.label+'<span class="sr-only"> (opens in new tab)</span></a>'; }).join('');
 
   // Tabs
-  var tb = S.tabs.map(function(t,i){ return '<div class="tab'+(i===0?' on':'')+'" data-t="'+t.id+'">'+t.label+'</div>'; }).join('');
+  var tb = S.tabs.map(function(t,i){ return '<div class="tab'+(i===0?' on':'')+'" data-t="'+t.id+'" role="tab" tabindex="'+(i===0?'0':'-1')+'" aria-selected="'+(i===0)+'" aria-controls="p-'+t.id+'" id="tab-'+t.id+'">'+t.label+'</div>'; }).join('');
 
   // Panels
   var pn = S.tabs.map(function(t,i){
     var cards = t.items.map(function(c){
       var hasImg = c.image && c.image.length > 0;
-      var img = hasImg ? '<img class="card-img" src="'+c.image+'" alt="">' : '';
-      var ttl = c.url ? '<a href="'+c.url+'" target="_blank" rel="noopener">'+c.title+'</a>' : c.title;
+      var img = hasImg ? '<img class="card-img" src="'+c.image+'" alt="" role="presentation" loading="lazy">' : '';
+      var ttl = c.url ? '<a href="'+c.url+'" target="_blank" rel="noopener">'+c.title+'<span class="ext-icon" aria-hidden="true">\u2197</span><span class="sr-only"> (opens in new tab)</span></a>' : c.title;
       var tag = c.tag ? '<span class="card-tag">'+c.tag+'</span>' : '';
       var desc = c.description ? '<div class="card-desc">'+c.description+'</div>' : '';
       var linkClass = c.url ? ' has-link' : '';
@@ -558,39 +623,45 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
       return '<div class="card fi'+linkClass+'"'+dataUrl+'>'+img+'<div class="card-body"><div class="card-top"><div class="card-title">'+ttl+'</div>'+tag+'</div>'+desc+'</div></div>';
     }).join('');
     var desc = t.description ? '<div class="panel-desc">'+t.description+'</div>' : '';
-    return '<div class="panel'+(i===0?' on':'')+'" id="p-'+t.id+'">'+desc+cards+'</div>';
+    return '<div class="panel'+(i===0?' on':'')+'" id="p-'+t.id+'" role="tabpanel" aria-labelledby="tab-'+t.id+'"><h2 class="sr-only">'+t.label+'</h2>'+desc+cards+'</div>';
   }).join('');
 
   // Photo
   var ph = S.photo ? '<img class="h-photo" src="'+S.photo+'" alt="" id="ph">' : '';
 
   el.innerHTML =
+    '<a class="skip-link" href="#content">Skip to content</a>'+
     '<header>' +
       '<div class="h-row">'+ph+
         '<div class="h-text">'+
-          '<div class="h-name">'+S.name+'</div>'+
+          '<h1 class="h-name">'+S.name+'</h1>'+
           '<div class="h-creds">'+S.credentials+'</div>'+
           '<div class="h-intro">'+S.intro+'</div>'+
         '</div>'+
       '</div>'+
-      '<div class="links">'+lk+'</div>'+
+      '<nav class="links" aria-label="External profiles">'+lk+'</nav>'+
     '</header>'+
-    '<div class="tabs-wrap"><nav class="tabs">'+tb+'</nav></div>'+
+    '<main id="content">' +
+    '<div class="tabs-wrap"><nav class="tabs" role="tablist">'+tb+'</nav><button class="tabs-arrow" aria-label="Scroll to see more tabs">\u203A</button></div>'+
     pn+
+    '</main>'+
     '<footer>&copy; '+new Date().getFullYear()+' '+S.name+'</footer>';
 
   // Photo load
   var p = document.getElementById('ph');
   if(p){ p.onload=function(){p.classList.add('ok')}; p.onerror=function(){p.classList.add('no')}; }
 
-  // Tab scroll fade
+  // Tab scroll arrow
   var tabsEl = document.querySelector('.tabs');
-  var tabsWrap = document.querySelector('.tabs-wrap');
+  var tabsArrow = document.querySelector('.tabs-arrow');
   function checkScroll(){
     var atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 4;
     var noOverflow = tabsEl.scrollWidth <= tabsEl.clientWidth;
-    tabsWrap.classList.toggle('scrolled-end', atEnd || noOverflow);
+    tabsArrow.classList.toggle('hidden', atEnd || noOverflow);
   }
+  tabsArrow.addEventListener('click', function(){
+    tabsEl.scrollBy({ left: 160, behavior: 'smooth' });
+  });
   tabsEl.addEventListener('scroll', checkScroll);
   window.addEventListener('resize', checkScroll);
   checkScroll();
@@ -604,19 +675,31 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   });
 
   // Tab switching
-  document.querySelectorAll('.tab').forEach(function(tab){
-    tab.addEventListener('click', function(){
-      document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
-      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
-      tab.classList.add('on');
-      var panel = document.getElementById('p-'+tab.dataset.t);
-      panel.classList.add('on');
-      // Re-trigger animations
-      panel.querySelectorAll('.card').forEach(function(c){
-        c.classList.remove('fi');
-        void c.offsetWidth;
-        c.classList.add('fi');
-      });
+  var allTabs = Array.from(document.querySelectorAll('.tab'));
+  function activateTab(tab){
+    allTabs.forEach(function(t){
+      t.classList.remove('on');
+      t.setAttribute('aria-selected','false');
+      t.setAttribute('tabindex','-1');
+    });
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+    tab.classList.add('on');
+    tab.setAttribute('aria-selected','true');
+    tab.setAttribute('tabindex','0');
+    tab.focus();
+    var panel = document.getElementById('p-'+tab.dataset.t);
+    panel.classList.add('on');
+    panel.querySelectorAll('.card').forEach(function(c){
+      c.classList.remove('fi'); void c.offsetWidth; c.classList.add('fi');
+    });
+  }
+  allTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ activateTab(tab); });
+    tab.addEventListener('keydown', function(e){
+      var idx = allTabs.indexOf(tab);
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); activateTab(allTabs[(idx+1)%allTabs.length]); }
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); activateTab(allTabs[(idx-1+allTabs.length)%allTabs.length]); }
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); activateTab(tab); }
     });
   });
 })();
