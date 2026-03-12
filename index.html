@@ -172,7 +172,7 @@ const SITE = {
           description: "Agentic AI, biomarker-driven heart failure system-of-care. Scalable to all patients in all care settings.",
           tag: "Consulting Head of AI Architecture & Engineering",
           url: "https://lifewavebiomedical.com",
-          image: ""
+          image: "images/lifewave.jpg"
         },
         {
           title: "2 Provisional Patents, Safety Invariants for Agentic Workflows",
@@ -228,7 +228,7 @@ const SITE = {
           description: "Organizations that frame AI governance as innovation enablement see less shadow AI than those that frame it as risk mitigation. Enablement-first governance frameworks.",
           tag: "Governance",
           url: "",
-          image: ""
+          image: "images/shadow-ai.jpg"
         }
       ]
     },
@@ -242,7 +242,7 @@ const SITE = {
           description: "During the worst reorgs of my career, I found my balance not by seeking advice but by giving it. Guiding others through chaos forced me to see patterns I missed while drowning in my own uncertainty. Mentees test principles you thought were settled. That discomfort is where the growth lives. For both of you.",
           tag: "Essay",
           url: "https://www.linkedin.com/pulse/selfish-case-mentorship-yakov-shkolnikov-pssfc/",
-          image: ""
+          image: "images/mentorship.jpg"
         },
         {
           title: "Who I Mentor",
@@ -256,7 +256,7 @@ const SITE = {
           description: "If you are working on a problem in AI, engineering leadership, career transitions, or navigating organizational chaos, I am happy to talk. I do not charge for mentorship. Pick someone six months behind you on a problem you just solved. Give them thirty minutes. See what you learn. If that person is you, reach out.",
           tag: "Let's Talk",
           url: "https://www.linkedin.com/in/yakovshkolnikov/",
-          image: ""
+          image: "images/open-invitation.jpg"
         }
       ]
     },
@@ -284,7 +284,7 @@ const SITE = {
           description: "The name is not modesty. It is a structural claim. The field moves too fast for completeness and anyone promising it is selling something. Dante had Virgil, who represented human reason, and human reason has limits. I will take you as far as I can. The rest of the journey is yours.",
           tag: "The Incomplete Guide",
           url: "https://theincompleteguidetoai.substack.com",
-          image: ""
+          image: "images/honest-guides.jpg"
         },
         {
           title: "Build systems that outlast you.",
@@ -305,7 +305,7 @@ const SITE = {
           description: "You work with colleagues who share your context through training, education, and interaction. An AI model trained on the corpus of the internet has a different understanding of your task. One of the largest sources of error is the gap between what you meant and what the model inferred. Make it clarify before it executes.",
           tag: "The Incomplete Guide",
           url: "https://theincompleteguidetoai.substack.com/p/SLUG",
-          image: ""
+          image: "images/incomplete-guide-philosophy.jpg"
         },
         {
           title: "Innovation culture reduces shadow AI. Surveillance does not.",
@@ -326,10 +326,10 @@ const SITE = {
           description: "Primary development environment. Agentic coding, long-duration workflows, orchestration framework development. The tool I use to build tools.",
           tag: "Daily Driver",
           url: "https://claude.ai",
-          image: ""
+          image: "images/claude-code.jpg"
         },
         {
-          title: "MacBook Pro M4 Pro 12-Core / 48GB",
+          title: "MacBook Pro M4 Pro 12-Core / 24GB",
           description: "273 GB/s unified memory bandwidth. Metal acceleration for MLX. Runs 7B-12B quantized models locally for inference and LoRA fine-tuning. Paged attention, batch inference, privacy-sensitive medical AI work.",
           tag: "Local Compute",
           url: "",
@@ -403,7 +403,7 @@ const SITE = {
           description: "A 10GB GPU and a $200/mo Claude subscription is not a limitation. It is a forcing function. If your experiment needs an H100 cluster to show results, the result probably isn't robust. Every system I build is designed to run on hardware a single researcher can afford.",
           tag: "Principle",
           url: "",
-          image: ""
+          image: "images/constrained-compute.jpg"
         }
       ]
     }
@@ -487,7 +487,11 @@ header { padding: 72px 0 40px; }
 .card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .card-title { font-size: 0.95rem; font-weight: 500; line-height: 1.35; }
 .card-title a { color: var(--ink); text-decoration: none; transition: color 0.15s; }
+.card-title a::after { content: " \2192"; font-size: 0.8em; color: var(--accent); opacity: 0.6; transition: opacity 0.15s; }
 .card-title a:hover { color: var(--accent); }
+.card-title a:hover::after { opacity: 1; }
+.card.has-link { cursor: pointer; }
+.card.has-link:hover { border-left: 3px solid var(--accent); padding-left: 9px; }
 .card-tag {
   font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
   color: var(--accent); background: var(--accent-light); padding: 2px 8px; border-radius: 3px;
@@ -542,7 +546,9 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
       var ttl = c.url ? '<a href="'+c.url+'" target="_blank" rel="noopener">'+c.title+'</a>' : c.title;
       var tag = c.tag ? '<span class="card-tag">'+c.tag+'</span>' : '';
       var desc = c.description ? '<div class="card-desc">'+c.description+'</div>' : '';
-      return '<div class="card fi">'+img+'<div class="card-body"><div class="card-top"><div class="card-title">'+ttl+'</div>'+tag+'</div>'+desc+'</div></div>';
+      var linkClass = c.url ? ' has-link' : '';
+      var dataUrl = c.url ? ' data-url="'+c.url+'"' : '';
+      return '<div class="card fi'+linkClass+'"'+dataUrl+'>'+img+'<div class="card-body"><div class="card-top"><div class="card-title">'+ttl+'</div>'+tag+'</div>'+desc+'</div></div>';
     }).join('');
     var desc = t.description ? '<div class="panel-desc">'+t.description+'</div>' : '';
     return '<div class="panel'+(i===0?' on':'')+'" id="p-'+t.id+'">'+desc+cards+'</div>';
@@ -569,6 +575,14 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   // Photo load
   var p = document.getElementById('ph');
   if(p){ p.onload=function(){p.classList.add('ok')}; p.onerror=function(){p.classList.add('no')}; }
+
+  // Whole-card click for linked cards
+  document.querySelectorAll('.card.has-link').forEach(function(card){
+    card.addEventListener('click', function(e){
+      if(e.target.tagName === 'A') return;
+      window.open(card.dataset.url, '_blank', 'noopener');
+    });
+  });
 
   // Tab switching
   document.querySelectorAll('.tab').forEach(function(tab){
