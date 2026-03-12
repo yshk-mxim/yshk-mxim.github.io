@@ -17,7 +17,7 @@ const SITE = {
 
   // --- HEADER ---
   name: "Yakov Shkolnikov",
-  photo: "photo.jpg",  // same folder, or "" to hide
+  photo: "",  // same folder, or "" to hide
   credentials: "PhD, Princeton · IEEE Senior Member · PE",
   intro: "I build production AI systems, transform how organizations adopt them, and make it safe to experiment. Then I write about what I learn, including what doesn't work.",
 
@@ -52,7 +52,7 @@ const SITE = {
           description: "Enterprise alternative to LangGraph. Lets non-ML engineers build production AI workflows. Open-source release in progress.",
           tag: "Open Source",
           url: "https://github.com/YOURUSERNAME/REPO",
-          image: ""
+          image: "images/orchestration.jpg"
         },
         {
           title: "Production ML: Forecasting and Supply Chain Optimization",
@@ -73,7 +73,7 @@ const SITE = {
           description: "150 lines of classical control logic for a Franka Panda doing randomized pick-and-place. No training, no reward function. The baseline tells you exactly where learning earns its complexity budget.",
           tag: "Robotics",
           url: "https://www.linkedin.com/feed/update/urn:li:activity:7435715830954479616/",
-          image: ""
+          image: "images/robotics.jpg"
         },
         {
           title: "Stateful Agent Architecture for Low-Latency Retrieval",
@@ -94,14 +94,14 @@ const SITE = {
           description: "An honest guide through the dark wood of AI. Open-sourced experiments, hands-on learning, guidance as far as human reason can go.",
           tag: "Substack",
           url: "https://theincompleteguidetoai.substack.com",
-          image: ""
+          image: "images/incomplete-guide.jpg"
         },
         {
           title: "You Are Brilliant, Keep Going",
           description: "",
           tag: "Substack",
           url: "https://theincompleteguidetoai.substack.com/p/you-are-brilliant-keep-going",
-          image: ""
+          image: "images/keep-going.jpg"
         },
 
         {
@@ -109,21 +109,21 @@ const SITE = {
           description: "Guest article in Frictionless Data. Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number.",
           tag: "Guest Article",
           url: "https://zanehall.substack.com/p/escaping-analysis-paralysis",
-          image: ""
+          image: "images/analysis-paralysis.jpg"
         },
         {
           title: "Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices",
           description: "Multi-agent LLM systems on edge devices can only fit 3 agents in FP16 at 8K context. Persisting quantized KV caches to disk and reloading directly into the attention layer eliminates redundant prefill computation.",
           tag: "arXiv",
           url: "https://arxiv.org/abs/2603.04428",
-          image: ""
+          image: "images/kv-cache.jpg"
         },
         {
           title: "Probing Frozen Features for Continuous Physical Measurement",
           description: "",
           tag: "arXiv",
           url: "https://arxiv.org/abs/2603.06459",
-          image: ""
+          image: "images/frozen-features.jpg"
         },
         {
           title: "Haar Wavelet Architectures for Resource-Constrained Inference",
@@ -137,28 +137,28 @@ const SITE = {
           description: "What an independent AI research lab actually looks like. Hardware, budget, what worked, what didn't.",
           tag: "LinkedIn Article",
           url: "https://www.linkedin.com/pulse/one-month-irl-independent-research-lab-update-yakov-shkolnikov-tdzme",
-          image: ""
+          image: "images/one-month-irl.jpg"
         },
         {
           title: "Server Speed, Multi-Turn Agentic AI, and the Extremely Agent Class",
           description: "",
           tag: "LinkedIn Article",
           url: "https://www.linkedin.com/pulse/server-speed-multi-turn-agentic-ai-extremely-agent-class-shkolnikov-5ymje/",
-          image: ""
+          image: "images/server-speed.jpg"
         },
         {
           title: "Your AI Agent Passed Every Test. It Failed Anyway.",
           description: "",
           tag: "LinkedIn Article",
           url: "https://www.linkedin.com/pulse/your-ai-agent-passed-every-test-failed-anyway-yakov-shkolnikov-vmpuc/",
-          image: ""
+          image: "images/agent-passed.jpg"
         },
         {
           title: "Google Scholar, Full Publication List",
           description: "50+ peer-reviewed papers across signal processing, computer vision, medical devices, and AI. h-index 18.",
           tag: "Publications",
           url: "https://scholar.google.com/citations?user=zTtAbu4AAAAJ&hl=en",
-          image: ""
+          image: "images/scholar.jpg"
         }
       ]
     },
@@ -510,6 +510,20 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   .card { flex-direction: column; gap: 12px; }
   .card-img { width: 100%; height: 160px; }
   .card:hover { margin: 0 -8px; padding: 16px 8px; }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e7e5e4;
+    --paper: #1c1917;
+    --warm: #292524;
+    --muted: #a8a29e;
+    --accent: #fca5a5;
+    --accent-light: #3b1010;
+    --rule: #44403c;
+  }
+  .card-img { opacity: 0.85; }
 }
 
 /* Animations */
