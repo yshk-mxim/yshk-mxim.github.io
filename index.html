@@ -512,20 +512,6 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
   .card:hover { margin: 0 -8px; padding: 16px 8px; }
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ink: #e7e5e4;
-    --paper: #1c1917;
-    --warm: #292524;
-    --muted: #a8a29e;
-    --accent: #fca5a5;
-    --accent-light: #3b1010;
-    --rule: #44403c;
-  }
-  .card-img { opacity: 0.85; }
-}
-
 /* Animations */
 .fi { opacity: 0; transform: translateY(10px); animation: fu 0.45s ease forwards; }
 @keyframes fu { to { opacity: 1; transform: translateY(0); } }
