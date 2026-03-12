@@ -132,6 +132,13 @@ const SITE = {
       description: "50+ papers, ongoing research in efficient architectures, and a Substack about what AI actually does when you test it.",
       items: [
         {
+          title: "Haar Wavelet Architectures for Resource-Constrained Inference",
+          description: "Replacing transformer self-attention with Haar wavelet decomposition for audio and time-series. O(n) complexity vs O(n²). Targeting Interspeech/ICASSP.",
+          tag: "Zenodo",
+          url: "https://zenodo.org/records/18991294",
+          image: ""
+        },
+        {
           title: "The Incomplete Guide to AI",
           description: "An honest guide through the dark wood of AI. Open-sourced experiments, hands-on learning, guidance as far as human reason can go.",
           tag: "Substack",
@@ -166,13 +173,6 @@ const SITE = {
           tag: "arXiv",
           url: "https://arxiv.org/abs/2603.06459",
           image: "images/frozen-features.jpg"
-        },
-        {
-          title: "Haar Wavelet Architectures for Resource-Constrained Inference",
-          description: "Replacing transformer self-attention with Haar wavelet decomposition for audio and time-series. O(n) complexity vs O(n²). Targeting Interspeech/ICASSP. Paper in preparation.",
-          tag: "Research",
-          url: "",
-          image: ""
         },
         {
           title: "One Month IRL: Independent Research Lab Update",
@@ -635,7 +635,8 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
     'openai.com': 'Visit OpenAI',
     'nvidia.com': 'Visit NVIDIA',
     'ml-explore': 'View on GitHub',
-    'pytorch.org': 'Visit PyTorch'
+    'pytorch.org': 'Visit PyTorch',
+    'zenodo.org': 'View on Zenodo'
   };
   function getActionLabel(url){
     if(!url) return '';
