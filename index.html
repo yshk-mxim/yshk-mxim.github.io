@@ -512,8 +512,8 @@ h1.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; lett
 .tabs-arrow {
   position: absolute; top: 0; bottom: 2px;
   border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem; font-weight: 600; color: #5a7d6a; letter-spacing: 0.03em;
-  text-transform: uppercase; transition: opacity 0.2s; z-index: 1;
+  font-size: 1.1rem; font-weight: 400; color: #5a7d6a;
+  transition: opacity 0.2s; z-index: 1;
 }
 .tabs-arrow:hover { color: #3d5c4a; }
 .tabs-arrow.hidden { opacity: 0; pointer-events: none; }
@@ -525,7 +525,7 @@ h1.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; lett
   left: 0; padding-left: 8px; padding-right: 28px;
   background: linear-gradient(to left, transparent 0%, var(--paper) 40%, var(--paper) 100%);
 }
-.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--rule); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--rule); overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
   padding: 14px 22px 12px; font-size: 0.88rem; font-weight: 500; color: var(--muted);
@@ -690,7 +690,7 @@ footer { padding: 48px 0 72px; text-align: center; font-size: 0.78rem; color: va
       '<nav class="links" aria-label="External profiles">'+lk+'</nav>'+
     '</header>'+
     '<main id="content">' +
-    '<div class="tabs-wrap"><button class="tabs-arrow tabs-arrow-left hidden" aria-label="Scroll tabs left">\u2190 More</button><nav class="tabs" role="tablist">'+tb+'</nav><button class="tabs-arrow tabs-arrow-right" aria-label="Scroll tabs right">More \u2192</button></div>'+
+    '<div class="tabs-wrap"><button class="tabs-arrow tabs-arrow-left hidden" aria-label="Scroll tabs left">\u27F5</button><nav class="tabs" role="tablist">'+tb+'</nav><button class="tabs-arrow tabs-arrow-right" aria-label="Scroll tabs right">\u27F6</button></div>'+
     pn+
     '</main>'+
     '<footer>&copy; '+new Date().getFullYear()+' '+S.name+'</footer>';
