@@ -517,8 +517,14 @@ h1.h-name { font-family: var(--serif); font-size: 2.1rem; font-weight: 400; lett
 }
 .tabs-arrow:hover { opacity: 0.7; }
 .tabs-arrow.hidden { opacity: 0; pointer-events: none; }
-.tabs-arrow-right { right: 0; padding-right: 4px; padding-left: 16px; background: linear-gradient(to right, transparent, var(--paper) 30%); }
-.tabs-arrow-left { left: 0; padding-left: 4px; padding-right: 16px; background: linear-gradient(to left, transparent, var(--paper) 30%); }
+.tabs-arrow-right {
+  right: 0; padding-right: 8px; padding-left: 28px;
+  background: linear-gradient(to right, transparent 0%, var(--paper) 40%, var(--paper) 100%);
+}
+.tabs-arrow-left {
+  left: 0; padding-left: 8px; padding-right: 28px;
+  background: linear-gradient(to left, transparent 0%, var(--paper) 40%, var(--paper) 100%);
+}
 .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--rule); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
