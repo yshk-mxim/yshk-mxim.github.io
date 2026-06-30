@@ -83,6 +83,20 @@ const SITE = {
       description: "LinkedIn articles, Substack posts, and guest pieces on AI architecture, deployment, and what the models actually do when you test them.",
       items: [
         {
+          title: "Agentic Loops: The Gambler's Fallacy at Cloud Scale",
+          description: "An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/",
+          image: ""
+        },
+        {
+          title: "The Bitter Lesson of Novel AI Hardware",
+          description: "Sutton's bitter lesson applied to silicon: novel hardware platforms that need a custom computational primitive to realize their advantages get displaced by the dominant general-purpose ones. Three forces — decades of GPU optimization funded by datacenter revenue, training data that co-evolved with compression standards the sparse domains never got, and distillation from large models that don't exist for sparse signals. CPU, GPU, TPU: three architectures, one primitive. A desk full of abandoned esoteric boards as evidence.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/bitter-lesson-novel-ai-hardware-yakov-shkolnikov-o2mce/",
+          image: ""
+        },
+        {
           title: "Of AgentHouses and Agentic Donuts",
           description: "Two anti-patterns spreading through the AI ecosystem: the AgentHouse, a tower of semantic layers, registries, and dashboards that recapitulates the data-warehouse era, and the Agentic Donut, a loop of more data, more reliability, more agents with the business question missing from its center. The bottleneck was never access. It was a human who owns what a metric means and is accountable for that decision, which no semantic layer, registry, or dashboard generates.",
           tag: "LinkedIn Article",
