@@ -83,6 +83,20 @@ const SITE = {
       description: "LinkedIn articles, Substack posts, and guest pieces on AI architecture, deployment, and what the models actually do when you test them.",
       items: [
         {
+          title: "Adding Trust to Untrustworthy AI",
+          description: "Trust in AI is Responsible AI, system security, and a psychological willingness to rely on it, and all three require a model that keeps lower-trust channels from overruling higher-trust ones, including jailbreaks that try to override system or user instructions. Models cannot do this alone. Borrowing from how human organizations get dependable work from imperfect people, where authority follows who gave the order rather than how forcefully it is worded, a deterministic sequence of LLM calls provably establishes a Biba integrity lattice while prompt-tuning passivates unsafe content. On an unmodified Gemma 4 26B it raises the defended rate from 27% to 94% at a 4% quality cost, and rejects 87% of a simulated adaptive red-teaming attack.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/adding-trust-untrustworthy-ai-yakov-shkolnikov-5vhhc/",
+          image: ""
+        },
+        {
+          title: "Why AI Can Generate Text Yet Cannot Write",
+          description: "A frontier model set to extra thinking, wired to best-in-class NLP tools, a graded style rulebook, and a section-diversifying pipeline still produced text with no soul, while a memo written by hand in ten minutes scored higher and read as human. The reason is mechanical: an LLM maps previous tokens onto the next token, but a human maps intent onto a written piece, and that pre-verbal intent never appears in the training data because it forms as you write. Flower and Hayes named the missing step, translating, decades ago. RLHF only records preferences over finished outputs. The human in the editing loop supplies the missing signal one document at a time, which is why the most expensive component of the system is still a person.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/why-ai-can-generate-text-yet-cannot-write-yakov-shkolnikov-tdzoc/",
+          image: ""
+        },
+        {
           title: "Agentic Loops: The Gambler's Fallacy at Cloud Scale",
           description: "An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred.",
           tag: "LinkedIn Article",
@@ -299,6 +313,13 @@ const SITE = {
       label: "Research & Papers",
       description: "arXiv preprints, peer-reviewed publications, and open-source releases. Efficient architectures, deterministic training, edge inference, and secure development tooling.",
       items: [
+        {
+          title: "Composable Trust for Language Models: A Proven Boundary and a Measured Defense",
+          description: "In a language model, instructions and data share one token stream, so nothing inside the model's generation can keep untrusted text from steering it. The authority to act is placed outside the model, in code: a source's standing, not its content, decides which operation runs and whether it acts. An unmodified model runs inside a deterministic pipeline that ranks inputs by source integrity, and a fixed non-model monitor provably chooses the operation and any outside action from trusted inputs alone. On a one-shot held-out set with Gemma 4 26B, the passivation-and-wrapper cascade raises the genuine-leak defended rate from 27% to 94% at roughly a 4% clean-quality cost (Qrel=0.96). Under adaptive red-teaming the proved boundary holds unconditionally and the measured defense stays at 87%. Attribution of a lower-trust source's fact rises from 0% to 92%. Paper with code.",
+          tag: "arXiv",
+          url: "https://arxiv.org/abs/2607.13149",
+          image: ""
+        },
         {
           title: "The SaaS Apocalypse Fallacy: Why AI Raises the Value of the Bundle",
           description: "Working paper analyzing the February 2026 selloff that took more than a trillion dollars off enterprise software stocks on the thesis that AI was about to replace SaaS. The thesis rests on a category error: AI in its current delivery form is itself SaaS, delivered by a different vendor under weaker contracts on liability, compliance, and indemnification. Trying the build forces the enterprise to itemize a SaaS bundle the subscription had been quietly carrying.",
