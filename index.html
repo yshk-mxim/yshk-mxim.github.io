@@ -84,6 +84,20 @@ const SITE = {
       description: "LinkedIn articles, Substack posts, and guest pieces on AI architecture, deployment, and what the models actually do when you test them.",
       items: [
         {
+          title: "Why an AI Agent Is Not a Team Player",
+          description: "Klein et al. published ten challenges for making automation a team player in 2004. Graded against that rubric as a quarterly performance review, a frontier Claude Opus agent fails every one that matters: it holds no model of the work the organization is doing, cannot negotiate interdependent decisions, cannot own an outcome, and cannot carry a supervisor's feedback into its next task. A layout designer and a plumber who each iterate perfectly within their own discipline still oscillate between two incompatible house designs. The evidence is a real 29-day, 59-hour build (174 files, 2,416 tests, ruff/mypy/pytest/Hypothesis/Playwright/security scanning) that shipped, late and over budget, with twelve decisions implemented correctly and specified badly enough that the product did not do what it was for. As a tool the same agent aces the review. Don't hire agents as employees; give employees agentic tools.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/",
+          image: ""
+        },
+        {
+          title: "AI Will Not Displace Human Labor in the Near Term. And It Will Make the Work Better.",
+          description: "GenAI is strongest at fluency, the repetitive work with well-specified and cheaply checkable completion, and weakest at judgment: deciding what the task is and whether the result is right. That fluent, checkable work was largely automated last century by office software and factory machines, and aggregate employment did not fall. What is left is 'just figure it out.' Where the pattern fits, gains arrive immediately: 14% more support issues resolved per hour, 40% faster short writing, 55.8% faster on a defined coding task. Where it doesn't, fluency becomes sabotage, a volume of under-defined work nobody can verify. Software got its harnesses only because experts spent years and heavy budget building them for themselves; humanoid robotics faces the same judgment gap plus real-time adaptation, and cannot run agentic loops when falling down costs more than a failed compile. Companion piece to the SSRN paper.",
+          tag: "LinkedIn Article",
+          url: "https://www.linkedin.com/pulse/ai-displace-human-labor-near-term-make-work-better-yakov-shkolnikov-oy26c/",
+          image: ""
+        },
+        {
           title: "Adding Trust to Untrustworthy AI",
           description: "Trust in AI is Responsible AI, system security, and a psychological willingness to rely on it, and all three require a model that keeps lower-trust channels from overruling higher-trust ones, including jailbreaks that try to override system or user instructions. Models cannot do this alone. Borrowing from how human organizations get dependable work from imperfect people, where authority follows who gave the order rather than how forcefully it is worded, a deterministic sequence of LLM calls provably establishes a Biba integrity lattice while prompt-tuning passivates unsafe content. On an unmodified Gemma 4 26B it raises the defended rate from 27% to 94% at a 4% quality cost, and rejects 87% of a simulated adaptive red-teaming attack.",
           tag: "LinkedIn Article",
@@ -314,6 +328,13 @@ const SITE = {
       label: "Research & Papers",
       description: "arXiv preprints, peer-reviewed publications, and open-source releases. Efficient architectures, deterministic training, edge inference, and secure development tooling.",
       items: [
+        {
+          title: "The Second Storm Doesn't Find a Pristine Forest: Why Near-Term AI Augments Labor Rather Than Replacing It",
+          description: "Working paper, 20 pages. Forecasts of near-term displacement mistake which work AI automates. What today's models do reliably is work with a clear right or wrong answer, the kind whose errors are cheap to catch, and most of that was automated long ago by the office software and factory machines of the last century without aggregate employment falling. What remains turns on judgment: deciding what the task is and whether the result is right. Generative AI bought fluency, not judgment. A larger model writes more convincingly but is no better at telling a right answer from a merely plausible one, most likely because it learns from finished work and not the reasoning behind it. Physical work asks for the same judgment plus real-time adaptation no fixed program supplies, which makes a general-purpose robot a far riskier bet than the specialized machines already on the line. Automating the rest requires a harness that, in the near term, adds human labor instead of cutting it.",
+          tag: "SSRN",
+          url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101",
+          image: ""
+        },
         {
           title: "Composable Trust for Language Models: A Proven Boundary and a Measured Defense",
           description: "In a language model, instructions and data share one token stream, so nothing inside the model's generation can keep untrusted text from steering it. The authority to act is placed outside the model, in code: a source's standing, not its content, decides which operation runs and whether it acts. An unmodified model runs inside a deterministic pipeline that ranks inputs by source integrity, and a fixed non-model monitor provably chooses the operation and any outside action from trusted inputs alone. On a one-shot held-out set with Gemma 4 26B, the passivation-and-wrapper cascade raises the genuine-leak defended rate from 27% to 94% at roughly a 4% clean-quality cost (Qrel=0.96). Under adaptive red-teaming the proved boundary holds unconditionally and the measured defense stays at 87%. Attribution of a lower-trust source's fact rises from 0% to 92%. Paper with code.",
