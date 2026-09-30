@@ -1,0 +1,41 @@
+<p>Today I am open-sourcing SKIFF, a container manager I built for three distinct goals. Code is available at <a href="https://github.com/yshk-mxim/skiff-container-manager">https://github.com/yshk-mxim/skiff-container-manager</a></p>
+
+<h2>Three goals</h2>
+
+<h3>Automated SDLC</h3>
+
+<p>The first was to understand what an automated SDLC can look like when the security requirements are strict and the threats are concrete ones: supply chain compromise, credential theft, lateral movement, or a token pasted into a terminal that also feeds an audit log. The question I wanted tested was whether those threats can be encoded as tests and CI gates that actually fail the build when a control regresses, rather than as a compliance checklist that everyone signs and nobody re-reads.</p>
+
+<h3>Container manager for the zero trust environment</h3>
+
+<p>The second was to have a good container manager for a GCP environment without the two compromises that usually come with the role. Nested virtualisation on a workstation that already sits inside a VM is not a trade-off I am willing to make, and mounting the container runtime socket into a privileged helper process is effectively giving that helper root on the host. SKIFF does neither. It runs as a Python process on the operator's machine and talks to the daemon over an SSH tunnel, with nothing persistent on the container host itself. The README has a short comparison table against the two tool patterns this one sits between.</p>
+
+<h3>Economics of AI written software</h3>
+
+<p>The third was to understand what software of this shape actually costs to build with modern AI tools, and what that means for the current arguments about an AI apocalypse and the end of SaaS as a business. The follow-up next week has the accounting, with a matching paper behind it.</p>
+
+<h2>SDLC and security</h2>
+
+<h3>Tests and gates</h3>
+
+<p>Most of what is in the repository is there to make the security claims defensible. The test suite runs at four tiers: unit, contract, property-based with Hypothesis, and journey-level end-to-end with Playwright and a persona-audit harness that records screenshots, DOM snapshots, and console output per step. Coverage has a floor of 94%, enforced in CI. The anti-pattern linter (AP001 through AP015) rejects code matching shapes I previously caused bugs with, including nested try/except, policy literals at call sites, and long if/elif chains. Cyclomatic complexity is capped at 10 per function via ruff C901, with a working preference for 5 in ordinary code. Claude-code-security-review runs against every PR diff as a second reviewer with a different failure mode from mine.</p>
+
+<h3>Controls</h3>
+
+<p>The bearer token compare is constant-time, with a 16-character minimum enforced at first-run and an 8-hour absolute server-side session ceiling. Rotation force-closes live WebSocket sessions bound to the previous token. WebSocket authentication rides on the first message, not a query parameter, so tokens do not leak into upstream access logs. CSP is strict, with no unsafe-inline on script-src, and every DOM write in the browser goes through a single function that uses textContent. The compose sandbox blocks around twenty dangerous keys, including privileged, cap_add, devices, host path mounts, and host network/pid/ipc modes. The runtime install surface is ten declared dependencies and thirty-one in the transitive closure, hash-pinned, with dev and end-to-end tooling isolated in optional extras so a production install cannot pull them.</p>
+
+<h3>Compliance mappings</h3>
+
+<p>Per-framework evidence lives in docs/compliance/:</p>
+
+<p><ul><li>OWASP ASVS v5.0: self-assessed evidence on 13 of 18 chapters</li><li>OWASP Top 10: semgrep p/owasp-top-ten on every PR</li><li>WCAG 2.1 Level AA: 0 issues on the login flow (pa11y) and across the authenticated SPA (Playwright + axe-core 4.10)</li><li>NIST SSDF (SP 800-218): full PO/PS/PW/RV mapping</li><li>NIST CSF 2.0: primitives for Govern, Identify, Protect, Detect, Respond, Recover</li><li>OpenSSF Scorecard: automated weekly scan</li><li>OpenSSF Best Practices: passing-level attestation ready</li><li>SLSA v1.0: L1 met, L2 tracked</li><li>CIS Docker Benchmark: the compose sandbox enforces the relevant §5 items</li></ul></p>
+
+<p>Scans specific to the environment SKIFF is being deployed in have not been published. The hardening guide in the repo walks operators through adapting the same practices to their own environment.</p>
+
+<h3>The ask</h3>
+
+<p>SKIFF runs locally against any Docker-API-compatible runtime and remotely over SSH. I have tested both on my own infrastructure, and my team has run an external tester against the GCP deployment. I would like more eyes on it. Open an issue, file a bug, or send a PR if you see something I missed. SECURITY.md describes the private disclosure channel.</p>
+
+<p>I use SKIFF myself. In my research work I keep development isolated inside containers to limit credential scope and reduce the blast radius of any supply chain compromise. Having a usable UI in front of that workflow has been a real productivity gain while building the tool.</p>
+
+<p>MIT-licensed.</p>

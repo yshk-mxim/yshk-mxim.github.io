@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why an AI Agent Is Not a Team Player · Yakov Shkolnikov</title>
+<meta name="description" content="Klein et al. published ten challenges for making automation a team player in 2004. Graded against that rubric as a quarterly performance review, a frontier Claude Opus agent fails every one that matters: it holds no model of the work the organization is doing, cannot negotiate interdependent decisions, cannot own an outcome, and cannot carry a supervisor&#x27;s feedback into its next task. A layout designer and a plumber who each iterate perfectly within their own discipline still oscillate between two incompatible house designs. The evidence is a real 29-day, 59-hour build (174 files, 2,416 tests, ruff/mypy/pytest/Hypothesis/Playwright/security scanning) that shipped, late and over budget, with twelve decisions implemented correctly and specified badly enough that the product did not do what it was for. As a tool the same agent aces the review. Don&#x27;t hire agents as employees; give employees agentic tools.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/ai-agent-not-a-team-player/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Why an AI Agent Is Not a Team Player">
+<meta property="og:description" content="Klein et al. published ten challenges for making automation a team player in 2004. Graded against that rubric as a quarterly performance review, a frontier Claude Opus agent fails every one that matters: it holds no model of the work the organization is doing, cannot negotiate interdependent decisions, cannot own an outcome, and cannot carry a supervisor&#x27;s feedback into its next task. A layout designer and a plumber who each iterate perfectly within their own discipline still oscillate between two incompatible house designs. The evidence is a real 29-day, 59-hour build (174 files, 2,416 tests, ruff/mypy/pytest/Hypothesis/Playwright/security scanning) that shipped, late and over budget, with twelve decisions implemented correctly and specified badly enough that the product did not do what it was for. As a tool the same agent aces the review. Don&#x27;t hire agents as employees; give employees agentic tools.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/ai-agent-not-a-team-player/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/ai-agent-not-a-team-player/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Why an AI Agent Is Not a Team Player", "datePublished": "2026-08-11", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Klein et al. published ten challenges for making automation a team player in 2004. Graded against that rubric as a quarterly performance review, a frontier Claude Opus agent fails every one that matters: it holds no model of the work the organization is doing, cannot negotiate interdependent decisions, cannot own an outcome, and cannot carry a supervisor's feedback into its next task. A layout designer and a plumber who each iterate perfectly within their own discipline still oscillate between two incompatible house designs. The evidence is a real 29-day, 59-hour build (174 files, 2,416 tests, ruff/mypy/pytest/Hypothesis/Playwright/security scanning) that shipped, late and over budget, with twelve decisions implemented correctly and specified badly enough that the product did not do what it was for. As a tool the same agent aces the review. Don't hire agents as employees; give employees agentic tools", "url": "https://yakovshkolnikov.com/writing/ai-agent-not-a-team-player/", "isBasedOn": "https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/", "image": "https://yakovshkolnikov.com/writing/ai-agent-not-a-team-player/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Why an AI Agent Is Not a Team Player</h1>
+<div class="meta"><time datetime="2026-08-11">August 11, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on August 11, 2026. <a href="https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="AI generated org chart of AI agents" width="1279" height="720"><figcaption>AI generated org chart of AI agents</figcaption></figure>
+<div class="article-body">
+<p><em>A very useful and powerful frontier agent still doesn't meet a standard defined more than twenty years ago.</em></p>
+<h3>The allure of agentic employees</h3>
+<p>It seems that one cannot open daily news without seeing an article about AI displacing workers and companies having not only flesh-and-blood employees, but also a large number of agentic ones. Yet, if managers were to really have these virtual employees, how should they go about evaluating them?</p>
+<p>More than 20 years ago, this question was asked by Klein et al. as a list of challenges of using autonomous agents as a team player. Based on these challenges as a graded rubric, GenAI solutions fail as a team player. That is, even if GenAI solutions provide great value in bare speed and improved accuracy, they appear to be unfit to be part of the collaborative layer of a modern organization.</p>
+<h3>Why organizations need team players</h3>
+<p>The following example demonstrates the importance of having your employees be team players. Imagine two employees designing a new home. The layout employee is assigned to create the layout of the rooms and a plumber is designing a pipe layout. The room layout starts first by designing the width and depth of the room and where the doors will go. But that person may pick the doors on every floor going in a different direction. This creates an issue for the plumber, as now there is no wall that can carry water and waste in a straight line.</p>
+<p>Note that an iterative approach will not work in this case, and the plumber and the layout designer may oscillate between two incompatible designs even while perfectly fluent in their own discipline. This coordination for the ultimate goal of designing a better home requires interdependence and negotiation on behalf of the team building the home. Now scale it up to the size of a modern organization, and it becomes clear why even the best individual performers can be very good but unsuited to building and maintaining complex solutions.</p>
+<h3>Quarterly evaluation of one of my agentic employees</h3>
+<p>The table below lists my quarterly evaluation of one of my Claude Opus-based agentic "employees" as the AI teammate on my human-AI team. The project we collaborated on was a success, as it provided me with a good baseline reference research workflow that relies purely on local models. But the project took much longer, took many more iterations, and cost much more time and money than I originally allocated to the effort. And as its supervisor, I can give this agent feedback, which, as we will discuss later, it has no ability to incorporate into its future work.</p>
+<p>This was a real system built over 29 days (with 59 hands-on hours), on a single branch and as the sole author. I took it from an existing prototype to a working pre-release. The project has a very robust testing pipeline, with its 174 files covered by 2,416 tests (1,831 of them unit tests). It has a full verification harness with ruff, mypy, pytest, Hypothesis property tests, Playwright end-to-end, and security scanning.</p>
+<figure><img alt="AI agents fails against Klein et al. challenge rubric. Note that 12 specified decisions were implemented correctly, but defined poorly enough for the product to not function as intended." height="1500" loading="lazy" src="fig-1.webp" width="1077"/><figcaption>AI agents fails against Klein et al. challenge rubric. Note that 12 specified decisions were implemented correctly, but defined poorly enough for the product to not function as intended.</figcaption></figure>
+<p>Yet while utterly failing as a team player, my agent aces an evaluation as a tool.</p>
+<h3>Don't hire AI agents as employees; give your employees agentic tools</h3>
+<p>Treating AI agents as employees assumes that they will sit on the org chart and perform the roles it defines. But an AI agents has no concept of the work your organization needs to do, it cannot negotiate with other employees, it cannot take ownership or responsibility for its work, and it cannot mentor and develop new employees. It is simply a very powerful tool.</p>
+<h3>What comes next</h3>
+<p>The next article explores the obvious follow up question: what does organization look like with human team players collaborating through their AI agents.</p>
+<h3>References and further reading</h3>
+<ul><li>Klein, G., Woods, D. D., Bradshaw, J. M., Hoffman, R. R., &amp; Feltovich, P. J. (2004). Ten Challenges for Making Automation a "Team Player" in Joint Human-Agent Activity. <em>IEEE Intelligent Systems</em>, 19(6), 91-95. <a href="https://doi.org/10.1109/MIS.2004.74">https://doi.org/10.1109/MIS.2004.74</a></li><li>Shkolnikov, Y. P. (2026). <em>The Second Storm Doesn't Find a Pristine Forest: Why Near-Term AI Augments Labor Rather Than Replacing It.</em> SSRN. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101</a></li><li>Shkolnikov, Y. P. (2026). AI Will Not Displace Human Labor in the Near Term. And It Will Make the Work Better. LinkedIn. <a href="/writing/ai-will-not-displace-labor/">https://www.linkedin.com/pulse/ai-displace-human-labor-near-term-make-work-better-yakov-shkolnikov-oy26c/</a></li><li>Shkolnikov, Y. P. (2026). Why AI Can Generate Text Yet Cannot Write. LinkedIn. <a href="/writing/generate-text-cannot-write/">https://www.linkedin.com/pulse/why-ai-can-generate-text-yet-cannot-write-yakov-shkolnikov-tdzoc/</a></li><li>Shkolnikov, Y. P. (2026). The Complexity Gap: Why AI Widens the Distance Between Organizations That Understand Their Technology and Those That Only Manage It. LinkedIn. <a href="/writing/complexity-gap/">https://www.linkedin.com/pulse/complexity-gap-why-ai-widens-distance-between-those-only-shkolnikov-33d0c/</a></li><li>Shkolnikov, Y. P. (2026). Agentic Loops: The Gambler's Fallacy at Cloud Scale. LinkedIn. <a href="/writing/agentic-loops-gamblers-fallacy/">https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/</a></li></ul>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/ai-will-not-displace-labor/"><small>Previous</small>AI Will Not Displace Human Labor in the Near Term. And It Will Make the Work Better</a><a class="next" href="/writing/flood-and-trust/"><small>Next</small>The Flood and the Trust: The Risk of AI Omissions</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

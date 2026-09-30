@@ -1,0 +1,37 @@
+<p>Yakov Shkolnikov</p>
+
+<p>AI Architecture and Strategy</p>
+
+<p>Training a medical AI model involves a coin flip that nobody talks about. My new paper removes the coin.</p>
+
+<h3>What randomness does to medical AI</h3>
+
+<p>When you train a deep learning model, the process starts with random numbers. The initial weights are sampled from a random distribution. The training data is shuffled into a random order. And some GPU operations introduce small floating-point variations of their own.</p>
+
+<p>Run the same code twice with a different starting seed and you get two models. Their overall accuracy is nearly identical. But they disagree on which patients they get wrong.</p>
+
+<p>I trained the same ECG rhythm classifier 20 times with 20 different random seeds. The overall score moved by about 4 percentage points. That looks stable. But on rare heart rhythms, performance swung by over 20 points. For trigeminy, with just 2 positive test cases, it swung by 31 points. One model catches the rare rhythm. The next one misses it. A cardiologist reviewing the output has no way to know which version they got.</p>
+
+<p>This is invisible in standard reporting because overall metrics are dominated by common conditions. The rare conditions, the ones that matter most when present, are where the variation concentrates.</p>
+
+<h3>The fix</h3>
+
+<p>My paper replaces three sources of randomness with deterministic alternatives. Weight initialization uses mathematically computed structured patterns from signal processing instead of random sampling. Batch ordering uses golden ratio scheduling, where the training sequence is computed from signal content rather than shuffled randomly. And GPU non-determinism is eliminated through architecture choices that avoid the specific operations where hardware introduces variation.</p>
+
+<p>The result is a trained model with bit-identical weights across independent runs, verified by cryptographic hash comparison across multiple GPU types.</p>
+
+<p>Removing initialization randomness is free. Structured starting weights match or slightly exceed the standard random method on every architecture and dataset I tested, with lower variance. Full pipeline determinism, including deterministic batch ordering, costs about 1.4 percentage points on ECG. That gap is closing but it is real.</p>
+
+<h3>What the results show</h3>
+
+<p>Structured initialization cut the rare-class variance by up to 7.5x on ECG. On seven medical imaging benchmarks, it showed no performance penalty. On chest X-rays with 14 disease classes, it produced tighter per-class ranges in 11 of 14, with the largest gains on uncommon conditions. The pattern from ECG appeared independently in imaging. Three external ECG databases, none used during development, confirmed the models generalize.</p>
+
+<p>The work so far covers convolutional architectures on ECG and medical imaging. Whether it extends to other architecture families is an open question.</p>
+
+<h3>Architecturally assured AI</h3>
+
+<p>I use the term "architecturally assured" to describe AI systems where reproducibility is a structural property, built in by construction. The language comes from safety-critical engineering, where "high-assurance software" means correctness verified by design. The FDA and the EU AI Act both discuss reproducibility for AI-based medical devices. Bit-identical training gives you a pipeline where an auditor can re-run the process and verify the same model comes out.</p>
+
+<p>If the failure mode of a diagnostic model depends on which random seed was used at training time, the clinician deploying it has no control over which patients are at risk. Assured training is one way to put that back under engineering control.</p>
+
+<p>Full paper: <a href="https://arxiv.org/abs/2603.28040">https://arxiv.org/abs/2603.28040</a></p>

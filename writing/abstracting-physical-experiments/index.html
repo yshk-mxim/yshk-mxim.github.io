@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Essential Beauty of Abstracting Physical Experiments · Yakov Shkolnikov</title>
+<meta name="description" content="In 2003 our Princeton lab defined experiments in natural units, sweeping the magnetic field from 0 to 16 T while the layer underneath handled which instrument did it, at what rate, and within which safe limits. New hardware joined as an auto-discovered shim carrying its own fault detection. LLMs express far richer scientific intent but give up that assured execution. The opportunity is to combine the two.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/abstracting-physical-experiments/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="The Essential Beauty of Abstracting Physical Experiments">
+<meta property="og:description" content="In 2003 our Princeton lab defined experiments in natural units, sweeping the magnetic field from 0 to 16 T while the layer underneath handled which instrument did it, at what rate, and within which safe limits. New hardware joined as an auto-discovered shim carrying its own fault detection. LLMs express far richer scientific intent but give up that assured execution. The opportunity is to combine the two.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/abstracting-physical-experiments/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/abstracting-physical-experiments/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Essential Beauty of Abstracting Physical Experiments", "datePublished": "2026-08-28", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "In 2003 our Princeton lab defined experiments in natural units, sweeping the magnetic field from 0 to 16 T while the layer underneath handled which instrument did it, at what rate, and within which safe limits. New hardware joined as an auto-discovered shim carrying its own fault detection. LLMs express far richer scientific intent but give up that assured execution. The opportunity is to combine the two", "url": "https://yakovshkolnikov.com/writing/abstracting-physical-experiments/", "isBasedOn": "https://www.linkedin.com/pulse/essential-beauty-abstracting-physical-experiments-yakov-shkolnikov-sqrtf/", "image": "https://yakovshkolnikov.com/writing/abstracting-physical-experiments/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>The Essential Beauty of Abstracting Physical Experiments</h1>
+<div class="meta"><time datetime="2026-08-28">August 28, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Research Notes</div>
+<p class="origin">Originally published on LinkedIn on August 28, 2026. <a href="https://www.linkedin.com/pulse/essential-beauty-abstracting-physical-experiments-yakov-shkolnikov-sqrtf/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1276" height="718"></figure>
+<div class="article-body">
+<p>Imagine a world where a scientist can describe a physical experiment to perform in a lab in plain language, and then have the system understand this language and convert it to the code to execute the experiment with the system that is aware of safety and physical limitations, as well abstract away the heterogeneous nature of any hardware and instruments in the lab.</p>
+<p>Where all the available instruments are auto-discovered, and the experiments are defined in natural units rather than having to worry about hardware-specific implementations. And adding capabilities such as text notification (via an email-to-text account at the time), or even virtual instruments (calculated from other real values or even loaded from a waveform in a file), could be used for control.</p>
+<blockquote>This was the reality in our Princeton lab in 2003.</blockquote>
+<p>The system was called <strong>Mashmeasure</strong> (named after the group lead, Mansour Shayegan). It allowed us to run very complex experiments that took weeks and sometimes months to run, without damaging the instruments. We defined what physical quantities to sweep or measure, in natural units, while Mashmeasure handled the specific instruments, their limits, rates, safety, and implementation underneath.</p>
+<h3>Experiment abstraction</h3>
+<figure><img alt="" height="921" loading="lazy" src="fig-1.webp" width="1488"/></figure>
+<p>For example, an actual experiment definition could be as simple as:</p>
+<pre><code>i_init(time)
+sweep B 0 16 1/(2*60)
+store time B Rxx Vpiezo I_leak 1
+sweep Vpiezo 0 200 1
+store time B Rxx Vpiezo I_leak 1
+sweep B 16 0 1/(2*60)
+store time B Rxx Vpiezo I_leak 1 </code></pre>
+<p>This simple description is all it took to Initialize time, sweep the magnetic field from 0 to 16 T, then change piezo voltage, and then sweep down the magnetic field.</p>
+<p>And this language was only one level of abstraction. One level lower, all of the same capability was available directly as code. That meant you could use loops, conditions, calculations, dynamically generated sequences, and other highly complex control methods while still operating on the same abstract experimental concepts such as magnetic field, temperature, resistance, time, and calculated values rather than dropping down to vendor-specific hardware commands.</p>
+<p>The person defining the experiment did not need to know which instrument controlled B, its hardware interface, or the commands needed to make it execute the sweep. New instruments could be added with a small shim. The shims were automatically discovered and registered in the GUI and available driver set, so adding a new instrument did not require changing the experiment system itself.</p>
+<p>Importantly, auto-discovery exposed physical limits, maximum rates, resolution, and other capabilities, and Mashmeasure integrated those automatically into execution. Device-specific fault detection and safe operating procedures could also live inside the shim, so those protections became part of the experiment without the scientist having to encode them into every experiment.</p>
+<figure><img alt="" height="874" loading="lazy" src="fig-2.webp" width="1488"/></figure>
+<h2>From past to future</h2>
+<p>The system was created by me to finish all my PhD experiments and was used by several other scientists after who extended the system.</p>
+<p>Of course, in 2003 we did not have today's AI systems interpreting arbitrary natural language. The experiment language itself was simple and human-readable enough that a scientist could write the experiment directly.</p>
+<blockquote>There was also an important advantage to the our language system: its execution was assured.</blockquote>
+<p>LLMs can interpret a much more expressive natural agentic language. This allows a scientist to describe much richer intent and lets the system reason about how to accomplish it. But that expressiveness also removes some of the explicit control that came from a deterministic experiment description.</p>
+<p>The interesting opportunity is therefore not simply to replace deterministic experiment control with an agent. It is to combine the two: use natural language and agents to express and reason about much richer scientific intent, while translating that intent into a controlled deterministic physical execution layer where limits, safety, hardware differences, and experiment semantics are enforced.</p>
+<figure><img alt="" height="591" loading="lazy" src="fig-3.webp" width="1600"/></figure>
+<p>It is great to see this extension of using natural language to control experiments with the new release from Anthropic. I invite people to review it and consider the power this gives you (as we had 20+ years ago) to worry about the experimental science rather than the painful details of the hardware interfaces.</p>
+<p><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">Anthropic: Model Hardware Standard research preview</a></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/essential-beauty-abstracting-physical-experiments-yakov-shkolnikov-sqrtf/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/human-in-the-loop-not-teaming/"><small>Previous</small>Human-in-the-Loop Is Not a Teaming Design</a><a class="next" href="/writing/lab-seven-months/"><small>Next</small>Seven Months In: Soundness AI Update</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

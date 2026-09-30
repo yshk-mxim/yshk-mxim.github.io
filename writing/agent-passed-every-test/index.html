@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your AI Agent Passed Every Test. Then It Failed Anyway · Yakov Shkolnikov</title>
+<meta name="description" content="An agent that passes one hundred isolated tests can still fail in production, because users hold conversations, not single questions. Ten turns in, corrections and error messages crowd the context and the agent misreads what &quot;that&quot; refers to. Test multi-turn flows with messy history, version-lock models and prompts, log full context, and watch for drift.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/agent-passed-every-test/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Your AI Agent Passed Every Test. Then It Failed Anyway">
+<meta property="og:description" content="An agent that passes one hundred isolated tests can still fail in production, because users hold conversations, not single questions. Ten turns in, corrections and error messages crowd the context and the agent misreads what &quot;that&quot; refers to. Test multi-turn flows with messy history, version-lock models and prompts, log full context, and watch for drift.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/agent-passed-every-test/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/agent-passed-every-test/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Your AI Agent Passed Every Test. Then It Failed Anyway", "datePublished": "2026-01-21", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "An agent that passes one hundred isolated tests can still fail in production, because users hold conversations, not single questions. Ten turns in, corrections and error messages crowd the context and the agent misreads what \"that\" refers to. Test multi-turn flows with messy history, version-lock models and prompts, log full context, and watch for drift", "url": "https://yakovshkolnikov.com/writing/agent-passed-every-test/", "isBasedOn": "https://www.linkedin.com/pulse/your-ai-agent-passed-every-test-failed-anyway-yakov-shkolnikov-vmpuc/", "image": "https://yakovshkolnikov.com/writing/agent-passed-every-test/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Your AI Agent Passed Every Test. Then It Failed Anyway</h1>
+<div class="meta"><time datetime="2026-01-21">January 21, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on January 21, 2026. <a href="https://www.linkedin.com/pulse/your-ai-agent-passed-every-test-failed-anyway-yakov-shkolnikov-vmpuc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>Two weeks ago your AI agent worked. Perfect, actually. Every test passed. You deployed it. Users loved it.</p>
+<p>Yesterday it started generating broken SQL queries. Wrong answers. Plausible nonsense. You panic. Re-run your tests. Still 100% pass rate.</p>
+<p>What happened?</p>
+<p>Talk to anyone shipping agents in production and you'll hear this story. Different teams, different apps, same confusion. The tests say everything works. Production says otherwise. And the gap between those two realities costs weeks of debugging.</p>
+<h3>What Your Tests Missed</h3>
+<p>One team tested their SQL agent like this: "Show me Q3 revenue." Perfect query. "Who were our top customers?" Nailed it. "Compare revenue by region." Flawless. One hundred tests. One hundred passes.</p>
+<p>But that's not how users talked to it.</p>
+<p>Real usage looked like this:</p>
+<p>"Show me Q3 revenue." "Now show me Q2." "What about last year?" "Wait, which table was that from again?"</p>
+<p>Ten turns in, the agent drowns in context. It pulls table names from old error messages. Mixes up which quarter the user meant. Loses track of what "that" refers to. The conversation history, full of corrections and failed attempts, confuses it.</p>
+<p>Your test suite tested questions. Production is conversations.</p>
+<h3>Why This Keeps Happening</h3>
+<p>A normal function is stable. Call calculate_tax(100000) and you get 25,000 every time. Test it once, trust it forever.</p>
+<p>An agent isn't a function. It's a conversation system. Same question, different answer, depending on what happened ten minutes ago. The component you're testing isn't the prompt. It's the entire context.</p>
+<p>And context grows. Error messages pile up. Clarifications stack. By turn fifteen, your agent interprets new questions through the lens of everything that came before. Good luck writing test cases for that.</p>
+<p>Traditional software fails in ways you can isolate. Null pointer. Off-by-one error. Race condition. You fix them. You move on.</p>
+<p>Agents fail in context. The same prompt works Monday. Fails Tuesday. The difference is the conversation that led up to it. You can't isolate the failure because the failure IS the accumulated state.</p>
+<h3>What Works Now</h3>
+<p>Test conversations, not questions. Stop running isolated test cases. String them together. "Show revenue for Q3" → "now Q2" → "what about last year?" If your test suite doesn't include multi-turn flows where later questions reference earlier ones, you're not testing reality.</p>
+<p><strong><em>Test with garbage in the context.</em></strong><strong>
+</strong>Don't just test happy paths. Test what happens when the history includes three failed attempts, two corrections, and an unclear request. Because that's what your agent will see in production.</p>
+<p>Version lock everything. Model version, not "latest." API version. Prompt templates. Retrieval logic. When behavior changes, you need to know what shifted. Debugging "something somewhere changed" is hell.</p>
+<p>Log the full context, not just the final prompt. Production failures make no sense when you only see the last question. Log the entire conversation. Log what the agent retrieved. Log the timestamp and model version. Build the ability to replay exact production scenarios in your test environment.</p>
+<p>Watch for drift like you'd watch for memory leaks. Your agent's behavior in week one won't match week eight. Users learn patterns. Conversations get longer. Error types shift. Track output distributions over time. Alert when patterns change.</p>
+<h3>The Truth</h3>
+<p>Your agent isn't broken. Your testing approach is.</p>
+<p>You're testing like it's a function. Input A produces output B. But it's a stateful system where every interaction affects every future interaction. The traditional software testing playbook doesn't apply.</p>
+<p>This doesn't mean agents can't work. It means the bar for "working" is higher than you thought. And "passed all tests" doesn't mean what it used to mean.</p>
+<p>The teams who make this work aren't the ones with the best models. They're the ones who recognized this gap early and built testing infrastructure for conversation systems, not functions.</p>
+<p>You can do this. But not with your current test suite.</p>
+<p><em>For deeper reading: Anthropic's work on constitutional AI and multi-turn evaluation, Hamel Husain's writing on LLM testing frameworks, and the growing research on conversational benchmarks all point to this same gap between single-turn evals and production reality.</em></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/your-ai-agent-passed-every-test-failed-anyway-yakov-shkolnikov-vmpuc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><span></span><a class="next" href="/writing/server-speed-agents-on-a-laptop/"><small>Next</small>Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

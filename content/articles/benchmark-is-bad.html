@@ -1,0 +1,29 @@
+<p>In the current wave of worry over whether AI is beginning to bypass the controls and evaluations that humans have developed, there has been a wave of papers on “<strong>evaluation awareness</strong>.” And in the surrounding discussion, this is increasingly being presented as if there is some scheming, sandbagging, or rogue behavior being learned by the models, and therefore as an indication of the danger they can produce.</p>
+
+<p>Recently, as part of my work on deception, I created a causal framework to evaluate exactly this kind of claim. In that paper, I show that frequently what is interpreted as a deceptive outcome is not the result of a deceptive mechanism, but rather the result of other mechanisms in a system that create the outcome we see without any intent to deceive.</p>
+
+<p>In evaluation benchmarks, there is generally a format to the questions that the model can detect. When benchmark-associated features become part of the training framework, supervised fine-tuning or reinforcement learning can drive the model’s outputs toward higher scores on that benchmark.</p>
+
+<blockquote>When that signal is missing, the results can drop.</blockquote>
+
+<p>That is not, by itself, an indication of an intent to deceive. It is an indication that the system changes the distribution of its answers when tested in one domain versus another.</p>
+
+<p>It is not evidence that the model is trying to deceive. It is evidence that training has pushed it toward higher benchmark scores in a narrowly defined domain. It does not demonstrate the broader situational awareness and learning that a rogue agent would need.</p>
+
+<p>Moreover, this is not necessarily an example of emerging deceptive behavior to cheat, or evidence that models have some internal drive to deceive the user. It may instead be a very plain, pedestrian result that hits everybody who has written and deployed AI models for more than a decade:</p>
+
+<blockquote>Your training, testing, and deployment data had better come from the same distribution if you want the system to perform the same way.</blockquote>
+
+<p>As researchers, we need to be careful about communicating these findings to the general public, so as not to scare people into attributing malice to a fairly common model phenomenon. Genuine evaluation gaming can happen, as many human-driven video game benchmarks have shown.</p>
+
+<blockquote>But recognizing the fingerprints of an evaluation through pattern matching is not the same thing as being aware that it is being evaluated, nor does it establish that this recognition is causally producing a deceptive outcome.</blockquote>
+
+<p>Some recent examples of evaluation-awareness work:</p>
+
+<p>• <em>Evaluation Awareness in Language Models: Representation, Verbalization, and Control</em> — arXiv:2608.21766</p>
+
+<p>• <em>EvalDetectBench</em> — arXiv:2609.01611</p>
+
+<p>• <em>Improving Evaluation Realism with Inference-Time Compute and Deployment Scaffolds</em> — arXiv:2609.02302</p>
+
+<p>My causal framework: arXiv:2609.04166</p>

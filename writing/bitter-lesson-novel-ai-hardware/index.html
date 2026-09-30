@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bitter Lesson of Novel AI Hardware · Yakov Shkolnikov</title>
+<meta name="description" content="Sutton&#x27;s bitter lesson applied to silicon: novel hardware platforms that need a custom computational primitive to realize their advantages get displaced by the dominant general-purpose ones. Three forces — decades of GPU optimization funded by datacenter revenue, training data that co-evolved with compression standards the sparse domains never got, and distillation from large models that don&#x27;t exist for sparse signals. CPU, GPU, TPU: three architectures, one primitive. A desk full of abandoned esoteric boards as evidence.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/bitter-lesson-novel-ai-hardware/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="The Bitter Lesson of Novel AI Hardware">
+<meta property="og:description" content="Sutton&#x27;s bitter lesson applied to silicon: novel hardware platforms that need a custom computational primitive to realize their advantages get displaced by the dominant general-purpose ones. Three forces — decades of GPU optimization funded by datacenter revenue, training data that co-evolved with compression standards the sparse domains never got, and distillation from large models that don&#x27;t exist for sparse signals. CPU, GPU, TPU: three architectures, one primitive. A desk full of abandoned esoteric boards as evidence.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/bitter-lesson-novel-ai-hardware/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/bitter-lesson-novel-ai-hardware/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Bitter Lesson of Novel AI Hardware", "datePublished": "2026-06-24", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Sutton's bitter lesson applied to silicon: novel hardware platforms that need a custom computational primitive to realize their advantages get displaced by the dominant general-purpose ones. Three forces — decades of GPU optimization funded by datacenter revenue, training data that co-evolved with compression standards the sparse domains never got, and distillation from large models that don't exist for sparse signals. CPU, GPU, TPU: three architectures, one primitive. A desk full of abandoned esoteric boards as evidence", "url": "https://yakovshkolnikov.com/writing/bitter-lesson-novel-ai-hardware/", "isBasedOn": "https://www.linkedin.com/pulse/bitter-lesson-novel-ai-hardware-yakov-shkolnikov-o2mce/", "image": "https://yakovshkolnikov.com/writing/bitter-lesson-novel-ai-hardware/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>The Bitter Lesson of Novel AI Hardware</h1>
+<div class="meta"><time datetime="2026-06-24">June 24, 2026</time><span class="sep">·</span>4 min read<span class="sep">·</span>Research Notes</div>
+<p class="origin">Originally published on LinkedIn on June 24, 2026. <a href="https://www.linkedin.com/pulse/bitter-lesson-novel-ai-hardware-yakov-shkolnikov-o2mce/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>Sutton observed in 2019 that general methods beat domain-specific ones when given enough compute and data. Chess engines that learned to play beat engines built on grandmaster knowledge. Speech recognizers trained on raw audio beat ones built on hand-tuned phoneme models.</p>
+<p>In college I worked on analog compute circuits and resonator-based architectures. I still buy esoteric hardware platforms to see if I can eke out performance and efficiency that beats my trusty Apple with NPU and a gaming machine with NVIDIA GPU. My desk has enough of them that my wife's main challenge is finding space for her coffee cup without shorting something out. Each impulsive purchase eventually abandoned as the standard solutions won again. Which leads me to:</p>
+<p><strong>The hardware version of the Bitter Lesson:</strong></p>
+<blockquote>Novel hardware platforms that require a custom computational primitive to realize their advantages get displaced by the dominant general purpose ones.</blockquote>
+<p>Three forces drive this. The GPU's own history shows all three.</p>
+<p><strong>Novel platforms compete against purpose-built and highly optimized inference hardware.</strong></p>
+<p>Benchmarks pit them against unoptimized GPU baselines, but real deployed workloads run on purpose-built and highly optimized inference hardware tuned at every level: silicon, memory, compiler, model. The dominant platform has decades of process node optimization, memory bandwidth engineering, and packaging investment behind it.</p>
+<blockquote>GPU optimization is funded by billions in datacenter revenue. Better compilers, kernels, and silicon are justified by real profit at scale. Novel hardware adopts these techniques defensively, spending scarce engineering resources chasing a moving target with no comparable revenue base.</blockquote>
+<p><strong>Data, compression, features and embeddings co-evolve.</strong></p>
+<p>With most traditional signal domains already owned by the dominant platform, sparse signals are where novel hardware hopes to find a foothold. But those domains have the least data. The signals with the most data (audio, video, text) accumulated enough volume to justify decades of investment: first compression standards (mel spectrograms, video codecs, tokenization), then hand-engineered features, then learned representations, and now dense embeddings from foundation models. Each layer built on the last, deepening the dominant platform's hold. The sparsity advantage novel hardware was hoping to exploit was captured upstream, long before it arrived.</p>
+<blockquote>The domains without those compression standards are the domains without training data.</blockquote>
+<p>And for the hardware that does target the unexplored sparse regime, the training problem may be specific to those domains, rarely encountered before because the dominant platform never needed to train there.</p>
+<blockquote>The published results document what might be called an uncertainty principle for novel hardware: the sparsity levels that would make it genuinely efficient are the same levels at which training breaks down.</blockquote>
+<p>Sparse activations suppress the gradients needed to learn, and the hyperparameters that maximize accuracy are not the same ones that minimize hardware energy. I have not found a published result that resolves the tension on a non-trivial task.</p>
+<p><strong>Scale works against novel hardware.</strong></p>
+<p>The most efficient small models today are built by distilling large ones or training on synthetic data generated by them. Phi-3-mini reaches GPT-3.5 performance at 3.8B parameters partly because it trained on data generated by GPT-4. The same approach is available to novel hardware: generate synthetic training data from conventional large models. But in the sparse signal domains where novel hardware has its efficiency advantage, no foundational model exists to generate from. GPT-4 cannot synthesize DVS event streams at the scale needed to train competitive models. And as the dominant platform's large model collection grows, the gap between what can be distilled from it and what novel hardware can produce widens further.</p>
+<blockquote>The gap widens every year. This force didn't exist a decade ago.</blockquote>
+<p><strong>The GPU and TPU follow the law, not an exception.</strong></p>
+<p>The GPU and TPU look like counterexamples but both follow the law. CPU came first and dominated compute, already running vector SIMD extensions (MMX in 1996, SSE in 1999) for graphics and multimedia workloads. GPU scaled the same SIMD concept to thousands of parallel lanes optimized for floating point matrix operations, on the already existing CMOS process. No new physics, no new computational primitive. Just more of the same vector math that gaming demanded at scale, which turned out to be exactly what deep learning needed. TPU took a different internal organization (systolic arrays instead of SIMD lanes) but the fundamental operation stayed the same: multiply-accumulate on matrices. CPU, GPU, TPU: three architectures, one primitive. That scale then produced the large models that became the foundation for distillation.</p>
+<p><strong>So where does that leave us?</strong></p>
+<p>These novel architectures rarely win the general market. The investment lead means they compete against decades of optimization they cannot match. The best domains for their efficiency claims turn out to be exactly the ones with no training data. And scale working against novel hardware means the gap widens over time.</p>
+<blockquote>I found no novel hardware architecture has escaped all three forces yet. But when one does, it will be on my desk promptly.</blockquote>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/bitter-lesson-novel-ai-hardware-yakov-shkolnikov-o2mce/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/complexity-gap/"><small>Previous</small>The Complexity Gap: Why AI Widens the Distance Between Organizations That Understand Their Technology and Those That Only Manage It</a><a class="next" href="/writing/agentic-loops-gamblers-fallacy/"><small>Next</small>Agentic Loops: The Gambler&#x27;s Fallacy at Cloud Scale</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

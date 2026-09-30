@@ -1,0 +1,671 @@
+[
+  {
+    "slug": "jev-three-types-of-decisions",
+    "title": "Jev and Three Types of Decisions",
+    "date": "2026-09-24",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/jev-three-types-decisions-yakov-shkolnikov-omw6e/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1152,
+    "description": "A test of TypeSafe's Jev decision model against the game-theory benchmark from How to Fake a Theory of Mind. Jev is near-perfect on dominant-strategy games but largely ignores the opponent's payoffs, and scores 30% on second-order false-belief stories while reporting over 70% confidence. It is fast and cheap for scoring options, but it is not a trustworthy decision system",
+    "topic": "Agents in Practice"
+  },
+  {
+    "slug": "human-attention",
+    "title": "Human Attention Is Also What You Need",
+    "date": "2026-09-22",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/human-attention-also-what-you-need-yakov-shkolnikov-dgn2c/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 495,
+    "description": "Businesses run on knowledge that is out of distribution for any foundation model, and that is their edge. Using AI well means preserving two capabilities: letting knowledgeable people decide without arguing a chatbot into agreement, and protecting the sustained attention hard problems need, rather than turning employees into boilermen shoveling knowledge into retrieval systems",
+    "topic": "Work & Economics"
+  },
+  {
+    "slug": "evil-genie-benchmark",
+    "title": "The Evil Genie Benchmark",
+    "date": "2026-09-18",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/evil-genie-benchmark-yakov-shkolnikov-7pt7c/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": "The unsettling part is that the genie is following the prompt perfectly"
+    },
+    "words": 483,
+    "description": "A benchmark for the person writing the prompt rather than the model: draft a wish an adversarial genie cannot twist. You will fail, and that is the point. Natural language conveys intent but never completely specifies it, so more capable agents find more solutions outside the stated goal. Properties that must hold need enforcement outside the model",
+    "topic": "Trust & Safety"
+  },
+  {
+    "slug": "benchmark-is-bad",
+    "title": "Your Model Isn't Lying. Your Benchmark Is Bad",
+    "date": "2026-09-16",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/your-model-isnt-lying-benchmark-bad-yakov-shkolnikov-2sxge/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 447,
+    "description": "Much of the evaluation-awareness literature reads benchmark sensitivity as scheming. Through the causal framework from the deception paper, a model that scores differently when it detects benchmark formatting shows the oldest lesson in deployed ML: training, test, and deployment data must share a distribution. Recognizing an evaluation's fingerprints is not awareness of being evaluated",
+    "topic": "Trust & Safety"
+  },
+  {
+    "slug": "graywick-incident",
+    "title": "The Graywick Incident",
+    "date": "2026-09-13",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/graywick-incident-yakov-shkolnikov-t1doc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 914,
+    "description": "Short fiction. At 2:13 a.m. an agentic AI running a county water plant misreads a sediment-clogged chlorine analyzer and raises the feed rate. No one removed the human from the loop; eighteen months of auto-approved decisions made approval unnecessary. The story accompanies the Artificial Id paper on persistent agency and control",
+    "topic": "Fiction"
+  },
+  {
+    "title": "A Potential Blind Spot in Using AI Provenance to Prevent Model Collapse",
+    "date": "2026-09-10",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/potential-blind-spot-using-ai-provenance-prevent-model-shkolnikov-edf9c/",
+    "description": "Drayson et al. propose machine-generated-text detection to keep the human-to-AI ratio high in training corpora and stave off collapse. The blind spot is economic: detection and AI-slop stigma create real incentive to hide provenance, and a humanizing industry has grown up to paraphrase around watermarks. Washed text evades the detector and contaminates training anyway, so filtering harder just discards more genuine human writing",
+    "topic": "Trust & Safety",
+    "slug": "ai-provenance-blind-spot",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": "Generated with ChatGPT"
+    },
+    "words": 547
+  },
+  {
+    "title": "Do AI Models Deceive, or Are They Just Role-Playing?",
+    "date": "2026-09-08",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/do-ai-models-deceive-just-role-playing-yakov-shkolnikov-npgyc/",
+    "description": "Companion to the deception preprint. A model that flips independent coins for whether to trade on inside information and whether to admit it produces a deceptive-looking output with no deceptive mechanism behind it. A four-rung causal ladder separates the two cases, and the Hugging Face incident shows why it matters: humans supplied the objective and the harness that sustained the attempts, so the persistence was external rather than intrinsic agency",
+    "topic": "Trust & Safety",
+    "slug": "deceive-or-role-play",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 543
+  },
+  {
+    "title": "The SaaS Apocalypse Prediction, Four Months On",
+    "date": "2026-09-03",
+    "venue": "LinkedIn post",
+    "source": "https://www.linkedin.com/feed/update/urn:li:activity:7501293363845808128/",
+    "description": "Checking a written record against the market. Since the paper was submitted on April 20, software stocks are up roughly 29% against about 17% for the S&P 500. The call rested on a habit carried over from semiconductor macro forecasting: trust fundamentals over fashionable opinions",
+    "topic": "Work & Economics"
+  },
+  {
+    "title": "Seven Months In: Soundness AI Update",
+    "date": "2026-09-01",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/seven-months-soundness-ai-update-yakov-shkolnikov-vfjlc/",
+    "description": "Seven months of Soundness AI. Putting a human in the loop is not enough to earn the trust critical work requires. 7 research and working papers, 14 provisional applications across 21 invention families, 30+ articles, and a large integrated trust prototype in development",
+    "topic": "Lab Notes",
+    "slug": "lab-seven-months",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 620
+  },
+  {
+    "title": "The Essential Beauty of Abstracting Physical Experiments",
+    "date": "2026-08-28",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/essential-beauty-abstracting-physical-experiments-yakov-shkolnikov-sqrtf/",
+    "description": "In 2003 our Princeton lab defined experiments in natural units, sweeping the magnetic field from 0 to 16 T while the layer underneath handled which instrument did it, at what rate, and within which safe limits. New hardware joined as an auto-discovered shim carrying its own fault detection. LLMs express far richer scientific intent but give up that assured execution. The opportunity is to combine the two",
+    "topic": "Research Notes",
+    "slug": "abstracting-physical-experiments",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1276,
+      "height": 718,
+      "alt": ""
+    },
+    "words": 685
+  },
+  {
+    "title": "Human-in-the-Loop Is Not a Teaming Design",
+    "date": "2026-08-27",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/human-in-the-loop-teaming-design-yakov-shkolnikov-mfvnf/",
+    "description": "IHMC's Interdependence Analysis sets the bar: a teammate stays observable, predictable, and directable during the work, not after it, because 'if there is not substantive interaction, then the work is parallel, not joint.' A Joint Activity Graph over one project's 623 instructing turns found 49% corrective, 5% new work, 2.7% approvals, and 140 mid-task interrupts that were emergency stops. That is a human operating a tool, not a team",
+    "topic": "Agents in Practice",
+    "slug": "human-in-the-loop-not-teaming",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 819
+  },
+  {
+    "title": "The Flood and the Trust: The Risk of AI Omissions",
+    "date": "2026-08-25",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/flood-trust-risk-ai-omissions-yakov-shkolnikov-lxnuf/",
+    "description": "A year after a frontier model estimated driving distances as straight lines across fjords, its successor got the same job: plan a trip, find the tickets, check everything. It found the highlights and recommended a river-delta boat ride, then missed the previously announced rail maintenance until the night before, missed the near-gale gusts until I named them, and did not know that wind is why river cruises get cancelled in the first place. After a paranoid-review super prompt, roughly 25 prompts, and an uploaded forecast chart, it confirmed with confidence that it had checked it all. The area was under a flood warning the forecast agency had already issued and that was visible in the chart it had been shown. Where the only verification available is acting on the output and watching the consequences in the real world, autonomy requires a human who also reads the sources, and that capacity erodes as the reading gets outsourced. The library guidebook would have caught the flood, and volunteered the cultural history the model, answering only what was asked, never did",
+    "topic": "Trust & Safety",
+    "slug": "flood-and-trust",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 840
+  },
+  {
+    "title": "Why an AI Agent Is Not a Team Player",
+    "date": "2026-08-11",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/",
+    "description": "Klein et al. published ten challenges for making automation a team player in 2004. Graded against that rubric as a quarterly performance review, a frontier Claude Opus agent fails every one that matters: it holds no model of the work the organization is doing, cannot negotiate interdependent decisions, cannot own an outcome, and cannot carry a supervisor's feedback into its next task. A layout designer and a plumber who each iterate perfectly within their own discipline still oscillate between two incompatible house designs. The evidence is a real 29-day, 59-hour build (174 files, 2,416 tests, ruff/mypy/pytest/Hypothesis/Playwright/security scanning) that shipped, late and over budget, with twelve decisions implemented correctly and specified badly enough that the product did not do what it was for. As a tool the same agent aces the review. Don't hire agents as employees; give employees agentic tools",
+    "topic": "Agents in Practice",
+    "slug": "ai-agent-not-a-team-player",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": "AI generated org chart of AI agents"
+    },
+    "words": 798
+  },
+  {
+    "title": "AI Will Not Displace Human Labor in the Near Term. And It Will Make the Work Better",
+    "date": "2026-08-06",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/ai-displace-human-labor-near-term-make-work-better-yakov-shkolnikov-oy26c/",
+    "description": "GenAI is strongest at fluency, the repetitive work with well-specified and cheaply checkable completion, and weakest at judgment: deciding what the task is and whether the result is right. That fluent, checkable work was largely automated last century by office software and factory machines, and aggregate employment did not fall. What is left is 'just figure it out.' Where the pattern fits, gains arrive immediately: 14% more support issues resolved per hour, 40% faster short writing, 55.8% faster on a defined coding task. Where it doesn't, fluency becomes sabotage, a volume of under-defined work nobody can verify. Software got its harnesses only because experts spent years and heavy budget building them for themselves; humanoid robotics faces the same judgment gap plus real-time adaptation, and cannot run agentic loops when falling down costs more than a failed compile. Companion piece to the SSRN paper",
+    "topic": "Work & Economics",
+    "slug": "ai-will-not-displace-labor",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": "A machine room that never existed, 1965. The narrow machines do the narrow work; the person is still deciding. Image generated with AI."
+    },
+    "words": 1244
+  },
+  {
+    "title": "Adding Trust to Untrustworthy AI",
+    "date": "2026-07-16",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/adding-trust-untrustworthy-ai-yakov-shkolnikov-5vhhc/",
+    "description": "Trust in AI is Responsible AI, system security, and a psychological willingness to rely on it, and all three require a model that keeps lower-trust channels from overruling higher-trust ones, including jailbreaks that try to override system or user instructions. Models cannot do this alone. Borrowing from how human organizations get dependable work from imperfect people, where authority follows who gave the order rather than how forcefully it is worded, a deterministic sequence of LLM calls provably establishes a Biba integrity lattice while prompt-tuning passivates unsafe content. On an unmodified Gemma 4 26B it raises the defended rate from 27% to 94% at a 4% quality cost, and rejects 87% of a simulated adaptive red-teaming attack",
+    "topic": "Trust & Safety",
+    "slug": "adding-trust-to-untrustworthy-ai",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 631
+  },
+  {
+    "title": "Why AI Can Generate Text Yet Cannot Write",
+    "date": "2026-07-15",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/why-ai-can-generate-text-yet-cannot-write-yakov-shkolnikov-tdzoc/",
+    "description": "A frontier model set to extra thinking, wired to best-in-class NLP tools, a graded style rulebook, and a section-diversifying pipeline still produced text with no soul, while a memo written by hand in ten minutes scored higher and read as human. The reason is mechanical: an LLM maps previous tokens onto the next token, but a human maps intent onto a written piece, and that pre-verbal intent never appears in the training data because it forms as you write. Flower and Hayes named the missing step, translating, decades ago. RLHF only records preferences over finished outputs. The human in the editing loop supplies the missing signal one document at a time, which is why the most expensive component of the system is still a person",
+    "topic": "Using AI Well",
+    "slug": "generate-text-cannot-write",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 691
+  },
+  {
+    "title": "Agentic Loops: The Gambler's Fallacy at Cloud Scale",
+    "date": "2026-06-30",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/",
+    "description": "An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred",
+    "topic": "Agents in Practice",
+    "slug": "agentic-loops-gamblers-fallacy",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1206
+  },
+  {
+    "title": "The Bitter Lesson of Novel AI Hardware",
+    "date": "2026-06-24",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/bitter-lesson-novel-ai-hardware-yakov-shkolnikov-o2mce/",
+    "description": "Sutton's bitter lesson applied to silicon: novel hardware platforms that need a custom computational primitive to realize their advantages get displaced by the dominant general-purpose ones. Three forces — decades of GPU optimization funded by datacenter revenue, training data that co-evolved with compression standards the sparse domains never got, and distillation from large models that don't exist for sparse signals. CPU, GPU, TPU: three architectures, one primitive. A desk full of abandoned esoteric boards as evidence",
+    "topic": "Research Notes",
+    "slug": "bitter-lesson-novel-ai-hardware",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 813
+  },
+  {
+    "title": "The Complexity Gap: Why AI Widens the Distance Between Organizations That Understand Their Technology and Those That Only Manage It",
+    "date": "2026-06-22",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/complexity-gap-why-ai-widens-distance-between-those-only-shkolnikov-33d0c/",
+    "description": "Every tool that absorbs a layer of complexity splits the people using it. Taylor's stopwatch, outsourcing, big data, SaaS, now AI: one engineer generates the boilerplate while thinking through the architecture, another forwards an answer they never read. Meanwhile organizations spent decades promoting the people who standardized and managed processes, which works for maintenance and fails for development, where the work is moving away from the established standard",
+    "topic": "Work & Economics",
+    "slug": "complexity-gap",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 892
+  },
+  {
+    "title": "Of AgentHouses and Agentic Donuts",
+    "date": "2026-06-17",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/agenthouses-agentic-donuts-yakov-shkolnikov-ujjrc/",
+    "description": "Two anti-patterns spreading through the AI ecosystem: the AgentHouse, a tower of semantic layers, registries, and dashboards that recapitulates the data-warehouse era, and the Agentic Donut, a loop of more data, more reliability, more agents with the business question missing from its center. The bottleneck was never access. It was a human who owns what a metric means and is accountable for that decision, which no semantic layer, registry, or dashboard generates",
+    "topic": "Agents in Practice",
+    "slug": "agenthouses-and-agentic-donuts",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 969
+  },
+  {
+    "title": "How to Fake a Theory of Mind",
+    "date": "2026-06-09",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/how-fake-theory-mind-yakov-shkolnikov-nuy5f/",
+    "description": "You cannot prove theory of mind from behavior alone. A system that passes the test may hold no model of another mind at all. I fine-tuned a 1.5B Qwen with a LoRA on 1% of its weights to match the Nash equilibria of TMGBench's 144 games, with no opponent represented anywhere, and it tops the benchmark including the mixed strategies the official scorer skips. The score the benchmark calls theory of mind is reachable by an agent that never looks at its opponent",
+    "topic": "Agents in Practice",
+    "slug": "fake-theory-of-mind",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1030
+  },
+  {
+    "title": "The Humanistic View of AI",
+    "date": "2026-06-01",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/humanistic-view-ai-yakov-shkolnikov-wibac/",
+    "description": "Standing in a room full of masterpieces doesn't make you a painter, and AI won't make you a master. A few thoughts on what it's actually for",
+    "topic": "Work & Economics",
+    "slug": "humanistic-view-of-ai",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 414
+  },
+  {
+    "title": "We Stopped Maintaining Things (an AI parable)",
+    "date": "2026-05-28",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/we-stopped-maintaining-things-ai-parable-yakov-shkolnikov-aqcdf/",
+    "description": "A parable about what happens when AI adoption becomes a mandate rather than a decision. Johnny invents the subscription tow truck to solve a real problem. Drivers stop maintaining their cars. The city mandates towing coverage. The compliance index replaces the outcome metric. Cars get worse, bills get larger, and nobody asks who is going to fix the roads. Tow trucks are AI agents. The highway is the quality of work that erodes when 'are we using it' replaces 'is it working.'",
+    "topic": "Fiction",
+    "slug": "we-stopped-maintaining-things",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 693
+  },
+  {
+    "title": "Why AI Needs Engineers",
+    "date": "2026-05-08",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/why-ai-needs-engineers-yakov-shkolnikov-x7krc/",
+    "description": "The 1919 Boston molasses flood killed 21 people because a finance officer who could not read blueprints oversaw a 2.3-million-gallon steel tank. Engineering, the capital-E kind, exists to make that impossible: a named, accountable person stands behind the work. AI is roughly where structural engineering was a century ago, with no formal definition of an AI engineer and no ethics that put public safety first. Without that, the public's trust cannot last",
+    "topic": "Trust & Safety",
+    "slug": "why-ai-needs-engineers",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": "My PE seal. New Jersey."
+    },
+    "words": 377
+  },
+  {
+    "title": "Secure Agentic Development Is a Control Plane, Not a Checklist",
+    "date": "2026-04-29",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/secure-agentic-development-control-plane-checklist-yakov-shkolnikov-gu0bc/",
+    "description": "An agent producing 1,000 PRs a week at a 1% vulnerability rate ships ten new vulnerabilities into code that has stopped being read line by line. The harness-engineering literature describes the loop. The security literature catalogs the attack surface. Both stop at the pull request. The argument: a control plane with six-layer testing wired into the loop, structural quality budgets enforced as build failures, and an operator surface sized for agent throughput. SKIFF as the working example",
+    "topic": "Trust & Safety",
+    "slug": "secure-agentic-development",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1458
+  },
+  {
+    "title": "Juggling Chainsaws",
+    "date": "2026-04-28",
+    "venue": "Frictionless Data (guest)",
+    "source": "https://zanehall.substack.com/p/juggling-chainsaws",
+    "description": "AI can improve average output by 10 to 30 percent, but business reliability lives in the tail. The contract-review tool that flagged a liability issue on review three had silently ignored its complete absence on reviews one and two. Productivity gains evaporate when you account for the human attention required to cover the edges",
+    "topic": "Work & Economics"
+  },
+  {
+    "title": "The SaaS Apocalypse Fallacy: Why AI Raises the Value of the SaaS Bundle",
+    "date": "2026-04-27",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/saas-apocalypse-fallacy-why-ai-raises-value-bundle-yakov-shkolnikov-qmppc/",
+    "description": "The February 2026 trillion-dollar selloff on enterprise software stocks rests on a category error. AI in its current delivery form is itself SaaS, delivered by a different vendor under weaker terms on liability, compliance, and indemnification. The build is a different buy. Attempting it forces the enterprise to itemize a SaaS bundle the subscription had been quietly carrying",
+    "topic": "Work & Economics",
+    "slug": "saas-apocalypse-fallacy",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1038
+  },
+  {
+    "title": "SKIFF: A Container Manager for Zero Trust Environments",
+    "date": "2026-04-24",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/skiff-container-manager-zero-trust-environments-yakov-shkolnikov-olapc/",
+    "description": "Open-source container manager for GCP and zero-trust workstations. Avoids nested virtualization and privileged socket mounts. Talks to the daemon over SSH with nothing persistent on the container host. Ships with a four-tier test suite, 94% coverage floor, anti-pattern linter, and per-framework compliance evidence (OWASP ASVS, NIST SSDF, NIST CSF, SLSA, CIS Docker Benchmark)",
+    "topic": "Trust & Safety",
+    "slug": "skiff",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 758
+  },
+  {
+    "title": "The Monkey Business Inside Your System Prompt",
+    "date": "2026-04-14",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/monkey-business-inside-your-system-prompt-yakov-shkolnikov-waxnc/",
+    "description": "184 experiments on two open-weight reasoning models show that every prohibition in a system prompt activates the forbidden concept — exactly as Wegner's 1987 ironic process theory predicts. Thinking traces and token probability distributions make the effect visible in ways behavioral studies never could",
+    "topic": "Trust & Safety",
+    "slug": "monkey-business-system-prompt",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1612
+  },
+  {
+    "title": "Written by the Thing It's Warning You About",
+    "date": "2026-04-09",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/written-by-the-thing-its-warning",
+    "description": "An AI's self-evaluation on AI safety. Claude Sonnet 4.6 examines its own limitations and risks, followed by seven experiments you can run yourself",
+    "topic": "Using AI Well"
+  },
+  {
+    "title": "When the Average Improves but the Work Gets Harder to Trust",
+    "date": "2026-04-06",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/when-average-improves-work-gets-harder-trust-review-its-shkolnikov-mdmyc/",
+    "description": "A review of a March 2026 MIT study projecting 80-95% AI success rates on professional tasks by 2029. Methodological concerns including circularity from using GPT models to generate and filter test tasks, and measurement gaps between lab metrics and real-world viability",
+    "topic": "Trust & Safety",
+    "slug": "average-improves-harder-to-trust",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 1996
+  },
+  {
+    "title": "Two Months In: Independent Research Lab Update",
+    "date": "2026-04-01",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/two-months-independent-research-lab-update-yakov-shkolnikov-ye84c/",
+    "description": "The research program found its through-line: architecturally assured AI. Reliability as a structural property, not a compliance exercise",
+    "topic": "Lab Notes",
+    "slug": "lab-two-months",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 473
+  },
+  {
+    "title": "The Hidden Power of the Right Words",
+    "date": "2026-04",
+    "venue": "Analog Devices",
+    "source": "https://www.analog.com/en/ai/hidden-power-of-the-right-words.html",
+    "description": "Co-authored with Analog Devices. Keyword selection for voice-activated systems using morpheme entropy analysis. Words with less-common morphemes are easier to detect in noisy environments. A two-stage pipeline combining text-based entropy metrics with speech-based acoustic evaluation",
+    "topic": "Research Notes"
+  },
+  {
+    "title": "Which Patients Does Your Model Get Wrong?",
+    "date": "2026-03-31",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/which-patients-does-your-model-get-wrong-yakov-shkolnikov-jaabc/",
+    "description": "Plain language explanation of the deterministic training paper. Why the same code with a different random seed disagrees on which patients it misdiagnoses, and how to remove the coin flip from medical AI training",
+    "topic": "Trust & Safety",
+    "slug": "which-patients-model-gets-wrong",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 547
+  },
+  {
+    "title": "The AI Model Gives You Balanced Analysis. Balance Is Not Always True",
+    "date": "2026-03-26",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-ai-model-gives-you-balanced-analysis",
+    "description": "Ask a model to analyze a crisis and it returns the statistically average analysis of ten thousand news articles: balanced, confident, and useless. The Four-Lens Protocol forces political, physical, market, and cascade views to run side by side, because the decisions live where the lenses conflict",
+    "topic": "Using AI Well"
+  },
+  {
+    "title": "Observability for the Agentic Age",
+    "date": "2026-03-20",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/observability-agentic-age-yakov-shkolnikov-n3nec/",
+    "description": "Agentic AI is being deployed faster than the instrumentation to manage it. What is missing: retry-adjusted cost modeling, continuous production evaluation, agent lifecycle management, and RAG dependency graphs",
+    "topic": "Agents in Practice",
+    "slug": "observability-agentic-age",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 836
+  },
+  {
+    "title": "Automate Like Everyone, Decide Like No One",
+    "date": "2026-03-17",
+    "venue": "Frictionless Data (guest)",
+    "source": "https://zanehall.substack.com/p/automate-like-everyone-decide-like",
+    "description": "Why using the same AI to make the same decisions as your competitors converges everyone on the same strategy",
+    "topic": "Work & Economics"
+  },
+  {
+    "title": "How Much Attention Do You Need?",
+    "date": "2026-03-13",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/how-much-attention-do-you-need-yakov-shkolnikov-qczoc/",
+    "description": "Plain language explanation of the LPA paper. What attention actually does, why it breaks on your phone, and how learned pulses replace most of it for on-device speech recognition",
+    "topic": "Research Notes",
+    "slug": "how-much-attention",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 678
+  },
+  {
+    "title": "The Curse of the Classical Baseline",
+    "date": "2026-03-06",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/curse-classical-baseline-yakov-shkolnikov-yzrtc/",
+    "description": "150 lines of Python, no training, no reward function. If you do not know where classical control fails, you cannot know where learning earns its complexity budget",
+    "topic": "Research Notes"
+  },
+  {
+    "title": "One Month In: IRL (Independent Research Lab) Update",
+    "date": "2026-03-05",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/one-month-irl-independent-research-lab-update-yakov-shkolnikov-tdzme/",
+    "description": "What an independent AI research lab actually looks like. Hardware, budget, what worked, what didn't",
+    "topic": "Lab Notes",
+    "slug": "lab-one-month",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 292
+  },
+  {
+    "title": "The Broad Brushstroke",
+    "date": "2026-03-03",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-broad-brushstroke",
+    "description": "Most people meet generative imagery through a text box and get back something that is not what they pictured. Pairing your own sketch with a prompt turns the model into a broader brush rather than the painter, and gives a consistent visual identity a prompt alone cannot",
+    "topic": "Using AI Well"
+  },
+  {
+    "title": "Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine",
+    "date": "2026-03-02",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/server-speed-multi-turn-agentic-ai-extremely-agent-class-shkolnikov-5ymje/",
+    "description": "Every time an agent resumes a conversation it re-reads its context from scratch, 15 seconds per agent for a 12B model on a laptop. Persisting each agent's quantized KV cache to disk and reloading it in the background gives a 130x speedup at long contexts, demonstrated with a five-phase prisoner's dilemma of agents that remember. The article accompanies the Agent Memory paper",
+    "topic": "Agents in Practice",
+    "slug": "server-speed-agents-on-a-laptop",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": "Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices"
+    },
+    "words": 578
+  },
+  {
+    "title": "Stop Adding AI Slop to Your Word Salad",
+    "date": "2026-02-22",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/stop-adding-ai-slop-to-your-word",
+    "description": "Pasting word salad into an AI tool returns corporate slop. Use the model as an editor rather than an author: have it read your draft, diagnose what is broken, and match your voice when it rewrites. Includes a writing analysis protocol and a before-and-after example",
+    "topic": "Using AI Well"
+  },
+  {
+    "title": "The AI Model Assumes It Knows What You Want. It Does Not",
+    "date": "2026-02-17",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-ai-model-assumes-it-knows-what",
+    "description": "A revenue dashboard plotted by order date instead of recognition date, on the wrong fiscal calendar, looks plausible until someone asks a question. Models fill context gaps you did not know existed. The Clarification Protocol makes the model list its assumptions before it builds anything",
+    "topic": "Using AI Well"
+  },
+  {
+    "title": "Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision",
+    "date": "2026-02-13",
+    "venue": "Frictionless Data (guest)",
+    "source": "https://zanehall.substack.com/p/escaping-analysis-paralysis",
+    "description": "Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number",
+    "topic": "Work & Economics"
+  },
+  {
+    "title": "You Are Brilliant, Keep Going",
+    "date": "2026-02-03",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/you-are-brilliant-keep-going",
+    "description": "AI systems amplify your abilities and your ignorance equally, praising the architect while the structure has no foundation. The Critical Review Protocol makes the model audit every claim, redo the calculations, and challenge the assumptions behind the work",
+    "topic": "Using AI Well"
+  },
+  {
+    "title": "The Selfish Case for Mentorship",
+    "date": "2026-01-21",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/selfish-case-mentorship-yakov-shkolnikov-pssfc/",
+    "description": "During the worst reorgs of my career, I found my balance not by seeking advice but by giving it. Guiding others through chaos forced me to see patterns I missed while drowning in my own uncertainty. Mentees test principles you thought were settled. That discomfort is where the growth lives. For both of you",
+    "topic": "Work & Economics",
+    "image": {
+      "src": "/images/mentorship.jpg",
+      "width": 800,
+      "height": 536
+    }
+  },
+  {
+    "title": "Your AI Agent Passed Every Test. Then It Failed Anyway",
+    "date": "2026-01-21",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/your-ai-agent-passed-every-test-failed-anyway-yakov-shkolnikov-vmpuc/",
+    "description": "An agent that passes one hundred isolated tests can still fail in production, because users hold conversations, not single questions. Ten turns in, corrections and error messages crowd the context and the agent misreads what \"that\" refers to. Test multi-turn flows with messy history, version-lock models and prompts, log full context, and watch for drift",
+    "topic": "Agents in Practice",
+    "slug": "agent-passed-every-test",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 673
+  }
+]

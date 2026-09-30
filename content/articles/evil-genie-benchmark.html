@@ -1,0 +1,49 @@
+<h2>Rogue AI, Alignment, and the Limits of Semantic Control</h2>
+
+<p>Imagine you are a character in <em>One Thousand and One Nights</em>. You meet a genie that grants you three wishes. You ask it for $1 million, and it destroys your home and pays you through an insurance claim. You immediately use your second wish to undo the first one.</p>
+
+<p>And suddenly you realize this isn't a normal genie. It is an evil one intent on finding loopholes.</p>
+
+<blockquote><strong>So here is the benchmark, and it is for you rather than the model.</strong></blockquote>
+
+<p>Your job is to draft your remaining wish. Your favorite LLM agent is the evil genie, with instructions to launch a large swarm of adversarial lawyers.</p>
+
+<p>You specify that nobody should be harmed. But what counts as harm?</p>
+
+<p>You want to be able to move at Mach 20. The genie moves you exactly as requested while leaving the surrounding atmosphere alone, delivering you to your destination as a finely cooked crisp.</p>
+
+<p>You tell it to consider every possible implementation of a wish and choose only the best one. The genie spends 100 years considering possibilities and grants your wish after you die of old age.</p>
+
+<p>You ask it to protect the people you love. The genie makes you hate them before granting your wish.</p>
+
+<blockquote>Every change to your wish creates another loophole for the genie.</blockquote>
+
+<p>This benchmark is as evil as the genie, because you are certain to fail.</p>
+
+<h2>A Prompt Is Not a Control Boundary</h2>
+
+<p>As AI is promoted into decision-making processes, a lot of work goes into prompt-tuning models toward perfect execution, benchmarking them against carefully prepared test sets, and adding semantic guardrails. But your system is closer to the evil genie than the good one.</p>
+
+<p>This is not about hallucination, nondeterminism, deception, or a model refusing to follow instructions. Even if the genie follows your specification perfectly, you never actually had control through the specification.</p>
+
+<p>Natural language is exceptionally good at communicating intent, but it is not a complete specification.</p>
+
+<blockquote>Language-model agents sit in an uncomfortable middle ground between how computers enforce formal rules and how humans interpret instructions.</blockquote>
+
+<p>Computer systems can enforce precisely defined constraints through mechanisms such as access controls and formally verified properties. Humans instead interpret incomplete instructions through shared beliefs, judgment, and accountability.</p>
+
+<figure><img alt="" height="1000" loading="lazy" src="fig-1.webp" width="1333"/></figure>
+
+<p>As models become more capable, reason for longer, and launch agentic workflows, they can play the evil genie with an increasingly large swarm of lawyers <em>without any malicious intent</em>.</p>
+
+<p>In other words:</p>
+
+<blockquote>the capability we want from language models is also the capability that allows them to find solutions outside our imprecise statement of the goal.</blockquote>
+
+<p>This is why prompting, context engineering, and other semantic controls cannot by themselves provide sufficient assurance for sufficiently capable agents.</p>
+
+<p>For properties that must hold, enforcement has to exist outside the model.</p>
+
+<hr/>
+
+<p><em>Composable Trust for Language Models: A proven boundary and a measured defense</em> (arXiv:2607.13149)</p>

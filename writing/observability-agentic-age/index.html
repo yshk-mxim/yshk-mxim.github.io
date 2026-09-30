@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observability for the Agentic Age · Yakov Shkolnikov</title>
+<meta name="description" content="Agentic AI is being deployed faster than the instrumentation to manage it. What is missing: retry-adjusted cost modeling, continuous production evaluation, agent lifecycle management, and RAG dependency graphs.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/observability-agentic-age/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Observability for the Agentic Age">
+<meta property="og:description" content="Agentic AI is being deployed faster than the instrumentation to manage it. What is missing: retry-adjusted cost modeling, continuous production evaluation, agent lifecycle management, and RAG dependency graphs.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/observability-agentic-age/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/observability-agentic-age/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Observability for the Agentic Age", "datePublished": "2026-03-20", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Agentic AI is being deployed faster than the instrumentation to manage it. What is missing: retry-adjusted cost modeling, continuous production evaluation, agent lifecycle management, and RAG dependency graphs", "url": "https://yakovshkolnikov.com/writing/observability-agentic-age/", "isBasedOn": "https://www.linkedin.com/pulse/observability-agentic-age-yakov-shkolnikov-n3nec/", "image": "https://yakovshkolnikov.com/writing/observability-agentic-age/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Observability for the Agentic Age</h1>
+<div class="meta"><time datetime="2026-03-20">March 20, 2026</time><span class="sep">·</span>4 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on March 20, 2026. <a href="https://www.linkedin.com/pulse/observability-agentic-age-yakov-shkolnikov-n3nec/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>Agentic AI is being deployed across the enterprise faster than the instrumentation to manage it is being built.</p>
+<p>The foundational observability layer is taking shape. Trace-level telemetry, span-based cost attribution, evaluation frameworks, and compliance tooling oriented around emerging standards are becoming available. For teams that need to demonstrate that a model behaved within defined parameters, or that a retrieval step occurred as expected, the primitives are increasingly there.</p>
+<p>What is not there yet is the management layer above that foundation. The capabilities required to control costs at the agent level, maintain behavioral reliability under production conditions, govern agent lifecycles, and manage data dependencies at scale are either absent or exist only as disconnected instrumentation that has to be assembled by hand. The following is what I would want to see built.</p>
+<h2>Agentic FinOps</h2>
+<p>Traditional FinOps was designed around predictable workloads: estimate utilization, select an instance tier, reserve capacity. That model does not generalize to agents.</p>
+<p>Cost per token is the wrong optimization unit. A smaller model may carry a lower per-token rate and still be more expensive in practice if its failure rate on complex tool-use patterns drives enough retries to exceed what a more capable model would have spent on a single pass. The correct measure is cost per successful completion. Current observability platforms do not compute it.</p>
+<p>Prompt caching introduces a second layer of complexity. Several providers offer caching with reported savings of up to 80% on cached tokens, contingent on workloads sharing a stable common prefix of sufficient length. Cache hit rate is not a metric most observability platforms surface, and there is no tooling today to model whether prompt restructuring or a scheduled refresh would materially change the cost profile.</p>
+<p>Agentic workloads also exhibit demand patterns that track human organizational behavior: fiscal quarter boundaries, regulatory filing cycles, geographic workforce distribution across timezones. Static capacity reservations are poorly matched to this structure. Accurate cost modeling requires request-level telemetry, not aggregate monthly spend.</p>
+<figure><img alt="" height="624" loading="lazy" src="fig-1.webp" width="928"/></figure>
+<h2>Agentic reliability</h2>
+<p>Uptime is a necessary but insufficient reliability criterion for agents. Behavioral consistency under varied load and task complexity is the harder and more consequential property to measure.</p>
+<p>Relevant signals include p95 latency disaggregated by model and agent, retry rates stratified by task complexity, and unexpected swarm expansion. A request scoped to a single agent that fans out to a dozen indicates a failure in routing logic or prompt specification, not a capacity problem.</p>
+<p>Quality degradation is also difficult to detect through infrastructure monitoring alone. A provider model update may introduce subtle behavioral drift with no corresponding change in latency or error rate. Without continuous evaluation running against production traffic, such regressions remain undetected until a downstream stakeholder identifies them through output review.</p>
+<h2>Agent lifecycle management</h2>
+<p>Agents are developed, promoted to production, and in many cases never formally retired. The pattern is structurally similar to what accumulated in enterprise data warehouses over time: scheduled jobs continuing to execute long after the reports or processes they supported had been superseded, because no registry existed to map dependencies and no deprecation process was enforced.</p>
+<p>For agents, the cost of an unmanaged zombie is higher and the detection path is less obvious.</p>
+<p>A sound lifecycle model requires three components: a governed promotion path from development through staging into production, a registry that captures each agents function and its upstream and downstream dependencies, and a deprecation workflow with clear retirement criteria.</p>
+<figure><img alt="" height="628" loading="lazy" src="fig-2.webp" width="936"/></figure>
+<h2>Data and RAG governance</h2>
+<p>Most production agents are backed by retrieval-augmented generation pipelines. The vector stores underlying those pipelines carry non-trivial migration costs. Few organizations maintain a traceability layer connecting agents to their source data dependencies or attributing specific retrieved documents to specific outputs. Infrastructure changes to a vector store or upstream data source therefore carry invisible blast radii until an incident surfaces them.</p>
+<p>There is a related and largely unmeasured cost pattern. Where a significant share of users submit semantically similar queries, and each query is resolved through live inference, the system repeatedly pays to generate functionally identical answers. Clustering high-frequency similar queries, pre-summarizing their canonical responses, and serving those through retrieval rather than live generation is the direct analog of materialized views in a data warehouse. The tooling to do this at the agent layer does not yet exist as a managed capability.</p>
+<figure><img alt="" height="628" loading="lazy" src="fig-3.webp" width="936"/></figure>
+<h2>The management layer</h2>
+<p>The Enterprise Data Warehouse and Data Lakehouses emerged not primarily as a scaling solution but as a governance architecture: a standardized, managed layer in which data could be cleaned, lineage could be established, and compute costs could be attributed and controlled. Without it, independent teams maintained divergent copies of institutional data, and expenditure was difficult to predict or audit. The subsequent migration to data lakes addressed scale, but organizations that moved to lakes before establishing governance discipline found the model unmanageable. Governance had to precede scale.</p>
+<p>Agentic AI is at an equivalent inflection point. The instrumentation required includes retry-adjusted cost modeling, continuous production evaluation, formal agent lifecycle management, and a dependency graph covering RAG data sources. None of these exist today as integrated, production-ready capabilities.</p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/observability-agentic-age-yakov-shkolnikov-n3nec/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/how-much-attention/"><small>Previous</small>How Much Attention Do You Need?</a><a class="next" href="/writing/which-patients-model-gets-wrong/"><small>Next</small>Which Patients Does Your Model Get Wrong?</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

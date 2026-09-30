@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Potential Blind Spot in Using AI Provenance to Prevent Model Collapse · Yakov Shkolnikov</title>
+<meta name="description" content="Drayson et al. propose machine-generated-text detection to keep the human-to-AI ratio high in training corpora and stave off collapse. The blind spot is economic: detection and AI-slop stigma create real incentive to hide provenance, and a humanizing industry has grown up to paraphrase around watermarks. Washed text evades the detector and contaminates training anyway, so filtering harder just discards more genuine human writing.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/ai-provenance-blind-spot/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="A Potential Blind Spot in Using AI Provenance to Prevent Model Collapse">
+<meta property="og:description" content="Drayson et al. propose machine-generated-text detection to keep the human-to-AI ratio high in training corpora and stave off collapse. The blind spot is economic: detection and AI-slop stigma create real incentive to hide provenance, and a humanizing industry has grown up to paraphrase around watermarks. Washed text evades the detector and contaminates training anyway, so filtering harder just discards more genuine human writing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/ai-provenance-blind-spot/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/ai-provenance-blind-spot/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "A Potential Blind Spot in Using AI Provenance to Prevent Model Collapse", "datePublished": "2026-09-10", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Drayson et al. propose machine-generated-text detection to keep the human-to-AI ratio high in training corpora and stave off collapse. The blind spot is economic: detection and AI-slop stigma create real incentive to hide provenance, and a humanizing industry has grown up to paraphrase around watermarks. Washed text evades the detector and contaminates training anyway, so filtering harder just discards more genuine human writing", "url": "https://yakovshkolnikov.com/writing/ai-provenance-blind-spot/", "isBasedOn": "https://www.linkedin.com/pulse/potential-blind-spot-using-ai-provenance-prevent-model-shkolnikov-edf9c/", "image": "https://yakovshkolnikov.com/writing/ai-provenance-blind-spot/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>A Potential Blind Spot in Using AI Provenance to Prevent Model Collapse</h1>
+<div class="meta"><time datetime="2026-09-10">September 10, 2026</time><span class="sep">·</span>2 min read<span class="sep">·</span>Trust &amp; Safety</div>
+<p class="origin">Originally published on LinkedIn on September 10, 2026. <a href="https://www.linkedin.com/pulse/potential-blind-spot-using-ai-provenance-prevent-model-shkolnikov-edf9c/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="Generated with ChatGPT" width="1280" height="719"><figcaption>Generated with ChatGPT</figcaption></figure>
+<div class="article-body">
+<p><strong>A potential blind spot in using AI provenance to prevent model collapse</strong></p>
+<p>One of the uncomfortable discoveries in the world of generative AI is that if you train successive generations of AI models on AI-generated text, it can lead to model collapse. That is, model performance drops rather than increases with the incorporation of that new data. But models do require new data, not just because of scaling requirements, but also because it is the only way to make sure that model performance does not degrade and keeps up with changes in the use of words and language, new computer languages, new discoveries, and new concepts.</p>
+<p>To allow for model updates while mitigating the risk of collapse, Drayson et al. suggest using machine-generated-text detection as a way to increase the ratio of human- to AI-generated text incorporated into the training data.</p>
+<p>But this mitigation is now itself at risk, as there is increasing economic value in hiding the provenance of text. Use of Pangram-based detection, AI-slop reporting on LinkedIn, and the generally strong—and frequently deserved—negative connotation of using AI to generate writing provide an incentive to conceal its origin. In response, a cottage industry is springing up to allow people to “humanize” AI-produced text to hide its provenance. Several methods exist, from AI paraphrasing that can weaken SynthID watermarks, to prompting to remove “AI smells,” to human rewrites of an AI draft.</p>
+<p>This adversarial “washing” of AI-generated content creates a risk of text that evades detection while still contaminating the training of future AI models. Even if rewriting removes distinct token-probability patterns or other detectable characteristics, that does not mean the content is now independent of AI. Sourati, Ziabari and Dehghani make this concern explicit in Trends in Cognitive Sciences. They synthesize evidence that widespread LLM use can homogenize human language, perspectives, and reasoning as people increasingly rely on the same models across contexts.</p>
+<figure><img alt="Figure 1. Causal pathways through which previous AI models can influence a future training corpus." height="495" loading="lazy" src="fig-1.webp" width="1600"/><figcaption>Figure 1. Causal pathways through which previous AI models can influence a future training corpus.</figcaption></figure>
+<p>And as AI-generated content becomes cheaper and more common, it becomes harder to keep it out of training data without also throwing away more human writing. To keep the amount of AI-generated text low after filtering, detectors have to become more aggressive—accepting more false positives and rejecting more genuinely human-written content as collateral damage.</p>
+<p>This purely human-driven incentive, external to the AI itself, means that it will become increasingly difficult to understand how much information entered the training corpus that is independent of previous generations of models—and therefore increasingly difficult to prevent future model collapse.</p>
+<h2>References</h2>
+<p>Shumailov, I., Shumaylov, Z., Zhao, Y., et al. (2024). “AI models collapse when trained on recursively generated data.” Nature, 631(8022), 755–759. <a href="https://doi.org/10.1038/s41586-024-07566-y">https://doi.org/10.1038/s41586-024-07566-y</a></p>
+<p>Drayson, G., Yilmaz, E., &amp; Lampos, V. (2025). “Machine-generated text detection prevents language model collapse.” In Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, 29657–29673. Suzhou, China: Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/2025.emnlp-main.1506">https://doi.org/10.18653/v1/2025.emnlp-main.1506</a></p>
+<p>Dathathri, S., See, A., Ghaisas, S., et al. (2024). “Scalable watermarking for identifying large language model outputs.” Nature, 634(8035), 818–823. <a href="https://doi.org/10.1038/s41586-024-08025-4">https://doi.org/10.1038/s41586-024-08025-4</a></p>
+<p>Sourati, Z., Ziabari, A. S., &amp; Dehghani, M. (2026). “The homogenizing effect of large language models on human expression and thought.” Trends in Cognitive Sciences, 30(9), 805–816. <a href="https://doi.org/10.1016/j.tics.2026.01.003">https://doi.org/10.1016/j.tics.2026.01.003</a></p>
+<p><em>Ironic disclosure: AI was used to lightly edit this writing and generate the top image.</em></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/potential-blind-spot-using-ai-provenance-prevent-model-shkolnikov-edf9c/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/deceive-or-role-play/"><small>Previous</small>Do AI Models Deceive, or Are They Just Role-Playing?</a><a class="next" href="/writing/graywick-incident/"><small>Next</small>The Graywick Incident</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

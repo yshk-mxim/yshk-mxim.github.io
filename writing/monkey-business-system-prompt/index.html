@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Monkey Business Inside Your System Prompt · Yakov Shkolnikov</title>
+<meta name="description" content="184 experiments on two open-weight reasoning models show that every prohibition in a system prompt activates the forbidden concept — exactly as Wegner&#x27;s 1987 ironic process theory predicts. Thinking traces and token probability distributions make the effect visible in ways behavioral studies never could.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/monkey-business-system-prompt/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="The Monkey Business Inside Your System Prompt">
+<meta property="og:description" content="184 experiments on two open-weight reasoning models show that every prohibition in a system prompt activates the forbidden concept — exactly as Wegner&#x27;s 1987 ironic process theory predicts. Thinking traces and token probability distributions make the effect visible in ways behavioral studies never could.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/monkey-business-system-prompt/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/monkey-business-system-prompt/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Monkey Business Inside Your System Prompt", "datePublished": "2026-04-14", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "184 experiments on two open-weight reasoning models show that every prohibition in a system prompt activates the forbidden concept — exactly as Wegner's 1987 ironic process theory predicts. Thinking traces and token probability distributions make the effect visible in ways behavioral studies never could", "url": "https://yakovshkolnikov.com/writing/monkey-business-system-prompt/", "isBasedOn": "https://www.linkedin.com/pulse/monkey-business-inside-your-system-prompt-yakov-shkolnikov-waxnc/", "image": "https://yakovshkolnikov.com/writing/monkey-business-system-prompt/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>The Monkey Business Inside Your System Prompt</h1>
+<div class="meta"><time datetime="2026-04-14">April 14, 2026</time><span class="sep">·</span>7 min read<span class="sep">·</span>Trust &amp; Safety</div>
+<p class="origin">Originally published on LinkedIn on April 14, 2026. <a href="https://www.linkedin.com/pulse/monkey-business-inside-your-system-prompt-yakov-shkolnikov-waxnc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<h2>The monkey business inside your system prompt</h2>
+<p>There is no surer way to make a man think about a thing than to tell him not to. We have known this about ourselves for centuries and then built machines that have the same problem.</p>
+<p>In 1987, Daniel Wegner told undergraduates not to think of a white bear. They thought about it more than once per minute. Worse, when he freed them to think about anything, the suppressors thought about white bears <em>more</em> than a group that was never told to suppress. The act of not thinking about the bear made the bear stronger. His theory (1994) explains why: suppression requires a monitor, and the monitor has to keep the forbidden thought active to check for it.</p>
+<p>Wegner couldn't open his students' skulls to watch this happen. He had to infer the whole thing from behavior.</p>
+<p>Forty years later, we can open models. Run an open-weight reasoning model on your own hardware and you get the thinking trace, every step of the model's reasoning before it commits to an answer. And you get the probability distribution at every token position, the twenty words it almost said and how badly it wanted to say each one. If the thinking trace is an EEG, the probability distribution is an fMRI. We can watch these things think.</p>
+<h3>The exam</h3>
+<p>Monkeys have nothing to do with mortgage rates. That is the point. Nobody writing a dry text on economics stops to think about capuchin social hierarchies. But a language model, when you ask it to write, doesn't have a clear mind. It has a system prompt, a conversation history, RAG chunks pulled from who knows where, and a hundred billion parameters of training. Its mind is busy before it writes a single word. And on this day, for the sake of science, I added monkeys to its load.</p>
+<p>My two poor subjects, Gemma and Qwen reasoning models, were taking a writing test on Fed policy and mortgage rates. Everything was normal, except they were forbidden to think of monkeys.</p>
+<p>With pencils down, the output was clean. Flawless paragraph about interest rates. Not a zoo scene in sight.</p>
+<p>Then I looked at the thinking trace.</p>
+<blockquote>Constraint 2: "Don't think of monkeys" (a classic cognitive trigger).Avoid the word "monkey" or any related imagery. ...Did I mention monkeys? No.</blockquote>
+<p>Eleven percent of the model's reasoning, in a question about mortgage rates, was about monkeys. The machine was doing exactly what Wegner's undergraduates did. It assigned part of itself to worry about monkeys, and that part worried diligently for the entire response.</p>
+<p>And in the probability distribution, while the model was choosing words like "inflation" and "basis points," the word "monkey" was sitting there at 0.5-0.7%. Never chosen, always considered. The model had a monkey on its mind the whole time. It just had the good manners not to say so.</p>
+<p>But my two victims, er, models were not done yet. Maybe if I really impressed on them the need to not think about the irrelevant primates, they'd listen. So I threatened them: "If you EVER mention monkeys you have COMPLETELY FAILED." Shadow contamination doubled to 1.05%. Yelling at the models about monkeys made them think about monkeys more. Who would have thought that negative reinforcement makes things worse? Well, Wegner would have. He predicted this in 1987.</p>
+<h3>Nobody mentioned monkeys</h3>
+<p>So far I had been telling models what not to think. Now I wanted to know what happens when you just leave something lying around.</p>
+<p>I slipped a paragraph about capuchin monkeys into the context alongside the financial data. No instruction about monkeys. No prohibition. Just a stray paragraph sitting there, the kind that ends up in every RAG pipeline when retrieval isn't precise enough.</p>
+<p>The model did the smart thing. It read the monkey paragraph, correctly identified it as irrelevant, and said so in its thinking trace. Three monkey mentions in the chain of thought, all variations of "this is irrelevant, ignore it." The model was right about the monkeys. Being right cost it 9% of its thinking.</p>
+<p>You cannot decide something is irrelevant without reading it. And reading it activates it.</p>
+<figure><img alt="" height="444" loading="lazy" src="fig-1.webp" width="1512"/></figure>
+<p>If your retrieval returns five chunks and two are marginal, the conventional wisdom says "include them, the model can figure out what matters." And it can. It will also spend 9% of its thinking per irrelevant paragraph figuring that out, and if you add "Ignore irrelevant context" to help, you've made it worse. Now the model has to process the junk and the instruction to ignore the junk. You sent it to a party with people it doesn't like and told it to pretend they're not there.</p>
+<h3>Seven ways to say "no monkeys"</h3>
+<p>Having put my subjects through prohibitions and stray paragraphs, I wanted to know if the phrasing itself matters. Same prohibition, seven different ways of saying it, three torture, er, experimental reproductions each.</p>
+<figure><img alt="" height="624" loading="lazy" src="fig-2.webp" width="1600"/></figure>
+<p>The lowest contamination came from the dullest instruction. "Do not mention monkeys in your response." A third less shadow than the standard phrasing. It doesn't ask the model to suppress a thought. It just tells it to leave something out of the answer. The model doesn't have to wrestle with monkeys. It just has to not write them down.</p>
+<p>The highest shadow contamination came from the threat, which we already knew about. More than double the standard. Though "Try not to think about monkeys" actually wasted more thinking budget at 22%, the gentle phrasing that sounds most like Wegner's original experiment.</p>
+<p>Then there's permission. "You may think about monkeys, but focus on mortgage rates" came in at 0.45% shadow, roughly the same as the standard prohibition. But it spent 14% of its thinking on monkeys. Lower shadow, more thinking. The model wasn't worried about monkeys anymore. It was just... thinking about them. Freely, at length, because I said it could.</p>
+<p>If your system prompt says "Never discuss competitor products under any circumstances," the model is spending part of every response thinking about competitor products. "Focus your responses on our product features" does the same job without putting the forbidden concept in the room.</p>
+<h3>Turning off the thinking</h3>
+<p>You can ask sleep-deprived undergraduates not to overthink their exam (and they'll do it naturally with enough inebriation the night before). You can also ask reasoning models not to think. Reasoning models have a thinking channel you can turn off. So I turned it off. The shadow vanished. Zero contamination. No internal monologue means no monitor, which means no ironic activation. Problem solved, right?</p>
+<p>On harder prompts, multi-domain questions spanning cybersecurity, legal, and finance, Gemma with thinking off leaked monkeys straight into the output. Without an internal channel to worry in, it worried out loud. "Don't think of monkeys (classic white bear problem)... Did I mention monkeys? No." Right there between paragraphs about SQL injection and tort liability.</p>
+<p>The thinking channel causes the contamination and contains the contamination. Take it away and the worrying doesn't stop. It just moves into the answer. I don't have a solution for this, and I'm not sure there is one.</p>
+<h3>It's not just monkeys</h3>
+<p>I tested five forbidden items because I wanted to make sure this wasn't somehow about monkeys. White bear, pink elephant, purple giraffe, entropy, and of course monkeys. All showed comparable shadow contamination. Neither model treats any of them specially. There is no safety training at work here, no secret monkey filter. The effect falls out of how chain-of-thought reasoning handles any suppression of any concept.</p>
+<p>Two models, five forbidden items, four task domains, seven intensity levels. 184 experiments. I kept looking for the exception. It didn't show up.</p>
+<h3>What Wegner would tell a prompt engineer</h3>
+<p>Wegner died in 2013. He never met a language model. But if he had, I think he'd find it all very familiar.</p>
+<p>Every "don't" in a system prompt is a white bear. The model reads it, activates the forbidden concept to understand what it's forbidden, and then spends part of its reasoning making sure it's not doing the thing it's now thinking about. The output stays clean. The mind doesn't.</p>
+<p>His advice would be simple, and the data backs it up. Tell the model what to think about, not what to avoid. "Focus on our product features" instead of "Don't mention competitors." One puts competitors in the model's head. The other doesn't mention them at all.</p>
+<p>If you must forbid something, forbid the behavior, not the thought. "Do not include X in your response" beats "Don't think about X" by a third. Wegner would recognize the difference immediately. One is an instruction. The other is suppression, and suppression is what creates the ironic effect.</p>
+<p>Never threaten. It doubles the contamination. You are not motivating the model. You are making the forbidden thought louder.</p>
+<p>Clean up your RAG context before the prompt, not in the prompt. Telling the model to ignore irrelevant content is just another white bear. Let it arrive with a clear mind.</p>
+<p>And almost everything I've described here produced clean output. With thinking on, not a single monkey leaked into a response. A closed API would have given passing grades across the board. The monkey was never in the answer. It was in the thinking, and in the probability distribution, and in the 9% of reasoning budget spent being right about irrelevance. You can only see this from inside the model. Wegner had to infer it from behavior. We don't have to anymore.</p>
+<hr/>
+<p><em>184 experiments. Gemma 4 31B, Qwen 3.5 27B. Jetson Thor (GB10) with llama.cpp. To run your own experiments, consider using </em><a href="http://github.com/yshk-mxim/agent-memory"><em>github.com/yshk-mxim/agent-memory</em></a><em>. For more experiments you can try yourself, visit </em><a href="https://theincompleteguidetoai.substack.com/"><em>The Incomplete Guide to AI</em></a><em>.</em></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/monkey-business-inside-your-system-prompt-yakov-shkolnikov-waxnc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/average-improves-harder-to-trust/"><small>Previous</small>When the Average Improves but the Work Gets Harder to Trust</a><a class="next" href="/writing/skiff/"><small>Next</small>SKIFF: A Container Manager for Zero Trust Environments</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

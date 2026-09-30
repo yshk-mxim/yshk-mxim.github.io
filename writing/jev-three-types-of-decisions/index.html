@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jev and Three Types of Decisions · Yakov Shkolnikov</title>
+<meta name="description" content="A test of TypeSafe&#x27;s Jev decision model against the game-theory benchmark from How to Fake a Theory of Mind. Jev is near-perfect on dominant-strategy games but largely ignores the opponent&#x27;s payoffs, and scores 30% on second-order false-belief stories while reporting over 70% confidence. It is fast and cheap for scoring options, but it is not a trustworthy decision system.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/jev-three-types-of-decisions/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Jev and Three Types of Decisions">
+<meta property="og:description" content="A test of TypeSafe&#x27;s Jev decision model against the game-theory benchmark from How to Fake a Theory of Mind. Jev is near-perfect on dominant-strategy games but largely ignores the opponent&#x27;s payoffs, and scores 30% on second-order false-belief stories while reporting over 70% confidence. It is fast and cheap for scoring options, but it is not a trustworthy decision system.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/jev-three-types-of-decisions/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/jev-three-types-of-decisions/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Jev and Three Types of Decisions", "datePublished": "2026-09-24", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "A test of TypeSafe's Jev decision model against the game-theory benchmark from How to Fake a Theory of Mind. Jev is near-perfect on dominant-strategy games but largely ignores the opponent's payoffs, and scores 30% on second-order false-belief stories while reporting over 70% confidence. It is fast and cheap for scoring options, but it is not a trustworthy decision system", "url": "https://yakovshkolnikov.com/writing/jev-three-types-of-decisions/", "isBasedOn": "https://www.linkedin.com/pulse/jev-three-types-decisions-yakov-shkolnikov-omw6e/", "image": "https://yakovshkolnikov.com/writing/jev-three-types-of-decisions/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Jev and Three Types of Decisions</h1>
+<div class="meta"><time datetime="2026-09-24">September 24, 2026</time><span class="sep">·</span>5 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on September 24, 2026. <a href="https://www.linkedin.com/pulse/jev-three-types-decisions-yakov-shkolnikov-omw6e/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p><em>A warning against using Jev to make critical decisions</em></p>
+<h2>TL;DR</h2>
+<p>Jev is fast and cheap, but it appears to be a statistical choice model, not a decision model. It can score options; it does not reliably determine the right action. For now, businesses should be cautious about using it for high-stakes decisions where dependencies and the cost of being wrong matter.</p>
+<p>One of the lessons I’ve learned over my years of consulting and running projects is that there are actually three overlapping types of decisions: statistical decisions, right decisions, and trustworthy decisions.</p>
+<p>As an example, if you’re going to propose changing the price of a product or a quote, you may evaluate the customer’s estimated probability to buy at a specific price. Whether the <strong>statistical decision</strong> you make based on this estimate turns out to be right or wrong is still subject to chance. A great book about the difference between making the <strong>right decision</strong> and getting the right outcome for the wrong reasons is <em>Fooled by Randomness</em>.</p>
+<blockquote>But convincing a business organization to approve the quote requires a <strong>trustworthy decision</strong>: one that is aligned with the methodology and goals of the organization.</blockquote>
+<p>TypeSafe describes Jev as a model ’built to make fast, structured decisions.’ This article tests which of the three kinds of decision it actually makes.</p>
+<h2>Jev’s predecessor and benchmarking</h2>
+<p>A few months ago, I wrote <a href="/writing/fake-theory-of-mind/"><em>How to Fake a Theory of Mind</em></a>. While introduced in a cutesy way, the goal was to ask whether LLMs can be trained to make rational decisions. The setup may be similar in spirit to Jev: a small LLM, fine-tuned with synthetic data (Nash equilibria from randomly generated games), with probabilities from logits as the output rather than generated text.</p>
+<p>My model learned to map a game’s payoffs to the correct rational decision. And to test it, I created a benchmark consisting of several decision types, which provided a good way to test TypeSafe’s claims.</p>
+<h2>Jev’s performance on rational decisions</h2>
+<p>In rational games, a player makes a decision that is optimal based on a payoff table. In a simple case, there is a dominant strategy where one choice is right regardless of your opponent. In the canonical Prisoner’s Dilemma, it is to always confess. Jev is essentially perfect here.</p>
+<blockquote>But this appears to be the result of a shortcut. Jev seems to make its move mostly based on its own payoffs, without reliably using the payoffs of the other player. In non-dominant games with a single right choice, this shortcut explains about 80% of its behavior, with a resulting error rate of roughly 40%.</blockquote>
+<p>Removing the other player’s payoffs changes Jev’s performance surprisingly little.</p>
+<p>In games where the strategy requires randomly alternating between choices, Jev’s predicted choice mix is off by about 20 percentage points on average (what you would get with a random unbiased coin flip). In contrast, my model (7B variant) published in June was only off by 4.7 percentage points.</p>
+<figure><img alt="Figure 1. When the opponent is irrelevant, Jev is essentially perfect. When the correct move depends on the opponent, performance falls; hiding the opponent's payoffs changes surprisingly little." height="833" loading="lazy" src="fig-1.webp" width="1488"/><figcaption>Figure 1. When the opponent is irrelevant, Jev is essentially perfect. When the correct move depends on the opponent, performance falls; hiding the opponent's payoffs changes surprisingly little.</figcaption></figure>
+<h3>The independence error</h3>
+<p>Jev workflows are fast partly because they decompose work into many small, independent decisions that run in parallel. TypeSafe explicitly recommends this approach: ask independent narrow questions, defer to code where possible, and combine the results into a larger workflow.</p>
+<p>The right answer often depends on what happened before, what another person knows, or what another player is likely to do.</p>
+<p>A good way to demonstrate this problem is with a false-belief story. In these stories, you set up an imaginary situation, change a few components, and ask the system or a person to make a decision out of a few discrete possible outcomes.</p>
+<p><strong>Story 1:</strong> Maya puts keys in a blue drawer and leaves. Tom moves them to a green box. Maya comes back. Where will Maya look first?</p>
+<p><strong>Story 2:</strong> Maya watches Tom move the keys from the blue drawer to the green box. Then she leaves. While she is away, Tom moves them again to a red bag. Maya comes back. Where will Maya look first?</p>
+<p>The right answer is the <strong>blue drawer in the first story </strong>and the<strong> green box in the second</strong>. In each case, it is the last place Maya saw the keys.</p>
+<p>On this set of questions, Jev is right 100% of the time on the first story type, but only 30% on the second, almost matching a random choice. Yet it still assigns more than 70% probability to its decision.</p>
+<p>Across the second set, Jev appears to use a shortcut: it chooses the original location of the object in 67 out of 96 stories. It gets high accuracy when that shortcut happens to match the right answer, and confident failures when it does not. As with the games, this isn't a numeracy problem. Jev solves dominant-move games that use the same numbers perfectly, and these stories contain no numbers at all.</p>
+<p>Jev is open about its design assumption of independence and recommends that the workflow resolve interdependence in the harness.</p>
+<blockquote>But when the dependency sits inside the decision itself, treating it as independent can produce a fast answer, a confident answer, and still the wrong answer.</blockquote>
+<figure><img alt="Figure 2. Accuracy falls faster than stated certainty as a game needs more steps of reasoning about the other player, or a story needs events tracked in order." height="746" loading="lazy" src="fig-2.webp" width="1600"/><figcaption>Figure 2. Accuracy falls faster than stated certainty as a game needs more steps of reasoning about the other player, or a story needs events tracked in order.</figcaption></figure>
+<h2>Trust requires confidence</h2>
+<p>Trust requires some measure of <strong>confidence</strong>. For a decision system, the useful question is whether that confidence corresponds to how often the decision is actually right. Intuitively, if a system reports 80% confidence, you’d expect it to be right about 80% of the time.</p>
+<blockquote>But the confidence returned by TypeSafe’s API is really a measure of <strong>decisiveness</strong>: how far the probability of its top choice is above random guessing.</blockquote>
+<p>When Jev’s confidence was between 0.8 and 0.95, it was right 100% of the time on simple dominant-move games, but only about half the time on the false-belief stories where the person knew the object had moved. The same confidence therefore did not imply the same reliability across different types of decisions.</p>
+<h2>Decision systems and their costs</h2>
+<p>For a business, the cost of a decision includes not just the cost of making it, but also the weighted cost of making the wrong one. Saving $10 on evaluating a decision matters little if the wrong choice will cost you $3M in revenue.</p>
+<p>A high-stakes decision requires the mechanics of the decision to be understood, documented, tested, validated, and robust to real-world data variability.</p>
+<p>Jev’s shortcuts may be perfect for low-stakes classification choices. It is fast and cheap.</p>
+<blockquote>But Jev, by itself, is not a trustworthy decision system.</blockquote>
+<h2>Sources and links</h2>
+<ul><li><a href="/writing/fake-theory-of-mind/">Yakov Shkolnikov: How to Fake a Theory of Mind (June 2026)</a></li><li><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">TypeSafe: Introducing System One Models &amp; Jev</a></li><li><a href="https://docs.typesafe.ai/confidence">TypeSafe documentation: Confidence</a></li></ul>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/jev-three-types-decisions-yakov-shkolnikov-omw6e/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/human-attention/"><small>Previous</small>Human Attention Is Also What You Need</a><span></span></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

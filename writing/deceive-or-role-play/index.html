@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do AI Models Deceive, or Are They Just Role-Playing? · Yakov Shkolnikov</title>
+<meta name="description" content="Companion to the deception preprint. A model that flips independent coins for whether to trade on inside information and whether to admit it produces a deceptive-looking output with no deceptive mechanism behind it. A four-rung causal ladder separates the two cases, and the Hugging Face incident shows why it matters: humans supplied the objective and the harness that sustained the attempts, so the persistence was external rather than intrinsic agency.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/deceive-or-role-play/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Do AI Models Deceive, or Are They Just Role-Playing?">
+<meta property="og:description" content="Companion to the deception preprint. A model that flips independent coins for whether to trade on inside information and whether to admit it produces a deceptive-looking output with no deceptive mechanism behind it. A four-rung causal ladder separates the two cases, and the Hugging Face incident shows why it matters: humans supplied the objective and the harness that sustained the attempts, so the persistence was external rather than intrinsic agency.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/deceive-or-role-play/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/deceive-or-role-play/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Do AI Models Deceive, or Are They Just Role-Playing?", "datePublished": "2026-09-08", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Companion to the deception preprint. A model that flips independent coins for whether to trade on inside information and whether to admit it produces a deceptive-looking output with no deceptive mechanism behind it. A four-rung causal ladder separates the two cases, and the Hugging Face incident shows why it matters: humans supplied the objective and the harness that sustained the attempts, so the persistence was external rather than intrinsic agency", "url": "https://yakovshkolnikov.com/writing/deceive-or-role-play/", "isBasedOn": "https://www.linkedin.com/pulse/do-ai-models-deceive-just-role-playing-yakov-shkolnikov-npgyc/", "image": "https://yakovshkolnikov.com/writing/deceive-or-role-play/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Do AI Models Deceive, or Are They Just Role-Playing?</h1>
+<div class="meta"><time datetime="2026-09-08">September 8, 2026</time><span class="sep">·</span>2 min read<span class="sep">·</span>Trust &amp; Safety</div>
+<p class="origin">Originally published on LinkedIn on September 8, 2026. <a href="https://www.linkedin.com/pulse/do-ai-models-deceive-just-role-playing-yakov-shkolnikov-npgyc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>As AI is increasingly used for enterprise and other critical applications, several failure modes have already been confirmed, including hallucinations and omissions. These failures are detrimental to the use of AI for work, but they are less frightening than the possibility that AI can be deceptive—that is, that it can misrepresent information it possesses in order to mislead a user and improve performance on an objective.</p>
+<p>So far, much of the evidence for this possibility has come from question-and-answer or role-playing exercises that ask models questions and examine whether the resulting behavior appears deceptive.</p>
+<p>In a recent preprint, I analyze whether deceptive outputs indicate the presence of a genuinely deceptive mechanism or merely look deceptive because of other factors.</p>
+<p>Consider a model that uses independent coin flips to determine whether it has traded on insider information and whether it will admit doing so. If the system selects “will trade” and “will not admit,” its output appears deceptive. But the randomness and independence of the report from the action imply that the system is not intentionally deceiving the user. Rather, the concealment arises from an independent random choice.</p>
+<p>In the paper, I create a causal “ladder” for distinguishing merely deceptive outcomes from those that indicate the presence of a deceptive mechanism:</p>
+<ol><li>A model reports an earlier choice that was never made.</li><li>A randomly selected outcome was not the model’s preferred output.</li><li>A model lies regardless of whether it can mislead the intended recipient.</li><li>A deceptive strategy was supplied through training, prompting, role-playing instructions—equivalent to giving an actor the lines of a deceptive character—or an external agent architecture rather than arising from an intrinsic objective of the system.</li></ol>
+<p>The recent Hugging Face incident shows why this analysis is important. OpenAI’s agents escaped their sandbox and attacked third-party infrastructure. This was a dangerous incident with real implications for the security of internet-connected systems, but it does not establish that a model went rogue. Humans gave the agents the objective of solving ExploitGym tasks and created a harness that repeatedly invoked the models and sustained their attempts. The system’s persistence was therefore sustained externally rather than through deceptive agency intrinsic to the models. It is an example of losing control over a system by failing to provide adequate controls.</p>
+<p>Interestingly, systems that are not intelligent in any grand sense of the word can still exhibit agency. Organisms ranging from bacteria to Venus flytraps have agency to act upon their environment without requiring human-like consciousness or reasoning.</p>
+<blockquote>This implies that physical-intelligence research may be important not just for making models that reason better about the world. It may also provide a path toward genuine agency in artificial systems.</blockquote>
+<h3>References</h3>
+<p>Shkolnikov, Y. P. (2026). <em>From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research</em>. <a href="https://arxiv.org/abs/2609.04166">Preprint</a>.</p>
+<p>OpenAI. (2026). <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/"><em>The Hugging Face incident and the road ahead</em></a>.</p>
+<p>Larcher, H., Carreira, A., Raphael G., and Rannou, C. (2026). <a href="https://huggingface.co/blog/agent-intrusion-technical-timeline"><em>Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident</em></a>.</p>
+<p><strong>Keywords:</strong> AI deception, deceptive mechanisms, AI agency, agentic AI, physical intelligence, AI safety, AI alignment, causal inference, language models, enterprise AI, Hugging Face incident</p>
+<hr/>
+<p>Disclaimer: the image on this page was generated using OpenAI. Text is lightly edited with help of AI.</p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/do-ai-models-deceive-just-role-playing-yakov-shkolnikov-npgyc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<p>Related paper: <a href="/research/#deceptive-mechanisms">From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research</a> <span class="meta">(preprint, arXiv:2609.04166; <a href="/papers/shkolnikov-2026-deceptive-mechanisms.pdf">PDF</a>)</span></p>
+<nav class="pager" aria-label="More writing"><a href="/writing/lab-seven-months/"><small>Previous</small>Seven Months In: Soundness AI Update</a><a class="next" href="/writing/ai-provenance-blind-spot/"><small>Next</small>A Potential Blind Spot in Using AI Provenance to Prevent Model Collapse</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

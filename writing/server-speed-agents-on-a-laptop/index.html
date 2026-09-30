@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine · Yakov Shkolnikov</title>
+<meta name="description" content="Every time an agent resumes a conversation it re-reads its context from scratch, 15 seconds per agent for a 12B model on a laptop. Persisting each agent&#x27;s quantized KV cache to disk and reloading it in the background gives a 130x speedup at long contexts, demonstrated with a five-phase prisoner&#x27;s dilemma of agents that remember. The article accompanies the Agent Memory paper.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/server-speed-agents-on-a-laptop/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine">
+<meta property="og:description" content="Every time an agent resumes a conversation it re-reads its context from scratch, 15 seconds per agent for a 12B model on a laptop. Persisting each agent&#x27;s quantized KV cache to disk and reloading it in the background gives a 130x speedup at long contexts, demonstrated with a five-phase prisoner&#x27;s dilemma of agents that remember. The article accompanies the Agent Memory paper.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/server-speed-agents-on-a-laptop/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/server-speed-agents-on-a-laptop/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine", "datePublished": "2026-03-02", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Every time an agent resumes a conversation it re-reads its context from scratch, 15 seconds per agent for a 12B model on a laptop. Persisting each agent's quantized KV cache to disk and reloading it in the background gives a 130x speedup at long contexts, demonstrated with a five-phase prisoner's dilemma of agents that remember. The article accompanies the Agent Memory paper", "url": "https://yakovshkolnikov.com/writing/server-speed-agents-on-a-laptop/", "isBasedOn": "https://www.linkedin.com/pulse/server-speed-multi-turn-agentic-ai-extremely-agent-class-shkolnikov-5ymje/", "image": "https://yakovshkolnikov.com/writing/server-speed-agents-on-a-laptop/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine</h1>
+<div class="meta"><time datetime="2026-03-02">March 2, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on March 2, 2026. <a href="https://www.linkedin.com/pulse/server-speed-multi-turn-agentic-ai-extremely-agent-class-shkolnikov-5ymje/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices" width="1280" height="719"><figcaption>Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices</figcaption></figure>
+<div class="article-body">
+<p>Even two years ago, running serious AI at speed required a server room. That's no longer true. The machine on your desk: the Mac Mini, the MacBook (or DGX Spark), has compute power that would have been exotic research hardware in 2020. I wanted to find out what becomes possible once you actually take that seriously.</p>
+<p>My paper, submitted two weeks ago, tests one specific answer: running teams of AI agents on a home machine at speeds that, practically speaking, feel like a professional server.</p>
+<p>The problem I had to solve first: every time an AI agent comes back to a conversation, it re-reads everything from scratch. With a 12-billion parameter model and a few thousand words of context, that takes 15 seconds per agent. Five agents, back to back, and you've spent over a minute doing nothing before a single useful word appears. On a data center machine with a hundred servers working in parallel and an extremely large VRAM, this is a minor annoyance. On your laptop, it's a wall.</p>
+<p>The fix is a trick called latency hiding for KV cache offloading. I save each agent's memory state to the hard drive in a compressed format. When the agent picks up again, it reloads from disk instead of re-reading everything — and that reload happens in the background while the previous agent is still working. By the time the first agent finishes, the second is ready. The speedup at long conversations is 130 times.</p>
+<figure><img alt="Speed comparison. Cold start vs. warm reload across different conversation lengths." height="884" loading="lazy" src="fig-1.webp" width="1488"/><figcaption>Speed comparison. Cold start vs. warm reload across different conversation lengths.</figcaption></figure>
+<p>To show this working in practice, the paper runs a five-phase prisoner's dilemma: a warden interrogates two suspects separately, the suspects confer in the yard, everyone meets for a final reckoning, and an analyst renders a verdict. Each character is a separate agent with its own persistent memory. Rather than forgetting everything between phases, they remember. You can see the accumulated benefit in the numbers and in how the scenario actually plays out.</p>
+<figure><img alt="Prisoner's dilemma. Agents as digital twins for social interaction." height="590" loading="lazy" src="fig-2.webp" width="1502"/><figcaption>Prisoner's dilemma. Agents as digital twins for social interaction.</figcaption></figure>
+<p>There's a second idea in the paper I'm more excited about long term. The same persistence means an agent doesn't have to disappear between sessions. You can come back to one you ran three weeks ago and pick up where you left off, as if it never went to sleep. That's a different relationship with AI tools than most people have today.</p>
+<figure><img alt="Writing a report by talking to topic-specific long-term agents." height="802" loading="lazy" src="fig-3.webp" width="1448"/><figcaption>Writing a report by talking to topic-specific long-term agents.</figcaption></figure>
+<p>On that note: DeepSeek and collaborators at Peking University published a paper (<a href="https://arxiv.org/abs/2602.21548">arxiv.org/abs/2602.21548</a>) after mine <em>(which is stuck in a queue on Arxiv)</em> with a related insight — that moving AI memory around is the real bottleneck, not the math itself. Their approach uses idle network cards on server clusters to double inference throughput on a 660-billion parameter production model. Genuinely interesting work. The difference is that it targets rooms full of GPU hardware. This paper targets the machine on your desk.</p>
+<p>The code is open source: <a href="https://github.com/yshk-mxim/agent-memory">github.com/yshk-mxim/agent-memory</a>. There's a demo app there if you want to see it running. And if you know anybody at Apple; this runs on their ML framework, and building it into their standard tooling would let people use it without writing a line of code.</p>
+<p>Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices [<a href="https://github.com/yshk-mxim/agent-memory/blob/main/agent-memory.pdf">Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices]</a></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/server-speed-multi-turn-agentic-ai-extremely-agent-class-shkolnikov-5ymje/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<p>Related paper: <a href="/research/#agent-memory-below-the-prompt">Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices</a> <span class="meta">(preprint, arXiv:2603.04428; <a href="/papers/shkolnikov-2026-agent-memory-below-the-prompt.pdf">PDF</a>)</span></p>
+<nav class="pager" aria-label="More writing"><a href="/writing/agent-passed-every-test/"><small>Previous</small>Your AI Agent Passed Every Test. Then It Failed Anyway</a><a class="next" href="/writing/lab-one-month/"><small>Next</small>One Month In: IRL (Independent Research Lab) Update</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

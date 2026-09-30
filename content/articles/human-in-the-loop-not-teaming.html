@@ -1,0 +1,37 @@
+<h3>The human-in-the-loop promise</h3>
+
+<p>In the <a href="https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/">previous article</a>, I've already discussed why an AI agent behaves more like a tool than the teammate. A consequence of this is that the person needs to explicitly specify all the work of an AI agent and to review its output. This human-in-the-loop concept has been sold as a human-agent teaming design. But it is really one person doing by hand all the coordination and operating an agent. And this concept doesn't scale well.</p>
+
+<h3>What teaming design actually requires</h3>
+
+<p>How to describe the collaboration between humans and AI tools has been analyzed by Johnson and colleagues at IHMC. In their Interdependence Analysis work, they introduced a concept of a Joint Activity Graph that can be used to model the structure, process, and potential interactions of agentic AI collaboration.</p>
+
+<p>They found that there are several requirements to make sure the human-automation work is collaborative: the teammate keeps its status observable, stays predictable, and remains directable, and does so during the execution of the work, not only at the end. Their test was blunt: "if there is not substantive interaction, then the work is parallel, not joint."</p>
+
+<p>Human-in-the-loop leaves all that interaction until the end (and in the previous article, we've addressed the observability, predictability, and directability in general). Everything that matters, deciding what the request means and what unstated assumptions to trust, happens inside the agent and cannot be observed by the human until they inspect the finished artifact. But this is not joint work at all, because the work is done prior to the user being able to inspect it.</p>
+
+<figure><img alt="Joint Activity Graph: one human and one agent." height="281" loading="lazy" src="fig-1.webp" width="1600"/><figcaption>Joint Activity Graph: one human and one agent.</figcaption></figure>
+
+<h3>Experimental evidence</h3>
+
+<p>I built the Joint Activity Graph for one of my projects as it was progressing from the proof of concept stage to a production stage. It shows that the vast majority of my oversight was not new work. Of 623 of my turns instructing the model, 49% were corrective, only 5% asked for new work to be performed, and 2.7% were approvals. I even ended up interrupting an agent mid-task 140 times. Those 140 times were not a collaborative interaction with the model. It was an emergency interrupt before it went completely haywire. This was not human-AI teaming; this was the hard work of a human using a tool.</p>
+
+<h3>The loop cannot be fully closed with agents</h3>
+
+<p>The loop cannot be closed with agents, because, as we've discussed previously, AI has no understanding of your intent, except what you have specified as a spec. But the spec, unless written in a computer language, is not complete, and therefore the model needs to make assumptions. Adding reviewers via additional agents helps, and I used it extensively in my project, but it is insufficient. They are looking at the same specification and making decisions about how to fill it in.</p>
+
+<figure><img alt="Figure 2. AI agents share the blind spots." height="554" loading="lazy" src="fig-2.webp" width="1600"/><figcaption>Figure 2. AI agents share the blind spots.</figcaption></figure>
+
+<h3>More than one human</h3>
+
+<p>While human-in-the-loop agentic interaction can be highly inefficient, it gets much worse when the code is simultaneously edited by agents controlled by different people. When two people are simultaneously working on the same project with agents, they cannot see the decisions their counterpart's agent is making until they review the combined output. And at large scale, underspecification of natural language specification is almost certainly going to result in ongoing conflicts (e.g. backend and frontend don't agree on the interpretation of interface objects). This breaks the speed of execution, results in more "looping", and is likely to further damage the mental model each person has of the code. I did not measure this on the single-author project above, but I have observed it directly on other, multi-person projects.</p>
+
+<figure><img alt="Figure 3. Joint Activity Graph: two people, each with an agent. Neither is aware of what other's agent assumed. And one day, especially when working on distinct goals, agents fill the gap differently." height="1000" loading="lazy" src="fig-3.webp" width="1385"/><figcaption>Figure 3. Joint Activity Graph: two people, each with an agent. Neither is aware of what other's agent assumed. And one day, especially when working on distinct goals, agents fill the gap differently.</figcaption></figure>
+
+<h3>Collaboration</h3>
+
+<p>Where does it leave us? Human-in-the-loop is not a teaming design. It is expensive and does not scale to collaborative work. One potential option this leaves is having a "war room" where multiple people work together on specification and then kick off agents and watch the work progress together while AI executes. Note that this didn't result in the human-AI teaming. This is human-to-human teaming using a shared tool. And human-to-human teaming carries a high coordination overhead (see Conway's Law and Brooks's Law).</p>
+
+<h3>References and further reading</h3>
+
+<p><ul><li>Brooks, F. P. (1975). <em>The Mythical Man-Month: Essays on Software Engineering.</em> Addison-Wesley. <a href="https://archive.org/details/mythicalmanmonth0000broo">https://archive.org/details/mythicalmanmonth0000broo</a></li><li>Conway, M. E. (1968). How Do Committees Invent? <em>Datamation</em>, 14(4), 28-31.</li><li>Johnson, M., Vignati, M., &amp; Duran, D. (2018). Understanding human-autonomy teaming through interdependence analysis. <em>Symposium on Human-Autonomy Teaming</em>, Vol. 1. <a href="https://www.ihmc.us/wp-content/uploads/2019/01/180907-HAT-Interdependence-Analysis.pdf">https://www.ihmc.us/wp-content/uploads/2019/01/180907-HAT-Interdependence-Analysis.pdf</a></li><li>Shkolnikov, Y. P. (2026). Why an AI Agent Is Not a Team Player. LinkedIn. <a href="https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/">https://www.linkedin.com/pulse/copy-why-ai-agent-team-player-yakov-shkolnikov-5u6lc/</a></li><li>Shkolnikov, Y. P. (2026). <em>The Second Storm Doesn't Find a Pristine Forest: Why Near-Term AI Augments Labor Rather Than Replacing It.</em> SSRN. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101</a></li></ul></p>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Of AgentHouses and Agentic Donuts · Yakov Shkolnikov</title>
+<meta name="description" content="Two anti-patterns spreading through the AI ecosystem: the AgentHouse, a tower of semantic layers, registries, and dashboards that recapitulates the data-warehouse era, and the Agentic Donut, a loop of more data, more reliability, more agents with the business question missing from its center. The bottleneck was never access. It was a human who owns what a metric means and is accountable for that decision, which no semantic layer, registry, or dashboard generates.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/agenthouses-and-agentic-donuts/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Of AgentHouses and Agentic Donuts">
+<meta property="og:description" content="Two anti-patterns spreading through the AI ecosystem: the AgentHouse, a tower of semantic layers, registries, and dashboards that recapitulates the data-warehouse era, and the Agentic Donut, a loop of more data, more reliability, more agents with the business question missing from its center. The bottleneck was never access. It was a human who owns what a metric means and is accountable for that decision, which no semantic layer, registry, or dashboard generates.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/agenthouses-and-agentic-donuts/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/agenthouses-and-agentic-donuts/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Of AgentHouses and Agentic Donuts", "datePublished": "2026-06-17", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Two anti-patterns spreading through the AI ecosystem: the AgentHouse, a tower of semantic layers, registries, and dashboards that recapitulates the data-warehouse era, and the Agentic Donut, a loop of more data, more reliability, more agents with the business question missing from its center. The bottleneck was never access. It was a human who owns what a metric means and is accountable for that decision, which no semantic layer, registry, or dashboard generates", "url": "https://yakovshkolnikov.com/writing/agenthouses-and-agentic-donuts/", "isBasedOn": "https://www.linkedin.com/pulse/agenthouses-agentic-donuts-yakov-shkolnikov-ujjrc/", "image": "https://yakovshkolnikov.com/writing/agenthouses-and-agentic-donuts/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Of AgentHouses and Agentic Donuts</h1>
+<div class="meta"><time datetime="2026-06-17">June 17, 2026</time><span class="sep">·</span>4 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on June 17, 2026. <a href="https://www.linkedin.com/pulse/agenthouses-agentic-donuts-yakov-shkolnikov-ujjrc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>After visiting yet another vendor conference, it has become obvious that two unhelpful patterns are proliferating in the AI ecosystem. They have not been given proper names. This column is dedicated to fixing that.</p>
+<p><strong>Pattern 1: The AgentHouse</strong></p>
+<p>Anyone who survived the Big Data wave will recognize the shape of this. Data is messy, so build a warehouse. The warehouse does not scale, so build a data lake. The lake is unreadable, so add Bronze and Silver and Gold layers until the whole thing becomes a swamp. The swamp is too slow, so build a warehouse on top of the lake and call it a Lakehouse. Meanwhile most actual consumption happens through datamarts, versioned flat files extracted straight to dashboards, bypassing the entire stack.</p>
+<p>Now run the same cycle with agents. Too many dashboards, so build an agent to go to the raw data. The raw data is incompatible, so add a semantic layer. The agents need prompts, so build a prompt database. The agents multiply, so build a registry. The registry is unsearchable, so build a query layer on top. The agents cost money, so build monitoring dashboards. The monitoring dashboards proliferate.</p>
+<p><strong>Pattern 2: The Agentic Donut</strong></p>
+<p>The second pattern is a loop rather than a tower. Agents need more data and context to work well, so expand the data access. They are fragile, so add reliability and security layers. They are expensive, so add cost governance. Costs come down, so build more agents, which need more data and context to work well. Round and round.</p>
+<p>What is missing from the center is the question that should have been asked before any of it started: why are these agents being built? Not technically. Not architecturally. What business problem justifies their existence? That question never enters the loop. The loop does not have a place for it.</p>
+<p>Hence the donut.</p>
+<figure><img alt="" height="830" loading="lazy" src="fig-1.webp" width="1488"/></figure>
+<p><strong>Why both patterns keep happening</strong></p>
+<p>The root cause is the same misattributed Kelvin quote that started the data warehouse era: what is not measured cannot be improved. Businesses measured everything.</p>
+<blockquote>The problem is that measurement does not imply prediction, prediction does not imply improvement, and even successful improvement carries an opportunity cost the measurement apparatus never accounts for.</blockquote>
+<p>So the pipeline takes on a life of its own. Nobody asked whether the data had anything useful to say. The question was always how to store it, clean it, serve it, and now how to put an agent in front of it.</p>
+<p>The bottleneck was rarely access alone. It was ownership, a human deciding what a metric means and being accountable for that decision. Anthropic's own data team found this when they tried bootstrapping a semantic layer by having an LLM auto-generate metric definitions from raw tables and query logs. It produced plausible-looking definitions that encoded the very ambiguities they were trying to eliminate, net negative against a smaller, human-curated layer. They also gave the agent access to thousands of prior SQL queries from every dashboard and notebook in the corpus. Accuracy moved less than a point. The agent could see all the prior work. It still could not use it.</p>
+<blockquote>That human is expensive. The definition cannot be generated, purchased, or automated into existence.</blockquote>
+<p>Which means the correct response to the AgentHouse is not a better architecture. It is a more targeted scope. The person who owns the definition needs to understand the business process well enough to know what the metric is actually measuring, not just which table it lives in. That expertise is finite, domain-specific, and non-transferable. You cannot spread it across an entire warehouse and expect it to hold.</p>
+<p>But even a correct input does not fix the output, which is where both patterns reveal why the ROI rarely materializes.</p>
+<blockquote>Reliable numbers are not decisions. Acting on an agent's output requires a working model of the business process the data describes, clear authority over the decision being made, and an organizational structure capable of executing before the signal decays.</blockquote>
+<p>Many organizations have none of these cleanly. The agent generates an alert with no designated owner, crossing functional lines that nobody has authority to adjudicate, on a cadence the planning process was not designed to absorb.</p>
+<p>Moreover, successful intervention creates a structural break. The distribution you measured, the elasticity you estimated, the correlation between your OKR and the outcome it was supposed to track: these are properties of the system before you touched it. After the intervention you are operating a different system with the same instrumentation. The semantic layer will not tell you this. The monitoring dashboard will not tell you this. This is not Goodhart's Law, which says a metric stops being useful once it becomes a target.</p>
+<blockquote>This is more fundamental: correct measurement, correctly acted upon, changes what you are measuring. The model goes stale because you used it.</blockquote>
+<p><strong>What to do instead</strong></p>
+<p>Collect raw data. It is the cheap part. But before writing one prompt for an agent, ask what problem you are solving, what business process you are targeting, what data actually represents that process, and who has the authority to act on the answer. Then ask whether the organizational structure exists to execute before the signal becomes irrelevant. Then ask whether you are willing to invest in a human who owns the definitions, not just the infrastructure that serves them.</p>
+<p>No semantic layer generates that. No agent registry surfaces it. And no monitoring dashboard will tell you that its own outputs have stopped predicting outcomes you care about because you already acted on the last one.</p>
+<blockquote>It is somewhat ironic that the move from Business Intelligence to Artificial Intelligence dropped the word business, and yet both tools would benefit from an even stronger link to it.</blockquote>
+<hr/>
+<p>For more insights, I strongly suggest Frictionless Decisions, a newsletter by my former colleague: <a href="https://zanehall.substack.com/p/ai-governance-for-bi-platforms">https://zanehall.substack.com/p/ai-governance-for-bi-platforms</a></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/agenthouses-agentic-donuts-yakov-shkolnikov-ujjrc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/fake-theory-of-mind/"><small>Previous</small>How to Fake a Theory of Mind</a><a class="next" href="/writing/complexity-gap/"><small>Next</small>The Complexity Gap: Why AI Widens the Distance Between Organizations That Understand Their Technology and Those That Only Manage It</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

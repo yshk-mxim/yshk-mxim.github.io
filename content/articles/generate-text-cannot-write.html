@@ -1,0 +1,21 @@
+<h2>How a frontier model with trillions of parameters still loses to the biological neural network</h2>
+
+<p>This was not a fair fight I accidentally rigged. I've used the latest and greatest frontier model set to extra thinking. I connected it to a stack of best-in-class NLP tools, a graded style rulebook that ran from prescriptive to prohibited, a corpus of real human section structures to borrow from, and a pipeline that diversified at the section, paragraph, and sentence level. After many iterations and tuning of pipeline parameters it created something slightly more appealing than typical vibe-generated slop. But it had no soul and told no story.</p>
+
+<p>In 10 minutes, I wrote a memo on the same topic in my own voice, and the same rulebook scored it much higher. It read as a human-written piece, and the AI detectors agreed.</p>
+
+<p>Because much of my work lately relies on creating models and systems that generate and process text, I have been spending an unhealthy amount of time obsessing about this problem. And at the end of it, I think it boils down to this: models are generating the most probable next tokens. But humans convert ideas in their head into a written representation. In mathematical terms, an LLM maps previous tokens onto a stream of tokens that fill the page; humans map intent onto a written piece. Neither is a Clippy in a word processor and neither is as cheap as one.</p>
+
+<blockquote>Training a model to map intent to a written representation is not a trivial problem, because a language model has never seen a single example of that intent input. Not just because it isn't written down, but because it forms as you actually write your thoughts down.</blockquote>
+
+<p>Every sentence a model learns from is only an output of someone's writing process. The idea that produced it, the intent, the pre-verbal thing in the author's head, is not in the training data. You can fit the distribution of outputs, which is why the text is fluent. But you cannot recover the latent intent that led to these samples.</p>
+
+<p>Writing research named the missing step decades ago: Flower and Hayes call it translating, the act of turning a plan or idea into written language, and treat it as a distinct stage of cognition rather than a byproduct of the words (Flower &amp; Hayes, 1981, <em>A Cognitive Process Theory of Writing;</em> and Bereiter &amp; Scardamalia, 1987, <em>The Psychology of Written Composition</em>).</p>
+
+<blockquote>While RLHF results in answers that are more pleasing, it is only recording the preference data over finished outputs, averaged across a crowd. People supplying the preferences are only judging outputs, never showing how they would have turned their intent into one.</blockquote>
+
+<p>An obvious answer might be to just build the missing corpus. Create an intent with a written output, and train on it. But of scale, quality, and intent visibility, you can have two, not all three. High-quality writing can't have intent mapped back on it (with chain of thought just a poor facsimile), and generating high-quality writing anew with recorded intent requires many high-quality (read very expensive and people with day jobs of their own) writers. And again, all this assumes, incorrectly, that the act of writing doesn't sharpen the intent.</p>
+
+<p>So why does AI writing feel useful at all? Because in the editing loop the human supplies the missing signal in real time. You supply the mapping of intent-to-text every time the writing loops. And without that very close human-in-the-loop (for instance when an agentic loop takes its place), the process fails. It is online preference learning with a sample size of one, spent on a single document, and lost after the piece is written down. A strong writer gets better results than from a model alone, and is still probably disappointed. A weak one gets weak results, but is probably happier than with no result at all.</p>
+
+<blockquote>None of this says the tools are worthless. They are very fancy grammar, style, and spell checkers, and save a tremendous amount of time on research. But they don't replace the most expensive component of the system. And that's a human.</blockquote>

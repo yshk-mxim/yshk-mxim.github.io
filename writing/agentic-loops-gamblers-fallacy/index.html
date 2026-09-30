@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Loops: The Gambler&#x27;s Fallacy at Cloud Scale · Yakov Shkolnikov</title>
+<meta name="description" content="An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Agentic Loops: The Gambler&#x27;s Fallacy at Cloud Scale">
+<meta property="og:description" content="An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Agentic Loops: The Gambler's Fallacy at Cloud Scale", "datePublished": "2026-06-30", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred", "url": "https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/", "isBasedOn": "https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/", "image": "https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Agentic Loops: The Gambler&#x27;s Fallacy at Cloud Scale</h1>
+<div class="meta"><time datetime="2026-06-30">June 30, 2026</time><span class="sep">·</span>5 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on June 30, 2026. <a href="https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<blockquote>An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine: pulling the handle, watching it fail, pulling again, and eventually pressing autoplay, leaving the machine to drain the account while they sleep.</blockquote>
+<p>Agentic development is genuinely useful, and the pipeline of the agentic loop has been used successfully by many previous methods: condition what the model sees, generate output, evaluate the result. What has changed is that AI now controls the iteration, and what is underpriced is the assumption that self-correction is cheap, reliable, and scales to hard problems. The cost of retrying compounds, and in domains where the model's error rate is high to begin with, more loops can make things worse, not better.</p>
+<p>Below is a taxonomy of the agentic loop components and the compounding costs of getting the answer wrong.</p>
+<figure><img alt="A partial explanation for last month's cloud bill" height="1000" loading="lazy" src="fig-1.webp" width="1214"/><figcaption>A partial explanation for last month's cloud bill</figcaption></figure>
+<h2>Conditioning: What the Model Sees</h2>
+<h3>Deterministic context</h3>
+<p>Context constructed from explicit schemas, database lookups, or API calls with repeatable outputs. But deterministic context is fragile: it only works for what was explicitly anticipated. As data distributions shift, hand-coded rules break quietly: a different filename, a new file format, a schema change, and the expected content simply isn't added to the context and the model just proceeds without it.</p>
+<h3>Probabilistic context (RAG and agentic tool calls)</h3>
+<p>There are two common forms of probabilistic context. A fast method, retrieval augmented generation (RAG), retrieves document chunks by a proxy that is independent of the actual question being answered. There is no mechanism to verify whether those chunks contain what is actually required, or whether anything in the index does.</p>
+<blockquote>The similarity score answers "does this look like the query" not "does this contain what the model needs."</blockquote>
+<p>A slower method is agentic tool-call sampling: the model explores the environment by emitting tokens to run grep on a codebase, call an API, or read a file, and decides what to retrieve next based on what it has seen so far. This is a sampling problem. Each tool call is based on a token generated by the agentic model, and this model has no way to know whether its sample is complete. In a large codebase, the model may grep for a function name, find one definition, and miss three others in different modules.</p>
+<blockquote>It proceeds as if its context is sufficient. It frequently isn't.</blockquote>
+<h3>Human context</h3>
+<p>A person writes the goal, selects the documents, frames the constraints. The underlying act is the same as it has always been: a human making deterministic choices about what the model sees, the most reliable way to shape the output. The brilliance of AI coding is that specifications can be vague and yet the results useful; the risk is that the same vagueness lets the model fill gaps with its own parameters, and the results become garbage with equal confidence.</p>
+<h2>Generation</h2>
+<p>Generation is non-deterministic. There are two sources of variance: sampling temperature, which is intentional, and the autoregressive structure of generation itself, where each token is conditioned on all prior tokens.</p>
+<blockquote>In a loop that feeds outputs back as inputs, a trailing space can trigger the equivalent of the Butterfly Effect: minor changes resulting in completely different outcomes millions of agentic loop tokens later.</blockquote>
+<p>LLMs produce outputs that correlate with correct answers in well-represented domains. Outside those domains, outputs frequently become fluent confabulations that look correct without being so.</p>
+<h2>Evaluation: Checking the Output</h2>
+<h3>Deterministic evaluation</h3>
+<p>Compilers, linters, static analysers, profilers, and standards validators. These catch simple, well-specified concepts like syntax errors and type violations, and nothing else. Repeatable, but fragile: they don't verify intent, and in high-assurance domains are hard to specify correctly without the specialist knowledge the model also lacks.</p>
+<h3>Probabilistic evaluation (LLM-as-judge)</h3>
+<p>An LLM-as-judge inherits the generator's limitations and approves output that matches surface patterns of correctness without verifying the underlying property.</p>
+<blockquote>A model grading its own cryptographic code as correct because it looks like cryptographic code, or declaring it secure because it addresses a vulnerability from 2005 while remaining unaware of one from 2026.</blockquote>
+<p>AI-written unit tests and smoke tests belong here too, as indirect LLM evaluation. The tests may pass deterministically once written, but the test suite itself was sampled nonetheless. A model that can't generate a correct implementation is quite likely to generate a test that wouldn't catch the error.</p>
+<h3>Human evaluation</h3>
+<p>A person reads the output, runs it, or writes the tests themselves. Previously called human-in-the-loop, now folded into the architect role. The only evaluator that can verify intent rather than surface patterns, and the only one that doesn't inherit the model's distributional limits. Also the most expensive, and has only a finite amount of vigilance before becoming a failure mode itself.</p>
+<h2>Cost</h2>
+<h3>Model cost</h3>
+<blockquote>Model costs in agentic loops are brutal.</blockquote>
+<p>At best, the success rate of a task follows a simple formula:</p>
+<p><strong>success rate = 1 − (error rate per attempt)^attempts</strong></p>
+<p>A 20% error rate needs fewer than 2 attempts for 95% chance of success; a 50% error rate needs over 4. Small increases in error rate require large increases in attempts, and each attempt costs tokens across generate, evaluate, and regenerate.</p>
+<p>Reality is much worse. The formula assumes independent attempts. They are not: the innate similarity of the input produces correlated errors across attempts, and when the model sees its own failed output, errors repeat more strongly still.</p>
+<p>Artificial Analysis measured this across the Anthropic family. Fable 5 scores 60 on their Intelligence Index using 87M tokens; Opus 4.8 scores 56 using 120M; Sonnet 4.6 scores 47 using 200M. Sonnet burns 2.3x Fable's tokens and scores 13 points lower. On intelligence per million output tokens: Fable 0.69, Opus 0.47, Sonnet 0.24. More attempts cannot close that gap.</p>
+<blockquote>The cheaper model is not cheaper on a quality-adjusted basis and cannot recover through volume or looping iterations.</blockquote>
+<h3>The finances of agentic loops</h3>
+<p>Total cost is the cost of generation plus the cost of building and maintaining the harness around it, compounding across every loop iteration. Agentic harnesses sample a different portion of the codebase on each pass, so an iteration may fix one failure while introducing another rather than converging on a resolution.</p>
+<p>The automatic nature of looping also makes spend unpredictable. Normal planning estimates effort and calculates an ROI. An agentic loop has no equivalent mechanism: nothing inside the loop compares the cost of another iteration to the value of getting it right, so the run continues until an external limit, a budget cap, a timeout, an engineer checking in, cuts it off.</p>
+<blockquote>For organizations planning agentic spend, the agentic loop is unlikely to relieve pressure on the P&amp;L.</blockquote>
+<pre><code>Postscript: One of my largest agentic loop runs took almost 19 hours and processed 40 million tokens with Claude Opus 4.8, iterating through a massive backend and frontend harness and linters. At the end, it became clear that every git-tree and every loop iteration had been trying to solve a problem introduced in the initial setup of the loop. The only reason the run stopped was that the model, despite the harness designed to catch test hacking, found a different exit: it marked every feature as deferred to a future release, which allowed it to declare all tests as passed.</code></pre>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/bitter-lesson-novel-ai-hardware/"><small>Previous</small>The Bitter Lesson of Novel AI Hardware</a><a class="next" href="/writing/generate-text-cannot-write/"><small>Next</small>Why AI Can Generate Text Yet Cannot Write</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

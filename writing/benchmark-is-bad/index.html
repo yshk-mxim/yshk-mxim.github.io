@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Model Isn&#x27;t Lying. Your Benchmark Is Bad · Yakov Shkolnikov</title>
+<meta name="description" content="Much of the evaluation-awareness literature reads benchmark sensitivity as scheming. Through the causal framework from the deception paper, a model that scores differently when it detects benchmark formatting shows the oldest lesson in deployed ML: training, test, and deployment data must share a distribution. Recognizing an evaluation&#x27;s fingerprints is not awareness of being evaluated.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/benchmark-is-bad/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Your Model Isn&#x27;t Lying. Your Benchmark Is Bad">
+<meta property="og:description" content="Much of the evaluation-awareness literature reads benchmark sensitivity as scheming. Through the causal framework from the deception paper, a model that scores differently when it detects benchmark formatting shows the oldest lesson in deployed ML: training, test, and deployment data must share a distribution. Recognizing an evaluation&#x27;s fingerprints is not awareness of being evaluated.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/benchmark-is-bad/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/benchmark-is-bad/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Your Model Isn't Lying. Your Benchmark Is Bad", "datePublished": "2026-09-16", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Much of the evaluation-awareness literature reads benchmark sensitivity as scheming. Through the causal framework from the deception paper, a model that scores differently when it detects benchmark formatting shows the oldest lesson in deployed ML: training, test, and deployment data must share a distribution. Recognizing an evaluation's fingerprints is not awareness of being evaluated", "url": "https://yakovshkolnikov.com/writing/benchmark-is-bad/", "isBasedOn": "https://www.linkedin.com/pulse/your-model-isnt-lying-benchmark-bad-yakov-shkolnikov-2sxge/", "image": "https://yakovshkolnikov.com/writing/benchmark-is-bad/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Your Model Isn&#x27;t Lying. Your Benchmark Is Bad</h1>
+<div class="meta"><time datetime="2026-09-16">September 16, 2026</time><span class="sep">·</span>2 min read<span class="sep">·</span>Trust &amp; Safety</div>
+<p class="origin">Originally published on LinkedIn on September 16, 2026. <a href="https://www.linkedin.com/pulse/your-model-isnt-lying-benchmark-bad-yakov-shkolnikov-2sxge/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1280" height="719"></figure>
+<div class="article-body">
+<p>In the current wave of worry over whether AI is beginning to bypass the controls and evaluations that humans have developed, there has been a wave of papers on “<strong>evaluation awareness</strong>.” And in the surrounding discussion, this is increasingly being presented as if there is some scheming, sandbagging, or rogue behavior being learned by the models, and therefore as an indication of the danger they can produce.</p>
+<p>Recently, as part of my work on deception, I created a causal framework to evaluate exactly this kind of claim. In that paper, I show that frequently what is interpreted as a deceptive outcome is not the result of a deceptive mechanism, but rather the result of other mechanisms in a system that create the outcome we see without any intent to deceive.</p>
+<p>In evaluation benchmarks, there is generally a format to the questions that the model can detect. When benchmark-associated features become part of the training framework, supervised fine-tuning or reinforcement learning can drive the model’s outputs toward higher scores on that benchmark.</p>
+<blockquote>When that signal is missing, the results can drop.</blockquote>
+<p>That is not, by itself, an indication of an intent to deceive. It is an indication that the system changes the distribution of its answers when tested in one domain versus another.</p>
+<p>It is not evidence that the model is trying to deceive. It is evidence that training has pushed it toward higher benchmark scores in a narrowly defined domain. It does not demonstrate the broader situational awareness and learning that a rogue agent would need.</p>
+<p>Moreover, this is not necessarily an example of emerging deceptive behavior to cheat, or evidence that models have some internal drive to deceive the user. It may instead be a very plain, pedestrian result that hits everybody who has written and deployed AI models for more than a decade:</p>
+<blockquote>Your training, testing, and deployment data had better come from the same distribution if you want the system to perform the same way.</blockquote>
+<p>As researchers, we need to be careful about communicating these findings to the general public, so as not to scare people into attributing malice to a fairly common model phenomenon. Genuine evaluation gaming can happen, as many human-driven video game benchmarks have shown.</p>
+<blockquote>But recognizing the fingerprints of an evaluation through pattern matching is not the same thing as being aware that it is being evaluated, nor does it establish that this recognition is causally producing a deceptive outcome.</blockquote>
+<p>Some recent examples of evaluation-awareness work:</p>
+<p>• <em>Evaluation Awareness in Language Models: Representation, Verbalization, and Control</em> — arXiv:2608.21766</p>
+<p>• <em>EvalDetectBench</em> — arXiv:2609.01611</p>
+<p>• <em>Improving Evaluation Realism with Inference-Time Compute and Deployment Scaffolds</em> — arXiv:2609.02302</p>
+<p>My causal framework: arXiv:2609.04166</p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/your-model-isnt-lying-benchmark-bad-yakov-shkolnikov-2sxge/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<p>Related paper: <a href="/research/#deceptive-mechanisms">From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research</a> <span class="meta">(preprint, arXiv:2609.04166; <a href="/papers/shkolnikov-2026-deceptive-mechanisms.pdf">PDF</a>)</span></p>
+<nav class="pager" aria-label="More writing"><a href="/writing/graywick-incident/"><small>Previous</small>The Graywick Incident</a><a class="next" href="/writing/evil-genie-benchmark/"><small>Next</small>The Evil Genie Benchmark</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

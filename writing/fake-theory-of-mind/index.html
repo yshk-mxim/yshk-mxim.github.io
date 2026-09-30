@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Fake a Theory of Mind · Yakov Shkolnikov</title>
+<meta name="description" content="You cannot prove theory of mind from behavior alone. A system that passes the test may hold no model of another mind at all. I fine-tuned a 1.5B Qwen with a LoRA on 1% of its weights to match the Nash equilibria of TMGBench&#x27;s 144 games, with no opponent represented anywhere, and it tops the benchmark including the mixed strategies the official scorer skips. The score the benchmark calls theory of mind is reachable by an agent that never looks at its opponent.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/fake-theory-of-mind/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="How to Fake a Theory of Mind">
+<meta property="og:description" content="You cannot prove theory of mind from behavior alone. A system that passes the test may hold no model of another mind at all. I fine-tuned a 1.5B Qwen with a LoRA on 1% of its weights to match the Nash equilibria of TMGBench&#x27;s 144 games, with no opponent represented anywhere, and it tops the benchmark including the mixed strategies the official scorer skips. The score the benchmark calls theory of mind is reachable by an agent that never looks at its opponent.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/fake-theory-of-mind/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/fake-theory-of-mind/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How to Fake a Theory of Mind", "datePublished": "2026-06-09", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "You cannot prove theory of mind from behavior alone. A system that passes the test may hold no model of another mind at all. I fine-tuned a 1.5B Qwen with a LoRA on 1% of its weights to match the Nash equilibria of TMGBench's 144 games, with no opponent represented anywhere, and it tops the benchmark including the mixed strategies the official scorer skips. The score the benchmark calls theory of mind is reachable by an agent that never looks at its opponent", "url": "https://yakovshkolnikov.com/writing/fake-theory-of-mind/", "isBasedOn": "https://www.linkedin.com/pulse/how-fake-theory-mind-yakov-shkolnikov-nuy5f/", "image": "https://yakovshkolnikov.com/writing/fake-theory-of-mind/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>How to Fake a Theory of Mind</h1>
+<div class="meta"><time datetime="2026-06-09">June 9, 2026</time><span class="sep">·</span>4 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn on June 9, 2026. <a href="https://www.linkedin.com/pulse/how-fake-theory-mind-yakov-shkolnikov-nuy5f/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>We built machines that talk. Can any of them understand another mind, well enough to sit across the table and guess what you'll do? One benchmark scores them on it. I wanted to see how little it takes to fake a good score.</p>
+<p><strong>The exam</strong></p>
+<p>TMGBench (<a href="https://arxiv.org/abs/2410.10479">https://arxiv.org/abs/2410.10479</a>) shows a model the 144 standard two-by-two games, the small payoff grids game theorists have used for decades, and scores how it plays. The paper files this under "Theory of Mind": to play well, a model has to keep track of the other player and respond to what they are likely to do.</p>
+<p>That framing is common. In PNAS, Michal Kosinski raised the possibility that theory of mind had emerged on its own in GPT-4, which matched a six-year-old on false-belief tests (<a href="https://www.pnas.org/doi/10.1073/pnas.2405460121">https://www.pnas.org/doi/10.1073/pnas.2405460121</a>). In Nature Human Behaviour, Strachan and colleagues found GPT-4 matching or beating humans on most of a battery of theory-of-mind tasks (<a href="https://www.nature.com/articles/s41562-024-01882-z">https://www.nature.com/articles/s41562-024-01882-z</a>). Reading game play as evidence of the same thing is routine.</p>
+<p><strong>The real goal</strong></p>
+<p>I came to these games for a different reason. I wanted a better way to negotiate: agents that imitate how I bargain, or how someone else does, and then work through a series of offers and counteroffers to get the most out of a deal. A language model can attempt to do that, but it brings along the biases of whatever it was trained on.</p>
+<p>Negotiation is frequently described in the context of game theory, where the standard move is to treat the situation as a game between rational players and solve it. "Rational" means something specific here. Each player wants only to maximize their own payoff, knows the other player wants the same, and knows the other player knows it. Under those assumptions a game has a solution called a Nash equilibrium: a choice of strategies where neither side can do better by changing its own move while the other holds still. Sometimes that strategy is a single action, and sometimes it is a mix, like choosing one option 70% of the time. Against a rational opponent you cannot do better than the equilibrium, and it can be computed exactly, which makes it a clean thing to train a model toward.</p>
+<p><strong>What I trained</strong></p>
+<p>I took Qwen2.5 at 1.5 billion parameters, small enough to run on one gaming GPU, and changed about 1% of its weights with a LoRA adapter. None of the training says anything about an opponent.</p>
+<p>When the model is about to answer, it holds a probability distribution over its next token. For these games, the slice of that distribution on the action letters A and B is already a mixed strategy, and at the start it is the wrong one. I trained it with a KL loss to match the game's Nash equilibrium. The model never writes out any reasoning. It reads the grid, and the probabilities come out close to the equilibrium. On one held-out game the right answer was 68% A and 32% B, and after training the model's split on the two letters landed about there.</p>
+<p><strong>The grades</strong></p>
+<p>Untrained, the model's top move matched the equilibrium 42.9% of the time. After training, 85.3%.</p>
+<p>The original benchmark only scores one thing: whether a model can name the pure-strategy equilibria. It does not grade mixed strategies at all. For the games whose only equilibrium is a mix, the official correct answer is to report that there is no pure one. Those are the hard games, where the answer is a ratio like 73% A rather than a single move. My model gives the actual ratio, off by about 9 percentage points on average, down from about 50 before training. There is no opponent represented in the model. The Nash equilibrium already accounts for the opponent, so the model only has to output the ratio.</p>
+<p>On the part the benchmark does score, the general chat models cluster around 80% (GPT-4o, Claude 3.5 Sonnet), and the big open models lower (Qwen2-72B at 46%, Llama-3.1-70B at 54%). Bigger reasoning models do better still: o3-mini around 93%, a 32-billion reasoning model close to 99%. And you can watch how. Hand one of these games to a current model in a chat window, or to an agent with a code tool, and it will often recognize the setup as game theory, write a few lines of Python to solve for the Nash equilibrium, and read the answer back. The score climbs with how much computation a model can throw at a solvable problem. Theory of mind never enters into it.</p>
+<p><strong>Age of Empires</strong></p>
+<p>Late last month, a paper went up on arXiv that explores this topic much more deeply: "If LLMs Have Human-Like Attributes, Then So Does Age of Empires II" (Adrian de Wynter, <a href="https://arxiv.org/abs/2605.31514">https://arxiv.org/abs/2605.31514</a>). He trains a small network on the 1999 strategy game and proves the game is Turing-complete. If you accept a behavior in a language model as evidence of understanding or morality, the same argument hands those properties to Age of Empires II, or to LEGO, or to the Greater Boston Area. Because the same property turns up in all of them, the behavior on its own doesn't establish it for any one of them. His recommendation is to pin down what you are measuring before you name the attribute, and to start from the assumption that the system is nothing special rather than that it already has the attribute.</p>
+<p>My model demonstrates it clearly. It holds no model of the opponent anywhere, and it still produces the equilibria these games are scored on, including the mixed ones the benchmark skips. The only thing measuring "theory of mind" here was that score, and an agent that never looks at its opponent can get it.</p>
+<hr/>
+<p><em>I ran this in February and meant to write it up as a proper research paper. Life got in the way, so this post will have to do.</em></p>
+<p><em>One thing I'd change next time: the model reads each player on its own, so in the games with two equilibria it can only ever name one. Training it to output both players at once is the natural next step.</em></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/how-fake-theory-mind-yakov-shkolnikov-nuy5f/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/humanistic-view-of-ai/"><small>Previous</small>The Humanistic View of AI</a><a class="next" href="/writing/agenthouses-and-agentic-donuts/"><small>Next</small>Of AgentHouses and Agentic Donuts</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

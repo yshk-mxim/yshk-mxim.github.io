@@ -1,0 +1,97 @@
+{
+  "intro": "Soundness AI is my independent research lab. Its premise: AI does not need to be infallible to be useful, but the systems around it must stay trustworthy when it fails. This page collects the progress updates and shows how to do AI research without a corporate budget: the current setup and what each piece is for.",
+  "series": [
+    "lab-seven-months",
+    "lab-two-months",
+    "lab-one-month"
+  ],
+  "related": [
+    "abstracting-physical-experiments"
+  ],
+  "setup": [
+    {
+      "title": "Local compute",
+      "items": [
+        {
+          "title": "MacBook Pro M4 Pro 12-Core / 24GB",
+          "text": "273 GB/s unified memory bandwidth. Metal acceleration for MLX. Runs 7B-12B quantized models locally for inference and LoRA fine-tuning. Paged attention, batch inference, privacy-sensitive medical AI work."
+        },
+        {
+          "title": "NVIDIA Jetson Thor",
+          "text": "Blackwell-based edge AI module. 2070 TFLOPS FP4 sparse, 128GB LPDDR5X at 273 GB/s, 14-core Arm Neoverse V3AE. 40–130W configurable. Local LLM inference for on-device agentic workloads."
+        },
+        {
+          "title": "RTX 3080 (10GB VRAM), CUDA Workstation",
+          "text": "CUDA training for sub-3B models. QLoRA fine-tuning. Isaac Sim for robotics simulation (Franka pick-and-place experiments). The 10GB ceiling forces discipline about what actually needs GPU training vs. what doesn't."
+        }
+      ]
+    },
+    {
+      "title": "Cloud GPU",
+      "items": [
+        {
+          "title": "Lambda Labs, A100 Cloud",
+          "text": "Secure and confidential GPU rental up through GH200. On-demand access for experiments that exceed local VRAM. Pre-configured PyTorch environment, SSH in and run.",
+          "url": "https://lambda.ai"
+        },
+        {
+          "title": "Vast.ai, Budget GPU Rentals",
+          "text": "Marketplace for renting consumer and datacenter GPUs at a fraction of cloud pricing. Good for longer training runs where you need hours, not minutes. Setup guide coming soon.",
+          "url": "https://vast.ai"
+        }
+      ]
+    },
+    {
+      "title": "Models and APIs",
+      "items": [
+        {
+          "title": "Claude Code (Max Plan, $200/mo)",
+          "text": "Primary development environment. Agentic coding, long-duration workflows, orchestration framework development. The tool I use to build tools.",
+          "url": "https://claude.ai"
+        },
+        {
+          "title": "Anthropic Claude API",
+          "text": "Production-grade inference for agentic workflows and orchestration framework. Sonnet for high-volume, Opus for complex reasoning chains.",
+          "url": "https://platform.claude.com/docs/"
+        },
+        {
+          "title": "OpenAI API",
+          "text": "Comparison baseline. Multi-vendor orchestration testing. The agentic framework was designed to be model-agnostic, so testing across providers is part of the methodology.",
+          "url": "https://platform.openai.com"
+        },
+        {
+          "title": "DeepSeek API",
+          "text": "Low-cost inference for high-volume experiments and benchmarking. Useful for running comparison baselines against local models.",
+          "url": "https://platform.deepseek.com"
+        }
+      ]
+    },
+    {
+      "title": "Frameworks and simulation",
+      "items": [
+        {
+          "title": "MLX (Apple Silicon ML Framework)",
+          "text": "Apple's native ML framework optimized for Metal. Used for local inference, LoRA fine-tuning on M4 Pro, and running quantized models for privacy-sensitive medical AI experiments without cloud dependency.",
+          "url": "https://github.com/ml-explore/mlx"
+        },
+        {
+          "title": "PyTorch + CUDA",
+          "text": "The standard. When a paper publishes results, this is how you verify them. Also for writing quick custom kernels when a customer problem needs something that doesn't exist in a library yet.",
+          "url": "https://pytorch.org"
+        },
+        {
+          "title": "NVIDIA Isaac Sim",
+          "text": "Robotics simulation for classical-vs-learned baseline experiments. Franka Panda pick-and-place, sensor simulation, reinforcement learning environments. Runs on the RTX 3080.",
+          "url": "https://developer.nvidia.com/isaac-sim"
+        }
+      ]
+    }
+  ],
+  "philosophy": {
+    "title": "The Philosophy: Constrained Compute Forces Better Research",
+    "text": "A 10GB GPU and a $200/mo Claude subscription is not a limitation. It is a forcing function. If your experiment needs an H100 cluster to show results, the result probably isn't robust. Every system I build is designed to run on hardware a single researcher can afford."
+  },
+  "descriptions": {
+    "abstracting-physical-experiments": "Mashmeasure, the system I built in the Princeton lab in 2003. Experiments written in natural units while auto-discovered instrument shims enforced limits, rates, and safe operation. The deterministic execution layer agents still need"
+  }
+}

@@ -1,0 +1,129 @@
+[
+  {
+    "id": "artificial-id",
+    "title": "Artificial Id: Drive and Persistent Alignment in Agentic AI",
+    "date": "2026-09-10",
+    "kind": "Preprint",
+    "venue": "arXiv:2609.11911",
+    "url": "https://arxiv.org/abs/2609.11911",
+    "pdf": "shkolnikov-2026-artificial-id.pdf",
+    "pages": 17,
+    "summary": "Agentic systems increasingly retain consequential state and continue operating across task boundaries, while current harnesses specify objectives, retries, verification, and stopping rules by hand. We propose an artificial id, an adaptive internal drive that determines whether behavior should continue, stop, or change. In a minimal virtual Petri-dish experiment, a controller too small for general-purpose reasoning, and given no task-specific behavioral objective, develops useful control through differential persistence. The same mechanism selects an unintended physical strategy when that strategy persists better. We argue that alignment must therefore be a property of the continuing agentic system rather than of a single model response or trajectory.",
+    "related": [
+      "graywick-incident"
+    ]
+  },
+  {
+    "id": "deceptive-mechanisms",
+    "title": "From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research",
+    "date": "2026-09-03",
+    "kind": "Preprint",
+    "venue": "arXiv:2609.04166",
+    "url": "https://arxiv.org/abs/2609.04166",
+    "pdf": "shkolnikov-2026-deceptive-mechanisms.pdf",
+    "pages": 21,
+    "summary": "We introduce a causal taxonomy that separates prior commitment from retrospective report, model preference from realized output, false preference from sensitivity to the utility of misleading a recipient, and deceptive behavior from the provenance of the objective or strategy that produces it. In guessing-game and stock-trading experiments on two open-weight model families, deceptive-looking behavior arises without the proposed mechanism, while other interventions show that the recipient's information state causally affects deceptive preference. Behavior can therefore provide evidence for a deceptive mechanism, but evidence for the mechanism does not establish model agency in the deception.",
+    "related": [
+      "deceive-or-role-play",
+      "benchmark-is-bad"
+    ]
+  },
+  {
+    "id": "second-storm",
+    "title": "The Second Storm Doesn't Find a Pristine Forest: Why Near-Term AI Augments Labor Rather Than Replacing It",
+    "date": "2026-07-16",
+    "kind": "Working paper",
+    "venue": "SSRN 7195101",
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101",
+    "pdf": "shkolnikov-2026-second-storm.pdf",
+    "pages": 20,
+    "summary": "Forecasts of near-term displacement mistake which work AI automates. Current models are reliable on work with a clear right or wrong answer and cheap-to-catch errors, and most of that work was automated during the last century by office software and factory machines without a fall in aggregate employment. The remaining work turns on judgment: deciding what the task is and whether the result is right. We argue that generative AI bought fluency, not judgment: a larger model writes more convincingly but is no better at telling a right answer from a plausible one, most likely because it learns from finished work rather than the reasoning behind it. Physical work requires the same judgment plus real-time adaptation that no fixed program supplies, which makes a general-purpose robot a far riskier bet than the specialized machines already on the line. Automating the rest requires a harness that, in the near term, adds human labor instead of cutting it.",
+    "related": [
+      "ai-will-not-displace-labor"
+    ]
+  },
+  {
+    "id": "composable-trust",
+    "title": "Composable Trust for Language Models: A Proven Boundary and a Measured Defense",
+    "date": "2026-07-14",
+    "kind": "Preprint",
+    "venue": "arXiv:2607.13149",
+    "url": "https://arxiv.org/abs/2607.13149",
+    "pdf": "shkolnikov-2026-composable-trust.pdf",
+    "pages": 17,
+    "summary": "In a language model, instructions and data share one token stream, so nothing inside generation can keep untrusted text from steering the model. We place the authority to act outside the model, in code: a source's standing, not its content, decides which operation runs and whether it acts. An unmodified model runs inside a deterministic pipeline that ranks inputs by source integrity, and a fixed non-model monitor provably selects the operation and any outside action from trusted inputs alone. On a one-shot held-out set with Gemma 4 26B, the passivation-and-wrapper cascade raises the defended rate on genuine leaks from 27% to 94% at roughly a 4% clean-quality cost (Qrel = 0.96). Under adaptive red-teaming the proved boundary holds unconditionally and the measured defense holds at 87%. Attribution of facts from lower-trust sources rises from 0% to 92%. The code is released with the paper.",
+    "related": [
+      "adding-trust-to-untrustworthy-ai",
+      "evil-genie-benchmark"
+    ]
+  },
+  {
+    "id": "saas-apocalypse-fallacy",
+    "title": "The SaaS Apocalypse Fallacy: Why AI Raises the Value of the SaaS Bundle",
+    "date": "2026-04-20",
+    "kind": "Working paper",
+    "venue": "SSRN 6617321",
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6617321",
+    "pdf": "shkolnikov-2026-saas-apocalypse-fallacy.pdf",
+    "pages": 10,
+    "summary": "The February 2026 selloff took more than a trillion dollars off enterprise software stocks on the thesis that AI was about to replace SaaS. We argue that the thesis rests on a category error: AI in its current delivery form is itself SaaS, delivered by a different vendor under weaker contractual terms on liability, compliance, and indemnification. An attempt to build in-house forces the enterprise to itemize a SaaS bundle that the subscription had been carrying implicitly.",
+    "related": [
+      "saas-apocalypse-fallacy"
+    ]
+  },
+  {
+    "id": "bit-identical-medical-dl",
+    "title": "Bit-Identical Medical Deep Learning via Structured Orthogonal Initialization",
+    "date": "2026-03-30",
+    "kind": "Preprint",
+    "venue": "arXiv:2603.28040",
+    "url": "https://arxiv.org/abs/2603.28040",
+    "pdf": "shkolnikov-2026-bit-identical-medical-dl.pdf",
+    "pages": 32,
+    "summary": "We replace three sources of training randomness with deterministic alternatives: structured orthogonal weight initialization, golden-ratio batch scheduling, and architecture choices that eliminate GPU non-determinism. The resulting models are bit-identical across runs, and rare-class variance falls by up to 7.5x on ECG. We validate the method on seven medical imaging benchmarks and three external ECG databases.",
+    "related": [
+      "which-patients-model-gets-wrong"
+    ]
+  },
+  {
+    "id": "learnable-pulse-accumulation",
+    "title": "Learnable Pulse Accumulation for On-Device Speech Recognition: How Much Attention Do You Need?",
+    "date": "2026-03-11",
+    "kind": "Preprint",
+    "venue": "arXiv:2603.16922",
+    "url": "https://arxiv.org/abs/2603.16922",
+    "pdf": "shkolnikov-2026-learnable-pulse-accumulation.pdf",
+    "pages": 19,
+    "summary": "We introduce learnable pulse accumulation, an O(n) replacement for self-attention built from learned gating functions. Replacing 8 of the 12 layers of wav2vec2-base yields 10.61% WER on LibriSpeech test-clean with a 3.27x speedup on an Apple M4 Pro. In a cross-domain test on SepFormer, all 16 intra-chunk attention layers can be replaced without collapse.",
+    "related": [
+      "how-much-attention"
+    ]
+  },
+  {
+    "id": "frozen-features-geometry",
+    "title": "Do Foundation Models Know Geometry? Probing Frozen Features for Continuous Physical Measurement",
+    "date": "2026-03-06",
+    "kind": "Preprint",
+    "venue": "arXiv:2603.06459",
+    "url": "https://arxiv.org/abs/2603.06459",
+    "pdf": "shkolnikov-2026-frozen-features-geometry.pdf",
+    "pages": 16,
+    "summary": "Vision-language models encode continuous geometry that their text pathway fails to express. A 6,000-parameter linear probe extracts hand joint angles from frozen features at 6.1 degrees mean absolute error, whereas the best text output reaches 20.0 degrees. Five encoders trained under self-supervised, contrastive, and hybrid objectives converge to statistically equivalent accuracy despite low representational similarity, and every architecture shows an accuracy peak in its middle layers. A single frozen backbone can therefore act as a multi-task geometric sensor through lightweight probes, without fine-tuning or text generation.",
+    "related": []
+  },
+  {
+    "id": "agent-memory-below-the-prompt",
+    "title": "Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices",
+    "date": "2026-02-17",
+    "kind": "Preprint",
+    "venue": "arXiv:2603.04428",
+    "url": "https://arxiv.org/abs/2603.04428",
+    "pdf": "shkolnikov-2026-agent-memory-below-the-prompt.pdf",
+    "pages": 24,
+    "summary": "Multi-agent LLM systems on edge devices fit only three agents in FP16 at 8K context, and each resumed agent recomputes its prefill. We persist 4-bit quantized KV caches to disk and reload them directly into the attention layer, which eliminates redundant prefill computation; background reloads hide the latency across agents.",
+    "related": [
+      "server-speed-agents-on-a-laptop"
+    ],
+    "code": "https://github.com/yshk-mxim/agent-memory"
+  }
+]

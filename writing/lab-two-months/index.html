@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Months In: Independent Research Lab Update · Yakov Shkolnikov</title>
+<meta name="description" content="The research program found its through-line: architecturally assured AI. Reliability as a structural property, not a compliance exercise.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/lab-two-months/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Two Months In: Independent Research Lab Update">
+<meta property="og:description" content="The research program found its through-line: architecturally assured AI. Reliability as a structural property, not a compliance exercise.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/lab-two-months/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/lab-two-months/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Two Months In: Independent Research Lab Update", "datePublished": "2026-04-01", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "The research program found its through-line: architecturally assured AI. Reliability as a structural property, not a compliance exercise", "url": "https://yakovshkolnikov.com/writing/lab-two-months/", "isBasedOn": "https://www.linkedin.com/pulse/two-months-independent-research-lab-update-yakov-shkolnikov-ye84c/", "image": "https://yakovshkolnikov.com/writing/lab-two-months/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Two Months In: Independent Research Lab Update</h1>
+<div class="meta"><time datetime="2026-04-01">April 1, 2026</time><span class="sep">·</span>2 min read<span class="sep">·</span>Lab Notes</div>
+<p class="origin">Originally published on LinkedIn on April 1, 2026. <a href="https://www.linkedin.com/pulse/two-months-independent-research-lab-update-yakov-shkolnikov-ye84c/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<p>Last month I described a research program organized around four areas. That structure still holds. But over the past few weeks a through-line became clear that I did not have language for in month one.</p>
+<p><em>I am calling it architecturally assured AI.</em></p>
+<p>The term comes from safety-critical engineering, where "high-assurance software" means correctness verified by design. For AI to drive real value it has to come through reliability and trustworthiness. And not at extraordinary cost. Assurance built into the architecture, not bolted on after the fact through audits and compliance theater.</p>
+<h2>Research</h2>
+<p>My first new preprint (with open source code) replaces three sources of training randomness with deterministic alternatives. Structured weight initialization instead of random sampling. Golden ratio batch scheduling instead of shuffling. Architecture choices that eliminate GPU non-determinism entirely. The result is bit-identical models across runs, with rare-class variance reduced by up to 7.5x.</p>
+<p>The second preprint focuses on lower compute cost and more interpretable version of the attention for automatic speech recognition models. It does so by replacing self-attention with learned pulse gating functions for on-device speech recognition. I know people are patiently waiting for a Triton kernel. It is coming soon and with new training to get the error rate even lower.</p>
+<p>Version 1.1 of the agent memory framework, persistent quantized KV caches for multi-agent inference on edge devices, is also in preparation. It is now targeting Jetson Thor as an additional platform to join MLX and in alpha release supports Claude Code CLI natively (and NemoClaw aspirationally).</p>
+<p>I also demoed a classical robotics baseline for Franka Panda pick-and-place in Isaac Sim that show a classical low training cost solution to what many demos seem to be misusing for the baseline for RL.</p>
+<p>And eleven new provisional patents this month, all built around architecturally assured AI for safety-critical and agentic systems. The first paper on this technology is in internal informal review right now.</p>
+<h2>Writing</h2>
+<p>I wrote about what the enterprise observability stack is missing for agentic AI. The foundational telemetry layer is taking shape.</p>
+<p>Two new issues of The Incomplete Guide to AI on Substack. A guest article in Frictionless Data on why using the same AI to make the same decisions as your competitors converges everyone on the same strategy.</p>
+<p>And plain-language explanations of both research papers on LinkedIn, because research that nobody outside the field can read changes nothing.</p>
+<h2>GTC and consulting</h2>
+<p>Almost a week at NVIDIA GTC. Picked up new consulting clients (some paid, some free just to give back to the world).</p>
+<h2>IRL: What's new since month one</h2>
+<ul><li>Two arXiv preprints (<a href="https://arxiv.org/abs/2603.28040">https://arxiv.org/abs/2603.28040</a>, submitted to journal; <a href="https://arxiv.org/abs/2603.16922">https://arxiv.org/abs/2603.16922</a>, Triton kernel coming soon)</li><li>Eleven provisional patents</li><li>Four LinkedIn articles (follow my profile)</li><li>Two Substack issues (<a href="https://theincompleteguidetoai.substack.com">https://theincompleteguidetoai.substack.com</a>)</li><li>A guest article (<a href="https://zanehall.substack.com/p/automate-like-everyone-decide-like">https://zanehall.substack.com/p/automate-like-everyone-decide-like</a>, Frictionless Data)</li><li>One mentorship meeting</li><li>Portfolio website launched (<a href="https://yakovshkolnikov.com">https://yakovshkolnikov.com</a>)</li></ul>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/two-months-independent-research-lab-update-yakov-shkolnikov-ye84c/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/which-patients-model-gets-wrong/"><small>Previous</small>Which Patients Does Your Model Get Wrong?</a><a class="next" href="/writing/average-improves-harder-to-trust/"><small>Next</small>When the Average Improves but the Work Gets Harder to Trust</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

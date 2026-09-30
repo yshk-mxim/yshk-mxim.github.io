@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why AI Can Generate Text Yet Cannot Write · Yakov Shkolnikov</title>
+<meta name="description" content="A frontier model set to extra thinking, wired to best-in-class NLP tools, a graded style rulebook, and a section-diversifying pipeline still produced text with no soul, while a memo written by hand in ten minutes scored higher and read as human. The reason is mechanical: an LLM maps previous tokens onto the next token, but a human maps intent onto a written piece, and that pre-verbal intent never appears in the training data because it forms as you write. Flower and Hayes named the missing step, translating, decades ago. RLHF only records preferences over finished outputs. The human in the editing loop supplies the missing signal one document at a time, which is why the most expensive component of the system is still a person.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/generate-text-cannot-write/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Why AI Can Generate Text Yet Cannot Write">
+<meta property="og:description" content="A frontier model set to extra thinking, wired to best-in-class NLP tools, a graded style rulebook, and a section-diversifying pipeline still produced text with no soul, while a memo written by hand in ten minutes scored higher and read as human. The reason is mechanical: an LLM maps previous tokens onto the next token, but a human maps intent onto a written piece, and that pre-verbal intent never appears in the training data because it forms as you write. Flower and Hayes named the missing step, translating, decades ago. RLHF only records preferences over finished outputs. The human in the editing loop supplies the missing signal one document at a time, which is why the most expensive component of the system is still a person.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/generate-text-cannot-write/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/generate-text-cannot-write/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Why AI Can Generate Text Yet Cannot Write", "datePublished": "2026-07-15", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "A frontier model set to extra thinking, wired to best-in-class NLP tools, a graded style rulebook, and a section-diversifying pipeline still produced text with no soul, while a memo written by hand in ten minutes scored higher and read as human. The reason is mechanical: an LLM maps previous tokens onto the next token, but a human maps intent onto a written piece, and that pre-verbal intent never appears in the training data because it forms as you write. Flower and Hayes named the missing step, translating, decades ago. RLHF only records preferences over finished outputs. The human in the editing loop supplies the missing signal one document at a time, which is why the most expensive component of the system is still a person", "url": "https://yakovshkolnikov.com/writing/generate-text-cannot-write/", "isBasedOn": "https://www.linkedin.com/pulse/why-ai-can-generate-text-yet-cannot-write-yakov-shkolnikov-tdzoc/", "image": "https://yakovshkolnikov.com/writing/generate-text-cannot-write/cover.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Why AI Can Generate Text Yet Cannot Write</h1>
+<div class="meta"><time datetime="2026-07-15">July 15, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Using AI Well</div>
+<p class="origin">Originally published on LinkedIn on July 15, 2026. <a href="https://www.linkedin.com/pulse/why-ai-can-generate-text-yet-cannot-write-yakov-shkolnikov-tdzoc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<div class="article-body">
+<h2>How a frontier model with trillions of parameters still loses to the biological neural network</h2>
+<p>This was not a fair fight I accidentally rigged. I've used the latest and greatest frontier model set to extra thinking. I connected it to a stack of best-in-class NLP tools, a graded style rulebook that ran from prescriptive to prohibited, a corpus of real human section structures to borrow from, and a pipeline that diversified at the section, paragraph, and sentence level. After many iterations and tuning of pipeline parameters it created something slightly more appealing than typical vibe-generated slop. But it had no soul and told no story.</p>
+<p>In 10 minutes, I wrote a memo on the same topic in my own voice, and the same rulebook scored it much higher. It read as a human-written piece, and the AI detectors agreed.</p>
+<p>Because much of my work lately relies on creating models and systems that generate and process text, I have been spending an unhealthy amount of time obsessing about this problem. And at the end of it, I think it boils down to this: models are generating the most probable next tokens. But humans convert ideas in their head into a written representation. In mathematical terms, an LLM maps previous tokens onto a stream of tokens that fill the page; humans map intent onto a written piece. Neither is a Clippy in a word processor and neither is as cheap as one.</p>
+<blockquote>Training a model to map intent to a written representation is not a trivial problem, because a language model has never seen a single example of that intent input. Not just because it isn't written down, but because it forms as you actually write your thoughts down.</blockquote>
+<p>Every sentence a model learns from is only an output of someone's writing process. The idea that produced it, the intent, the pre-verbal thing in the author's head, is not in the training data. You can fit the distribution of outputs, which is why the text is fluent. But you cannot recover the latent intent that led to these samples.</p>
+<p>Writing research named the missing step decades ago: Flower and Hayes call it translating, the act of turning a plan or idea into written language, and treat it as a distinct stage of cognition rather than a byproduct of the words (Flower &amp; Hayes, 1981, <em>A Cognitive Process Theory of Writing;</em> and Bereiter &amp; Scardamalia, 1987, <em>The Psychology of Written Composition</em>).</p>
+<blockquote>While RLHF results in answers that are more pleasing, it is only recording the preference data over finished outputs, averaged across a crowd. People supplying the preferences are only judging outputs, never showing how they would have turned their intent into one.</blockquote>
+<p>An obvious answer might be to just build the missing corpus. Create an intent with a written output, and train on it. But of scale, quality, and intent visibility, you can have two, not all three. High-quality writing can't have intent mapped back on it (with chain of thought just a poor facsimile), and generating high-quality writing anew with recorded intent requires many high-quality (read very expensive and people with day jobs of their own) writers. And again, all this assumes, incorrectly, that the act of writing doesn't sharpen the intent.</p>
+<p>So why does AI writing feel useful at all? Because in the editing loop the human supplies the missing signal in real time. You supply the mapping of intent-to-text every time the writing loops. And without that very close human-in-the-loop (for instance when an agentic loop takes its place), the process fails. It is online preference learning with a sample size of one, spent on a single document, and lost after the piece is written down. A strong writer gets better results than from a model alone, and is still probably disappointed. A weak one gets weak results, but is probably happier than with no result at all.</p>
+<blockquote>None of this says the tools are worthless. They are very fancy grammar, style, and spell checkers, and save a tremendous amount of time on research. But they don't replace the most expensive component of the system. And that's a human.</blockquote>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/why-ai-can-generate-text-yet-cannot-write-yakov-shkolnikov-tdzoc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/agentic-loops-gamblers-fallacy/"><small>Previous</small>Agentic Loops: The Gambler&#x27;s Fallacy at Cloud Scale</a><a class="next" href="/writing/adding-trust-to-untrustworthy-ai/"><small>Next</small>Adding Trust to Untrustworthy AI</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov</span>
+<nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+</body>
+</html>

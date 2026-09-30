@@ -1,0 +1,114 @@
+{
+  "groups": [
+    {
+      "title": "Open source",
+      "items": [
+        {
+          "title": "SKIFF: Container Manager for Zero Trust Environments",
+          "text": "Open-source container manager built for GCP and zero-trust workstations. Avoids nested virtualization and privileged socket mounts. Talks to the daemon over SSH with nothing persistent on the container host. Four-tier test suite, 94% coverage floor, anti-pattern linter, and per-framework compliance evidence (OWASP ASVS, NIST SSDF, NIST CSF, SLSA, CIS Docker Benchmark). MIT-licensed.",
+          "url": "https://github.com/yshk-mxim/skiff-container-manager",
+          "label": "GitHub",
+          "writing": "skiff"
+        },
+        {
+          "title": "Agent Memory: Persistent KV Cache for Multi-Agent Inference",
+          "text": "MLX implementation of persisted 4-bit KV caches for multi-agent LLM inference on Apple Silicon, with background reloads and a demo app. Code for the Agent Memory Below the Prompt paper.",
+          "url": "https://github.com/yshk-mxim/agent-memory",
+          "label": "GitHub",
+          "writing": "server-speed-agents-on-a-laptop"
+        },
+        {
+          "title": "Agentic Orchestration Framework",
+          "text": "Enterprise alternative to LangGraph. Lets non-ML engineers build production AI workflows. Open-source release in progress."
+        }
+      ]
+    },
+    {
+      "title": "Production systems",
+      "items": [
+        {
+          "title": "Scaling Agentic AI Across an Enterprise",
+          "text": "What it actually takes to move agentic technology from a pilot to organization-wide adoption: governance, security, enablement, and the cultural work nobody talks about."
+        },
+        {
+          "title": "Production ML: Forecasting and Supply Chain Optimization",
+          "text": "Ensemble forecasting system designed for longevity, still running after a decade. Companion supply chain optimization algorithms for inventory risk-sizing, pricing integrity, and margin protection. Designed as integrated systems where ML, data engineering, and business logic are treated as a unified whole."
+        },
+        {
+          "title": "Neural DSP for Edge Deployment",
+          "text": "Replacing traditional signal processing pipelines with learned models for embedded systems. Targeting Cortex-M class MCUs and small NPUs. Neurosymbolic approaches that preserve physics constraints while reducing compute by orders of magnitude."
+        },
+        {
+          "title": "Stateful Agent Architecture for Low-Latency Retrieval",
+          "text": "Memory-safe context management for agentic workflows. Persistent state segmentation with retrieval from short contexts at low latency and low hallucination. Treats jailbreak detection as a buffer overflow problem."
+        },
+        {
+          "title": "Classical Baseline vs. RL: Franka Pick-and-Place in Isaac Sim",
+          "text": "150 lines of classical control logic for a Franka Panda doing randomized pick-and-place. No training, no reward function. The baseline tells you exactly where learning earns its complexity budget.",
+          "url": "https://www.linkedin.com/feed/update/urn:li:activity:7435715830954479616/",
+          "label": "LinkedIn"
+        }
+      ]
+    },
+    {
+      "title": "Safety-critical and clinical",
+      "items": [
+        {
+          "title": "Agentic AI for Heart Failure Management",
+          "text": "Biomarker-driven heart failure system-of-care. Scalable to all patients in all care settings."
+        },
+        {
+          "title": "Computer Vision & Audio Sensing for Implantable Devices",
+          "text": "Peer-reviewed publications in medical technology."
+        },
+        {
+          "title": "IMU Dynamics Simulation with Bayesian Inference",
+          "text": "NumPyro-based simulation of noisy IMU measurements with known physics. SVI parameter estimation and smoothed calibrated state estimates for medical wearables."
+        }
+      ]
+    },
+    {
+      "title": "Patents",
+      "items": [
+        {
+          "title": "US Patent 7,936,274, Physical Identity Card Protection",
+          "text": "Commercialized and licensed.",
+          "url": "https://patents.google.com/patent/US7936274B2",
+          "label": "Google Patents"
+        },
+        {
+          "title": "13 Additional Provisional Patents, Safety-Critical AI Architecture",
+          "text": "Coverage spans deterministic safety enforcement, cost-optimized inference routing, source attribution, regulatory-compliant update workflows, evidence-aware text processing, closed-loop clinical monitoring, multi-device AI coordination, population drift detection, and automated compliance verification. Patents cover edge deployment, clinical AI, and enterprise compliance. These are systems built for environments where failure has consequences."
+        }
+      ]
+    },
+    {
+      "title": "Advisory",
+      "items": [
+        {
+          "title": "Technical Expert Consulting",
+          "text": "IP litigation, licensing disputes, and technology valuation for manufacturers, investors, and legal teams. Nine years of translating engineering complexity into business decisions."
+        },
+        {
+          "title": "Cybersecurity Advisory",
+          "text": "Identifying security and compliance risks from AI and data systems."
+        },
+        {
+          "title": "Shadow AI Reduction Through Culture, Not Surveillance",
+          "text": "Organizations that frame AI governance as innovation enablement see less shadow AI than those that frame it as risk mitigation. Enablement-first governance frameworks."
+        }
+      ]
+    },
+    {
+      "title": "Tools",
+      "items": [
+        {
+          "title": "Software Employment Calculator",
+          "text": "An interactive model of how AI and layoffs change software-team output: new teams gain fast, established companies see muted impact.",
+          "url": "/employment_july_2026.html",
+          "label": "Open"
+        }
+      ]
+    }
+  ]
+}

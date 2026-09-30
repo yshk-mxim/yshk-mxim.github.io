@@ -1,0 +1,33 @@
+<p>Last month I described a research program organized around four areas. That structure still holds. But over the past few weeks a through-line became clear that I did not have language for in month one.</p>
+
+<p><em>I am calling it architecturally assured AI.</em></p>
+
+<p>The term comes from safety-critical engineering, where "high-assurance software" means correctness verified by design. For AI to drive real value it has to come through reliability and trustworthiness. And not at extraordinary cost. Assurance built into the architecture, not bolted on after the fact through audits and compliance theater.</p>
+
+<h2>Research</h2>
+
+<p>My first new preprint (with open source code) replaces three sources of training randomness with deterministic alternatives. Structured weight initialization instead of random sampling. Golden ratio batch scheduling instead of shuffling. Architecture choices that eliminate GPU non-determinism entirely. The result is bit-identical models across runs, with rare-class variance reduced by up to 7.5x.</p>
+
+<p>The second preprint focuses on lower compute cost and more interpretable version of the attention for automatic speech recognition models. It does so by replacing self-attention with learned pulse gating functions for on-device speech recognition. I know people are patiently waiting for a Triton kernel. It is coming soon and with new training to get the error rate even lower.</p>
+
+<p>Version 1.1 of the agent memory framework, persistent quantized KV caches for multi-agent inference on edge devices, is also in preparation. It is now targeting Jetson Thor as an additional platform to join MLX and in alpha release supports Claude Code CLI natively (and NemoClaw aspirationally).</p>
+
+<p>I also demoed a classical robotics baseline for Franka Panda pick-and-place in Isaac Sim that show a classical low training cost solution to what many demos seem to be misusing for the baseline for RL.</p>
+
+<p>And eleven new provisional patents this month, all built around architecturally assured AI for safety-critical and agentic systems. The first paper on this technology is in internal informal review right now.</p>
+
+<h2>Writing</h2>
+
+<p>I wrote about what the enterprise observability stack is missing for agentic AI. The foundational telemetry layer is taking shape.</p>
+
+<p>Two new issues of The Incomplete Guide to AI on Substack. A guest article in Frictionless Data on why using the same AI to make the same decisions as your competitors converges everyone on the same strategy.</p>
+
+<p>And plain-language explanations of both research papers on LinkedIn, because research that nobody outside the field can read changes nothing.</p>
+
+<h2>GTC and consulting</h2>
+
+<p>Almost a week at NVIDIA GTC. Picked up new consulting clients (some paid, some free just to give back to the world).</p>
+
+<h2>IRL: What's new since month one</h2>
+
+<p><ul><li>Two arXiv preprints (<a href="https://arxiv.org/abs/2603.28040">https://arxiv.org/abs/2603.28040</a>, submitted to journal; <a href="https://arxiv.org/abs/2603.16922">https://arxiv.org/abs/2603.16922</a>, Triton kernel coming soon)</li><li>Eleven provisional patents</li><li>Four LinkedIn articles (follow my profile)</li><li>Two Substack issues (<a href="https://theincompleteguidetoai.substack.com">https://theincompleteguidetoai.substack.com</a>)</li><li>A guest article (<a href="https://zanehall.substack.com/p/automate-like-everyone-decide-like">https://zanehall.substack.com/p/automate-like-everyone-decide-like</a>, Frictionless Data)</li><li>One mentorship meeting</li><li>Portfolio website launched (<a href="https://yakovshkolnikov.com">https://yakovshkolnikov.com</a>)</li></ul></p>

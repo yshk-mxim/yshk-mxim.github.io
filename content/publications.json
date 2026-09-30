@@ -1,0 +1,506 @@
+[
+ {
+  "title": "Robust entropy-guided image segmentation for ground detection in GPR",
+  "authors": "J Roberts, Y Shkolnikov, J Varsanik, T Chevalier",
+  "venue": "Detection and Sensing of Mines, Explosive Objects, and Obscured Targets",
+  "year": "2013",
+  "cites": 5,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:e5wmG9Sq2KIC",
+  "kind": "conference"
+ },
+ {
+  "title": "Why Are Implantable Cardioverter-Defibrillators and Pacemakers Being Revised Today?",
+  "authors": "JA Hanzlik, JD Patel, SM Kurtz, QC Horn, YP Shkolnikov, JA Ochoa, et al",
+  "venue": "Medical Device Materials VI: Proceedings from the Materials and Processes",
+  "year": "2013",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:_Qo2XoVZTnwC",
+  "kind": "conference"
+ },
+ {
+  "title": "Weighted principal component analysis for real-time background removal in GPR data",
+  "authors": "YP Shkolnikov",
+  "venue": "Detection and Sensing of Mines, Explosive Objects, and Obscured Targets XVII",
+  "year": "2012",
+  "cites": 12,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:TQgYirikUcIC",
+  "kind": "conference"
+ },
+ {
+  "title": "Electromagnetic interference and exposure from household wireless networks",
+  "authors": "YP Shkolnikov, WH Bailey",
+  "venue": "2011 IEEE Symposium on Product Compliance Engineering Proceedings, 1-5",
+  "year": "2011",
+  "cites": 10,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:9yKSN-GCB0IC",
+  "kind": "conference"
+ },
+ {
+  "title": "Wear pattern observations from TDR retrievals using autoregistration of voxel data",
+  "authors": "YP Shkolnikov, A Bowden, D MacDonald, SM Kurtz",
+  "venue": "Journal of Biomedical Materials Research Part B: Applied Biomaterials 94",
+  "year": "2010",
+  "cites": 19,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:u-x6o8ySG0sC",
+  "kind": "journal"
+ },
+ {
+  "title": "Implantation trends and patient profiles for pacemakers and implantable cardioverter defibrillators in the United States: 1993–2006",
+  "authors": "SM Kurtz, JA Ochoa, E Lau, Y Shkolnikov, BB Pavri, D Frisch, et al",
+  "venue": "Pacing and Clinical Electrophysiology 33 (6), 705-711",
+  "year": "2010",
+  "cites": 268,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:u5HHmVD_uO8C",
+  "kind": "journal"
+ },
+ {
+  "title": "Parallel magnetic-field tuning of valley splitting in AlAs two-dimensional electrons",
+  "authors": "T Gokmen, M Padmanabhan, O Gunawan, YP Shkolnikov, K Vakili, et al",
+  "venue": "Physical Review B—Condensed Matter and Materials Physics 78 (23), 233306",
+  "year": "2008",
+  "cites": 21,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:hqOjcs7Dif8C",
+  "kind": "journal"
+ },
+ {
+  "title": "Diffuse electrical injury: Questioning the scientific basis",
+  "authors": "JC McGowan, YP Shkolnikov, J Sala, RM Ray",
+  "venue": "2008 Canadian Conference on Electrical and Computer Engineering, 001977-001980",
+  "year": "2008",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:HDshCWvjkbEC",
+  "kind": "conference"
+ },
+ {
+  "title": "Shield for radio frequency ID tag or contactless smart card",
+  "authors": "YP Shkolnikov, Y Du, BA McGoran",
+  "venue": "US Patent App. 11/848,209",
+  "year": "2008",
+  "cites": 53,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:mB3voiENLucC",
+  "kind": "patent"
+ },
+ {
+  "title": "Valley susceptibility of interacting electrons and composite fermions",
+  "authors": "NC Bishop, M Padmanabhan, O Gunawan, T Gokmen, EP De Poortere, et al",
+  "venue": "Physica E: Low-dimensional Systems and Nanostructures 40 (5), 986-989",
+  "year": "2008",
+  "cites": 3,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:MXK_kJrjxJIC",
+  "kind": "journal"
+ },
+ {
+  "title": "Anomalous giant piezoresistance in AlAs 2D electron systems with antidot lattices",
+  "authors": "O Gunawan, T Gokmen, YP Shkolnikov, EP De Poortere, M Shayegan",
+  "venue": "Physical Review Letters 100 (3), 036602",
+  "year": "2008",
+  "cites": 8,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:0EnyYjriUFMC",
+  "kind": "journal"
+ },
+ {
+  "title": "P100. Automated MicroCT-Based Damage Maps of Explanted Polymeric TDR Components",
+  "authors": "A Bowden, Y Shkolnikov, D Macdonald, S Kurtz",
+  "venue": "The Spine Journal 7 (5), 128S-129S",
+  "year": "2007",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:d1gkVwhDpl0C",
+  "kind": "abstract"
+ },
+ {
+  "title": "Anomalous giant piezoresistance in AlAs 2D electrons with anti-dot lattices",
+  "authors": "O Gunawan, T Gokmen, YP Shkolnikov, EP De Poortere, M Shayegan",
+  "venue": "arXiv preprint arXiv:0707.0153",
+  "year": "2007",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:r0BpntZqJG4C",
+  "kind": "abstract"
+ },
+ {
+  "title": "Valley Polarization and Susceptibility of Composite Fermions around a Filling Factor",
+  "authors": "NC Bishop, M Padmanabhan, K Vakili, YP Shkolnikov, EP De Poortere, et al",
+  "venue": "Physical Review Letters 98 (26), 266404",
+  "year": "2007",
+  "cites": 109,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:_FxGoFyzp5QC",
+  "kind": "journal"
+ },
+ {
+  "title": "Valley polarization and susceptibility of composite fermions around nu= 3/2",
+  "authors": "NC Bishop, M Padmanabhan, K Vakili, YP Shkolnikov, EP De Poortere, et al",
+  "venue": "arXiv preprint arXiv:0706.1195",
+  "year": "2007",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:4JMBOYKVnBMC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Quantum hall effect in a multi-valley two-dimensional electron system",
+  "authors": "M Shayegan, EP De Poortere, O Gunawan, YP Shkolnikov, E Tutuc, et al",
+  "venue": "International Journal of Modern Physics B 21 (08n09), 1388-1397",
+  "year": "2007",
+  "cites": 12,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:8k81kl-MbHgC",
+  "kind": "journal"
+ },
+ {
+  "title": "Gap and mass measurements of composite fermions at ν= 5/3 in a 2D electron system with tunable valley occupation",
+  "authors": "M Padmanabhan, N Bishop, Y Shkolnikov, E De Poortere, M Shayegan",
+  "venue": "APS March Meeting Abstracts, S40. 003",
+  "year": "2007",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:IWHjjKOFINEC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Valley Susceptibility Measurements of Composite Fermions around Filling Factor ν= 3/2",
+  "authors": "N Bishop, M Padmanabhan, K Vakili, Y Shkolnikov, E De Poortere, et al",
+  "venue": "APS March Meeting Abstracts, S40. 002",
+  "year": "2007",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:ZeXyd9-uunAC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Valley susceptibility of an interacting two-dimensional electron system",
+  "authors": "O Gunawan, YP Shkolnikov, K Vakili, T Gokmen, EP De Poortere, et al",
+  "venue": "Physical Review Letters 97 (18), 186404",
+  "year": "2006",
+  "cites": 429,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:Tyk-4Ss8FVUC",
+  "kind": "journal"
+ },
+ {
+  "title": "Two‐dimensional electrons occupying multiple valleys in AlAs",
+  "authors": "M Shayegan, EP De Poortere, O Gunawan, YP Shkolnikov, E Tutuc, et al",
+  "venue": "Physica Status Solidi (b) 243 (14), 3629-3642",
+  "year": "2006",
+  "cites": 179,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:UeHWp8X0CEIC",
+  "kind": "journal"
+ },
+ {
+  "title": "High-mobility AlAs quantum wells with out-of-plane valley occupation",
+  "authors": "K Vakili, YP Shkolnikov, E Tutuc, EP De Poortere, M Padmanabhan, et al",
+  "venue": "Applied Physics Letters 89 (17)",
+  "year": "2006",
+  "cites": 14,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:roLk4NBRz8UC",
+  "kind": "journal"
+ },
+ {
+  "title": "Dependence of persistent gaps at Landau level crossings on relative spin",
+  "authors": "K Vakili, T Gokmen, O Gunawan, YP Shkolnikov, EP De Poortere, et al",
+  "venue": "Physical Review Letters 97 (11), 116803",
+  "year": "2006",
+  "cites": 16,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:LkGwnXOMwfcC",
+  "kind": "journal"
+ },
+ {
+  "title": "Spin-dependent resistivity and quantum Hall ferromagnetism in two-dimensional electrons confined to AlAs quantum wells",
+  "authors": "K Vakili, YP Shkolnikov, E Tutuc, NC Bishop, EP De Poortere, et al",
+  "venue": "Physica E: Low-dimensional Systems and Nanostructures 34 (1-2), 89-92",
+  "year": "2006",
+  "cites": 5,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:5nxA0vEk-isC",
+  "kind": "journal"
+ },
+ {
+  "title": "Valley susceptibility of an interacting two-dimensional electron system.",
+  "authors": "M Shayegan, Y Shkolnikov, O Gunawan, K Vakili, T Gokmen, et al",
+  "venue": "2006 APS March Meeting PostDeadline",
+  "year": "2006",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:BqipwSGYUEgC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Giant piezoresistance in AlAs 2D electron systems with antidot lattice",
+  "authors": "O Gunawan, YP Shkolnikov, K Vakili, EPD Poortere, M Shayegan",
+  "venue": "APS March Meeting Abstracts, H35. 015",
+  "year": "2006",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:L8Ckcad2t8MC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Valley susceptibility of an interacting two-dimensional electron system.",
+  "authors": "Y Shkolnikov, O Gunawan, K Vakili, T Gokmen, E De Poortere, et al",
+  "venue": "APS March Meeting Abstracts, Z46. 005",
+  "year": "2006",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:QIV2ME_5wuYC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Landau level crossings in imbalanced, two-valley two-dimensional electron systems",
+  "authors": "K Vakili, T Gokmen, M Padmanabhan, O Gunawan, YP Shkolnikov, et al",
+  "venue": "APS March Meeting Abstracts, Z46. 007",
+  "year": "2006",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:4DMP91E08xMC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Selective occupation of conduction band valleys in AlAs quantum wells.",
+  "authors": "M Padmanabhan, K Vakili, YP Shkolnikov, O Gunawan, T Gokmen, et al",
+  "venue": "APS March Meeting Abstracts, Z46. 006",
+  "year": "2006",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:aqlVkmm33-oC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Observation of quantum Hall “valley skyrmions”",
+  "authors": "YP Shkolnikov, S Misra, NC Bishop, EP De Poortere, M Shayegan",
+  "venue": "Physical Review Letters 95 (6), 066809",
+  "year": "2005",
+  "cites": 112,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:zYLM7Y9cAGgC",
+  "kind": "journal"
+ },
+ {
+  "title": "Spin-dependent resistivity at transitions between integer quantum Hall states",
+  "authors": "K Vakili, YP Shkolnikov, E Tutuc, NC Bishop, EP De Poortere, et al",
+  "venue": "Physical Review Letters 94 (17), 176402",
+  "year": "2005",
+  "cites": 25,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:ufrVoPGSRksC",
+  "kind": "journal"
+ },
+ {
+  "title": "Antidot lattice in AlAs 2D electron system: Electron pinball with elliptical Fermi contours",
+  "authors": "O Gunawan",
+  "venue": "APS March Meeting Abstracts, V19. 011",
+  "year": "2005",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:3fE2CSJIrl8C",
+  "kind": "abstract"
+ },
+ {
+  "title": "Two-dimensional electrons with valley degree of freedom",
+  "authors": "YP Shkolnikov",
+  "venue": "Princeton University",
+  "year": "2005",
+  "cites": 2,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:7PzlFSSx8tAC",
+  "kind": "thesis"
+ },
+ {
+  "title": "Ballistic electron transport in AlAs quantum wells",
+  "authors": "O Gunawan, YP Shkolnikov, EPD Poortere, E Tutuc, M Shayegan",
+  "venue": "Physical Review Letters 93 (24), 246603",
+  "year": "2004",
+  "cites": 55,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:WF5omc3nYNoC",
+  "kind": "journal"
+ },
+ {
+  "title": "Giant low-temperature piezoresistance effect in AlAs two-dimensional electrons",
+  "authors": "YP Shkolnikov, K Vakili, EP De Poortere, M Shayegan",
+  "venue": "Applied Physics Letters 85 (17), 3766-3768",
+  "year": "2004",
+  "cites": 36,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:eQOLeE2rZwMC",
+  "kind": "journal"
+ },
+ {
+  "title": "Taming the grid",
+  "authors": "Y Shkolnikov",
+  "venue": "IEEE SPECTRUM 41 (10), 8-8",
+  "year": "2004",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:TFP_iSt0sucC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Dependence of spin susceptibility of a two-dimensional electron system on the valley degree of freedom",
+  "authors": "YP Shkolnikov, K Vakili, EP De Poortere, M Shayegan",
+  "venue": "Physical Review Letters 92 (24), 246804",
+  "year": "2004",
+  "cites": 68,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:Y0pCki6q_DkC",
+  "kind": "journal"
+ },
+ {
+  "title": "Spin susceptibility of two-dimensional electrons in narrow AlAs quantum wells",
+  "authors": "K Vakili, YP Shkolnikov, E Tutuc, EP De Poortere, M Shayegan",
+  "venue": "Physical Review Letters 92 (22), 226401",
+  "year": "2004",
+  "cites": 146,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:2osOgNQ5qMEC",
+  "kind": "journal"
+ },
+ {
+  "title": "Realization of an interacting two-valley AlAs bilayer system",
+  "authors": "K Vakili, YP Shkolnikov, E Tutuc, EPD Poortere, M Shayegan",
+  "venue": "Physical Review Letters 92 (18), 186404",
+  "year": "2004",
+  "cites": 11,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:UebtZRa9Y70C",
+  "kind": "journal"
+ },
+ {
+  "title": "Strain dependence of spin and valley polarization in AlAs 2D electrons.",
+  "authors": "YP Shkolnikov, K Vakili, M Shayegan, EP De Poortere",
+  "venue": "APS March Meeting Abstracts 2004, W11. 013",
+  "year": "2004",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:-f6ydRqryjwC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Spin Polarization of 2D Electrons in Narrow AlAs Quantum Wells",
+  "authors": "K Vakili, YP Shkolnikov, EP De Poortere, E Tutuc, M Shayegan",
+  "venue": "APS March Meeting Abstracts 2004, W11. 011",
+  "year": "2004",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:hC7cP41nSMkC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Valley-resolved ballistic transport in a two-dimensional electron system",
+  "authors": "O Gunawan, YP Shkolnikov, E Tutuc, M Shayegan, EP De Poortere",
+  "venue": "APS March Meeting Abstracts 2004, J15. 006",
+  "year": "2004",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:9ZlFYXVOiuMC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Ballistic transport in AlAs two-dimensional electrons",
+  "authors": "O Gunawan, YP Shkolnikov, EP De Poortere, E Tutuc, M Shayegan",
+  "venue": "arXiv preprint cond-mat/0402265",
+  "year": "2004",
+  "cites": 5,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:kNdYIx-mwKoC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Low-temperature,in situtunable, uniaxial stress measurements in semiconductors using a piezoelectric actuator",
+  "authors": "M Shayegan, K Karrai, YP Shkolnikov, K Vakili, EP De Poortere, S Manus",
+  "venue": "Applied Physics Letters 83 (25), 5235-5237",
+  "year": "2003",
+  "cites": 147,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:qjMakFHDy7sC",
+  "kind": "journal"
+ },
+ {
+  "title": "Field-effect persistent photoconductivity in AlAs and GaAs quantum wells withbarriers",
+  "authors": "EP De Poortere, YP Shkolnikov, M Shayegan",
+  "venue": "Physical Review B 67 (15), 153303",
+  "year": "2003",
+  "cites": 25,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:YsMSGLbcyi4C",
+  "kind": "journal"
+ },
+ {
+  "title": "Lifting of the valley degeneracy in AlAs 2D electrons",
+  "authors": "YP Shkolnikov, EP de Poortere, K Vakili, E Tutuc, M Shayegan, K Karrai",
+  "venue": "APS March Meeting Abstracts 2003, H23. 008",
+  "year": "2003",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:qUcmZB5y_30C",
+  "kind": "abstract"
+ },
+ {
+  "title": "Field-Effect Persistent Photoconductivity in GaAs/AlAs-Based Structures",
+  "authors": "EP de Poortere, YP Shkolnikov, M Shayegan",
+  "venue": "APS March Meeting Abstracts 2003, A23. 004",
+  "year": "2003",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:mVmsd5A6BfQC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Magnetoresistance Measurements in Wide and Narrow AlAs Quantum Wells",
+  "authors": "K Vakili, YP Shkolnikov, EP de Poortere, E Tutuc, M Shayegan",
+  "venue": "APS March Meeting Abstracts 2003, B23. 008",
+  "year": "2003",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:YOwf2qJgpHMC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Ballistic transport in AlAs 2D electrons",
+  "authors": "O Gunawan, EP de Poortere, YP Shkolnikov, K Vakili, E Tutuc, et al",
+  "venue": "APS March Meeting Abstracts 2003, A23. 005",
+  "year": "2003",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:Zph67rFs4hoC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Field-Effect Persistent Photoconductivity",
+  "authors": "EP De Poortere, YP Shkolnikov, M Shayegan",
+  "venue": "arXiv preprint cond-mat/0302429",
+  "year": "2003",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:_kc_bZDykSQC",
+  "kind": "abstract"
+ },
+ {
+  "title": "Valley splitting of AlAs two-dimensional electrons in a perpendicular magnetic field",
+  "authors": "YP Shkolnikov, EP De Poortere, E Tutuc, M Shayegan",
+  "venue": "Physical Review Letters 89 (22), 226805",
+  "year": "2002",
+  "cites": 226,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:W7OEmFMy1HYC",
+  "kind": "journal"
+ },
+ {
+  "title": "Magnetic-field-induced spin polarization of AlAs two-dimensional electrons",
+  "authors": "EP De Poortere, E Tutuc, YP Shkolnikov, K Vakili, M Shayegan",
+  "venue": "Physical Review B 66 (16), 161308",
+  "year": "2002",
+  "cites": 22,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:Se3iqnhoufwC",
+  "kind": "journal"
+ },
+ {
+  "title": "Quantum Hall effect in AlAs 2D electron systems",
+  "authors": "EP De Poortere, E Tutuc, YP Shkolnikov, K Vakili, M Shayegan, E Palm, et al",
+  "venue": "International Journal of Modern Physics B 16 (20n22), 2917-2922",
+  "year": "2002",
+  "cites": 3,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:dhFuZR0502QC",
+  "kind": "journal"
+ },
+ {
+  "title": "Enhanced electron mobility and high order fractional quantum Hall states in AlAs quantum wells",
+  "authors": "EP De Poortere, YP Shkolnikov, E Tutuc, SJ Papadakis, M Shayegan, et al",
+  "venue": "Applied Physics Letters 80 (9), 1583-1585",
+  "year": "2002",
+  "cites": 91,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:IjCSPb-OGe4C",
+  "kind": "journal"
+ },
+ {
+  "title": "High-mobility electrons in modulation-doped AlAs quantum wells",
+  "authors": "EP De Poortere, YP Shkolnikov, M Shayegan",
+  "venue": "Physica E: Low-dimensional Systems and Nanostructures 13 (2-4), 646-648",
+  "year": "2002",
+  "cites": 7,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:M3ejUd6NZC8C",
+  "kind": "journal"
+ },
+ {
+  "title": "Evidence of Multi-Valley Fermi Surface in AlAs 2D Electrons",
+  "authors": "YP Shkolnikov, EP de Poortere, E Tutuc, M Shayegan",
+  "venue": "APS March Meeting Abstracts, Z25. 004",
+  "year": "2001",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:KlAtU1dfN6UC",
+  "kind": "abstract"
+ },
+ {
+  "title": "High Resolution Spectroscopy at Alcator C-mod using a Fabry Perot Interferometer.",
+  "authors": "CH Skinner, DP Stotler, RE Bell, CS Pitcher, JL Terry, Y Shkolnikov",
+  "venue": "APS Division of Plasma Physics Meeting Abstracts 41, KP1. 51",
+  "year": "1999",
+  "cites": 0,
+  "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:RHpTSmoSYBkC",
+  "kind": "abstract"
+ }
+]

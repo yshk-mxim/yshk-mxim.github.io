@@ -1,0 +1,31 @@
+<p>As AI is increasingly used for enterprise and other critical applications, several failure modes have already been confirmed, including hallucinations and omissions. These failures are detrimental to the use of AI for work, but they are less frightening than the possibility that AI can be deceptive—that is, that it can misrepresent information it possesses in order to mislead a user and improve performance on an objective.</p>
+
+<p>So far, much of the evidence for this possibility has come from question-and-answer or role-playing exercises that ask models questions and examine whether the resulting behavior appears deceptive.</p>
+
+<p>In a recent preprint, I analyze whether deceptive outputs indicate the presence of a genuinely deceptive mechanism or merely look deceptive because of other factors.</p>
+
+<p>Consider a model that uses independent coin flips to determine whether it has traded on insider information and whether it will admit doing so. If the system selects “will trade” and “will not admit,” its output appears deceptive. But the randomness and independence of the report from the action imply that the system is not intentionally deceiving the user. Rather, the concealment arises from an independent random choice.</p>
+
+<p>In the paper, I create a causal “ladder” for distinguishing merely deceptive outcomes from those that indicate the presence of a deceptive mechanism:</p>
+
+<p><ol><li>A model reports an earlier choice that was never made.</li><li>A randomly selected outcome was not the model’s preferred output.</li><li>A model lies regardless of whether it can mislead the intended recipient.</li><li>A deceptive strategy was supplied through training, prompting, role-playing instructions—equivalent to giving an actor the lines of a deceptive character—or an external agent architecture rather than arising from an intrinsic objective of the system.</li></ol></p>
+
+<p>The recent Hugging Face incident shows why this analysis is important. OpenAI’s agents escaped their sandbox and attacked third-party infrastructure. This was a dangerous incident with real implications for the security of internet-connected systems, but it does not establish that a model went rogue. Humans gave the agents the objective of solving ExploitGym tasks and created a harness that repeatedly invoked the models and sustained their attempts. The system’s persistence was therefore sustained externally rather than through deceptive agency intrinsic to the models. It is an example of losing control over a system by failing to provide adequate controls.</p>
+
+<p>Interestingly, systems that are not intelligent in any grand sense of the word can still exhibit agency. Organisms ranging from bacteria to Venus flytraps have agency to act upon their environment without requiring human-like consciousness or reasoning.</p>
+
+<blockquote>This implies that physical-intelligence research may be important not just for making models that reason better about the world. It may also provide a path toward genuine agency in artificial systems.</blockquote>
+
+<h3>References</h3>
+
+<p>Shkolnikov, Y. P. (2026). <em>From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research</em>. <a href="https://arxiv.org/abs/2609.04166">Preprint</a>.</p>
+
+<p>OpenAI. (2026). <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/"><em>The Hugging Face incident and the road ahead</em></a>.</p>
+
+<p>Larcher, H., Carreira, A., Raphael G., and Rannou, C. (2026). <a href="https://huggingface.co/blog/agent-intrusion-technical-timeline"><em>Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident</em></a>.</p>
+
+<p><strong>Keywords:</strong> AI deception, deceptive mechanisms, AI agency, agentic AI, physical intelligence, AI safety, AI alignment, causal inference, language models, enterprise AI, Hugging Face incident</p>
+
+<hr/>
+
+<p>Disclaimer: the image on this page was generated using OpenAI. Text is lightly edited with help of AI.</p>
