@@ -13,7 +13,7 @@
       "title": "Local compute",
       "items": [
         {
-          "title": "Mac M5 Max 18-Core CPU / 40-Core GPU / 128GB",
+          "title": "MacBook Pro M5 Max 18-Core CPU / 40-Core GPU / 128GB",
           "text": "614 GB/s unified memory bandwidth. Metal acceleration for MLX. Large models and trustworthy AI work."
         },
         {
@@ -26,7 +26,7 @@
         },
         {
           "title": "RTX 3080 (10GB VRAM), CUDA Workstation",
-          "text": "CUDA training for sub-3B models. QLoRA fine-tuning. Isaac Sim for robotics simulation (Franka pick-and-place experiments). The 10GB ceiling forces discipline about what actually needs GPU training vs. what doesn't."
+          "text": "Mostly edge and robotics work. CUDA training for sub-3B models. QLoRA fine-tuning. Isaac Sim for robotics simulation (Franka pick-and-place experiments). The 10GB ceiling forces discipline about what actually needs GPU training vs. what doesn't."
         }
       ]
     },
