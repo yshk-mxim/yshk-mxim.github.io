@@ -26,7 +26,9 @@
     "related": [
       "deceive-or-role-play",
       "benchmark-is-bad"
-    ]
+    ],
+    "code": "https://github.com/yshk-mxim/deceptive-mechanism",
+    "code_label": "Replication package"
   },
   {
     "id": "second-storm",
@@ -55,7 +57,8 @@
     "related": [
       "adding-trust-to-untrustworthy-ai",
       "evil-genie-benchmark"
-    ]
+    ],
+    "code": "https://github.com/yshk-mxim/llm-trust"
   },
   {
     "id": "saas-apocalypse-fallacy",
@@ -83,7 +86,8 @@
     "summary": "We replace three sources of training randomness with deterministic alternatives: structured orthogonal weight initialization, golden-ratio batch scheduling, and architecture choices that eliminate GPU non-determinism. The resulting models are bit-identical across runs, and rare-class variance falls by up to 7.5x on ECG. We validate the method on seven medical imaging benchmarks and three external ECG databases.",
     "related": [
       "which-patients-model-gets-wrong"
-    ]
+    ],
+    "code": "https://github.com/yshk-mxim/repnet"
   },
   {
     "id": "learnable-pulse-accumulation",
@@ -97,7 +101,11 @@
     "summary": "We introduce learnable pulse accumulation, an O(n) replacement for self-attention built from learned gating functions. Replacing 8 of the 12 layers of wav2vec2-base yields 10.61% WER on LibriSpeech test-clean with a 3.27x speedup on an Apple M4 Pro. In a cross-domain test on SepFormer, all 16 intra-chunk attention layers can be replaced without collapse.",
     "related": [
       "how-much-attention"
-    ]
+    ],
+    "archive": {
+      "label": "Zenodo",
+      "url": "https://zenodo.org/records/18991294"
+    }
   },
   {
     "id": "frozen-features-geometry",
@@ -109,7 +117,8 @@
     "pdf": "shkolnikov-2026-frozen-features-geometry.pdf",
     "pages": 16,
     "summary": "Vision-language models encode continuous geometry that their text pathway fails to express. A 6,000-parameter linear probe extracts hand joint angles from frozen features at 6.1 degrees mean absolute error, whereas the best text output reaches 20.0 degrees. Five encoders trained under self-supervised, contrastive, and hybrid objectives converge to statistically equivalent accuracy despite low representational similarity, and every architecture shows an accuracy peak in its middle layers. A single frozen backbone can therefore act as a multi-task geometric sensor through lightweight probes, without fine-tuning or text generation.",
-    "related": []
+    "related": [],
+    "code": "https://github.com/yshk-mxim/probing-frozen-features-continuous"
   },
   {
     "id": "agent-memory-below-the-prompt",

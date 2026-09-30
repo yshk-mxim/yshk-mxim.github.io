@@ -23,8 +23,6 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 SITE_URL = "https://yakovshkolnikov.com"
-FONTS = ("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@"
-         "0,8..60,400;0,8..60,600;1,8..60,400&display=swap")
 NAV = [("Home", "/"), ("Research", "/research/"), ("Writing", "/writing/"), ("Projects", "/projects/"),
        ("Lab", "/lab/"), ("About", "/about/")]
 TOPICS = ["Trust & Safety", "Agents in Practice", "Work & Economics", "Research Notes",
@@ -93,10 +91,16 @@ def thumb(pic, width=640):
     return {"src": "/" + str(out.relative_to(ROOT)), "width": w, "height": h}
 
 
-def img_tag(pic, cls="", alt="", width=640, eager=False):
+def img_tag(pic, cls="", alt="", width=640, eager=False, vt=None):
     t = thumb(pic, width) if width else pic
+    style = f' style="view-transition-name: {vt}"' if vt else ""
     return (f'<img{" class=\"" + cls + "\"" if cls else ""} src="{t["src"]}" alt="{e(alt)}" '
-            f'width="{t["width"]}" height="{t["height"]}"{"" if eager else " loading=\"lazy\""}>')
+            f'width="{t["width"]}" height="{t["height"]}"{"" if eager else " loading=\"lazy\""}{style}>')
+
+
+def vt_name(w):
+    """Shared view-transition name so a list image glides into the article hero."""
+    return f"hero-{w['slug']}" if w.get("slug") else None
 
 
 def paper_thumb(p):
@@ -151,9 +155,8 @@ def page(path, title, body, *, description, active=None, og_image=None, og_type=
 <meta property="og:url" content="{url}">
 {og}
 <meta name="twitter:card" content="{card}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{FONTS}">
+<script>try{{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 {head_extra}
 </head>
@@ -161,7 +164,10 @@ def page(path, title, body, *, description, active=None, og_image=None, og_type=
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="site-name" href="/">{e(profile['name'])}</a>
+<div class="header-right">
 <nav class="site-nav" aria-label="Main">{nav}</nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
 </div></header>
 <main id="main" class="wrap">
 {body}
@@ -171,6 +177,27 @@ def page(path, title, body, *, description, active=None, og_image=None, og_type=
 <nav aria-label="Elsewhere">{foot_links}<a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
 {scripts}
+<script>
+(function(){{
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){{return root.dataset.theme||(sys.matches?'dark':'light');}}
+  function label(){{
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }}
+  b.hidden=false; label();
+  b.addEventListener('click',function(){{
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{{localStorage.setItem('theme',t);}}catch(e){{}}
+    label();
+  }});
+  sys.addEventListener('change',label);
+}})();
+</script>
 </body>
 </html>
 """
@@ -199,7 +226,9 @@ def paper_links(p, related=True):
     out = [f'<a href="/papers/{p["pdf"]}">PDF</a>',
            link(p["url"], "arXiv" if p["venue"].startswith("arXiv") else "SSRN")]
     if p.get("code"):
-        out.append(link(p["code"], "Code"))
+        out.append(link(p["code"], p.get("code_label", "Code")))
+    if p.get("archive"):
+        out.append(link(p["archive"]["url"], p["archive"]["label"]))
     if related:
         for s in p.get("related", []):
             if s in by_slug:
@@ -225,7 +254,7 @@ def writing_item(w, show_thumb=True):
     img = ""
     pic = pic_of(w)
     if show_thumb and pic:
-        img = f'<a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic, "thumb", width=480)}</a>'
+        img = f'<a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic, "thumb", width=480, vt=vt_name(w))}</a>'
     cls = "entry has-thumb" if img else "entry"
     return (f'<li data-topic="{e(w.get("topic", ""))}"><div class="{cls}"><div>'
             f'<h3>{t}</h3><div class="meta">{writing_meta(w)}<span class="sep">·</span>{e(w.get("topic", ""))}</div>'
@@ -243,7 +272,7 @@ def build_home():
         return f'<a href="{e(href(w))}"{"" if is_local(w) else " class=\"ext\" rel=\"noopener\""}>{e(w["title"])}</a>'
 
     lead_html = f"""<article class="lead">
-<a class="lead-img thumb-link" href="{e(href(lead))}" tabindex="-1" aria-hidden="true">{img_tag(pic_of(lead), width=1100, eager=True)}</a>
+<a class="lead-img thumb-link" href="{e(href(lead))}" tabindex="-1" aria-hidden="true">{img_tag(pic_of(lead), width=1100, eager=True, vt=vt_name(lead))}</a>
 <div class="lead-text">
 <p class="kicker">Latest writing</p>
 <h2>{title_link(lead)}</h2>
@@ -252,7 +281,7 @@ def build_home():
 </div>
 </article>"""
     tiles = "".join(
-        f'<li><a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic_of(w), width=640)}</a>'
+        f'<li><a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic_of(w), width=640, vt=vt_name(w))}</a>'
         f'<h3>{title_link(w)}</h3><p class="meta">{writing_meta(w)}</p></li>'
         for w in rest)
     paper_tiles = "".join(
@@ -432,7 +461,7 @@ def build_articles():
             c = w["cover"]
             cap = f"<figcaption>{e(c['alt'])}</figcaption>" if c.get("alt") else ""
             cover = (f'<figure class="cover"><img src="{c["src"]}" alt="{e(c.get("alt", ""))}" '
-                     f'width="{c["width"]}" height="{c["height"]}">{cap}</figure>')
+                     f'width="{c["width"]}" height="{c["height"]}" style="view-transition-name: {vt_name(w)}">{cap}</figure>')
         rel = "".join(
             f'<p>Related paper: <a href="/research/#{p["id"]}">{e(p["title"])}</a> '
             f'<span class="meta">({e(p["kind"]).lower()}, {e(p["venue"])}; <a href="/papers/{p["pdf"]}">PDF</a>)</span></p>'

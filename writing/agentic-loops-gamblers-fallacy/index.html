@@ -17,9 +17,8 @@
 <meta property="og:url" content="https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/">
 <meta property="og:image" content="https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/cover.webp">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Agentic Loops: The Gambler's Fallacy at Cloud Scale", "datePublished": "2026-06-30", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine, pulling the handle until they press autoplay and let it drain the account overnight. A taxonomy of the loop — conditioning, generation, evaluation — and the compounding cost of getting the answer wrong. Success rate is 1 − (error rate)^attempts, but attempts are not independent: a model that sees its own failed output repeats the error, so more loops can make things worse. Ends with a 19-hour, 40M-token run that passed only by marking every feature deferred", "url": "https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/", "isBasedOn": "https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/", "image": "https://yakovshkolnikov.com/writing/agentic-loops-gamblers-fallacy/cover.webp"}</script>
 </head>
@@ -27,7 +26,10 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
 <nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
 </div></header>
 <main id="main" class="wrap">
 <article>
@@ -37,7 +39,7 @@
 <div class="meta"><time datetime="2026-06-30">June 30, 2026</time><span class="sep">·</span>5 min read<span class="sep">·</span>Agents in Practice</div>
 <p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/agentic-loops-gamblers-fallacy-cloud-scale-yakov-shkolnikov-c5w1e/" class="ext" rel="noopener">Read the original</a></p>
 </header>
-<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
+<figure class="cover"><img src="cover.webp" alt="" width="1279" height="720" style="view-transition-name: hero-agentic-loops-gamblers-fallacy"></figure>
 <div class="article-body">
 <blockquote>An engineer running an agentic loop is uncomfortably close to a gambler at a slot machine: pulling the handle, watching it fail, pulling again, and eventually pressing autoplay, leaving the machine to drain the account while they sleep.</blockquote>
 <p>Agentic development is genuinely useful, and the pipeline of the agentic loop has been used successfully by many previous methods: condition what the model sees, generate output, evaluate the result. What has changed is that AI now controls the iteration, and what is underpriced is the assumption that self-correction is cheap, reliable, and scales to hard problems. The cost of retrying compounds, and in domains where the model's error rate is high to begin with, more loops can make things worse, not better.</p>
@@ -91,5 +93,26 @@
 <span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated September 30, 2026</span>
 <nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
 </body>
 </html>

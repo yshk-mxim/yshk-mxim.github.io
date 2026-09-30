@@ -17,9 +17,8 @@
 <meta property="og:url" content="https://yakovshkolnikov.com/research/">
 <meta property="og:image" content="https://yakovshkolnikov.com/papers/thumbs/artificial-id.webp">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Artificial Id: Drive and Persistent Alignment in Agentic AI", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-09-10", "url": "https://arxiv.org/abs/2609.11911", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-artificial-id.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-09-03", "url": "https://arxiv.org/abs/2609.04166", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-deceptive-mechanisms.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "The Second Storm Doesn't Find a Pristine Forest: Why Near-Term AI Augments Labor Rather Than Replacing It", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-07-16", "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7195101", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-second-storm.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Composable Trust for Language Models: A Proven Boundary and a Measured Defense", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-07-14", "url": "https://arxiv.org/abs/2607.13149", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-composable-trust.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "The SaaS Apocalypse Fallacy: Why AI Raises the Value of the SaaS Bundle", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-04-20", "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6617321", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-saas-apocalypse-fallacy.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Bit-Identical Medical Deep Learning via Structured Orthogonal Initialization", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-03-30", "url": "https://arxiv.org/abs/2603.28040", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-bit-identical-medical-dl.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Learnable Pulse Accumulation for On-Device Speech Recognition: How Much Attention Do You Need?", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-03-11", "url": "https://arxiv.org/abs/2603.16922", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-learnable-pulse-accumulation.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Do Foundation Models Know Geometry? Probing Frozen Features for Continuous Physical Measurement", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-03-06", "url": "https://arxiv.org/abs/2603.06459", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-frozen-features-geometry.pdf", "encodingFormat": "application/pdf"}}, {"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices", "author": {"@type": "Person", "name": "Yakov Shkolnikov"}, "datePublished": "2026-02-17", "url": "https://arxiv.org/abs/2603.04428", "encoding": {"@type": "MediaObject", "contentUrl": "https://yakovshkolnikov.com/papers/shkolnikov-2026-agent-memory-below-the-prompt.pdf", "encodingFormat": "application/pdf"}}]</script>
 </head>
@@ -27,7 +26,10 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
 <nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/" aria-current="page">Research</a><a href="/writing/">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
 </div></header>
 <main id="main" class="wrap">
 <div class="page-head">
@@ -56,7 +58,7 @@
 <h3><a href="/papers/shkolnikov-2026-deceptive-mechanisms.pdf">From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research</a></h3>
 <div class="meta">Yakov Shkolnikov<span class="sep">·</span>Preprint, arXiv:2609.04166<span class="sep">·</span>September 3, 2026<span class="sep">·</span>21 pages</div>
 <p class="summary">We introduce a causal taxonomy that separates prior commitment from retrospective report, model preference from realized output, false preference from sensitivity to the utility of misleading a recipient, and deceptive behavior from the provenance of the objective or strategy that produces it. In guessing-game and stock-trading experiments on two open-weight model families, deceptive-looking behavior arises without the proposed mechanism, while other interventions show that the recipient&#x27;s information state causally affects deceptive preference. Behavior can therefore provide evidence for a deceptive mechanism, but evidence for the mechanism does not establish model agency in the deception.</p>
-<div class="links-row"><a href="/papers/shkolnikov-2026-deceptive-mechanisms.pdf">PDF</a><a href="https://arxiv.org/abs/2609.04166" class="ext" rel="noopener">arXiv</a><span class="related">Essay: <a href="/writing/deceive-or-role-play/">Do AI Models Deceive, or Are They Just Role-Playing?</a></span><span class="related">Essay: <a href="/writing/benchmark-is-bad/">Your Model Isn&#x27;t Lying. Your Benchmark Is Bad</a></span></div>
+<div class="links-row"><a href="/papers/shkolnikov-2026-deceptive-mechanisms.pdf">PDF</a><a href="https://arxiv.org/abs/2609.04166" class="ext" rel="noopener">arXiv</a><a href="https://github.com/yshk-mxim/deceptive-mechanism" class="ext" rel="noopener">Replication package</a><span class="related">Essay: <a href="/writing/deceive-or-role-play/">Do AI Models Deceive, or Are They Just Role-Playing?</a></span><span class="related">Essay: <a href="/writing/benchmark-is-bad/">Your Model Isn&#x27;t Lying. Your Benchmark Is Bad</a></span></div>
 <details class="cite"><summary>Cite</summary><pre>@misc{shkolnikov2026deceptive,
   title         = {From Deceptive Outputs to Deceptive Mechanisms: A Causal Framework for Language-Model Deception Research},
   author        = {Shkolnikov, Yakov P.},
@@ -87,7 +89,7 @@
 <h3><a href="/papers/shkolnikov-2026-composable-trust.pdf">Composable Trust for Language Models: A Proven Boundary and a Measured Defense</a></h3>
 <div class="meta">Yakov Shkolnikov<span class="sep">·</span>Preprint, arXiv:2607.13149<span class="sep">·</span>July 14, 2026<span class="sep">·</span>17 pages</div>
 <p class="summary">In a language model, instructions and data share one token stream, so nothing inside generation can keep untrusted text from steering the model. We place the authority to act outside the model, in code: a source&#x27;s standing, not its content, decides which operation runs and whether it acts. An unmodified model runs inside a deterministic pipeline that ranks inputs by source integrity, and a fixed non-model monitor provably selects the operation and any outside action from trusted inputs alone. On a one-shot held-out set with Gemma 4 26B, the passivation-and-wrapper cascade raises the defended rate on genuine leaks from 27% to 94% at roughly a 4% clean-quality cost (Qrel = 0.96). Under adaptive red-teaming the proved boundary holds unconditionally and the measured defense holds at 87%. Attribution of facts from lower-trust sources rises from 0% to 92%. The code is released with the paper.</p>
-<div class="links-row"><a href="/papers/shkolnikov-2026-composable-trust.pdf">PDF</a><a href="https://arxiv.org/abs/2607.13149" class="ext" rel="noopener">arXiv</a><span class="related">Essay: <a href="/writing/adding-trust-to-untrustworthy-ai/">Adding Trust to Untrustworthy AI</a></span><span class="related">Essay: <a href="/writing/evil-genie-benchmark/">The Evil Genie Benchmark</a></span></div>
+<div class="links-row"><a href="/papers/shkolnikov-2026-composable-trust.pdf">PDF</a><a href="https://arxiv.org/abs/2607.13149" class="ext" rel="noopener">arXiv</a><a href="https://github.com/yshk-mxim/llm-trust" class="ext" rel="noopener">Code</a><span class="related">Essay: <a href="/writing/adding-trust-to-untrustworthy-ai/">Adding Trust to Untrustworthy AI</a></span><span class="related">Essay: <a href="/writing/evil-genie-benchmark/">The Evil Genie Benchmark</a></span></div>
 <details class="cite"><summary>Cite</summary><pre>@misc{shkolnikov2026composable,
   title         = {Composable Trust for Language Models: A Proven Boundary and a Measured Defense},
   author        = {Shkolnikov, Yakov P.},
@@ -118,7 +120,7 @@
 <h3><a href="/papers/shkolnikov-2026-bit-identical-medical-dl.pdf">Bit-Identical Medical Deep Learning via Structured Orthogonal Initialization</a></h3>
 <div class="meta">Yakov Shkolnikov<span class="sep">·</span>Preprint, arXiv:2603.28040<span class="sep">·</span>March 30, 2026<span class="sep">·</span>32 pages</div>
 <p class="summary">We replace three sources of training randomness with deterministic alternatives: structured orthogonal weight initialization, golden-ratio batch scheduling, and architecture choices that eliminate GPU non-determinism. The resulting models are bit-identical across runs, and rare-class variance falls by up to 7.5x on ECG. We validate the method on seven medical imaging benchmarks and three external ECG databases.</p>
-<div class="links-row"><a href="/papers/shkolnikov-2026-bit-identical-medical-dl.pdf">PDF</a><a href="https://arxiv.org/abs/2603.28040" class="ext" rel="noopener">arXiv</a><span class="related">Essay: <a href="/writing/which-patients-model-gets-wrong/">Which Patients Does Your Model Get Wrong?</a></span></div>
+<div class="links-row"><a href="/papers/shkolnikov-2026-bit-identical-medical-dl.pdf">PDF</a><a href="https://arxiv.org/abs/2603.28040" class="ext" rel="noopener">arXiv</a><a href="https://github.com/yshk-mxim/repnet" class="ext" rel="noopener">Code</a><span class="related">Essay: <a href="/writing/which-patients-model-gets-wrong/">Which Patients Does Your Model Get Wrong?</a></span></div>
 <details class="cite"><summary>Cite</summary><pre>@misc{shkolnikov2026bit,
   title         = {Bit-Identical Medical Deep Learning via Structured Orthogonal Initialization},
   author        = {Shkolnikov, Yakov P.},
@@ -133,7 +135,7 @@
 <h3><a href="/papers/shkolnikov-2026-learnable-pulse-accumulation.pdf">Learnable Pulse Accumulation for On-Device Speech Recognition: How Much Attention Do You Need?</a></h3>
 <div class="meta">Yakov Shkolnikov<span class="sep">·</span>Preprint, arXiv:2603.16922<span class="sep">·</span>March 11, 2026<span class="sep">·</span>19 pages</div>
 <p class="summary">We introduce learnable pulse accumulation, an O(n) replacement for self-attention built from learned gating functions. Replacing 8 of the 12 layers of wav2vec2-base yields 10.61% WER on LibriSpeech test-clean with a 3.27x speedup on an Apple M4 Pro. In a cross-domain test on SepFormer, all 16 intra-chunk attention layers can be replaced without collapse.</p>
-<div class="links-row"><a href="/papers/shkolnikov-2026-learnable-pulse-accumulation.pdf">PDF</a><a href="https://arxiv.org/abs/2603.16922" class="ext" rel="noopener">arXiv</a><span class="related">Essay: <a href="/writing/how-much-attention/">How Much Attention Do You Need?</a></span></div>
+<div class="links-row"><a href="/papers/shkolnikov-2026-learnable-pulse-accumulation.pdf">PDF</a><a href="https://arxiv.org/abs/2603.16922" class="ext" rel="noopener">arXiv</a><a href="https://zenodo.org/records/18991294" class="ext" rel="noopener">Zenodo</a><span class="related">Essay: <a href="/writing/how-much-attention/">How Much Attention Do You Need?</a></span></div>
 <details class="cite"><summary>Cite</summary><pre>@misc{shkolnikov2026learnable,
   title         = {Learnable Pulse Accumulation for On-Device Speech Recognition: How Much Attention Do You Need?},
   author        = {Shkolnikov, Yakov P.},
@@ -148,7 +150,7 @@
 <h3><a href="/papers/shkolnikov-2026-frozen-features-geometry.pdf">Do Foundation Models Know Geometry? Probing Frozen Features for Continuous Physical Measurement</a></h3>
 <div class="meta">Yakov Shkolnikov<span class="sep">·</span>Preprint, arXiv:2603.06459<span class="sep">·</span>March 6, 2026<span class="sep">·</span>16 pages</div>
 <p class="summary">Vision-language models encode continuous geometry that their text pathway fails to express. A 6,000-parameter linear probe extracts hand joint angles from frozen features at 6.1 degrees mean absolute error, whereas the best text output reaches 20.0 degrees. Five encoders trained under self-supervised, contrastive, and hybrid objectives converge to statistically equivalent accuracy despite low representational similarity, and every architecture shows an accuracy peak in its middle layers. A single frozen backbone can therefore act as a multi-task geometric sensor through lightweight probes, without fine-tuning or text generation.</p>
-<div class="links-row"><a href="/papers/shkolnikov-2026-frozen-features-geometry.pdf">PDF</a><a href="https://arxiv.org/abs/2603.06459" class="ext" rel="noopener">arXiv</a></div>
+<div class="links-row"><a href="/papers/shkolnikov-2026-frozen-features-geometry.pdf">PDF</a><a href="https://arxiv.org/abs/2603.06459" class="ext" rel="noopener">arXiv</a><a href="https://github.com/yshk-mxim/probing-frozen-features-continuous" class="ext" rel="noopener">Code</a></div>
 <details class="cite"><summary>Cite</summary><pre>@misc{shkolnikov2026frozen,
   title         = {Do Foundation Models Know Geometry? Probing Frozen Features for Continuous Physical Measurement},
   author        = {Shkolnikov, Yakov P.},
@@ -183,5 +185,26 @@
 <span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated September 30, 2026</span>
 <nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
 </body>
 </html>
