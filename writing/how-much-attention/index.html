@@ -27,7 +27,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="site-name" href="/">Yakov Shkolnikov</a>
-<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
 </div></header>
 <main id="main" class="wrap">
 <article>
@@ -35,28 +35,28 @@
 <a class="crumb" href="/writing/">&larr; Writing</a>
 <h1>How Much Attention Do You Need?</h1>
 <div class="meta"><time datetime="2026-03-13">March 13, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Research Notes</div>
-<p class="origin">Originally published on LinkedIn on March 13, 2026. <a href="https://www.linkedin.com/pulse/how-much-attention-do-you-need-yakov-shkolnikov-qczoc/" class="ext" rel="noopener">Read the original</a></p>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/how-much-attention-do-you-need-yakov-shkolnikov-qczoc/" class="ext" rel="noopener">Read the original</a></p>
 </header>
 <figure class="cover"><img src="cover.webp" alt="" width="1280" height="719"></figure>
 <div class="article-body">
 <p><strong>Attention is the engine of modern AI. It is also expensive. A new method replaces most of it with something simpler and faster for speech recognition running on your phone or laptop.</strong></p>
-<h3>What attention actually does</h3>
+<h2>What attention actually does</h2>
 <p>When a large language model reads a sentence, it does not process words in order. It calculates a relationship between every word and every other word simultaneously. That matrix of relationships, called attention, is what allows the model to understand that "it" in "the trophy didn't fit in the suitcase because it was too big" refers to the trophy and not the suitcase. Attention is why modern language models are so much better than anything that came before.</p>
 <p>This idea turned out to be useful far beyond text. Speech recognition works the same way now. Take audio, slice it into tiny time windows, and treat each slice the way you would treat a word. Let the model calculate relationships across all of those slices. At the shallow layers of the network, this captures acoustic patterns. At the deeper layers, it captures something closer to language itself.</p>
-<h3>Why it breaks on your phone</h3>
+<h2>Why it breaks on your phone</h2>
 <p>The problem is cost. Every word to every other word means the computation grows with the square of the length. Double the audio, quadruple the work. For a server with hundreds of chips running in parallel, that is manageable. For the phone in your pocket or the laptop on your desk, it is a wall.</p>
-<h3>The question the paper asks</h3>
+<h2>The question the paper asks</h2>
 <p>My new paper asks a different question: how much of that attention is actually necessary?</p>
 <p>The hypothesis is that most of what happens in the early layers of a speech model does not need the full machinery. A phoneme occupies a contiguous stretch of time. You do not need to compare it against every other moment in a two-minute recording to know what sound it is. You just need to know where it lives and how wide it is. A simpler operation -- a learned pulse that defines a window of time and averages what is inside -- should be enough.</p>
-<h3>The fix</h3>
+<h2>The fix</h2>
 <p>The method, called a Learnable Pulse Accumulator, replaces attention with exactly that. Instead of computing pairwise relationships, each layer learns a small set of time windows. At inference, those windows collapse to binary: a position is either inside a pulse or it is not. All the operations involved are ones that mobile chips are already optimized for.</p>
 <figure><img alt="Attention on the left, Learned Pulse Accumulation on the right." height="829" loading="lazy" src="fig-1.webp" width="1600"/><figcaption>Attention on the left, Learned Pulse Accumulation on the right.</figcaption></figure>
 <p>Replacing 8 of 12 layers in a standard speech recognition model with this approach gives a 3.27x speedup on 2 minutes of audio running on an Apple M4 Pro laptop. Word error rate goes up by about 7 percentage points over the full-attention baseline, which is meaningful but not fatal, and there are clear reasons it should be reducible with more work.</p>
-<h3>What the cross-validation tells you</h3>
+<h2>What the cross-validation tells you</h2>
 <p>The more interesting result is the cross-validation. When the same replacement is applied to a purely acoustic model -- one that never has to produce words, just clean up sound -- all 16 layers can be replaced without the model collapsing. That tells you something specific: the wall you hit in speech recognition is not a mathematical limitation of the approach. It is a property of language. The deep layers of a language-capable model are doing something that simple window averaging genuinely cannot replicate.</p>
-<h3>The recipe</h3>
+<h2>The recipe</h2>
 <p>The second contribution is practical: a recipe for doing this replacement without retraining from scratch. You run a diagnostic pass that ranks each layer by how hard it is to approximate, then replace them in order from easiest to hardest. The model stays useful throughout the process, and you stop when the quality tradeoff is no longer worth it. This works on any pretrained transformer.</p>
-<h3>Why it matters</h3>
+<h2>Why it matters</h2>
 <p>The hope is that on-device speech recognition -- the kind that runs entirely on your phone, without sending audio to a server -- becomes meaningfully more capable as a result. The paper is the first step.</p>
 <p>Full paper: <a href="https://zenodo.org/records/18991294">https://zenodo.org/records/18991294</a></p>
 </div>
@@ -68,7 +68,7 @@
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
-<span>&copy; 2026 Yakov Shkolnikov</span>
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated September 30, 2026</span>
 <nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
 </body>

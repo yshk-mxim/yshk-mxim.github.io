@@ -27,7 +27,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="site-name" href="/">Yakov Shkolnikov</a>
-<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
 </div></header>
 <main id="main" class="wrap">
 <article>
@@ -35,26 +35,26 @@
 <a class="crumb" href="/writing/">&larr; Writing</a>
 <h1>Which Patients Does Your Model Get Wrong?</h1>
 <div class="meta"><time datetime="2026-03-31">March 31, 2026</time><span class="sep">·</span>2 min read<span class="sep">·</span>Trust &amp; Safety</div>
-<p class="origin">Originally published on LinkedIn on March 31, 2026. <a href="https://www.linkedin.com/pulse/which-patients-does-your-model-get-wrong-yakov-shkolnikov-jaabc/" class="ext" rel="noopener">Read the original</a></p>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/which-patients-does-your-model-get-wrong-yakov-shkolnikov-jaabc/" class="ext" rel="noopener">Read the original</a></p>
 </header>
 <figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
 <div class="article-body">
 <p>Yakov Shkolnikov</p>
 <p>AI Architecture and Strategy</p>
 <p>Training a medical AI model involves a coin flip that nobody talks about. My new paper removes the coin.</p>
-<h3>What randomness does to medical AI</h3>
+<h2>What randomness does to medical AI</h2>
 <p>When you train a deep learning model, the process starts with random numbers. The initial weights are sampled from a random distribution. The training data is shuffled into a random order. And some GPU operations introduce small floating-point variations of their own.</p>
 <p>Run the same code twice with a different starting seed and you get two models. Their overall accuracy is nearly identical. But they disagree on which patients they get wrong.</p>
 <p>I trained the same ECG rhythm classifier 20 times with 20 different random seeds. The overall score moved by about 4 percentage points. That looks stable. But on rare heart rhythms, performance swung by over 20 points. For trigeminy, with just 2 positive test cases, it swung by 31 points. One model catches the rare rhythm. The next one misses it. A cardiologist reviewing the output has no way to know which version they got.</p>
 <p>This is invisible in standard reporting because overall metrics are dominated by common conditions. The rare conditions, the ones that matter most when present, are where the variation concentrates.</p>
-<h3>The fix</h3>
+<h2>The fix</h2>
 <p>My paper replaces three sources of randomness with deterministic alternatives. Weight initialization uses mathematically computed structured patterns from signal processing instead of random sampling. Batch ordering uses golden ratio scheduling, where the training sequence is computed from signal content rather than shuffled randomly. And GPU non-determinism is eliminated through architecture choices that avoid the specific operations where hardware introduces variation.</p>
 <p>The result is a trained model with bit-identical weights across independent runs, verified by cryptographic hash comparison across multiple GPU types.</p>
 <p>Removing initialization randomness is free. Structured starting weights match or slightly exceed the standard random method on every architecture and dataset I tested, with lower variance. Full pipeline determinism, including deterministic batch ordering, costs about 1.4 percentage points on ECG. That gap is closing but it is real.</p>
-<h3>What the results show</h3>
+<h2>What the results show</h2>
 <p>Structured initialization cut the rare-class variance by up to 7.5x on ECG. On seven medical imaging benchmarks, it showed no performance penalty. On chest X-rays with 14 disease classes, it produced tighter per-class ranges in 11 of 14, with the largest gains on uncommon conditions. The pattern from ECG appeared independently in imaging. Three external ECG databases, none used during development, confirmed the models generalize.</p>
 <p>The work so far covers convolutional architectures on ECG and medical imaging. Whether it extends to other architecture families is an open question.</p>
-<h3>Architecturally assured AI</h3>
+<h2>Architecturally assured AI</h2>
 <p>I use the term "architecturally assured" to describe AI systems where reproducibility is a structural property, built in by construction. The language comes from safety-critical engineering, where "high-assurance software" means correctness verified by design. The FDA and the EU AI Act both discuss reproducibility for AI-based medical devices. Bit-identical training gives you a pipeline where an auditor can re-run the process and verify the same model comes out.</p>
 <p>If the failure mode of a diagnostic model depends on which random seed was used at training time, the clinician deploying it has no control over which patients are at risk. Assured training is one way to put that back under engineering control.</p>
 <p>Full paper: <a href="https://arxiv.org/abs/2603.28040">https://arxiv.org/abs/2603.28040</a></p>
@@ -67,7 +67,7 @@
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
-<span>&copy; 2026 Yakov Shkolnikov</span>
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated September 30, 2026</span>
 <nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
 </body>

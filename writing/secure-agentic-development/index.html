@@ -27,7 +27,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="site-name" href="/">Yakov Shkolnikov</a>
-<nav class="site-nav" aria-label="Main"><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
 </div></header>
 <main id="main" class="wrap">
 <article>
@@ -35,22 +35,22 @@
 <a class="crumb" href="/writing/">&larr; Writing</a>
 <h1>Secure Agentic Development Is a Control Plane, Not a Checklist</h1>
 <div class="meta"><time datetime="2026-04-29">April 29, 2026</time><span class="sep">·</span>6 min read<span class="sep">·</span>Trust &amp; Safety</div>
-<p class="origin">Originally published on LinkedIn on April 29, 2026. <a href="https://www.linkedin.com/pulse/secure-agentic-development-control-plane-checklist-yakov-shkolnikov-gu0bc/" class="ext" rel="noopener">Read the original</a></p>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/secure-agentic-development-control-plane-checklist-yakov-shkolnikov-gu0bc/" class="ext" rel="noopener">Read the original</a></p>
 </header>
 <figure class="cover"><img src="cover.webp" alt="" width="1279" height="720"></figure>
 <div class="article-body">
 <p>An agent producing 1,000 pull requests a week at a one-percent vulnerability rate ships ten new vulnerabilities a week into code that has stopped being read line by line. The throughput asymmetry is the central problem: agents generate faster than humans can gate. Anthropic's 2026 Agentic Coding Trends Report documents the trend toward larger task horizons and multi-agent systems while calling out human oversight as the constraint. The published response does not address this gap.</p>
-<h3>Two bodies of work, one missing gate</h3>
+<h2>Two bodies of work, one missing gate</h2>
 <p>The harness-engineering literature covers the loop. Anthropic's engineering posts on harness design for long-running agents, OpenAI's harness engineering documentation and Symphony orchestration specification, and a March 2026 arXiv paper formally defining natural-language agent harnesses describe how an agent reasons, calls tools, manages memory, and recovers from failure. GitHub's Spec Kit defines the upstream contract the agent executes against. None of this work describes the conditions under which the loop's output should be allowed to land.</p>
 <p>The security literature has the opposite shape. OWASP's Agentic Top 10, MITRE ATLAS, Google's SAIF, the NIST AI Risk Management Framework, ISO 42001, and Anthropic's own automated security reviews catalog the attack surface: what vulnerabilities in agent-authored code expose, how they are exploited, and what the consequences are. They do not describe how to wire those checks into the loop, only how to scan after output has reached a pull request.</p>
 <p>Both bodies of work stop at the pull request. Neither specifies what the gate looks like, who owns it, or how it enforces quality and compliance before output lands.</p>
-<h3>Why each approach fails alone</h3>
+<h2>Why each approach fails alone</h2>
 <p>Security review as the only filter collapses to the rate at which a human reviewer can read agent-authored code. Teams that take this path stop using agents at scale within weeks. The agents work. The gating function was never sized for agent throughput.</p>
 <p>Automation without structural quality budgets enforced at the gate lets codebases accumulate debt that does not show up in unit tests and does not trip linters configured for human authorship.</p>
 <p>A human-in-the-loop approval interface becomes a rubber stamp the moment the reviewer is overloaded or under-informed. A dashboard with green checkmarks and a one-click approve button does not change the asymmetry between what the agent produced and what the reviewer can assess.</p>
-<h3>What a control plane contains</h3>
+<h2>What a control plane contains</h2>
 <p>Secure agentic development requires a control plane covering what the published work treats as separate concerns: testing wired into the loop, structural quality enforcement, and an operator surface sized for agent throughput.</p>
-<h3>Testing wired into the loop, in six layers</h3>
+<h2>Testing wired into the loop, in six layers</h2>
 <p>A check that runs only at PR time has already lost the throughput argument. Different layers exist because agents fail in specific ways that other layers cannot catch.</p>
 <p><strong>Static analysis and anti-pattern detection</strong> run on every iteration. Agents have a small set of recurring authorship failures: over-defensive code, nested exception handling, dead branches copy-pasted from training data, deep nesting that hides logic errors. A human writes one nested try by accident. An agent writes it across a thousand files unless the gate breaks the build.</p>
 <p><strong>Runtime contracts</strong> catch what static cannot. Code that type-checks and lints can still fail at the integration boundary, with wrong field ordering, silently incompatible enum values, or optional fields treated as required. Pydantic, dataclass validators, and asserts at every public boundary make the agent's mistakes legible the moment they execute rather than weeks later in production.</p>
@@ -58,21 +58,21 @@
 <p><strong>Memory and state validation</strong> guards a category most teams do not test. Agents accumulate hidden state (context files, scratch directories, checkpoint snapshots, long-running memory) that shapes future runs. Bad memory contents corrupt subsequent agents silently. Checks on memory size, schema, content shape, and provenance prevent cross-run contamination.</p>
 <p><strong>Fuzzing and property-based testing</strong> exist because an agent that writes both the code and the tests has a self-reference problem. The tests reflect the same model that generated the code, and they will miss the same edge cases. Fuzz inputs catch what the agent's own suite is structurally blind to.</p>
 <p><strong>Threat-pattern checks</strong> close the security category. The most common failure in agent-authored code is improper handling of untrusted input at entry points the agent did not recognize as trust boundaries. Targeted SAST for injection, deserialization, secret handling, and dependency provenance addresses this at loop time, where the audit cost is still affordable.</p>
-<h3>Structural quality budgets</h3>
+<h2>Structural quality budgets</h2>
 <p>Quality budgets enforced as hard build failures cap cyclomatic complexity, function length, file size, and nesting depth, and require runtime contracts at every public boundary. They enforce habitability rather than detect bugs. Advisory linters do not work at agent throughput. The signal has to halt the loop.</p>
-<h3>An operator surface for many agents</h3>
+<h2>An operator surface for many agents</h2>
 <p>One human supervising many agents at once needs to see, for each agent, the diff between intent and behavior. A CLI assumes one terminal per agent, which does not scale. The GUI is the form factor that lets a single operator track a workforce, and the published work has almost nothing to say about what that surface should contain.</p>
-<h3>A working example: SKIFF</h3>
+<h2>A working example: SKIFF</h2>
 <p>I built SKIFF as a container manager, but what it demonstrates is that the two bodies of work described above can compose. The CI pipeline is the concrete proof.</p>
 <p>Ruff enforces bandit security rules (S) and a hard McCabe complexity ceiling of ten on every commit. Above that, the build fails, not a warning. A custom anti-pattern linter runs AP001-AP014, project-specific authorship failures that generic linters do not catch. pip-audit scans every pinned dependency against the CVE database with --strict. A CycloneDX SBOM is regenerated on every run. OWASP ASVS v5.0 self-assessment completeness is a lint target. ASVS is a verification requirements standard defining what must be implemented and tested across every security control category, not a threat list. If any category drifts from documented coverage, CI breaks. None of these are advisory. They halt the loop.</p>
 <p>The operator surface is tested with the same security standard. The Playwright E2E tests do more than verify that the GUI renders. At every step they capture the audit log delta and monitor backend stderr for unexpected security events. The persona-audit harness verifies that each operator action produces the correct audit record, that secret-shaped values are redacted before any artifact reaches disk, and that no unexpected authentication or access event surfaces in the server output. Security properties are observed continuously through the UI journey, not checked afterward in a separate scan.</p>
 <p>The runtime layer composes the same way. The compose validator and registry allowlist enforce at submission. The audit log with automatic redaction is the single surface for intent and outcome. The zero-trust posture enforces least-privilege at the infrastructure level rather than relying on what the agent produces. The gate the security literature describes but does not wire in, and the operator surface the harness-engineering literature assumes but does not build: both, in one MIT-licensed artifact, maintained by one engineer.</p>
 <p>The open-source release and the build-vs-buy argument behind it are in two prior posts: <a href="https://www.linkedin.com/posts/yakov-shkolnikov_today-i-am-open-sourcing-skiff-a-container-ugcPost-7453318419388608512-UnXP">what SKIFF does</a> and <a href="https://www.linkedin.com/posts/yakov-shkolnikov_in-february-the-market-took-more-than-a-trillion-ugcPost-7454558669071044608-I5oc">why build it at all</a>.</p>
-<h3>The pattern is available to borrow</h3>
+<h2>The pattern is available to borrow</h2>
 <p>Anthropic's 2026 Agentic Coding Trends Report names human oversight as the constraint that does not scale with the output. The engineering answer to that constraint already exists: layered testing that halts the loop, structural budgets enforced as build failures, and an operator surface that shows one person the diff between intent and behavior across many agents at once.</p>
 <p>Vendors building agentic tooling do not need to derive this from scratch. The pattern composes the two bodies of work that currently stop at the pull request. SKIFF implements it for the container and supply chain layer. The same architecture applies to the code layer, and the tooling vendors shipping agentic development platforms are the ones positioned to close that gap.</p>
 <hr/>
-<h3>References</h3>
+<h2>References</h2>
 <p><strong>Harness engineering</strong></p>
 <ul><li>Anthropic 2026 Agentic Coding Trends Report — <a href="https://resources.anthropic.com/2026-agentic-coding-trends-report">https://resources.anthropic.com/2026-agentic-coding-trends-report</a></li><li>Anthropic, "Effective harnesses for long-running agents" (November 2025) — <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents</a></li><li>Anthropic, "Harness design for long-running application development" (March 2026) — <a href="https://www.anthropic.com/engineering/harness-design-long-running-apps">https://www.anthropic.com/engineering/harness-design-long-running-apps</a></li><li>OpenAI, "Harness Engineering" — <a href="https://openai.com/index/harness-engineering/">https://openai.com/index/harness-engineering/</a></li><li>OpenAI, Symphony orchestration specification — <a href="https://openai.com/index/open-source-codex-orchestration-symphony/">https://openai.com/index/open-source-codex-orchestration-symphony/</a></li><li>Pan et al., "Natural-Language Agent Harnesses" (March 2026) — <a href="https://arxiv.org/abs/2603.25723">https://arxiv.org/abs/2603.25723</a></li><li>GitHub Spec Kit — <a href="https://github.com/github/spec-kit">https://github.com/github/spec-kit</a></li></ul>
 <p><strong>Security frameworks</strong></p>
@@ -87,7 +87,7 @@
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
-<span>&copy; 2026 Yakov Shkolnikov</span>
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated September 30, 2026</span>
 <nav aria-label="Elsewhere"><a href="https://soundnessai.org" rel="noopener">Soundness AI</a><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
 </body>

@@ -13,16 +13,19 @@ Preview: python3 -m http.server 8000   then open http://localhost:8000
 """
 import json
 import re
+import subprocess
 from datetime import date
 from html import escape
 from pathlib import Path
+
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 SITE_URL = "https://yakovshkolnikov.com"
 FONTS = ("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@"
          "0,8..60,400;0,8..60,600;1,8..60,400&display=swap")
-NAV = [("Research", "/research/"), ("Writing", "/writing/"), ("Projects", "/projects/"),
+NAV = [("Home", "/"), ("Research", "/research/"), ("Writing", "/writing/"), ("Projects", "/projects/"),
        ("Lab", "/lab/"), ("About", "/about/")]
 TOPICS = ["Trust & Safety", "Agents in Practice", "Work & Economics", "Research Notes",
           "Using AI Well", "Fiction", "Lab Notes"]
@@ -67,6 +70,51 @@ def link(url, text, cls=""):
     attrs = f' class="{cls}{" " if cls else ""}ext"' if ext else (f' class="{cls}"' if cls else "")
     rel = ' rel="noopener"' if ext else ""
     return f'<a href="{e(url)}"{attrs}{rel}>{text}</a>'
+
+
+def pic_of(w):
+    """Full-size hero for a writing entry: the archived LinkedIn cover or a fetched og:image."""
+    if w.get("cover"):
+        return {**w["cover"], "src": f'/writing/{w["slug"]}/{w["cover"]["src"]}'}
+    return w.get("image")
+
+
+def thumb(pic, width=640):
+    """Return a resized copy of a site image, generating it on first use."""
+    src = ROOT / pic["src"].lstrip("/")
+    out = src.with_name(f"{src.stem}-{width}.webp")
+    if not out.exists() or out.stat().st_mtime < src.stat().st_mtime:
+        im = Image.open(src).convert("RGB")
+        if im.width > width:
+            im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+        im.save(out, "WEBP", quality=80, method=6)
+    with Image.open(out) as im:
+        w, h = im.size
+    return {"src": "/" + str(out.relative_to(ROOT)), "width": w, "height": h}
+
+
+def img_tag(pic, cls="", alt="", width=640, eager=False):
+    t = thumb(pic, width) if width else pic
+    return (f'<img{" class=\"" + cls + "\"" if cls else ""} src="{t["src"]}" alt="{e(alt)}" '
+            f'width="{t["width"]}" height="{t["height"]}"{"" if eager else " loading=\"lazy\""}>')
+
+
+def paper_thumb(p):
+    """First page of the paper's PDF as an image, rendered with pdftoppm."""
+    out = ROOT / "papers" / "thumbs" / f"{p['id']}.webp"
+    pdf = ROOT / "papers" / p["pdf"]
+    if not out.exists() or out.stat().st_mtime < pdf.stat().st_mtime:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        tmp = out.with_suffix("")
+        subprocess.run(["pdftoppm", "-f", "1", "-l", "1", "-r", "90", "-png", "-singlefile", str(pdf), str(tmp)], check=True, stderr=subprocess.DEVNULL)
+        png = tmp.with_suffix(".png")
+        im = Image.open(png).convert("RGB")
+        im = im.resize((520, round(im.height * 520 / im.width)), Image.LANCZOS)
+        im.save(out, "WEBP", quality=80, method=6)
+        png.unlink()
+    with Image.open(out) as im:
+        w, h = im.size
+    return {"src": f"/papers/thumbs/{p['id']}.webp", "width": w, "height": h}
 
 
 def reading_time(words):
@@ -119,7 +167,7 @@ def page(path, title, body, *, description, active=None, og_image=None, og_type=
 {body}
 </main>
 <footer class="site-footer"><div class="wrap">
-<span>&copy; {date.today().year} {e(profile['name'])}</span>
+<span>&copy; {date.today().year} {e(profile['name'])}<span class="sep">·</span>Updated {fmt_date(date.today().isoformat())}</span>
 <nav aria-label="Elsewhere">{foot_links}<a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
 </div></footer>
 {scripts}
@@ -172,14 +220,12 @@ def bibtex(p):
             f"  number      = {{{p['venue'].split()[-1]}}},\n  url         = {{{p['url']}}}\n}}")
 
 
-def writing_item(w, thumb=True):
+def writing_item(w, show_thumb=True):
     t = f'<a href="{e(href(w))}"{"" if is_local(w) else " class=\"ext\" rel=\"noopener\""}>{e(w["title"])}</a>'
     img = ""
-    pic = ({**w["cover"], "src": f'/writing/{w["slug"]}/{w["cover"]["src"]}'} if w.get("cover")
-           else w.get("image"))
-    if thumb and pic:
-        img = (f'<img class="thumb" src="{pic["src"]}" alt="" '
-               f'loading="lazy" width="{pic["width"]}" height="{pic["height"]}">')
+    pic = pic_of(w)
+    if show_thumb and pic:
+        img = f'<a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic, "thumb", width=480)}</a>'
     cls = "entry has-thumb" if img else "entry"
     return (f'<li data-topic="{e(w.get("topic", ""))}"><div class="{cls}"><div>'
             f'<h3>{t}</h3><div class="meta">{writing_meta(w)}<span class="sep">·</span>{e(w.get("topic", ""))}</div>'
@@ -190,33 +236,44 @@ def writing_item(w, thumb=True):
 
 def build_home():
     links = "".join(link(l["url"], e(l["label"])) for l in profile["links"])
-    recent_papers = "".join(
-        f'<li><h3><a href="/research/#{p["id"]}">{e(p["title"])}</a></h3>'
-        f'<div class="meta">{e(p["kind"])}<span class="sep">·</span>{e(p["venue"])}'
-        f'<span class="sep">·</span>{fmt_date(p["date"], True)}</div>{paper_links(p, related=False)}</li>'
+    with_pics = [w for w in writing if pic_of(w)]
+    lead, rest = with_pics[0], with_pics[1:7]
+
+    def title_link(w):
+        return f'<a href="{e(href(w))}"{"" if is_local(w) else " class=\"ext\" rel=\"noopener\""}>{e(w["title"])}</a>'
+
+    lead_html = f"""<article class="lead">
+<a class="lead-img thumb-link" href="{e(href(lead))}" tabindex="-1" aria-hidden="true">{img_tag(pic_of(lead), width=1100, eager=True)}</a>
+<div class="lead-text">
+<p class="kicker">Latest writing</p>
+<h2>{title_link(lead)}</h2>
+<p class="meta">{writing_meta(lead, short=False)}</p>
+<p class="desc">{e(lead['description'])}.</p>
+</div>
+</article>"""
+    tiles = "".join(
+        f'<li><a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic_of(w), width=640)}</a>'
+        f'<h3>{title_link(w)}</h3><p class="meta">{writing_meta(w)}</p></li>'
+        for w in rest)
+    paper_tiles = "".join(
+        f'<li><a class="page-thumb thumb-link" href="/research/#{p["id"]}" tabindex="-1" aria-hidden="true">{img_tag(paper_thumb(p), width=0)}</a>'
+        f'<h3><a href="/research/#{p["id"]}">{e(p["title"])}</a></h3>'
+        f'<p class="meta">{e(p["venue"])}<span class="sep">·</span>{fmt_date(p["date"], True)}</p>'
+        f'<p class="meta"><a href="/papers/{p["pdf"]}">PDF</a></p></li>'
         for p in papers[:4])
-    recent_writing = "".join(
-        f'<li><h3><a href="{e(href(w))}"{"" if is_local(w) else " class=\"ext\""}>{e(w["title"])}</a></h3>'
-        f'<div class="meta">{writing_meta(w)}</div></li>'
-        for w in writing[:7])
     body = f"""
 <section class="intro">
 <h1>{e(profile['name'])}</h1>
 <p class="creds">{e(profile['headline'])}</p>
 <p>{e(profile['intro'])}</p>
-<p class="summary">{e(profile['bio'][1])} <a href="/about/">About</a>.</p>
+<p class="summary">{e(profile['bio'][1].split('. ')[0])}. <a href="/about/">About me</a>.</p>
 <div class="links">{links}</div>
 </section>
-<div class="home-cols">
-<section>
-<h2 class="section">Recent research <a class="more" href="/research/">All papers</a></h2>
-<ul class="list compact">{recent_papers}</ul>
-</section>
-<section>
-<h2 class="section">Recent writing <a class="more" href="/writing/">All writing</a></h2>
-<ul class="list compact">{recent_writing}</ul>
-</section>
-</div>
+{lead_html}
+<h2 class="section">More writing <a class="more" href="/writing/">All {len(writing)} pieces</a></h2>
+<ul class="tiles">{tiles}</ul>
+<h2 class="section">Recent papers <a class="more" href="/research/">All research and publications</a></h2>
+<ul class="tiles papers-row">{paper_tiles}</ul>
 """
     person = {
         "@context": "https://schema.org", "@type": "Person", "name": profile["name"], "url": SITE_URL,
@@ -231,7 +288,8 @@ def build_home():
     legacy = ("<script>(function(){var m={writing:'/writing/',research:'/research/',systems:'/projects/',"
               "safety:'/projects/',career:'/about/',philosophy:'/about/#principles',lab:'/lab/'};"
               "var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();</script>")
-    page("/", profile["name"], body, head_extra=jsonld(person), scripts=legacy,
+    page("/", profile["name"], body, head_extra=jsonld(person), scripts=legacy, active="Home",
+         og_image=thumb(pic_of(lead), 1200)["src"],
          description=f"{profile['name']}: {profile['headline']}. Research and writing on AI trust, agents, "
                      "and production AI systems. " + profile["credentials"] + ".")
 
@@ -263,13 +321,15 @@ def publications_html():
 def build_research():
     items = []
     for p in papers:
-        items.append(f"""<li class="paper" id="{p['id']}">
+        items.append(f"""<li class="paper" id="{p['id']}"><div class="paper-row">
+<a class="page-thumb thumb-link" href="/papers/{p['pdf']}" tabindex="-1" aria-hidden="true">{img_tag(paper_thumb(p), width=0)}</a>
+<div>
 <h3><a href="/papers/{p['pdf']}">{e(p['title'])}</a></h3>
 <div class="meta">{e(profile['name'])}<span class="sep">·</span>{e(p['kind'])}, {e(p['venue'])}<span class="sep">·</span>{fmt_date(p['date'])}<span class="sep">·</span>{p['pages']} pages</div>
 <p class="summary">{e(p['summary'])}</p>
 {paper_links(p)}
 <details class="cite"><summary>Cite</summary><pre>{e(bibtex(p))}</pre></details>
-</li>""")
+</div></div></li>""")
     software = [i for g in projects["groups"] if g["title"] == "Open source" for i in g["items"] if i.get("url")]
     sw = "".join(item_dl(i) for i in software)
     body = f"""
@@ -277,6 +337,7 @@ def build_research():
 <h1>Research</h1>
 <p>{e(profile['pages']['research'])}</p>
 </div>
+<h2 class="section">Preprints and working papers, 2026</h2>
 <ul class="list">{''.join(items)}</ul>
 <h2 class="section" id="publications">Publications, 2002&ndash;2013</h2>
 <p class="prose">{e(profile['scholar'])} Citation counts are from {link('https://scholar.google.com/citations?user=zTtAbu4AAAAJ&hl=en', 'Google Scholar')}.</p>
@@ -289,6 +350,7 @@ def build_research():
                   "url": p["url"], "encoding": {"@type": "MediaObject", "contentUrl": f"{SITE_URL}/papers/{p['pdf']}",
                                                 "encodingFormat": "application/pdf"}} for p in papers]
     page("/research/", "Research", body, active="Research", head_extra=jsonld(scholarly),
+         og_image=paper_thumb(papers[0])["src"],
          description="Preprints and working papers by Yakov Shkolnikov on AI trust boundaries, deception, "
                      "persistent agents, efficient architectures, and AI economics, with PDFs.")
 
@@ -337,6 +399,7 @@ def build_writing_index():
 })();
 </script>"""
     page("/writing/", "Writing", body, active="Writing", scripts=script,
+         og_image=thumb(pic_of(next(w for w in writing if pic_of(w))), 1200)["src"],
          description="Essays by Yakov Shkolnikov on AI trust, agents, evaluation, and the economics of AI at work.")
 
 
@@ -348,6 +411,9 @@ def rewrite_links(html):
     html = re.sub(r'href="([^"]+)"', sub, html)
     # Markdown-style links pasted into the LinkedIn editor: "[<a href=..>label](url)</a>"
     html = re.sub(r'\[(<a href="[^"]+">)([^<\]]+)\]\([^)<]+\)(</a>)', r"\1\2\3", html)
+    # LinkedIn articles often start at h3; promote so headings follow the page h1
+    if "<h2>" not in html:
+        html = html.replace("<h3>", "<h2>").replace("</h3>", "</h2>")
     # lists pasted inside a paragraph
     html = re.sub(r"<p>\s*(<(ul|ol)>.*?</\2>)\s*</p>", r"\1", html, flags=re.S)
     return html
@@ -362,7 +428,7 @@ def build_articles():
     for i, w in enumerate(local):
         body_html = rewrite_links((CONTENT / "articles" / f"{w['slug']}.html").read_text())
         cover = ""
-        if w.get("cover"):
+        if w.get("cover"):  # full-size hero on the article itself
             c = w["cover"]
             cap = f"<figcaption>{e(c['alt'])}</figcaption>" if c.get("alt") else ""
             cover = (f'<figure class="cover"><img src="{c["src"]}" alt="{e(c.get("alt", ""))}" '
@@ -386,7 +452,7 @@ def build_articles():
 <a class="crumb" href="/writing/">&larr; Writing</a>
 <h1>{e(w['title'])}</h1>
 <div class="meta"><time datetime="{w['date']}">{fmt_date(w['date'])}</time><span class="sep">·</span>{reading_time(w['words'])}{topic}</div>
-<p class="origin">Originally published on LinkedIn on {fmt_date(w['date'])}. {link(w['source'], 'Read the original')}</p>
+<p class="origin">Originally published on LinkedIn. {link(w['source'], 'Read the original')}</p>
 </header>
 {cover}
 <div class="article-body">
@@ -411,14 +477,17 @@ def build_articles():
 
 
 def item_dl(i):
-    acts = []
-    if i.get("url"):
-        acts.append(link(i["url"], e(i.get("label", "Link"))))
+    title = link(i["url"], e(i["title"])) if i.get("url") else e(i["title"])
+    extra = ""
     if i.get("writing") and i["writing"] in by_slug:
-        acts.append(f'<a href="/writing/{i["writing"]}/">Article</a>')
-    status = f' <span class="note">({e(i["status"]).lower()})</span>' if i.get("status") else ""
-    a = f'<div class="links-row">{"".join(acts)}</div>' if acts else ""
-    return f'<dt>{e(i["title"])}{status}</dt><dd>{e(i["text"])}{a}</dd>'
+        extra = f'<div class="links-row"><a href="/writing/{i["writing"]}/">Article</a></div>'
+    pic = i.get("image") or (pic_of(by_slug[i["writing"]]) if i.get("writing") in by_slug else None)
+    text = f'{e(i["text"])}{extra}'
+    if pic:
+        target = i.get("url") or f'/writing/{i["writing"]}/'
+        return (f'<dt>{title}</dt><dd><div class="with-img"><div>{text}</div>'
+                f'<a class="thumb-link" href="{e(target)}" tabindex="-1" aria-hidden="true">{img_tag(pic, width=480)}</a></div></dd>')
+    return f'<dt>{title}</dt><dd>{text}</dd>'
 
 
 def build_projects():
@@ -434,11 +503,11 @@ def build_projects():
 
 
 def build_lab():
-    updates = "".join(writing_item({**by_slug[s], "description": lab["descriptions"].get(s, by_slug[s]["description"])}, thumb=False)
+    updates = "".join(writing_item({**by_slug[s], "description": lab["descriptions"].get(s, by_slug[s]["description"])})
                       for s in lab["series"] + lab["related"] if s in by_slug)
     setup = "".join(
         f'<h3 class="sub">{e(g["title"])}</h3>'
-        f'<dl class="items">{"".join(item_dl({**i, "label": "Site"}) for i in g["items"])}</dl>'
+        f'<dl class="items">{"".join(item_dl(i) for i in g["items"])}</dl>'
         for g in lab["setup"])
     ph = lab["philosophy"]
     body = f"""
@@ -449,7 +518,7 @@ def build_lab():
 <p class="prose"><strong>{e(ph['title'].replace('The Philosophy: ', ''))}.</strong> {e(ph['text'])}</p>
 {setup}
 """
-    page("/lab/", "The Lab", body, active="Lab",
+    page("/lab/", "The Lab", body, active="Lab", og_image=thumb(pic_of(by_slug[lab["series"][0]]), 1200)["src"],
          description="Soundness AI, Yakov Shkolnikov's independent AI research lab: progress updates and the hardware and tools behind the research.")
 
 
@@ -463,14 +532,17 @@ def build_about():
     essay_link = f' {link(essay["source"], "The Selfish Case for Mentorship")}' if essay else ""
     body = f"""
 <div class="page-head"><h1>About</h1><p>{e(profile['headline'])}</p></div>
+<div class="about-grid">
 <div class="prose">{bio}<p class="meta">{e(profile['education'])}</p></div>
+<figure>{img_tag(profile['portrait'], width=900, eager=True)}</figure>
+</div>
 <h2 class="section" id="principles">Principles</h2>
 <p class="prose meta">{e(profile['pages']['principles'])}</p>
 <div class="principles">{principles}</div>
 <h2 class="section" id="mentorship">Mentorship</h2>
 <div class="prose"><p>{e(profile['pages']['mentorship'])} {e(m['intro'])}</p><p>{e(m['invitation'])} {link(links_by['LinkedIn'], 'Reach out on LinkedIn')}.</p><p class="meta">Why I do it:{essay_link}</p></div>
 """
-    page("/about/", "About", body, active="About",
+    page("/about/", "About", body, active="About", og_image=profile["portrait"]["src"],
          description=f"{profile['name']}: {profile['headline']}. Background, principles, and mentorship.")
 
 

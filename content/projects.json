@@ -7,14 +7,12 @@
           "title": "SKIFF: Container Manager for Zero Trust Environments",
           "text": "Open-source container manager built for GCP and zero-trust workstations. Avoids nested virtualization and privileged socket mounts. Talks to the daemon over SSH with nothing persistent on the container host. Four-tier test suite, 94% coverage floor, anti-pattern linter, and per-framework compliance evidence (OWASP ASVS, NIST SSDF, NIST CSF, SLSA, CIS Docker Benchmark). MIT-licensed.",
           "url": "https://github.com/yshk-mxim/skiff-container-manager",
-          "label": "GitHub",
           "writing": "skiff"
         },
         {
           "title": "Agent Memory: Persistent KV Cache for Multi-Agent Inference",
           "text": "MLX implementation of persisted 4-bit KV caches for multi-agent LLM inference on Apple Silicon, with background reloads and a demo app. Code for the Agent Memory Below the Prompt paper.",
           "url": "https://github.com/yshk-mxim/agent-memory",
-          "label": "GitHub",
           "writing": "server-speed-agents-on-a-laptop"
         },
         {
@@ -46,7 +44,11 @@
           "title": "Classical Baseline vs. RL: Franka Pick-and-Place in Isaac Sim",
           "text": "150 lines of classical control logic for a Franka Panda doing randomized pick-and-place. No training, no reward function. The baseline tells you exactly where learning earns its complexity budget.",
           "url": "https://www.linkedin.com/feed/update/urn:li:activity:7435715830954479616/",
-          "label": "LinkedIn"
+          "image": {
+            "src": "/writing/_external/the-curse-of-the-classical-baseline.webp",
+            "width": 622,
+            "height": 360
+          }
         }
       ]
     },
@@ -73,8 +75,7 @@
         {
           "title": "US Patent 7,936,274, Physical Identity Card Protection",
           "text": "Commercialized and licensed.",
-          "url": "https://patents.google.com/patent/US7936274B2",
-          "label": "Google Patents"
+          "url": "https://patents.google.com/patent/US7936274B2"
         },
         {
           "title": "13 Additional Provisional Patents, Safety-Critical AI Architecture",
@@ -106,7 +107,11 @@
           "title": "Software Employment Calculator",
           "text": "An interactive model of how AI and layoffs change software-team output: new teams gain fast, established companies see muted impact.",
           "url": "/employment_july_2026.html",
-          "label": "Open"
+          "image": {
+            "src": "/employment_july_2026_card.png",
+            "width": 2400,
+            "height": 1260
+          }
         }
       ]
     }

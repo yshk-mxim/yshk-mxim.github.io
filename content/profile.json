@@ -77,5 +77,10 @@
     "Systems architect, researcher and technology leader working on building architecturally assured AI. While running an R&D organization and creating AI strategy for large organizations, I learned through hands-on experience that there is a large gap between the safety assurances and promotions of large vendors and the real security and trust capabilities of deployed systems. Twenty years in safety-critical systems spanning counter-IED detection, formal verification, medical devices, enterprise AI and agentic security.",
     "I founded Soundness AI in February 2026. The lab combines two workstreams. The research evaluates new AI architectures and frontier models in context of existing work on security, human-AI collaboration, and control theory to identify emerging failure modes. This directly feeds into the ongoing commercial technology development work to reduce AI risk in regulated and safety-critical environments. Earlier: Analog Devices, Maxim Integrated, Exponent, and Drexel University."
   ],
-  "education": "Ph.D., M.A., Electrical Engineering, Princeton University · B.S., Engineering Physics, Cornell University · Licensed Professional Engineer, New Jersey · IEEE Senior Member"
+  "education": "Ph.D., M.A., Electrical Engineering, Princeton University · B.S., Engineering Physics, Cornell University · Licensed Professional Engineer, New Jersey · IEEE Senior Member",
+  "portrait": {
+    "src": "/images/mentorship.jpg",
+    "width": 800,
+    "height": 536
+  }
 }
