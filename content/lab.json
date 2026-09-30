@@ -25,7 +25,7 @@
           "text": "Blackwell-based edge AI module. 2070 TFLOPS FP4 sparse, 128GB LPDDR5X at 273 GB/s, 14-core Arm Neoverse V3AE. 40–130W configurable. Local LLM inference for on-device agentic workloads."
         },
         {
-          "title": "RTX 3080 (10GB VRAM), CUDA Workstation",
+          "title": "RTX 3080 (10GB VRAM), CUDA Workstation, 64GB RAM",
           "text": "Mostly edge and robotics work. CUDA training for sub-3B models. QLoRA fine-tuning. Isaac Sim for robotics simulation (Franka pick-and-place experiments). The 10GB ceiling forces discipline about what actually needs GPU training vs. what doesn't."
         }
       ]
