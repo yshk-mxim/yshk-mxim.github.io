@@ -328,7 +328,14 @@ details.more-pubs summary { cursor: pointer; font-style: italic; color: var(--mu
 .about-grid { display: grid; gap: 1.5rem 3rem; }
 @media (min-width: 52rem) { .about-grid { grid-template-columns: minmax(0, 38rem) 1fr; align-items: start; } }
 .about-grid figure { margin: 0; }
-.about-grid figcaption { text-align: left; }
+@media (min-width: 52rem) { .about-grid { grid-template-columns: minmax(0, 38rem) 15rem; justify-content: space-between; } }
+.portrait img { width: 100%; max-width: 15rem; aspect-ratio: 1; object-fit: cover; }
+.section-hero { margin: 0 0 1.5rem; max-width: 44rem; }
+.section-hero img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: center 15%; }
+@media (max-width: 51.99rem) {
+  .about-grid .portrait { order: -1; }
+  .portrait img { max-width: 8.5rem; }
+}
 @media (max-width: 23rem) { .site-nav { gap: .6rem; font-size: .86rem; } }
 
 /* theme toggle: plain text button in the header */

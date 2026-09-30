@@ -55,7 +55,12 @@
   "mentorship": {
     "intro": "People more senior than me, people starting out, people in my industry and far outside it. A VP navigating a manufacturing merger and a junior PM dealing with a tech pivot are having the same conversation in different vocabulary. The variety is the point.",
     "invitation": "If you are working on a problem in AI, engineering leadership, career transitions, or navigating organizational chaos, I am happy to talk. I do not charge for mentorship. Pick someone six months behind you on a problem you just solved. Give them thirty minutes. See what you learn. If that person is you, reach out.",
-    "essay": "The Selfish Case for Mentorship"
+    "essay": "The Selfish Case for Mentorship",
+    "image": {
+      "src": "/images/mentorship.jpg",
+      "width": 800,
+      "height": 536
+    }
   },
   "scholar": "More than 50 papers, including peer-reviewed journal articles and conference papers, across physics, signal processing, computer vision, medical devices, and AI: 2,156 citations and an h-index of 18 on Google Scholar. The earlier work covers the quantum Hall effect and valley physics in AlAs quantum wells (Princeton), medical-device reliability, and signal processing for landmine detection.",
   "pages": {
@@ -77,8 +82,9 @@
   ],
   "education": "Ph.D., M.A., Electrical Engineering, Princeton University · B.S., Engineering Physics, Cornell University · Licensed Professional Engineer, New Jersey · IEEE Senior Member",
   "portrait": {
-    "src": "/images/mentorship.jpg",
-    "width": 800,
-    "height": 536
+    "src": "/images/yakov-shkolnikov.webp",
+    "width": 400,
+    "height": 400,
+    "alt": "Yakov Shkolnikov"
   }
 }

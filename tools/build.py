@@ -307,6 +307,7 @@ def build_home():
     person = {
         "@context": "https://schema.org", "@type": "Person", "name": profile["name"], "url": SITE_URL,
         "jobTitle": "Founder, Soundness AI",
+        "image": SITE_URL + profile["portrait"]["src"],
         "sameAs": [l["url"] for l in profile["links"]],
         "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Princeton University"},
                      {"@type": "CollegeOrUniversity", "name": "Cornell University"}],
@@ -567,19 +568,23 @@ def build_about():
         f'<h3>{e(p["title"])}</h3><p>{e(p["text"])}{" " + link(p["url"], "Read more") if p.get("url") else ""}</p>'
         for p in profile["principles"])
     m = profile["mentorship"]
+    inv = e(m["invitation"])
+    assert inv.endswith("reach out."), "mentorship invitation should end with 'reach out.'"
+    invitation = inv[:-len("reach out.")] + link(links_by["LinkedIn"], "reach out") + "."
     essay = next((w for w in writing if w["title"] == m["essay"]), None)
     essay_link = f' {link(essay["source"], "The Selfish Case for Mentorship")}' if essay else ""
     body = f"""
 <div class="page-head"><h1>About</h1><p>{e(profile['headline'])}</p></div>
 <div class="about-grid">
 <div class="prose">{bio}<p class="meta">{e(profile['education'])}</p></div>
-<figure>{img_tag(profile['portrait'], width=900, eager=True)}</figure>
+<figure class="portrait">{img_tag(profile['portrait'], alt=profile['portrait']['alt'], width=0, eager=True)}</figure>
 </div>
 <h2 class="section" id="principles">Principles</h2>
 <p class="prose meta">{e(profile['pages']['principles'])}</p>
 <div class="principles">{principles}</div>
 <h2 class="section" id="mentorship">Mentorship</h2>
-<div class="prose"><p>{e(profile['pages']['mentorship'])} {e(m['intro'])}</p><p>{e(m['invitation'])} {link(links_by['LinkedIn'], 'Reach out on LinkedIn')}.</p><p class="meta">Why I do it:{essay_link}</p></div>
+<figure class="section-hero">{img_tag(m['image'], width=1100)}</figure>
+<div class="prose"><p>{e(profile['pages']['mentorship'])} {e(m['intro'])}</p><p>{invitation}</p><p class="meta">Why I do it:{essay_link}</p></div>
 <h2 class="section" id="contact">Contact</h2>
 {licensing_note()}
 """
