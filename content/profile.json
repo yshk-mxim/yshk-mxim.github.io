@@ -65,7 +65,8 @@
     "projects": "Edge inference, agentic frameworks, and AI that runs in production for years, not demos. Alongside that, medical devices, clinical AI, cybersecurity, and technical consulting: systems built for environments where failure has consequences.",
     "experience": "Twenty years across consulting, semiconductor, medical devices, and independent research.",
     "principles": "What I believe about AI, work, and the gap between what we build and what we understand.",
-    "mentorship": "Mentoring is not charity. It is how I stay sharp."
+    "mentorship": "Mentoring is not charity. It is how I stay sharp.",
+    "research_note": "Research and engineering from my roles at Analog Devices, Maxim Integrated, and Exponent was largely proprietary and is not listed here, except where it was published."
   },
   "intro": "I build production AI systems, transform how organizations adopt them, and make it safe to experiment. Then I write about what I learn, including what doesn't work.",
   "headline": "AI Safety & Security · Architecturally Assured AI · Safety-Critical Systems",

@@ -365,6 +365,7 @@ def build_research():
 <div class="page-head">
 <h1>Research</h1>
 <p>{e(profile['pages']['research'])}</p>
+<p class="note" style="margin-top:.8rem">{e(profile['pages']['research_note'])}</p>
 </div>
 <h2 class="section">Preprints and working papers, 2026</h2>
 <ul class="list">{''.join(items)}</ul>
