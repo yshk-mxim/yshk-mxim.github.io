@@ -144,7 +144,7 @@ def og_crop(pic):
 
 
 def site_card():
-    """Stable 1200x630 share card: name, headline, headshot, in the site's own typeface."""
+    """Stable 1200x630 share card: name and headline in the site's own typeface."""
     import io
     from fontTools.ttLib import TTFont
     from PIL import ImageDraw, ImageFont
@@ -161,25 +161,23 @@ def site_card():
 
     card = Image.new("RGB", (OG_W, OG_H), "#fdfcf9")
     d = ImageDraw.Draw(card)
-    name = font("source-serif-4-normal-latin.woff2", 84, 640)
+    name = font("source-serif-4-normal-latin.woff2", 96, 640)
     head = font("source-serif-4-italic-latin.woff2", 34, 400)
     small = font("source-serif-4-normal-latin.woff2", 28, 400)
-    x, y = 80, 150
+    x, y = 80, 170
     d.text((x, y), profile["name"], font=name, fill="#1f1c19")
-    y += 120
+    y += 135
     line = ""
     for word in profile["headline"].split():
         test = f"{line} {word}".strip()
-        if d.textlength(test, font=head) > 600:
+        if d.textlength(test, font=head) > OG_W - 160:
             d.text((x, y), line, font=head, fill="#5f5851")
             y, line = y + 48, word
         else:
             line = test
     d.text((x, y), line, font=head, fill="#5f5851")
-    d.line((x, 505, x + 600, 505), fill="#dcd6cc", width=2)
+    d.line((x, 505, OG_W - 80, 505), fill="#dcd6cc", width=2)
     d.text((x, 525), SITE_URL.replace("https://", ""), font=small, fill="#7f1d1d")
-    shot = Image.open(ROOT / profile["portrait"]["src"].lstrip("/")).convert("RGB").resize((380, 380), Image.LANCZOS)
-    card.paste(shot, (OG_W - 80 - 380, (OG_H - 380) // 2))
     out = ROOT / "assets" / "og-card.jpg"
     card.save(out, "JPEG", quality=88, optimize=True, progressive=True)
     return "/assets/og-card.jpg"
