@@ -345,3 +345,4 @@ details.more-pubs summary { cursor: pointer; font-style: italic; color: var(--mu
   .theme-toggle { order: 2; margin-left: auto; }
   .site-nav { order: 3; width: 100%; }
 }
+.licensing { margin: 1.5rem 0 0; font-style: italic; }

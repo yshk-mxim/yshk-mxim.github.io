@@ -520,9 +520,15 @@ def item_dl(i):
     return f'<dt>{title}</dt><dd>{text}</dd>'
 
 
+def licensing_note():
+    text = e(profile["pages"]["licensing"]).replace("on LinkedIn", f'on {link(links_by["LinkedIn"], "LinkedIn")}')
+    return f'<p class="prose licensing">{text}</p>'
+
+
 def build_projects():
     groups = "".join(
         f'<h2 class="section">{e(g["title"])}</h2><dl class="items">{"".join(item_dl(i) for i in g["items"])}</dl>'
+        + (licensing_note() if g["title"] == "Patents" else "")
         for g in projects["groups"])
     body = f"""
 <div class="page-head"><h1>Projects</h1><p>{e(profile['pages']['projects'])}</p></div>
@@ -571,6 +577,8 @@ def build_about():
 <div class="principles">{principles}</div>
 <h2 class="section" id="mentorship">Mentorship</h2>
 <div class="prose"><p>{e(profile['pages']['mentorship'])} {e(m['intro'])}</p><p>{e(m['invitation'])} {link(links_by['LinkedIn'], 'Reach out on LinkedIn')}.</p><p class="meta">Why I do it:{essay_link}</p></div>
+<h2 class="section" id="contact">Contact</h2>
+{licensing_note()}
 """
     page("/about/", "About", body, active="About", og_image=profile["portrait"]["src"],
          description=f"{profile['name']}: {profile['headline']}. Background, principles, and mentorship.")
