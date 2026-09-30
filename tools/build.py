@@ -550,6 +550,9 @@ def build_lab():
 <div class="page-head"><h1>The Lab</h1><p>{e(lab['intro'])}</p></div>
 <h2 class="section">Updates</h2>
 <ul class="list">{updates}</ul>
+<h2 class="section">Patents</h2>
+<dl class="items">{item_dl(lab["patents"])}</dl>
+{licensing_note()}
 <h2 class="section">Setup</h2>
 <p class="prose"><strong>{e(ph['title'].replace('The Philosophy: ', ''))}.</strong> {e(ph['text'])}</p>
 {setup}

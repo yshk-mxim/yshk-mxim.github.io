@@ -93,5 +93,9 @@
   },
   "descriptions": {
     "abstracting-physical-experiments": "Mashmeasure, the system I built in the Princeton lab in 2003. Experiments written in natural units while auto-discovered instrument shims enforced limits, rates, and safe operation. The deterministic execution layer agents still need"
+  },
+  "patents": {
+    "title": "14 Provisional Patent Applications, Soundness AI",
+    "text": "14 provisional patent applications covering 21 invention families (2026), currently unassigned."
   }
 }
