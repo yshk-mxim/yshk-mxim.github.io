@@ -13,6 +13,10 @@
       "title": "Local compute",
       "items": [
         {
+          "title": "Mac M5 Max",
+          "text": "Large models and trustworthy AI work."
+        },
+        {
           "title": "MacBook Pro M4 Pro 12-Core / 24GB",
           "text": "273 GB/s unified memory bandwidth. Metal acceleration for MLX. Runs 7B-12B quantized models locally for inference and LoRA fine-tuning. Paged attention, batch inference, privacy-sensitive medical AI work."
         },
@@ -56,8 +60,13 @@
         },
         {
           "title": "OpenAI API",
-          "text": "Comparison baseline. Multi-vendor orchestration testing. The agentic framework was designed to be model-agnostic, so testing across providers is part of the methodology.",
+          "text": "Used alongside Claude. Multi-vendor orchestration testing. The agentic framework was designed to be model-agnostic, so testing across providers is part of the methodology.",
           "url": "https://platform.openai.com"
+        },
+        {
+          "title": "Google Gemini API",
+          "url": "https://ai.google.dev",
+          "text": "Used alongside Claude and OpenAI for multi-vendor orchestration testing and cross-provider comparison."
         },
         {
           "title": "DeepSeek API",

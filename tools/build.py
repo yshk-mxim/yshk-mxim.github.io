@@ -583,8 +583,10 @@ def build_about():
 <p class="prose meta">{e(profile['pages']['principles'])}</p>
 <div class="principles">{principles}</div>
 <h2 class="section" id="mentorship">Mentorship</h2>
-<figure class="section-hero">{img_tag(m['image'], width=1100)}</figure>
+<div class="about-grid">
 <div class="prose"><p>{e(profile['pages']['mentorship'])} {e(m['intro'])}</p><p>{invitation}</p><p class="meta">Why I do it:{essay_link}</p></div>
+<figure class="side-img">{img_tag(m['image'], width=640)}</figure>
+</div>
 <h2 class="section" id="contact">Contact</h2>
 {licensing_note()}
 """
