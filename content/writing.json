@@ -119,7 +119,7 @@
     "description": "Checking a written record against the market. Since the paper was submitted on April 20, software stocks are up roughly 29% against about 17% for the S&P 500. The call rested on a habit carried over from semiconductor macro forecasting: trust fundamentals over fashionable opinions",
     "topic": "Work & Economics",
     "image": {
-      "src": "/writing/_external/the-saas-apocalypse-prediction-four-months-on.webp",
+      "src": "/writing/external/the-saas-apocalypse-prediction-four-months-on.webp",
       "width": 800,
       "height": 487
     }
@@ -404,7 +404,7 @@
     "description": "AI can improve average output by 10 to 30 percent, but business reliability lives in the tail. The contract-review tool that flagged a liability issue on review three had silently ignored its complete absence on reviews one and two. Productivity gains evaporate when you account for the human attention required to cover the edges",
     "topic": "Work & Economics",
     "image": {
-      "src": "/writing/_external/juggling-chainsaws.webp",
+      "src": "/writing/external/juggling-chainsaws.webp",
       "width": 1200,
       "height": 675
     }
@@ -465,7 +465,7 @@
     "description": "An AI's self-evaluation on AI safety. Claude Sonnet 4.6 examines its own limitations and risks, followed by seven experiments you can run yourself",
     "topic": "Using AI Well",
     "image": {
-      "src": "/writing/_external/written-by-the-thing-it-s-warning-you-about.webp",
+      "src": "/writing/external/written-by-the-thing-it-s-warning-you-about.webp",
       "width": 1200,
       "height": 675
     }
@@ -534,7 +534,7 @@
     "description": "Ask a model to analyze a crisis and it returns the statistically average analysis of ten thousand news articles: balanced, confident, and useless. The Four-Lens Protocol forces political, physical, market, and cascade views to run side by side, because the decisions live where the lenses conflict",
     "topic": "Using AI Well",
     "image": {
-      "src": "/writing/_external/the-ai-model-gives-you-balanced-analysis-balance-i.webp",
+      "src": "/writing/external/the-ai-model-gives-you-balanced-analysis-balance-i.webp",
       "width": 1200,
       "height": 675
     }
@@ -563,7 +563,7 @@
     "description": "Why using the same AI to make the same decisions as your competitors converges everyone on the same strategy",
     "topic": "Work & Economics",
     "image": {
-      "src": "/writing/_external/automate-like-everyone-decide-like-no-one.webp",
+      "src": "/writing/external/automate-like-everyone-decide-like-no-one.webp",
       "width": 1200,
       "height": 675
     }
@@ -592,7 +592,7 @@
     "description": "150 lines of Python, no training, no reward function. If you do not know where classical control fails, you cannot know where learning earns its complexity budget",
     "topic": "Research Notes",
     "image": {
-      "src": "/writing/_external/the-curse-of-the-classical-baseline.webp",
+      "src": "/writing/external/the-curse-of-the-classical-baseline.webp",
       "width": 622,
       "height": 360
     }
@@ -621,7 +621,7 @@
     "description": "Most people meet generative imagery through a text box and get back something that is not what they pictured. Pairing your own sketch with a prompt turns the model into a broader brush rather than the painter, and gives a consistent visual identity a prompt alone cannot",
     "topic": "Using AI Well",
     "image": {
-      "src": "/writing/_external/the-broad-brushstroke.webp",
+      "src": "/writing/external/the-broad-brushstroke.webp",
       "width": 1200,
       "height": 675
     }
@@ -650,7 +650,7 @@
     "description": "Pasting word salad into an AI tool returns corporate slop. Use the model as an editor rather than an author: have it read your draft, diagnose what is broken, and match your voice when it rewrites. Includes a writing analysis protocol and a before-and-after example",
     "topic": "Using AI Well",
     "image": {
-      "src": "/writing/_external/stop-adding-ai-slop-to-your-word-salad.webp",
+      "src": "/writing/external/stop-adding-ai-slop-to-your-word-salad.webp",
       "width": 1200,
       "height": 675
     }
@@ -663,7 +663,7 @@
     "description": "A revenue dashboard plotted by order date instead of recognition date, on the wrong fiscal calendar, looks plausible until someone asks a question. Models fill context gaps you did not know existed. The Clarification Protocol makes the model list its assumptions before it builds anything",
     "topic": "Using AI Well",
     "image": {
-      "src": "/writing/_external/the-ai-model-assumes-it-knows-what-you-want-it-doe.webp",
+      "src": "/writing/external/the-ai-model-assumes-it-knows-what-you-want-it-doe.webp",
       "width": 1200,
       "height": 675
     }
@@ -676,7 +676,7 @@
     "description": "Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number",
     "topic": "Work & Economics",
     "image": {
-      "src": "/writing/_external/escaping-analysis-paralysis-the-hidden-cost-of-cha.webp",
+      "src": "/writing/external/escaping-analysis-paralysis-the-hidden-cost-of-cha.webp",
       "width": 1200,
       "height": 675
     }
@@ -689,7 +689,7 @@
     "description": "AI systems amplify your abilities and your ignorance equally, praising the architect while the structure has no foundation. The Critical Review Protocol makes the model audit every claim, redo the calculations, and challenge the assumptions behind the work",
     "topic": "Using AI Well",
     "image": {
-      "src": "/writing/_external/you-are-brilliant-keep-going.webp",
+      "src": "/writing/external/you-are-brilliant-keep-going.webp",
       "width": 1200,
       "height": 675
     }

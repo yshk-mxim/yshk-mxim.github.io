@@ -45,7 +45,7 @@
           "text": "150 lines of classical control logic for a Franka Panda doing randomized pick-and-place. No training, no reward function. The baseline tells you exactly where learning earns its complexity budget.",
           "url": "https://www.linkedin.com/feed/update/urn:li:activity:7435715830954479616/",
           "image": {
-            "src": "/writing/_external/the-curse-of-the-classical-baseline.webp",
+            "src": "/writing/external/the-curse-of-the-classical-baseline.webp",
             "width": 622,
             "height": 360
           }
