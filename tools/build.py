@@ -295,7 +295,7 @@ def build_home():
 
 
 PUB_GROUPS = [("journal", "Journal articles"), ("conference", "Conference papers"),
-              ("thesis", "Doctoral thesis"), ("patent", "Patent application")]
+              ("thesis", "Doctoral thesis"), ("patent", "Patent")]
 
 
 def pub_item(x):
