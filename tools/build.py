@@ -121,11 +121,75 @@ def paper_thumb(p):
     return {"src": f"/papers/thumbs/{p['id']}.webp", "width": w, "height": h}
 
 
+OG_W, OG_H = 1200, 630
+
+
+def og_crop(pic):
+    """1200x630 JPEG crop of an image for link previews (LinkedIn does not show WebP)."""
+    src = ROOT / pic["src"].lstrip("/")
+    out = src.with_name(f"{src.stem}-og.jpg")
+    if not out.exists() or out.stat().st_mtime < src.stat().st_mtime:
+        # fit the whole image (captions and diagram labels stay visible) on a
+        # background taken from the image's own border colour
+        im = Image.open(src).convert("RGB")
+        scale = min(OG_W / im.width, OG_H / im.height)
+        im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
+        edge = [im.getpixel((x, y)) for x in range(0, im.width, 8) for y in (0, im.height - 1)]
+        edge += [im.getpixel((x, y)) for y in range(0, im.height, 8) for x in (0, im.width - 1)]
+        bg = tuple(sorted(c[i] for c in edge)[len(edge) // 2] for i in range(3))
+        canvas = Image.new("RGB", (OG_W, OG_H), bg)
+        canvas.paste(im, ((OG_W - im.width) // 2, (OG_H - im.height) // 2))
+        canvas.save(out, "JPEG", quality=86, optimize=True, progressive=True)
+    return "/" + str(out.relative_to(ROOT))
+
+
+def site_card():
+    """Stable 1200x630 share card: name, headline, headshot, in the site's own typeface."""
+    import io
+    from fontTools.ttLib import TTFont
+    from PIL import ImageDraw, ImageFont
+
+    def font(woff2, size, wght):
+        tt = TTFont(ROOT / "assets" / "fonts" / woff2)
+        tt.flavor = None
+        buf = io.BytesIO()
+        tt.save(buf)
+        buf.seek(0)
+        f = ImageFont.truetype(buf, size)
+        f.set_variation_by_axes([wght, min(60, max(8, size * 0.75))])
+        return f
+
+    card = Image.new("RGB", (OG_W, OG_H), "#fdfcf9")
+    d = ImageDraw.Draw(card)
+    name = font("source-serif-4-normal-latin.woff2", 84, 640)
+    head = font("source-serif-4-italic-latin.woff2", 34, 400)
+    small = font("source-serif-4-normal-latin.woff2", 28, 400)
+    x, y = 80, 150
+    d.text((x, y), profile["name"], font=name, fill="#1f1c19")
+    y += 120
+    line = ""
+    for word in profile["headline"].split():
+        test = f"{line} {word}".strip()
+        if d.textlength(test, font=head) > 600:
+            d.text((x, y), line, font=head, fill="#5f5851")
+            y, line = y + 48, word
+        else:
+            line = test
+    d.text((x, y), line, font=head, fill="#5f5851")
+    d.line((x, 505, x + 600, 505), fill="#dcd6cc", width=2)
+    d.text((x, 525), SITE_URL.replace("https://", ""), font=small, fill="#7f1d1d")
+    shot = Image.open(ROOT / profile["portrait"]["src"].lstrip("/")).convert("RGB").resize((380, 380), Image.LANCZOS)
+    card.paste(shot, (OG_W - 80 - 380, (OG_H - 380) // 2))
+    out = ROOT / "assets" / "og-card.jpg"
+    card.save(out, "JPEG", quality=88, optimize=True, progressive=True)
+    return "/assets/og-card.jpg"
+
+
 def reading_time(words):
     return f"{max(1, round(words / 230))} min read"
 
 
-def page(path, title, body, *, description, active=None, og_image=None, og_type="website",
+def page(path, title, body, *, description, active=None, og_image=None, og_alt=None, og_dims=(1200, 630), og_type="website",
          head_extra="", scripts=""):
     url = SITE_URL + path
     full_title = title if title == profile["name"] else f"{title} · {profile['name']}"
@@ -134,8 +198,14 @@ def page(path, title, body, *, description, active=None, og_image=None, og_type=
         for label, u in NAV)
     foot_links = "".join(f'<a href="{e(l["url"])}" rel="noopener">{e(l["label"])}</a>'
                          for l in profile["links"])
-    og = f'<meta property="og:image" content="{SITE_URL}{og_image}">' if og_image else ""
-    card = "summary_large_image" if og_image else "summary"
+    if not og_image:
+        og_image, og_alt = SITE_CARD, f"{profile['name']}: {profile['headline']}"
+    og = (f'<meta property="og:image" content="{SITE_URL}{og_image}">\n'
+          f'<meta property="og:image:type" content="image/jpeg">\n'
+          f'<meta property="og:image:width" content="{og_dims[0]}">\n<meta property="og:image:height" content="{og_dims[1]}">\n'
+          f'<meta property="og:image:alt" content="{e(og_alt or title)}">\n'
+          f'<meta name="twitter:image" content="{SITE_URL}{og_image}">')
+    card = "summary_large_image"
     html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -319,7 +389,9 @@ def build_home():
               "safety:'/projects/',career:'/about/',philosophy:'/about/#principles',lab:'/lab/'};"
               "var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();</script>")
     page("/", profile["name"], body, head_extra=jsonld(person), scripts=legacy, active="Home",
-         og_image=thumb(pic_of(lead), 1200)["src"],
+         og_image="/images/orchestration.jpg", og_dims=(800, 536),
+         og_alt=f"{profile['name']}: {profile['headline']}",
+
          description=f"{profile['name']}: {profile['headline']}. Research and writing on AI trust, agents, "
                      "and production AI systems. " + profile["credentials"] + ".")
 
@@ -381,7 +453,7 @@ def build_research():
                   "url": p["url"], "encoding": {"@type": "MediaObject", "contentUrl": f"{SITE_URL}/papers/{p['pdf']}",
                                                 "encodingFormat": "application/pdf"}} for p in papers]
     page("/research/", "Research", body, active="Research", head_extra=jsonld(scholarly),
-         og_image=paper_thumb(papers[0])["src"],
+
          description="Preprints and working papers by Yakov Shkolnikov on AI trust boundaries, deception, "
                      "persistent agents, efficient architectures, and AI economics, with PDFs.")
 
@@ -430,7 +502,7 @@ def build_writing_index():
 })();
 </script>"""
     page("/writing/", "Writing", body, active="Writing", scripts=script,
-         og_image=thumb(pic_of(next(w for w in writing if pic_of(w))), 1200)["src"],
+
          description="Essays by Yakov Shkolnikov on AI trust, agents, evaluation, and the economics of AI at work.")
 
 
@@ -496,7 +568,7 @@ def build_articles():
 </footer>
 </article>
 """
-        og = f"/writing/{w['slug']}/{w['cover']['src']}" if w.get("cover") else None
+        og = og_crop(pic_of(w)) if w.get("cover") else None
         ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": w["title"],
               "datePublished": w["date"], "author": {"@type": "Person", "name": profile["name"], "url": SITE_URL},
               "description": w["description"], "url": f"{SITE_URL}/writing/{w['slug']}/",
@@ -504,6 +576,7 @@ def build_articles():
         if og:
             ld["image"] = SITE_URL + og
         page(f"/writing/{w['slug']}/", w["title"], body, active="Writing", og_image=og, og_type="article",
+             og_alt=(w.get("cover") or {}).get("alt") or w["title"],
              head_extra=jsonld(ld), description=w["description"] + ".")
 
 
@@ -558,7 +631,7 @@ def build_lab():
 <p class="prose"><strong>{e(ph['title'].replace('The Philosophy: ', ''))}.</strong> {e(ph['text'])}</p>
 {setup}
 """
-    page("/lab/", "The Lab", body, active="Lab", og_image=thumb(pic_of(by_slug[lab["series"][0]]), 1200)["src"],
+    page("/lab/", "The Lab", body, active="Lab", og_image=og_crop(pic_of(by_slug[lab["series"][0]])),
          description="Soundness AI, Yakov Shkolnikov's independent AI research lab: progress updates and the hardware and tools behind the research.")
 
 
@@ -590,7 +663,7 @@ def build_about():
 <h2 class="section" id="contact">Contact</h2>
 {licensing_note()}
 """
-    page("/about/", "About", body, active="About", og_image=profile["portrait"]["src"],
+    page("/about/", "About", body, active="About",
          description=f"{profile['name']}: {profile['headline']}. Background, principles, and mentorship.")
 
 
@@ -625,6 +698,8 @@ def build_sitemap(paths):
 
 
 def main():
+    global SITE_CARD
+    SITE_CARD = site_card()
     writing.sort(key=lambda w: w["date"], reverse=True)
     papers.sort(key=lambda p: p["date"], reverse=True)
     build_home()
