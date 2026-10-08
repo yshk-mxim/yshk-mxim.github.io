@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Model Assumes It Knows What You Want. It Does Not · Yakov Shkolnikov</title>
+<meta name="description" content="A revenue dashboard plotted by order date instead of recognition date, on the wrong fiscal calendar, looks plausible until someone asks a question. Models fill context gaps you did not know existed. The Clarification Protocol makes the model list its assumptions before it builds anything.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/model-assumes-it-knows/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="The AI Model Assumes It Knows What You Want. It Does Not">
+<meta property="og:description" content="A revenue dashboard plotted by order date instead of recognition date, on the wrong fiscal calendar, looks plausible until someone asks a question. Models fill context gaps you did not know existed. The Clarification Protocol makes the model list its assumptions before it builds anything.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/model-assumes-it-knows/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/model-assumes-it-knows/cover-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The AI Model Assumes It Knows What You Want. It Does Not">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/writing/model-assumes-it-knows/cover-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The AI Model Assumes It Knows What You Want. It Does Not", "datePublished": "2026-02-17", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "A revenue dashboard plotted by order date instead of recognition date, on the wrong fiscal calendar, looks plausible until someone asks a question. Models fill context gaps you did not know existed. The Clarification Protocol makes the model list its assumptions before it builds anything", "url": "https://yakovshkolnikov.com/writing/model-assumes-it-knows/", "isBasedOn": "https://theincompleteguidetoai.substack.com/p/the-ai-model-assumes-it-knows-what/", "image": "https://yakovshkolnikov.com/writing/model-assumes-it-knows/cover-og.jpg"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>The AI Model Assumes It Knows What You Want. It Does Not</h1>
+<div class="meta"><time datetime="2026-02-17">February 17, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Using AI Well</div>
+<p class="origin">Originally published on LinkedIn. <a href="https://theincompleteguidetoai.substack.com/p/the-ai-model-assumes-it-knows-what/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1456" height="977" style="view-transition-name: hero-model-assumes-it-knows"></figure>
+<div class="article-body">
+<blockquote>"Di fuor dorate son, sì ch'elli abbaglia; ma dentro tutte piombo" — "Gilded on the outside so they dazzle; but inside all lead" — Inferno, Canto XXIII</blockquote>
+<p>You ask the model to build a dashboard. Revenue over time. Simple request.</p>
+<p>It runs the analysis. Gives you a chart. The line goes up and to the right. Looks plausible. You show it in the meeting.</p>
+<p>Then someone asks why Q4 revenue is higher than the annual target. Why November shows twice as much as the actual cash received. Why the chart includes that big canceled order from September.</p>
+<p>You go back and look closer. The foundation is missing. The model plotted order date, not revenue recognition date. It counted deferred revenue as current revenue. It didn’t understand your fiscal calendar runs July to June, not January to December. It may have mixed currencies without conversion.</p>
+<p>This isn’t the model making up numbers. It’s filling in gaps in its context (dictionary, not AI-specific definition) you didn’t know existed.</p>
+<p><strong>You assume the model has the same understanding of the task as you do. It doesn’t.</strong></p>
+<p>When you work with colleagues, you get shared context for free. Through training, education, experience, or just interaction with you, they already understand implicitly what needs to happen.</p>
+<p>The model was trained on the corpus of the internet. It may be biased away from this implicit understanding. You’re talking about your specific problem in your specific context. It’s talking about the statistically average problem across millions of examples. The model gives you an answer. The answer is well-written. The answer is wrong.</p>
+<hr/>
+<p>Here is an experiment to try: before you let the model build anything, make it tell you what it’s assuming.</p>
+<h2>The Clarification Protocol</h2>
+<h3>Simple version</h3>
+<p>I need you to [YOUR TASK]</p>
+<p>Before doing anything, follow this process:</p>
+<ul>
+<li>
+<p>IDENTIFY AMBIGUITIES: List all the underspecified parts of my request</p></li>
+<li>
+<p>STATE ASSUMPTIONS: For each ambiguity, tell me what assumption you would make by default</p></li>
+<li>
+<p>ASK QUESTIONS: Ask me clarifying questions about the most important decisions</p></li>
+<li>
+<p>4. WAIT for my answers before starting</p></li></ul>
+<p>Format your response like:</p>
+<ul>
+<li>
+<p>Ambiguities I’ve identified:</p>
+<ul>
+<li>
+<p>[list them]</p></li></ul></li>
+<li>
+<p>Assumptions I would make:</p>
+<ul>
+<li>
+<p>[list with reasoning]</p></li></ul></li>
+<li>
+<p>Questions for you:</p>
+<ul>
+<li>
+<p>[prioritized questions]</p></li></ul></li></ul>
+<p>Only proceed after I respond to your questions.</p>
+<h3>The Claude Code CLI Version</h3>
+<p>Before writing any code for the task below, run a multi-model divergence analysis to surface hidden assumptions.</p>
+<p>TASK:</p>
+<p>“”“</p>
+<p>{TASK}</p>
+<p>“”“</p>
+<p>PROCESS — follow exactly:</p>
+<p>1. Call the haiku task. Prompt: “You are a pragmatic developer. For this task, list: (a) every unspecified decision with likely default and dangerous alternative, (b) what could silently break — runs fine but wrong results, (c) the input/output contract gaps. No code. No solutions. Only gaps. Task: {TASK}”</p>
+<p>2. Call the sonnet task. Prompt “You are a requirements engineer. For this task, list: (a) explicit vs implicit requirements with confidence levels, (b) every environment/dependency/format assumption, (c) unspecified decisions with downstream consequences if defaulted wrong, (d) integration surface assumptions. Do not resolve ambiguity — surface it. No code. Task: {TASK}”</p>
+<p>3. Call the haiku task. Prompt: “You are a hostile code reviewer. For this task, list: (a) dangerous assumptions a helpful AI will silently make (scale, security, concurrency, encoding, timezone, idempotency), (b) the 3 worst-case scenarios if the developer guesses wrong on unspecified decisions, (c) questions you would block a PR for. Be adversarial and specific. No code. Task: {TASK}”</p>
+<p>4. Compare all three outputs. Produce a divergence map:</p>
+<p>✅ CONSENSUS — all three agree (safe defaults)</p>
+<p>⚠️ PARTIAL — two agree, one differs (state the split)</p>
+<p>🔴 DIVERGENCE — all differ or unique critical flags (must clarify)</p>
+<p>5. From the 🔴 and ⚠️ items, write clarifying questions for me. Max 7. Phrase for a non-technical person. For each, explain why it matters and suggest the likely answer.</p>
+<p>6. STOP. Show me the divergence map and questions. Wait for my answers before writing any code.</p>
+<p>After I answer, implement with all ambiguities resolved. Mark any remaining assumptions with inline comments: # ASSUMPTION: [what] # ALTERNATIVE: [what else].</p>
+<h3>Minimal version (adapt to your task)</h3>
+<p>Before coding, simulate three reviewers of this task independently:</p>
+<ul>
+<li>
+<p>Pragmatic dev — list unspecified decisions and defaults</p></li>
+<li>
+<p>Requirements engineer — list implicit assumptions and alternatives</p></li>
+<li>
+<p>Hostile auditor — list dangerous silent defaults an AI would make</p></li></ul>
+<p>Diff them. Ask me only about the disagreements. Then code.</p>
+<p>TASK: {TASK}</p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://theincompleteguidetoai.substack.com/p/the-ai-model-assumes-it-knows-what/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/you-are-brilliant-keep-going/"><small>Previous</small>You Are Brilliant, Keep Going</a><a class="next" href="/writing/ai-slop-word-salad/"><small>Next</small>Stop Adding AI Slop to Your Word Salad</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated October 8, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>

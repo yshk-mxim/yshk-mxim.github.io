@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import LinkedIn articles saved as Safari .webarchive files.
+"""Import LinkedIn and Substack articles saved as Safari .webarchive files.
 
 For each archive this writes:
   content/articles/<slug>.html   clean article body (semantic HTML only)
@@ -132,14 +132,76 @@ def to_html(node):
     html = "".join(str(c) for c in node.contents)
     html = re.sub(r"<!--.*?-->", "", html, flags=re.S)
     html = re.sub(r">\s+<", ">\n<", html).strip()
+    html = re.sub(r"><(?=(p|h2|h3|blockquote|ul|ol|li|figure|hr|pre)\b)", ">\n<", html)
     html = re.sub(r"\n(?=<(p|h2|h3|blockquote|ul|ol|figure|hr|pre)\b)", "\n\n", html)
     return html + "\n"
+
+
+def substack_image(img, resources):
+    """Substack's <img src> rarely matches the saved resource; match by image id."""
+    urls = [img.get("src", "")]
+    pic = img.find_parent("picture")
+    for el in [img] + (pic.find_all("source") if pic else []):
+        urls += [u.strip().split(" ")[0] for u in el.get("srcset", "").split(",")]
+    for u in urls:
+        if u in resources:
+            return resources[u]
+    m = re.search(r"\$s_![^!]+!", img.get("src", ""))
+    hits = [u for u in resources if m and m.group(0) in u]
+    return resources[max(hits, key=lambda u: int((re.search(r"w_(\d+)", u) or [0, 0])[1]))] if hits else None
+
+
+def import_substack(p, soup, resources, slugs):
+    link = soup.find("link", rel="canonical")
+    source = canonical(link["href"] if link else p["WebMainResource"]["WebResourceURL"])
+    slug = slugs.get(source) or urlparse(source).path.rstrip("/").split("/")[-1]
+    title = " ".join(soup.select_one(".post-header h1").get_text(" ", strip=True).split())
+    ld = json.loads(soup.find("script", type="application/ld+json").string)
+    date = ld["datePublished"][:10]
+
+    body = soup.select_one(".available-content .body")
+    for junk in body.select(".subscription-widget-wrap, .image-link-expand, .header-anchor-parent, "
+                            ".button-wrapper, svg, button"):
+        junk.decompose()
+    for h in body.find_all("h1"):
+        h.name = "h2"
+    img_dir = ROOT / "writing" / slug
+    for old in img_dir.glob("*.webp"):
+        old.unlink()
+    cover = None
+    for i, fig in enumerate(body.find_all("figure")):
+        img = fig.find("img")
+        data = substack_image(img, resources) if img else None
+        if data:
+            img["src"] = f"data:{i}"
+            resources[img["src"]] = data
+        if i == 0 and data and '"topImage":true' in img.get("data-attrs", ""):
+            name, w, h = save_image(data, img_dir, "cover")
+            cap = fig.find("figcaption")
+            cover = {"src": name, "width": w, "height": h,
+                     "alt": (cap.get_text(" ", strip=True) if cap else img.get("alt") or "")}
+            fig.find_parent(class_="captioned-image-container").decompose()
+
+    simplify(body, resources, img_dir, [0])
+    sub = soup.select_one(".post-header .subtitle")
+    if sub and sub.get_text(strip=True):
+        lines = [escape(" ".join(l.split())) for l in sub.get_text("\n").split("\n") if l.strip()]
+        quote = BeautifulSoup(f"<blockquote>{'<br>'.join(lines)}</blockquote>", "html.parser")
+        body.insert(0, quote)
+    (CONTENT / "articles").mkdir(parents=True, exist_ok=True)
+    (CONTENT / "articles" / f"{slug}.html").write_text(to_html(body))
+
+    words = len(body.get_text(" ").split())
+    return slug, {"slug": slug, "title": title, "date": date, "venue": "The Incomplete Guide to AI",
+                  "source": source, "cover": cover, "words": words}
 
 
 def import_archive(path, slugs):
     p = plistlib.load(open(path, "rb"))
     resources = {r["WebResourceURL"]: r["WebResourceData"] for r in p.get("WebSubresources", [])}
     soup = BeautifulSoup(p["WebMainResource"]["WebResourceData"].decode("utf-8"), "html.parser")
+    if "substack.com" in p["WebMainResource"]["WebResourceURL"]:
+        return import_substack(p, soup, resources, slugs)
     art = soup.find("article")
     link = soup.find("link", rel="canonical")
     source = canonical(link["href"] if link else p["WebMainResource"]["WebResourceURL"])
@@ -181,6 +243,7 @@ def main(paths):
         if existing:
             for k in ("slug", "source", "cover", "words", "date"):
                 existing[k] = meta[k]
+            existing.pop("image", None)  # was an outbound link; now hosted
             existing.setdefault("title", meta["title"])
             print(f"updated  {slug}")
         else:

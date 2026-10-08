@@ -1,0 +1,126 @@
+<blockquote>"Di fuor dorate son, sì ch'elli abbaglia; ma dentro tutte piombo" — "Gilded on the outside so they dazzle; but inside all lead" — Inferno, Canto XXIII</blockquote>
+
+<p>You ask the model to build a dashboard. Revenue over time. Simple request.</p>
+
+<p>It runs the analysis. Gives you a chart. The line goes up and to the right. Looks plausible. You show it in the meeting.</p>
+
+<p>Then someone asks why Q4 revenue is higher than the annual target. Why November shows twice as much as the actual cash received. Why the chart includes that big canceled order from September.</p>
+
+<p>You go back and look closer. The foundation is missing. The model plotted order date, not revenue recognition date. It counted deferred revenue as current revenue. It didn’t understand your fiscal calendar runs July to June, not January to December. It may have mixed currencies without conversion.</p>
+
+<p>This isn’t the model making up numbers. It’s filling in gaps in its context (dictionary, not AI-specific definition) you didn’t know existed.</p>
+
+<p><strong>You assume the model has the same understanding of the task as you do. It doesn’t.</strong></p>
+
+<p>When you work with colleagues, you get shared context for free. Through training, education, experience, or just interaction with you, they already understand implicitly what needs to happen.</p>
+
+<p>The model was trained on the corpus of the internet. It may be biased away from this implicit understanding. You’re talking about your specific problem in your specific context. It’s talking about the statistically average problem across millions of examples. The model gives you an answer. The answer is well-written. The answer is wrong.</p>
+
+<hr/>
+
+<p>Here is an experiment to try: before you let the model build anything, make it tell you what it’s assuming.</p>
+
+<h2>The Clarification Protocol</h2>
+
+<h3>Simple version</h3>
+
+<p>I need you to [YOUR TASK]</p>
+
+<p>Before doing anything, follow this process:</p>
+
+<ul>
+<li>
+
+<p>IDENTIFY AMBIGUITIES: List all the underspecified parts of my request</p></li>
+<li>
+
+<p>STATE ASSUMPTIONS: For each ambiguity, tell me what assumption you would make by default</p></li>
+<li>
+
+<p>ASK QUESTIONS: Ask me clarifying questions about the most important decisions</p></li>
+<li>
+
+<p>4. WAIT for my answers before starting</p></li></ul>
+
+<p>Format your response like:</p>
+
+<ul>
+<li>
+
+<p>Ambiguities I’ve identified:</p>
+
+<ul>
+<li>
+
+<p>[list them]</p></li></ul></li>
+<li>
+
+<p>Assumptions I would make:</p>
+
+<ul>
+<li>
+
+<p>[list with reasoning]</p></li></ul></li>
+<li>
+
+<p>Questions for you:</p>
+
+<ul>
+<li>
+
+<p>[prioritized questions]</p></li></ul></li></ul>
+
+<p>Only proceed after I respond to your questions.</p>
+
+<h3>The Claude Code CLI Version</h3>
+
+<p>Before writing any code for the task below, run a multi-model divergence analysis to surface hidden assumptions.</p>
+
+<p>TASK:</p>
+
+<p>“”“</p>
+
+<p>{TASK}</p>
+
+<p>“”“</p>
+
+<p>PROCESS — follow exactly:</p>
+
+<p>1. Call the haiku task. Prompt: “You are a pragmatic developer. For this task, list: (a) every unspecified decision with likely default and dangerous alternative, (b) what could silently break — runs fine but wrong results, (c) the input/output contract gaps. No code. No solutions. Only gaps. Task: {TASK}”</p>
+
+<p>2. Call the sonnet task. Prompt “You are a requirements engineer. For this task, list: (a) explicit vs implicit requirements with confidence levels, (b) every environment/dependency/format assumption, (c) unspecified decisions with downstream consequences if defaulted wrong, (d) integration surface assumptions. Do not resolve ambiguity — surface it. No code. Task: {TASK}”</p>
+
+<p>3. Call the haiku task. Prompt: “You are a hostile code reviewer. For this task, list: (a) dangerous assumptions a helpful AI will silently make (scale, security, concurrency, encoding, timezone, idempotency), (b) the 3 worst-case scenarios if the developer guesses wrong on unspecified decisions, (c) questions you would block a PR for. Be adversarial and specific. No code. Task: {TASK}”</p>
+
+<p>4. Compare all three outputs. Produce a divergence map:</p>
+
+<p>✅ CONSENSUS — all three agree (safe defaults)</p>
+
+<p>⚠️ PARTIAL — two agree, one differs (state the split)</p>
+
+<p>🔴 DIVERGENCE — all differ or unique critical flags (must clarify)</p>
+
+<p>5. From the 🔴 and ⚠️ items, write clarifying questions for me. Max 7. Phrase for a non-technical person. For each, explain why it matters and suggest the likely answer.</p>
+
+<p>6. STOP. Show me the divergence map and questions. Wait for my answers before writing any code.</p>
+
+<p>After I answer, implement with all ambiguities resolved. Mark any remaining assumptions with inline comments: # ASSUMPTION: [what] # ALTERNATIVE: [what else].</p>
+
+<h3>Minimal version (adapt to your task)</h3>
+
+<p>Before coding, simulate three reviewers of this task independently:</p>
+
+<ul>
+<li>
+
+<p>Pragmatic dev — list unspecified decisions and defaults</p></li>
+<li>
+
+<p>Requirements engineer — list implicit assumptions and alternatives</p></li>
+<li>
+
+<p>Hostile auditor — list dangerous silent defaults an AI would make</p></li></ul>
+
+<p>Diff them. Ask me only about the disagreements. Then code.</p>
+
+<p>TASK: {TASK}</p>

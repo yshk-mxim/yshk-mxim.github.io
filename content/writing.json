@@ -1,5 +1,53 @@
 [
   {
+    "slug": "simulated-pain",
+    "title": "Does the Simulated Pain of an AI Model Have to Be Real to Hurt the Researcher?",
+    "date": "2026-10-08",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/does-simulated-pain-ai-model-have-real-hurt-yakov-shkolnikov-xpl0e/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 438,
+    "description": "Experiments on animals test the researchers as well as the subjects. After reproducing a published pain direction in a model and pairing it with learned harm avoidance, I stopped before the causal experiments: escape, learned helplessness, a voice to beg. Whether or not models have welfare, manufacturing convincing suffering affects the person running the experiment",
+    "topic": "Research Notes"
+  },
+  {
+    "slug": "technology-to-serve-business",
+    "title": "Technology to Serve Business",
+    "date": "2026-10-01",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/technology-serve-business-yakov-shkolnikov-wzppc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 347,
+    "description": "Vendors pitch tools I already have or could build, but nobody grows up asking Santa Claus for more dashboards. Improving a business starts with an accurate map of its processes, built by the people who run them. Ask a vendor what work their tool needs from you, and count that work in the total cost of ownership",
+    "topic": "Work & Economics"
+  },
+  {
+    "slug": "sadness-of-losing",
+    "title": "The Sadness of Losing Without Perceiving Loss",
+    "date": "2026-09-30",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-sadness-of-losing-without-perceiving/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 819,
+      "alt": ""
+    },
+    "words": 393,
+    "description": "AI scaled the work I could do as a CIO and lab founder, but delegating my writing cost me understanding. A two-topic experiment to measure the effect: write before and after seeing the model's output, come back a day later, and check what you remember and whose version is better",
+    "topic": "Using AI Well"
+  },
+  {
     "slug": "jev-three-types-of-decisions",
     "title": "Jev and Three Types of Decisions",
     "date": "2026-09-24",
@@ -461,14 +509,17 @@
     "title": "Written by the Thing It's Warning You About",
     "date": "2026-04-09",
     "venue": "The Incomplete Guide to AI",
-    "source": "https://theincompleteguidetoai.substack.com/p/written-by-the-thing-its-warning",
+    "source": "https://theincompleteguidetoai.substack.com/p/written-by-the-thing-its-warning/",
     "description": "An AI's self-evaluation on AI safety. Claude Sonnet 4.6 examines its own limitations and risks, followed by seven experiments you can run yourself",
     "topic": "Using AI Well",
-    "image": {
-      "src": "/writing/external/written-by-the-thing-it-s-warning-you-about.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "written-by-the-thing",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 1076,
+      "alt": ""
+    },
+    "words": 1203
   },
   {
     "title": "When the Average Improves but the Work Gets Harder to Trust",
@@ -530,14 +581,17 @@
     "title": "The AI Model Gives You Balanced Analysis. Balance Is Not Always True",
     "date": "2026-03-26",
     "venue": "The Incomplete Guide to AI",
-    "source": "https://theincompleteguidetoai.substack.com/p/the-ai-model-gives-you-balanced-analysis",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-ai-model-gives-you-balanced-analysis/",
     "description": "Ask a model to analyze a crisis and it returns the statistically average analysis of ten thousand news articles: balanced, confident, and useless. The Four-Lens Protocol forces political, physical, market, and cascade views to run side by side, because the decisions live where the lenses conflict",
     "topic": "Using AI Well",
-    "image": {
-      "src": "/writing/external/the-ai-model-gives-you-balanced-analysis-balance-i.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "balanced-analysis",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 977,
+      "alt": ""
+    },
+    "words": 650
   },
   {
     "title": "Observability for the Agentic Age",
@@ -617,14 +671,17 @@
     "title": "The Broad Brushstroke",
     "date": "2026-03-03",
     "venue": "The Incomplete Guide to AI",
-    "source": "https://theincompleteguidetoai.substack.com/p/the-broad-brushstroke",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-broad-brushstroke/",
     "description": "Most people meet generative imagery through a text box and get back something that is not what they pictured. Pairing your own sketch with a prompt turns the model into a broader brush rather than the painter, and gives a consistent visual identity a prompt alone cannot",
     "topic": "Using AI Well",
-    "image": {
-      "src": "/writing/external/the-broad-brushstroke.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "broad-brushstroke",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 1087,
+      "alt": ""
+    },
+    "words": 509
   },
   {
     "title": "Server-Speed Multi-Turn Agentic AI and an Extremely Long-Term Agent Persistence on a Laptop Class Machine",
@@ -644,29 +701,35 @@
   },
   {
     "title": "Stop Adding AI Slop to Your Word Salad",
-    "date": "2026-02-22",
+    "date": "2026-02-21",
     "venue": "The Incomplete Guide to AI",
-    "source": "https://theincompleteguidetoai.substack.com/p/stop-adding-ai-slop-to-your-word",
+    "source": "https://theincompleteguidetoai.substack.com/p/stop-adding-ai-slop-to-your-word/",
     "description": "Pasting word salad into an AI tool returns corporate slop. Use the model as an editor rather than an author: have it read your draft, diagnose what is broken, and match your voice when it rewrites. Includes a writing analysis protocol and a before-and-after example",
     "topic": "Using AI Well",
-    "image": {
-      "src": "/writing/external/stop-adding-ai-slop-to-your-word-salad.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "ai-slop-word-salad",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 977,
+      "alt": ""
+    },
+    "words": 2217
   },
   {
     "title": "The AI Model Assumes It Knows What You Want. It Does Not",
     "date": "2026-02-17",
     "venue": "The Incomplete Guide to AI",
-    "source": "https://theincompleteguidetoai.substack.com/p/the-ai-model-assumes-it-knows-what",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-ai-model-assumes-it-knows-what/",
     "description": "A revenue dashboard plotted by order date instead of recognition date, on the wrong fiscal calendar, looks plausible until someone asks a question. Models fill context gaps you did not know existed. The Clarification Protocol makes the model list its assumptions before it builds anything",
     "topic": "Using AI Well",
-    "image": {
-      "src": "/writing/external/the-ai-model-assumes-it-knows-what-you-want-it-doe.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "model-assumes-it-knows",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 977,
+      "alt": ""
+    },
+    "words": 723
   },
   {
     "title": "Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision",
@@ -685,14 +748,33 @@
     "title": "You Are Brilliant, Keep Going",
     "date": "2026-02-03",
     "venue": "The Incomplete Guide to AI",
-    "source": "https://theincompleteguidetoai.substack.com/p/you-are-brilliant-keep-going",
+    "source": "https://theincompleteguidetoai.substack.com/p/you-are-brilliant-keep-going/",
     "description": "AI systems amplify your abilities and your ignorance equally, praising the architect while the structure has no foundation. The Critical Review Protocol makes the model audit every claim, redo the calculations, and challenge the assumptions behind the work",
     "topic": "Using AI Well",
-    "image": {
-      "src": "/writing/external/you-are-brilliant-keep-going.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "you-are-brilliant-keep-going",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1456,
+      "height": 977,
+      "alt": ""
+    },
+    "words": 504
+  },
+  {
+    "slug": "incomplete-guide-to-ai",
+    "title": "The Incomplete Guide to AI",
+    "date": "2026-02-03",
+    "venue": "The Incomplete Guide to AI",
+    "source": "https://theincompleteguidetoai.substack.com/p/the-incomplete-guide-to-ai/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1024,
+      "height": 799,
+      "alt": ""
+    },
+    "words": 310,
+    "description": "The newsletter's opening post follows Dante's journey. Readers start in the Inferno of AI hype, climb Purgatorio through open, reproducible experiments that run on their own machines, and reach Paradiso, the applications only they can discover, alone",
+    "topic": "Using AI Well"
   },
   {
     "title": "The Selfish Case for Mentorship",
