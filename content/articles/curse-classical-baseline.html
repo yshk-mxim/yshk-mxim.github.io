@@ -1,0 +1,70 @@
+<p>Before you train a VLA or shape a reward function, do you actually know how hard your task is?</p>
+
+<h2>Know Your Task Before You Learn It</h2>
+
+<p>There's a pattern in robotics research that goes like this. Define a manipulation task. Set up a sim. Train a policy with RL or a vision-language-action model. Report success rates. Publish.</p>
+
+<p>Somewhere in the methods section there's a line about comparing against "a classical baseline." Usually a few hardcoded waypoints that serve as a lower bound to beat. Nobody spends more than a paragraph on it.</p>
+
+<p>But that throwaway baseline carries more information than the learned policy. It tells you the inherent difficulty of the task itself, separate from the difficulty of learning it.</p>
+
+<p>If a PID controller with hand-coded waypoints solves your task at 95%, you don't have a hard manipulation problem. You have an easy problem you chose to solve with an expensive method. That's fine if the goal is to demonstrate a learning algorithm. But you should know that. And your readers should know it too.</p>
+
+<h2>The KISS Baseline</h2>
+
+<p>What you see in the video is a Franka Panda picking four fruits from a source box and placing them in a target box. The fruits are dropped into the source box from above and allowed to settle wherever physics puts them.</p>
+
+<p>No neural network. No training. No reward function. No examples. Just:</p>
+
+<p>
+
+<ul>
+<li><strong>Perception:</strong> read object positions (simulating a depth camera or lidar).</li>
+<li><strong>Planning: </strong>RMPFlow for inverse kinematics, a reactive motion policy based on Riemannian Motion Policies (Cheng et al., 2018).</li>
+<li><strong>Control: </strong>a PID controller for grasp force stabilization.</li>
+<li><strong>Execution:</strong> a waypoint sequence. Pick from the top down to avoid collisions with remaining objects. Move above, descend, grasp, lift, transport, lower, release, retreat.</li></ul></p>
+
+<p>This is the classical sense-plan-act architecture. It has been the backbone of industrial robotics since the 1980s. The motion planning here is grounded in the geometric fabric framework, which treats obstacle avoidance and goal reaching as operations on Riemannian manifolds.</p>
+
+<p>The entire solution is about 150 lines of actual control and perception logic. No training data. No episodes. No curriculum. It picks up every fruit and places it in the target box because the geometry of the task is fully specified.</p>
+
+<h2>What This Tells You</h2>
+
+<p>This task, bin-to-bin pick and place of known convex objects at known positions, is not hard. A classical controller solves it. That is valuable information.</p>
+
+<p>It means that if you use this task to benchmark a learned policy, the bar is already set. Your VLA or RL agent should solve it near-perfectly. The interesting question is not whether it succeeds but what it gives you beyond the baseline.</p>
+
+<p>Can it handle novel objects, cluttered scenes, partial occlusion? Does it recover from perturbations the waypoint controller can't handle? Does it find faster trajectories or more energy-efficient grasps?* Does it cross the sim-to-real gap better than a tuned controller?</p>
+
+<p>If your learned policy barely matches the classical baseline on the nominal task, that's a signal. Not that your algorithm is bad. But that you might need a harder benchmark to show what it actually does.</p>
+
+<h2>The Cost of Not Knowing</h2>
+
+<p>When you skip the classical baseline, you lose calibration. A 70% success rate sounds impressive until you learn a PID controller hits 95%. A 60-second cycle time sounds fast until a waypoint sequence does it in 30.</p>
+
+<p>The classical baseline is cheap to build. This one took a day. It forces you to understand the task geometry, the robot's workspace limits, the physics of grasping. All things your learned policy will also need to contend with, whether you encode them explicitly or bury them in a reward function.</p>
+
+<p>Think of it as a feasibility study. Before you spend GPU-weeks on training, spend a day on the simplest thing that could possibly work. The gap between that baseline and perfection is where learning actually adds value.</p>
+
+<p>For this baseline, that gap shows up in two places. The robot sometimes clips the side of the source box on approach. And when fruits settle against each other, the gripper can't always push one out of the way to grab the target. A waypoint controller has no concept of adjusting its approach angle based on what's in the way. A learned policy could.</p>
+
+<h2>The Stack</h2>
+
+<p>
+
+<ul>
+<li>Simulation: NVIDIA Isaac Sim 5.1.</li>
+<li>Robot: Franka Panda with a parallel-jaw gripper.</li>
+<li>Motion planning: RMPFlow (reactive Riemannian motion policies). Grasp control: PID force controller with slip detection.</li>
+<li>Grasp constraint: USD FixedJoint, to compensate for simulator friction limitations.</li>
+<li>Perception: direct object pose queries, equivalent to calibrated depth camera output.</li>
+<li>Two files. No training loop.</li>
+<li>No hyperparameters to tune beyond PID gains and waypoint heights.</li></ul></p>
+
+<p>The kind of solution you can explain on a whiteboard in five minutes.</p>
+
+<p>The best reason to build a classical baseline isn't to publish it. It's to know exactly what your learned policy needs to beat.</p>
+
+<hr/>
+
+<p><em>*Worth noting: RMPFlow itself supports energy shaping and metric tuning. You can add penalties for speed regulation, joint limits, and obstacle avoidance weight, all within the classical framework. The baseline can be optimized further without any learning at all.</em></p>

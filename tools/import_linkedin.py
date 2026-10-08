@@ -154,10 +154,18 @@ def substack_image(img, resources):
 def import_substack(p, soup, resources, slugs):
     link = soup.find("link", rel="canonical")
     source = canonical(link["href"] if link else p["WebMainResource"]["WebResourceURL"])
+    header = soup.select_one(".post-header h1")
+    if header:  # the publication's own page
+        ld = json.loads(soup.find("script", type="application/ld+json").string)
+        date = ld["datePublished"][:10]
+    else:  # the substack.com reader view
+        header = soup.find("a", class_=re.compile("font-display"))
+        source = canonical(header["href"])
+        date = soup.find("time")["datetime"][:10]
     slug = slugs.get(source) or urlparse(source).path.rstrip("/").split("/")[-1]
-    title = " ".join(soup.select_one(".post-header h1").get_text(" ", strip=True).split())
-    ld = json.loads(soup.find("script", type="application/ld+json").string)
-    date = ld["datePublished"][:10]
+    title = " ".join(header.get_text(" ", strip=True).split())
+    site = soup.find("meta", property="og:site_name")
+    venue = site["content"] if site else urlparse(source).netloc
 
     body = soup.select_one(".available-content .body")
     for junk in body.select(".subscription-widget-wrap, .image-link-expand, .header-anchor-parent, "
@@ -165,10 +173,32 @@ def import_substack(p, soup, resources, slugs):
         junk.decompose()
     for h in body.find_all("h1"):
         h.name = "h2"
+    guest = "theincompleteguidetoai" not in source
+    if guest:  # keep only the article, not the host's intro, author bio and promos
+        blocks = [c for c in body.children if getattr(c, "name", None)]
+        for c in blocks:
+            text = c.get_text(" ", strip=True)
+            if "captioned-image-container" in c.get("class", []):
+                continue
+            if not text or "button-wrapper" in c.get("class", []) or re.search(r"Yakov|Frictionless", text):
+                image = c.find(class_="captioned-image-container")
+                c.replace_with(image.extract()) if image else c.decompose()
+            else:
+                break
+        bio = next((c for c in blocks if c.parent and c.get_text(strip=True).startswith("About Yakov")), None)
+        if bio:
+            prev = bio.find_previous_sibling()
+            if prev and not prev.get_text(strip=True) and not prev.find("img"):
+                prev.decompose()
+            for c in [bio] + bio.find_next_siblings():
+                c.decompose()
     img_dir = ROOT / "writing" / slug
     for old in img_dir.glob("*.webp"):
         old.unlink()
     cover = None
+    if guest:  # the host's images are the host's copyright
+        for fig in body.select(".captioned-image-container, figure"):
+            fig.decompose()
     for i, fig in enumerate(body.find_all("figure")):
         img = fig.find("img")
         data = substack_image(img, resources) if img else None
@@ -184,7 +214,7 @@ def import_substack(p, soup, resources, slugs):
 
     simplify(body, resources, img_dir, [0])
     sub = soup.select_one(".post-header .subtitle")
-    if sub and sub.get_text(strip=True):
+    if sub and sub.get_text(strip=True) and not guest:
         lines = [escape(" ".join(l.split())) for l in sub.get_text("\n").split("\n") if l.strip()]
         quote = BeautifulSoup(f"<blockquote>{'<br>'.join(lines)}</blockquote>", "html.parser")
         body.insert(0, quote)
@@ -192,7 +222,7 @@ def import_substack(p, soup, resources, slugs):
     (CONTENT / "articles" / f"{slug}.html").write_text(to_html(body))
 
     words = len(body.get_text(" ").split())
-    return slug, {"slug": slug, "title": title, "date": date, "venue": "The Incomplete Guide to AI",
+    return slug, {"slug": slug, "title": title, "date": date, "venue": venue,
                   "source": source, "cover": cover, "words": words}
 
 
@@ -243,7 +273,8 @@ def main(paths):
         if existing:
             for k in ("slug", "source", "cover", "words", "date"):
                 existing[k] = meta[k]
-            existing.pop("image", None)  # was an outbound link; now hosted
+            if meta["cover"]:
+                existing.pop("image", None)  # was an outbound link; now hosted
             existing.setdefault("title", meta["title"])
             print(f"updated  {slug}")
         else:

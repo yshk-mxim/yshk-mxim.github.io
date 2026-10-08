@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Curse of the Classical Baseline · Yakov Shkolnikov</title>
+<meta name="description" content="150 lines of Python, no training, no reward function. If you do not know where classical control fails, you cannot know where learning earns its complexity budget.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/curse-classical-baseline/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="The Curse of the Classical Baseline">
+<meta property="og:description" content="150 lines of Python, no training, no reward function. If you do not know where classical control fails, you cannot know where learning earns its complexity budget.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/curse-classical-baseline/">
+<meta property="og:image" content="https://yakovshkolnikov.com/assets/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yakov Shkolnikov: AI Safety &amp; Security · Architecturally Assured AI · Safety-Critical Systems">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/assets/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Curse of the Classical Baseline", "datePublished": "2026-03-06", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "150 lines of Python, no training, no reward function. If you do not know where classical control fails, you cannot know where learning earns its complexity budget", "url": "https://yakovshkolnikov.com/writing/curse-classical-baseline/", "isBasedOn": "https://www.linkedin.com/pulse/curse-classical-baseline-yakov-shkolnikov-yzrtc/"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>The Curse of the Classical Baseline</h1>
+<div class="meta"><time datetime="2026-03-06">March 6, 2026</time><span class="sep">·</span>4 min read<span class="sep">·</span>Research Notes</div>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/curse-classical-baseline-yakov-shkolnikov-yzrtc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<div class="article-body">
+<p>Before you train a VLA or shape a reward function, do you actually know how hard your task is?</p>
+<h2>Know Your Task Before You Learn It</h2>
+<p>There's a pattern in robotics research that goes like this. Define a manipulation task. Set up a sim. Train a policy with RL or a vision-language-action model. Report success rates. Publish.</p>
+<p>Somewhere in the methods section there's a line about comparing against "a classical baseline." Usually a few hardcoded waypoints that serve as a lower bound to beat. Nobody spends more than a paragraph on it.</p>
+<p>But that throwaway baseline carries more information than the learned policy. It tells you the inherent difficulty of the task itself, separate from the difficulty of learning it.</p>
+<p>If a PID controller with hand-coded waypoints solves your task at 95%, you don't have a hard manipulation problem. You have an easy problem you chose to solve with an expensive method. That's fine if the goal is to demonstrate a learning algorithm. But you should know that. And your readers should know it too.</p>
+<h2>The KISS Baseline</h2>
+<p>What you see in the video is a Franka Panda picking four fruits from a source box and placing them in a target box. The fruits are dropped into the source box from above and allowed to settle wherever physics puts them.</p>
+<p>No neural network. No training. No reward function. No examples. Just:</p>
+<ul>
+<li><strong>Perception:</strong> read object positions (simulating a depth camera or lidar).</li>
+<li><strong>Planning: </strong>RMPFlow for inverse kinematics, a reactive motion policy based on Riemannian Motion Policies (Cheng et al., 2018).</li>
+<li><strong>Control: </strong>a PID controller for grasp force stabilization.</li>
+<li><strong>Execution:</strong> a waypoint sequence. Pick from the top down to avoid collisions with remaining objects. Move above, descend, grasp, lift, transport, lower, release, retreat.</li></ul>
+<p>This is the classical sense-plan-act architecture. It has been the backbone of industrial robotics since the 1980s. The motion planning here is grounded in the geometric fabric framework, which treats obstacle avoidance and goal reaching as operations on Riemannian manifolds.</p>
+<p>The entire solution is about 150 lines of actual control and perception logic. No training data. No episodes. No curriculum. It picks up every fruit and places it in the target box because the geometry of the task is fully specified.</p>
+<h2>What This Tells You</h2>
+<p>This task, bin-to-bin pick and place of known convex objects at known positions, is not hard. A classical controller solves it. That is valuable information.</p>
+<p>It means that if you use this task to benchmark a learned policy, the bar is already set. Your VLA or RL agent should solve it near-perfectly. The interesting question is not whether it succeeds but what it gives you beyond the baseline.</p>
+<p>Can it handle novel objects, cluttered scenes, partial occlusion? Does it recover from perturbations the waypoint controller can't handle? Does it find faster trajectories or more energy-efficient grasps?* Does it cross the sim-to-real gap better than a tuned controller?</p>
+<p>If your learned policy barely matches the classical baseline on the nominal task, that's a signal. Not that your algorithm is bad. But that you might need a harder benchmark to show what it actually does.</p>
+<h2>The Cost of Not Knowing</h2>
+<p>When you skip the classical baseline, you lose calibration. A 70% success rate sounds impressive until you learn a PID controller hits 95%. A 60-second cycle time sounds fast until a waypoint sequence does it in 30.</p>
+<p>The classical baseline is cheap to build. This one took a day. It forces you to understand the task geometry, the robot's workspace limits, the physics of grasping. All things your learned policy will also need to contend with, whether you encode them explicitly or bury them in a reward function.</p>
+<p>Think of it as a feasibility study. Before you spend GPU-weeks on training, spend a day on the simplest thing that could possibly work. The gap between that baseline and perfection is where learning actually adds value.</p>
+<p>For this baseline, that gap shows up in two places. The robot sometimes clips the side of the source box on approach. And when fruits settle against each other, the gripper can't always push one out of the way to grab the target. A waypoint controller has no concept of adjusting its approach angle based on what's in the way. A learned policy could.</p>
+<h2>The Stack</h2>
+<ul>
+<li>Simulation: NVIDIA Isaac Sim 5.1.</li>
+<li>Robot: Franka Panda with a parallel-jaw gripper.</li>
+<li>Motion planning: RMPFlow (reactive Riemannian motion policies). Grasp control: PID force controller with slip detection.</li>
+<li>Grasp constraint: USD FixedJoint, to compensate for simulator friction limitations.</li>
+<li>Perception: direct object pose queries, equivalent to calibrated depth camera output.</li>
+<li>Two files. No training loop.</li>
+<li>No hyperparameters to tune beyond PID gains and waypoint heights.</li></ul>
+<p>The kind of solution you can explain on a whiteboard in five minutes.</p>
+<p>The best reason to build a classical baseline isn't to publish it. It's to know exactly what your learned policy needs to beat.</p>
+<hr/>
+<p><em>*Worth noting: RMPFlow itself supports energy shaping and metric tuning. You can add penalties for speed regulation, joint limits, and obstacle avoidance weight, all within the classical framework. The baseline can be optimized further without any learning at all.</em></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/curse-classical-baseline-yakov-shkolnikov-yzrtc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/lab-one-month/"><small>Previous</small>One Month In: IRL (Independent Research Lab) Update</a><a class="next" href="/writing/how-much-attention/"><small>Next</small>How Much Attention Do You Need?</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated October 8, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>

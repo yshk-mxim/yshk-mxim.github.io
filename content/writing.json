@@ -166,11 +166,14 @@
     "source": "https://www.linkedin.com/feed/update/urn:li:activity:7501293363845808128/",
     "description": "Checking a written record against the market. Since the paper was submitted on April 20, software stocks are up roughly 29% against about 17% for the S&P 500. The call rested on a habit carried over from semiconductor macro forecasting: trust fundamentals over fashionable opinions",
     "topic": "Work & Economics",
-    "image": {
-      "src": "/writing/external/the-saas-apocalypse-prediction-four-months-on.webp",
-      "width": 800,
-      "height": 487
-    }
+    "slug": "saas-apocalypse-four-months-on",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 779,
+      "alt": ""
+    },
+    "words": 117
   },
   {
     "title": "Seven Months In: Soundness AI Update",
@@ -448,14 +451,12 @@
     "title": "Juggling Chainsaws",
     "date": "2026-04-28",
     "venue": "Frictionless Data (guest)",
-    "source": "https://zanehall.substack.com/p/juggling-chainsaws",
+    "source": "https://zanehall.substack.com/p/juggling-chainsaws/",
     "description": "AI can improve average output by 10 to 30 percent, but business reliability lives in the tail. The contract-review tool that flagged a liability issue on review three had silently ignored its complete absence on reviews one and two. Productivity gains evaporate when you account for the human attention required to cover the edges",
     "topic": "Work & Economics",
-    "image": {
-      "src": "/writing/external/juggling-chainsaws.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "juggling-chainsaws",
+    "cover": null,
+    "words": 569
   },
   {
     "title": "The SaaS Apocalypse Fallacy: Why AI Raises the Value of the SaaS Bundle",
@@ -613,14 +614,12 @@
     "title": "Automate Like Everyone, Decide Like No One",
     "date": "2026-03-17",
     "venue": "Frictionless Data (guest)",
-    "source": "https://zanehall.substack.com/p/automate-like-everyone-decide-like",
+    "source": "https://zanehall.substack.com/p/automate-like-everyone-decide-like/",
     "description": "Why using the same AI to make the same decisions as your competitors converges everyone on the same strategy",
     "topic": "Work & Economics",
-    "image": {
-      "src": "/writing/external/automate-like-everyone-decide-like-no-one.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "automate-like-everyone",
+    "cover": null,
+    "words": 462
   },
   {
     "title": "How Much Attention Do You Need?",
@@ -645,6 +644,9 @@
     "source": "https://www.linkedin.com/pulse/curse-classical-baseline-yakov-shkolnikov-yzrtc/",
     "description": "150 lines of Python, no training, no reward function. If you do not know where classical control fails, you cannot know where learning earns its complexity budget",
     "topic": "Research Notes",
+    "slug": "curse-classical-baseline",
+    "cover": null,
+    "words": 853,
     "image": {
       "src": "/writing/external/the-curse-of-the-classical-baseline.webp",
       "width": 622,
@@ -735,14 +737,12 @@
     "title": "Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision",
     "date": "2026-02-13",
     "venue": "Frictionless Data (guest)",
-    "source": "https://zanehall.substack.com/p/escaping-analysis-paralysis",
+    "source": "https://zanehall.substack.com/p/escaping-analysis-paralysis/",
     "description": "Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number",
     "topic": "Work & Economics",
-    "image": {
-      "src": "/writing/external/escaping-analysis-paralysis-the-hidden-cost-of-cha.webp",
-      "width": 1200,
-      "height": 675
-    }
+    "slug": "escaping-analysis-paralysis",
+    "cover": null,
+    "words": 641
   },
   {
     "title": "You Are Brilliant, Keep Going",
@@ -777,19 +777,6 @@
     "topic": "Using AI Well"
   },
   {
-    "title": "The Selfish Case for Mentorship",
-    "date": "2026-01-21",
-    "venue": "LinkedIn",
-    "source": "https://www.linkedin.com/pulse/selfish-case-mentorship-yakov-shkolnikov-pssfc/",
-    "description": "During the worst reorgs of my career, I found my balance not by seeking advice but by giving it. Guiding others through chaos forced me to see patterns I missed while drowning in my own uncertainty. Mentees test principles you thought were settled. That discomfort is where the growth lives. For both of you",
-    "topic": "Work & Economics",
-    "image": {
-      "src": "/images/mentorship.jpg",
-      "width": 800,
-      "height": 536
-    }
-  },
-  {
     "title": "Your AI Agent Passed Every Test. Then It Failed Anyway",
     "date": "2026-01-21",
     "venue": "LinkedIn",
@@ -804,5 +791,21 @@
       "alt": ""
     },
     "words": 673
+  },
+  {
+    "title": "The Selfish Case for Mentorship",
+    "date": "2026-01-20",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/selfish-case-mentorship-yakov-shkolnikov-pssfc/",
+    "description": "During the worst reorgs of my career, I found my balance not by seeking advice but by giving it. Guiding others through chaos forced me to see patterns I missed while drowning in my own uncertainty. Mentees test principles you thought were settled. That discomfort is where the growth lives. For both of you",
+    "topic": "Work & Economics",
+    "slug": "selfish-case-mentorship",
+    "cover": {
+      "src": "cover.webp",
+      "width": 692,
+      "height": 389,
+      "alt": ""
+    },
+    "words": 410
   }
 ]

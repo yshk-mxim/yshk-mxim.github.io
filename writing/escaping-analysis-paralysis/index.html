@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision · Yakov Shkolnikov</title>
+<meta name="description" content="Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/escaping-analysis-paralysis/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision">
+<meta property="og:description" content="Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/escaping-analysis-paralysis/">
+<meta property="og:image" content="https://yakovshkolnikov.com/assets/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yakov Shkolnikov: AI Safety &amp; Security · Architecturally Assured AI · Safety-Critical Systems">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/assets/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision", "datePublished": "2026-02-13", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Why demanding too much precision freezes organizations, and when the decision boundary matters more than the number", "url": "https://yakovshkolnikov.com/writing/escaping-analysis-paralysis/", "isBasedOn": "https://zanehall.substack.com/p/escaping-analysis-paralysis/"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Escaping Analysis Paralysis: The Hidden Cost of Chasing Precision</h1>
+<div class="meta"><time datetime="2026-02-13">February 13, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Work &amp; Economics</div>
+<p class="origin">Originally published as a guest post on Frictionless Data. <a href="https://zanehall.substack.com/p/escaping-analysis-paralysis/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<div class="article-body">
+<p>Early in my career, a client asked me to conduct a comprehensive safety analysis for an industrial site. They wanted precise risk exposure values and calculations. My preliminary assessment showed something critical: regardless of how precisely I measured the risk, the safety recommendation never changed. The employees should wear personal protective equipment. I gave them the answer upfront.</p>
+<p>Don’t chase perfect precision - you can’t achieve it anyway. Instead, make the decision itself the primary focus. Demanding too much precision can freeze your organization.</p>
+<blockquote>
+<p>The goal isn’t perfect data - it’s making a good business decision.</p></blockquote>
+<h2>Precision or Decision?</h2>
+<p>A marketing director once commissioned weeks of work to measure campaign lift. The signal was smaller than the weekly noise. No analytical sophistication could extract what wasn’t there. He recognized this, killed the request and the campaign budget.</p>
+<p>An analyst spent two weeks building an elaborate forecasting model. A spreadsheet with simple moving averages beat it. When outcomes land on the same side of your decision boundary, whether the number reads 47 or 53, additional precision costs you without changing what you do.</p>
+<p>This pattern - focusing on precision over decisions - repeats everywhere.</p>
+<h2>A Supply Chain Reality</h2>
+<p>Low-volume manufactured products with intermittent demand reveal this sharply. One week, your customers place no orders. Then, the next week: 3,000 units. The week after, five hundred. Your customers often don’t even know their own buying patterns, even just a few weeks ahead of their purchases. So why pour resources into perfect demand forecasts?</p>
+<p>Have you asked your customers about their ordering windows, seasonal patterns, or upcoming projects? They may have insights that no model captures. When you do this, you’ll realize what actually matters: inventory planning aligned with service level targets and acceptable excess risk. Talking with your customers beats automated forecasts almost every time.</p>
+<blockquote>
+<p>Stop optimizing the forecast. Start optimizing the decision.</p></blockquote>
+<h2>When Precision Actually Matters</h2>
+<p>Some cases really do demand rigor. Demand elasticity errors in pricing strategy can bleed margin away. Miscalculated regulatory thresholds trigger compliance violations. When potential outcomes cross a decision boundary, different numbers produce different actions.</p>
+<p>How much of your analytic efforts demand this much precision? Most organizations never ask. They default to over-analysis because it’s safer; nobody will criticize you for doing more work. Acting on incomplete-looking information invites heavy questioning. A thick report provides comfort regardless of the outcome.</p>
+<p>But that comfort costs you.</p>
+<h2>Broken Handoffs vs. Shared Ownership</h2>
+<p>External forces buffet every business far more than any data model captures. This demands something different: data teams working directly with business outcome owners.</p>
+<p>Data analysis often becomes disconnected from decisions. Data teams optimize for statistical purity, while business teams make decisions in isolation. Information passes between the teams, but they don’t share ownership over the decisions. Both sides over-engineer their domain.</p>
+<p>When data teams and decision-makers operate as one unit, something shifts. Analysis targets only what changes the decision. Unnecessary precision evaporates. Speed increases. Both sides understand what “done” means because they share accountability.</p>
+<p>Before your next analysis, ask one hard question: Would a different answer change what you do?</p>
+<ul>
+<li>
+<p>If outcomes across the plausible range all point to the same action, stop. You have what you need. If the decision were to flip only if the number moved dramatically, and market conditions already change faster than that, then stop.</p></li>
+<li>
+<p>If this feels uncomfortable, examine that discomfort; it might signal genuine rigor. More likely, however, it reflects habit. The pull toward another refinement round often means you’re over-optimizing the data.</p></li>
+<li>
+<p>Design your organization so that decisions drive analysis, not the other way around. Reduce uncertainty risk by clarifying and aligning on the decision, not by chasing perfect numbers. Preserve analytical resources for the rare cases where precision genuinely shifts what you do.</p></li></ul>
+<p>Make the decision your focus, not the precision. That’s your escape from analysis paralysis.</p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://zanehall.substack.com/p/escaping-analysis-paralysis/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/you-are-brilliant-keep-going/"><small>Previous</small>You Are Brilliant, Keep Going</a><a class="next" href="/writing/model-assumes-it-knows/"><small>Next</small>The AI Model Assumes It Knows What You Want. It Does Not</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated October 8, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>

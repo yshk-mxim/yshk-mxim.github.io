@@ -59,6 +59,13 @@ def href(w):
     return f"/writing/{w['slug']}/" if w.get("slug") else w["source"]
 
 
+def origin(w):
+    venue = w["venue"].removesuffix(" post")
+    if venue.endswith(" (guest)"):
+        return f"Originally published as a guest post on {e(venue.removesuffix(' (guest)'))}."
+    return f"Originally published on {e(venue)}."
+
+
 def is_local(w):
     return bool(w.get("slug"))
 
@@ -553,7 +560,7 @@ def build_articles():
 <a class="crumb" href="/writing/">&larr; Writing</a>
 <h1>{e(w['title'])}</h1>
 <div class="meta"><time datetime="{w['date']}">{fmt_date(w['date'])}</time><span class="sep">·</span>{reading_time(w['words'])}{topic}</div>
-<p class="origin">Originally published on LinkedIn. {link(w['source'], 'Read the original')}</p>
+<p class="origin">{origin(w)} {link(w['source'], 'Read the original')}</p>
 </header>
 {cover}
 <div class="article-body">
