@@ -175,7 +175,9 @@ def site_card():
     d.text((x, y), profile["name"], font=name, fill="#1f1c19")
     y += 135
     line = ""
-    for word in profile["headline"].split():
+    # wrap between the headline's " · " parts, never inside one
+    parts = profile["headline"].split(" · ")
+    for word in [p + " ·" for p in parts[:-1]] + parts[-1:]:
         test = f"{line} {word}".strip()
         if d.textlength(test, font=head) > OG_W - 160:
             d.text((x, y), line, font=head, fill="#5f5851")
@@ -370,7 +372,7 @@ def build_home():
 <h1>{e(profile['name'])}</h1>
 <p class="creds">{e(profile['headline'])}</p>
 <p>{e(profile['intro'])}</p>
-<p class="summary">{e(profile['bio'][1].split('. ')[0])}. <a href="/about/">About me</a>.</p>
+<p class="summary">{e(profile['roles'])}. <a href="/about/">About me</a>.</p>
 <div class="links">{links}</div>
 </section>
 {lead_html}
@@ -381,12 +383,12 @@ def build_home():
 """
     person = {
         "@context": "https://schema.org", "@type": "Person", "name": profile["name"], "url": SITE_URL,
-        "jobTitle": "Founder, Soundness AI",
+        "jobTitle": ["CIO, Reynova", "Founder, Soundness AI"],
         "image": SITE_URL + profile["portrait"]["src"],
         "sameAs": [l["url"] for l in profile["links"]],
         "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Princeton University"},
                      {"@type": "CollegeOrUniversity", "name": "Cornell University"}],
-        "knowsAbout": ["Artificial Intelligence", "AI Safety", "Agentic AI", "Edge Inference",
+        "knowsAbout": ["Technology Leadership", "Systems Architecture", "Cybersecurity", "Artificial Intelligence", "Edge Inference",
                        "Medical Devices", "Signal Processing"],
     }
     # the old single-page site used #tab anchors; send those visitors to the new pages
@@ -397,8 +399,8 @@ def build_home():
          og_image="/images/orchestration.jpg", og_dims=(800, 536),
          og_alt=f"{profile['name']}: {profile['headline']}",
 
-         description=f"{profile['name']}: {profile['headline']}. Research and writing on AI trust, agents, "
-                     "and production AI systems. " + profile["credentials"] + ".")
+         description=f"{profile['name']}: {profile['headline']}. Research and writing on technology leadership, "
+                     "complex systems, security, and AI. " + profile["credentials"] + ".")
 
 
 PUB_GROUPS = [("journal", "Journal articles"), ("conference", "Conference papers"),
@@ -637,7 +639,7 @@ def build_lab():
 {setup}
 """
     page("/lab/", "The Lab", body, active="Lab", og_image=og_crop(pic_of(by_slug[lab["series"][0]])),
-         description="Soundness AI, Yakov Shkolnikov's independent AI research lab: progress updates and the hardware and tools behind the research.")
+         description="Soundness AI, Yakov Shkolnikov's independent research lab: progress updates and the hardware and tools behind the research.")
 
 
 def build_about():

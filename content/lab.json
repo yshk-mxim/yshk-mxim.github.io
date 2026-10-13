@@ -1,5 +1,5 @@
 {
-  "intro": "Soundness AI is my independent research lab. Its premise: AI does not need to be infallible to be useful, but the systems around it must stay trustworthy when it fails. This page collects the progress updates and shows how to do AI research without a corporate budget: the current setup and what each piece is for.",
+  "intro": "Soundness AI is my independent research lab focused on computational architectures, intelligent systems, and reliability by design. Its research explores how complex systems can remain secure, predictable, and useful even when individual components fail. This page collects the progress updates and shows how to do AI research without a corporate budget: the current setup and what each piece is for.",
   "series": [
     "lab-seven-months",
     "lab-two-months",
