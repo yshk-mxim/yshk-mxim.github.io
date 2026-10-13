@@ -1,5 +1,21 @@
 [
   {
+    "slug": "agentic-loitering-munitions",
+    "title": "Agentic Loitering Munitions: The Security Threat Beyond Self-Replication",
+    "date": "2026-10-13",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/agentic-loitering-munitions-security-threat-beyond-yakov-shkolnikov-sx4df/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 448,
+    "description": "A new Anthropic paper asks whether small models can self-replicate across vulnerable devices, but bandwidth and storage limits make that slow and noisy. The nearer threat needs only a few compromised systems serving models that direct edge devices: low-intensity agents that hide in IoT noise and exploit prompt injection and misconfigured permissions",
+    "topic": "Trust & Safety"
+  },
+  {
     "slug": "simulated-pain",
     "title": "Does the Simulated Pain of an AI Model Have to Be Real to Hurt the Researcher?",
     "date": "2026-10-08",

@@ -1,0 +1,23 @@
+<p>A <a href="https://www.anthropic.com/research/self-replicating-ai">new paper by Anthropic</a> explores whether even small language models can begin to self-replicate on a large enough scale to become a threat. While this is an interesting topic requiring research, the conditions required for this attack to succeed may already expose an organization to a much larger threat.</p>
+
+<p>For CISOs and CIOs, it is helpful to understand this paper by splitting the threats into two categories.</p>
+
+<p><strong>The forward-looking portion:</strong> How long will it take an agentic system pursuing a task as part of its persistent intelligence to autonomously replicate its model across a set of potentially vulnerable devices? The answer is not surprising to those following this field: such attacks may be approaching feasibility, although they remain unproven outside controlled experiments.</p>
+
+<p>The paper's analysis largely skips over real IoT and consumer network bandwidth constraints. Actual storage, power, and bandwidth limitations will likely limit the capability to propagate gigabytes of model weights and run inference on them. Moreover, such activity is likely to create substantial network signatures visible to security monitoring.</p>
+
+<p><strong>The current reality:</strong> An unfortunate reality is that an attacker does not need to compromise every device, or even a large fraction. A few successful AI-assisted compromises of systems may be enough.</p>
+
+<p>Recent examples include the CARBONATO and ToxNetV2 botnets. A small number of model serving agents distributed across a network can direct operations to edge devices without distributing model weights everywhere. And do so with the benefit of deterministic execution and far less compute, storage, and bandwidth. All while maintaining operations independent of the original controller. Such operations could be considerably more difficult to detect. Small additional workloads on high-capacity systems and heartbeat-like activity on edge devices could hide in the noise of a large IoT installation.</p>
+
+<blockquote>These "<strong>agentic loitering munitions</strong>" could remain hidden for extended periods, operating at low intensity while relentlessly searching for opportunities. They could blend in even more by exploiting prompt injection and misconfigured permissions in existing enterprise systems rather than installing model weights across the network.</blockquote>
+
+<p>In my earlier work, <a href="https://arxiv.org/html/2609.11911v1"><em>Artificial Id: Drive and Persistent Alignment in Agentic AI</em></a>, I identified threat capabilities associated with systems that retain state, adapt, and continue operating across long or potentially indefinite execution cycles. That work covers a taxonomy of such near-term and longer-term threats.</p>
+
+<blockquote>For executives trying to keep their networks secure, both immediate agentic AI risks and long-term possibilities deserve a more prominent place on the risk register.</blockquote>
+
+<p><strong>References</strong></p>
+
+<p>[1] Zhou, W., and Freeman, D. (2026). <a href="https://www.anthropic.com/research/self-replicating-ai"><em>AI models may be capable of self-replicating without access to a datacenter.</em></a> Anthropic, October 12, 2026.</p>
+
+<p>[2] Shkolnikov, Y. P. (2026). <a href="https://arxiv.org/html/2609.11911v1"><em>Artificial Id: Drive and Persistent Alignment in Agentic AI.</em></a> arXiv:2609.11911v1, September 2026.</p>

@@ -10,7 +10,8 @@
     "pages": 17,
     "summary": "Agentic systems increasingly retain consequential state and continue operating across task boundaries, while current harnesses specify objectives, retries, verification, and stopping rules by hand. We propose an artificial id, an adaptive internal drive that determines whether behavior should continue, stop, or change. In a minimal virtual Petri-dish experiment, a controller too small for general-purpose reasoning, and given no task-specific behavioral objective, develops useful control through differential persistence. The same mechanism selects an unintended physical strategy when that strategy persists better. We argue that alignment must therefore be a property of the continuing agentic system rather than of a single model response or trajectory.",
     "related": [
-      "graywick-incident"
+      "graywick-incident",
+      "agentic-loitering-munitions"
     ]
   },
   {
