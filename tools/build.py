@@ -300,8 +300,9 @@ def writing_meta(w, short=True):
 
 
 def paper_links(p, related=True):
-    out = [f'<a href="/papers/{p["pdf"]}">PDF</a>',
-           link(p["url"], "arXiv" if p["venue"].startswith("arXiv") else "SSRN")]
+    out = [f'<a href="/papers/{p["pdf"]}">PDF</a>']
+    if p.get("url"):  # a research brief has no arXiv or SSRN record yet
+        out.append(link(p["url"], "arXiv" if p["venue"].startswith("arXiv") else "SSRN"))
     if p.get("code"):
         out.append(link(p["code"], p.get("code_label", "Code")))
     if p.get("archive"):
@@ -321,6 +322,10 @@ def bibtex(p):
         return (f"@misc{{{key},\n  title         = {{{p['title']}}},\n  author        = {{Shkolnikov, Yakov P.}},\n"
                 f"  year          = {{{year}}},\n  eprint        = {{{num}}},\n  archivePrefix = {{arXiv}},\n"
                 f"  url           = {{{p['url']}}}\n}}")
+    if not p.get("url"):
+        return (f"@techreport{{{key},\n  title       = {{{p['title']}}},\n  author      = {{Shkolnikov, Yakov P.}},\n"
+                f"  year        = {{{year}}},\n  institution = {{Soundness}},\n  type        = {{Research brief}},\n"
+                f"  url         = {{{SITE_URL}/papers/{p['pdf']}}}\n}}")
     return (f"@techreport{{{key},\n  title       = {{{p['title']}}},\n  author      = {{Shkolnikov, Yakov P.}},\n"
             f"  year        = {{{year}}},\n  institution = {{SSRN}},\n  type        = {{Working paper}},\n"
             f"  number      = {{{p['venue'].split()[-1]}}},\n  url         = {{{p['url']}}}\n}}")
@@ -457,7 +462,7 @@ def build_research():
 """
     scholarly = [{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": p["title"],
                   "author": {"@type": "Person", "name": profile["name"]}, "datePublished": p["date"],
-                  "url": p["url"], "encoding": {"@type": "MediaObject", "contentUrl": f"{SITE_URL}/papers/{p['pdf']}",
+                  "url": p.get("url", f"{SITE_URL}/papers/{p['pdf']}"), "encoding": {"@type": "MediaObject", "contentUrl": f"{SITE_URL}/papers/{p['pdf']}",
                                                 "encodingFormat": "application/pdf"}} for p in papers]
     page("/research/", "Research", body, active="Research", head_extra=jsonld(scholarly),
 

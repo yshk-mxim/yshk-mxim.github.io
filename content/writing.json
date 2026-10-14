@@ -1,5 +1,21 @@
 [
   {
+    "slug": "generalized-search-intelligence",
+    "title": "Enterprise GenAI as Generalized Search Intelligence",
+    "date": "2026-10-14",
+    "venue": "LinkedIn post",
+    "source": "https://www.linkedin.com/posts/yakov-shkolnikov_enterprise-genai-as-generalized-search-intelligence-ugcPost-7516202646739906560-6na9/",
+    "words": 194,
+    "description": "Why enterprise GenAI performs well on some tasks and fails on others of similar difficulty. Read as generalized search over models, retrieval, tools, and human knowledge, it reproduces past decisions without the process behind them. Use simple mechanisms for well-defined tasks and GenAI as a Socratic engine for the rest",
+    "topic": "Work & Economics",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1600,
+      "height": 460,
+      "alt": "Figure 1. Prediction scaling, model inference, and the surrounding harness jointly support enterprise GenAI under the generalized search intelligence (GSI) interpretation. Human process knowledge and judgment supply goals, constraints, and criteria for success."
+    }
+  },
+  {
     "slug": "agentic-loitering-munitions",
     "title": "Agentic Loitering Munitions: The Security Threat Beyond Self-Replication",
     "date": "2026-10-13",
