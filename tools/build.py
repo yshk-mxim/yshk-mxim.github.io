@@ -335,7 +335,9 @@ def bibtex(p):
                 f"  url         = {{{SITE_URL}/papers/{p['pdf']}}}\n}}")
     return (f"@techreport{{{key},\n  title       = {{{p['title']}}},\n  author      = {{Shkolnikov, Yakov P.}},\n"
             f"  year        = {{{year}}},\n  institution = {{SSRN}},\n  type        = {{Working paper}},\n"
-            f"  number      = {{{p['venue'].split()[-1]}}},\n  url         = {{{p['url']}}}\n}}")
+            f"  number      = {{{p['venue'].split()[-1]}}},\n"
+            + (f"  doi         = {{{p['doi']}}},\n" if p.get("doi") else "")
+            + f"  url         = {{{p['url']}}}\n}}")
 
 
 def writing_item(w, show_thumb=True):

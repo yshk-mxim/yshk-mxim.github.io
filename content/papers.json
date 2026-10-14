@@ -3,11 +3,17 @@
     "id": "enterprise-genai-gsi",
     "title": "Enterprise GenAI as Generalized Search Intelligence: Why Performance Is Jagged and Where Humans Remain Essential",
     "date": "2026-10-14",
-    "kind": "Research brief",
-    "venue": "Soundness",
+    "kind": "Working paper",
+    "venue": "SSRN 7611760",
+    "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7611760",
+    "doi": "10.2139/ssrn.7611760",
     "pdf": "shkolnikov-2026-enterprise-genai-gsi.pdf",
-    "pages": 9,
+    "pages": 10,
     "summary": "Generative AI (GenAI) has made substantial progress in performance and usability. Yet its adoption in enterprises has been uneven, and many applications have failed to scale from prototypes to production. To help explain this uneven progress, we suggest that current enterprise GenAI systems can be interpreted as a generalized search intelligence (GSI). Such a system combines knowledge learned from large volumes of text, training that improves the selection of useful outputs, and information retrieved from databases, web searches, and connected tools to enrich the model’s context. This view yields practical heuristics for how organizations should integrate GenAI into their processes.",
+    "archive": {
+      "url": "/papers/shkolnikov-2026-enterprise-genai-gsi-brief.pdf",
+      "label": "Research brief (9 pages)"
+    },
     "related": [
       "generalized-search-intelligence"
     ]
