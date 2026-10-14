@@ -18,7 +18,7 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
@@ -139,6 +139,13 @@ def og_crop(pic):
         # fit the whole image (captions and diagram labels stay visible) on a
         # background taken from the image's own border colour
         im = Image.open(src).convert("RGB")
+        # drop plain margins (a padded figure would otherwise shrink to a strip)
+        corner = im.getpixel((0, 0))
+        box = ImageChops.difference(im, Image.new("RGB", im.size, corner)).point(lambda v: 255 if v > 12 else 0).getbbox()
+        if box:
+            pad = round(0.04 * max(box[2] - box[0], box[3] - box[1]))
+            im = im.crop((max(box[0] - pad, 0), max(box[1] - pad, 0),
+                          min(box[2] + pad, im.width), min(box[3] + pad, im.height)))
         scale = min(OG_W / im.width, OG_H / im.height)
         im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
         edge = [im.getpixel((x, y)) for x in range(0, im.width, 8) for y in (0, im.height - 1)]

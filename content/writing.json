@@ -11,8 +11,8 @@
     "cover": {
       "src": "cover.webp",
       "width": 1600,
-      "height": 460,
-      "alt": "Figure 1. Prediction scaling, model inference, and the surrounding harness jointly support enterprise GenAI under the generalized search intelligence (GSI) interpretation. Human process knowledge and judgment supply goals, constraints, and criteria for success."
+      "height": 1067,
+      "alt": "Figure 2. Shallow searches favor inexpensive, reliable mechanisms for well-defined tasks. Deep searches use an iterative Socratic loop in which people refine questions and verify results."
     }
   },
   {
