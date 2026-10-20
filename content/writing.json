@@ -1,5 +1,21 @@
 [
   {
+    "slug": "beyond-ai-benchmarks",
+    "title": "Beyond AI Benchmarks: Measuring Agreement on What Matters to Business",
+    "date": "2026-10-20",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/beyond-ai-benchmarks-measuring-agreement-what-matters-shkolnikov-xmx1c/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 573,
+    "description": "Benchmarks reward a single predetermined answer, but business decisions often have several acceptable ones, and the right answer changes with timing. Concordance, a decades-old measure of agreement between raters, compares AI outputs with decisions your own experts already made. Disagreements expose weaknesses in the model and in the business process itself",
+    "topic": "Work & Economics"
+  },
+  {
     "slug": "generalized-search-intelligence",
     "title": "Enterprise GenAI as Generalized Search Intelligence",
     "date": "2026-10-14",

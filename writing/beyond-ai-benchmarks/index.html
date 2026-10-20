@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond AI Benchmarks: Measuring Agreement on What Matters to Business · Yakov Shkolnikov</title>
+<meta name="description" content="Benchmarks reward a single predetermined answer, but business decisions often have several acceptable ones, and the right answer changes with timing. Concordance, a decades-old measure of agreement between raters, compares AI outputs with decisions your own experts already made. Disagreements expose weaknesses in the model and in the business process itself.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/beyond-ai-benchmarks/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Beyond AI Benchmarks: Measuring Agreement on What Matters to Business">
+<meta property="og:description" content="Benchmarks reward a single predetermined answer, but business decisions often have several acceptable ones, and the right answer changes with timing. Concordance, a decades-old measure of agreement between raters, compares AI outputs with decisions your own experts already made. Disagreements expose weaknesses in the model and in the business process itself.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/beyond-ai-benchmarks/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/beyond-ai-benchmarks/cover-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Beyond AI Benchmarks: Measuring Agreement on What Matters to Business">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/writing/beyond-ai-benchmarks/cover-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Beyond AI Benchmarks: Measuring Agreement on What Matters to Business", "datePublished": "2026-10-20", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Benchmarks reward a single predetermined answer, but business decisions often have several acceptable ones, and the right answer changes with timing. Concordance, a decades-old measure of agreement between raters, compares AI outputs with decisions your own experts already made. Disagreements expose weaknesses in the model and in the business process itself", "url": "https://yakovshkolnikov.com/writing/beyond-ai-benchmarks/", "isBasedOn": "https://www.linkedin.com/pulse/beyond-ai-benchmarks-measuring-agreement-what-matters-shkolnikov-xmx1c/", "image": "https://yakovshkolnikov.com/writing/beyond-ai-benchmarks/cover-og.jpg"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Beyond AI Benchmarks: Measuring Agreement on What Matters to Business</h1>
+<div class="meta"><time datetime="2026-10-20">October 20, 2026</time><span class="sep">·</span>2 min read<span class="sep">·</span>Work &amp; Economics</div>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/beyond-ai-benchmarks-measuring-agreement-what-matters-shkolnikov-xmx1c/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1280" height="719" style="view-transition-name: hero-beyond-ai-benchmarks"></figure>
+<div class="article-body">
+<p>For executives considering AI adoption, the question is whether the technology can reduce costs or time to revenue sufficiently to justify the investment. Yet the benchmarks used to evaluate AI tell us little about its performance in actual business decisions. Concordance with decisions already made by your organization offers a more direct way to assess whether AI can deliver that value.</p>
+<p>In the modern AI toolkit, benchmarks have become the gold standard for evaluating whether a model performs better than its competitors or previous versions. But improvements in benchmark performance have not necessarily correlated with business outcomes:</p>
+<ul>
+<li>They target problems that may not be related to the ones your organization cares about.</li>
+<li>Subject to Goodhart's law, models are heavily optimized for benchmarks, potentially at the expense of performance that businesses care about.</li></ul>
+<p>Rather than trying to solve the shortcomings of benchmarks by creating even more benchmarks, a better approach may be to directly measure how closely AI outputs agree with decisions already made by your organization, and whether improving either or both could deliver greater business value.</p>
+<h2>The problem with a single right answer</h2>
+<p>Many benchmarks measure how frequently a model provides a predetermined answer. But in business decisions, there may be several equally acceptable answers. Moreover, an answer that is right at one point in time can be horribly wrong at another.</p>
+<p>A demand letter to a large past-due customer who is currently engaged in high-value negotiations may be an appropriate response to the overdue payment, but probably a strategically bad one.</p>
+<p>Whether a part or customer belongs to a specific market, whether to maintain a specific safety stock, which logistics decision to make, or even whom to hire are rarely decisions where the answer is strictly yes or no. Several potential options may be reasonable.</p>
+<h2>Measuring agreement with concordance</h2>
+<p>One way to address this complexity is to measure agreement. A formal method used for decades is <strong><em>concordance</em></strong>, which measures the degree of agreement between two or more raters. In the case of AI, its outputs can be compared with decisions made independently by qualified business stakeholders, using agreement on values, labels, or rankings (for example, of different versions of generated text).</p>
+<p>For the examples above:</p>
+<ul>
+<li><strong>Market classification:</strong> Does the AI classify a customer or part into the same market as a human expert?</li>
+<li><strong>Safety stock:</strong> Does the AI's proposed inventory level agree with the level selected by an experienced planner or a planning system?</li>
+<li><strong>Logistics:</strong> When several supplier options are possible, does the AI reasonably rank the suppliers?</li>
+<li><strong>Customer communications:</strong> Is a generated email acceptable?</li></ul>
+<h2>Other benefits of measuring agreement</h2>
+<p>Measuring the degree of agreement rather than just a pass/fail rate allows the company to understand why decisions differed, whether those differences would affect business performance, and what improvements to data, models, and context could potentially deliver greater value for the money spent.</p>
+<p>Agreement does not, by itself, prove that a decision is correct. But when combined with evaluation of outcomes, your organization gains visibility not only into AI performance but, even more valuably, into the decision-making processes of the company itself.</p>
+<blockquote>Disagreements may identify weaknesses in the AI system, but they may also reveal inconsistencies or opportunities for improvement in existing business processes.</blockquote>
+<h2>What this changes for organizations</h2>
+<p>Raw benchmark evaluations can obscure how model performance translates into business outcomes, along with the hoped-for ROI.</p>
+<p>It also allows you, not the model providers, to define what constitutes acceptable performance.</p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/beyond-ai-benchmarks-measuring-agreement-what-matters-shkolnikov-xmx1c/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/generalized-search-intelligence/"><small>Previous</small>Enterprise GenAI as Generalized Search Intelligence</a><span></span></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated October 20, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>
