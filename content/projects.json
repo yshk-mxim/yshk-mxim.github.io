@@ -79,11 +79,7 @@
         },
         {
           "title": "15 Provisional Patent Applications, Soundness AI",
-          "text": "15 provisional patent applications (2026), currently unassigned."
-        },
-        {
-          "title": "13 Additional Provisional Patents, Safety-Critical AI Architecture",
-          "text": "Coverage spans deterministic safety enforcement, cost-optimized inference routing, source attribution, regulatory-compliant update workflows, evidence-aware text processing, closed-loop clinical monitoring, multi-device AI coordination, population drift detection, and automated compliance verification. Patents cover edge deployment, clinical AI, and enterprise compliance. These are systems built for environments where failure has consequences."
+          "text": "15 provisional patent applications (2026), currently unassigned. Coverage spans deterministic safety enforcement, cost-optimized inference routing, source attribution, regulatory-compliant update workflows, evidence-aware text processing, closed-loop clinical monitoring, multi-device AI coordination, population drift detection, and automated compliance verification, across edge deployment, clinical AI, and enterprise compliance. These are systems built for environments where failure has consequences."
         }
       ]
     },
