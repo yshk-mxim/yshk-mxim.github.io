@@ -27,6 +27,7 @@ NAV = [("Home", "/"), ("Research", "/research/"), ("Writing", "/writing/"), ("Pr
        ("Lab", "/lab/"), ("About", "/about/")]
 TOPICS = ["Trust & Safety", "Agents in Practice", "Work & Economics", "Research Notes",
           "Using AI Well", "Fiction", "Lab Notes"]
+AUDIENCES = [("business", "Leadership & Business"), ("research", "Research & Technical")]
 
 
 def load(name):
@@ -340,6 +341,10 @@ def bibtex(p):
             + f"  url         = {{{p['url']}}}\n}}")
 
 
+def audience(w):
+    return w.get("audience") or ("research" if w.get("topic") in ("Research Notes", "Lab Notes") else "business")
+
+
 def writing_item(w, show_thumb=True):
     t = f'<a href="{e(href(w))}"{"" if is_local(w) else " class=\"ext\" rel=\"noopener\""}>{e(w["title"])}</a>'
     img = ""
@@ -347,7 +352,7 @@ def writing_item(w, show_thumb=True):
     if show_thumb and pic:
         img = f'<a class="thumb-link" href="{e(href(w))}" tabindex="-1" aria-hidden="true">{img_tag(pic, "thumb", width=480, vt=vt_name(w))}</a>'
     cls = "entry has-thumb" if img else "entry"
-    return (f'<li data-topic="{e(w.get("topic", ""))}"><div class="{cls}"><div>'
+    return (f'<li data-topic="{e(w.get("topic", ""))}" data-audience="{audience(w)}"><div class="{cls}"><div>'
             f'<h3>{t}</h3><div class="meta">{writing_meta(w)}<span class="sep">·</span>{e(w.get("topic", ""))}</div>'
             f'<p class="desc">{e(w["description"])}.</p></div>{img}</div></li>')
 
@@ -482,9 +487,12 @@ def build_research():
 def build_writing_index():
     used = [t for t in TOPICS if any(w.get("topic") == t for w in writing)]
     sep = '<span class="sep">·</span>'
-    buttons = "Show: " + sep.join(
+    buttons = ('<div>For: ' + sep.join(
+        [f'<button type="button" aria-pressed="true" data-audience="">Everyone</button>'] +
+        [f'<button type="button" aria-pressed="false" data-audience="{a}">{e(l)}</button>' for a, l in AUDIENCES])
+        + '</div><div>Topic: ' + sep.join(
         [f'<button type="button" aria-pressed="true" data-topic="">All</button>'] +
-        [f'<button type="button" aria-pressed="false" data-topic="{e(t)}">{e(t)}</button>' for t in used])
+        [f'<button type="button" aria-pressed="false" data-topic="{e(t)}">{e(t)}</button>' for t in used]) + '</div>')
     years, blocks = [], []
     for w in writing:
         y = w["date"][:4]
@@ -501,25 +509,33 @@ def build_writing_index():
 <p>{e(profile['pages']['writing'])}</p>
 <p style="margin-top:.8rem">{e(profile['pages']['newsletter'])} {link(links_by['Substack'], 'Subscribe')}</p>
 </div>
-<div class="filters" role="group" aria-label="Filter by topic" hidden>{buttons}</div>
+<div class="filters" role="group" aria-label="Filter writing" hidden>{buttons}</div>
 {''.join(blocks)}
 """
     script = """<script>
 (function(){
   var bar=document.querySelector('.filters'); bar.hidden=false;
-  var btns=bar.querySelectorAll('button'), items=document.querySelectorAll('li[data-topic]');
-  function apply(t){
-    btns.forEach(function(b){b.setAttribute('aria-pressed', b.dataset.topic===t?'true':'false');});
-    items.forEach(function(li){li.hidden = t && li.dataset.topic!==t;});
+  var items=document.querySelectorAll('li[data-topic]'), st={audience:'', topic:''};
+  function apply(){
+    bar.querySelectorAll('button').forEach(function(b){
+      var k=b.dataset.audience!==undefined?'audience':'topic';
+      b.setAttribute('aria-pressed', b.dataset[k]===st[k]?'true':'false');
+    });
+    items.forEach(function(li){
+      li.hidden = (st.audience && li.dataset.audience!==st.audience) || (st.topic && li.dataset.topic!==st.topic);
+    });
     document.querySelectorAll('.year').forEach(function(h){
       var ul=h.nextElementSibling; h.hidden = ul.hidden = !ul.querySelector('li:not([hidden])');
     });
   }
   bar.addEventListener('click',function(ev){
     var b=ev.target.closest('button'); if(!b) return;
-    apply(b.dataset.topic); history.replaceState(null,'',b.dataset.topic?'#'+encodeURIComponent(b.dataset.topic):location.pathname);
+    if(b.dataset.audience!==undefined) st.audience=b.dataset.audience; else st.topic=b.dataset.topic;
+    apply(); var h=st.topic||st.audience;
+    history.replaceState(null,'',h?'#'+encodeURIComponent(h):location.pathname);
   });
-  var h=decodeURIComponent(location.hash.slice(1)); if(h) apply(h);
+  var h=decodeURIComponent(location.hash.slice(1));
+  if(h){ if(bar.querySelector('[data-audience="'+h+'"]')) st.audience=h; else st.topic=h; apply(); }
 })();
 </script>"""
     page("/writing/", "Writing", body, active="Writing", scripts=script,
@@ -636,24 +652,13 @@ def build_projects():
 def build_lab():
     updates = "".join(writing_item({**by_slug[s], "description": lab["descriptions"].get(s, by_slug[s]["description"])})
                       for s in lab["series"] + lab["related"] if s in by_slug)
-    setup = "".join(
-        f'<h3 class="sub">{e(g["title"])}</h3>'
-        f'<dl class="items">{"".join(item_dl(i) for i in g["items"])}</dl>'
-        for g in lab["setup"])
-    ph = lab["philosophy"]
     body = f"""
 <div class="page-head"><h1>The Lab</h1><p>{e(lab['intro'])}</p></div>
-<h2 class="section">Updates</h2>
+<h2 class="section">Announcements</h2>
 <ul class="list">{updates}</ul>
-<h2 class="section">Patents</h2>
-<dl class="items">{item_dl(lab["patents"])}</dl>
-{licensing_note()}
-<h2 class="section">Setup</h2>
-<p class="prose"><strong>{e(ph['title'].replace('The Philosophy: ', ''))}.</strong> {e(ph['text'])}</p>
-{setup}
 """
     page("/lab/", "The Lab", body, active="Lab", og_image=og_crop(pic_of(by_slug[lab["series"][0]])),
-         description="Soundness AI, Yakov Shkolnikov's independent research lab: progress updates and the hardware and tools behind the research.")
+         description="Soundness AI, Yakov Shkolnikov's independent research lab: announcements and progress updates.")
 
 
 def build_about():

@@ -22,7 +22,7 @@
   "authors": "YP Shkolnikov",
   "venue": "Detection and Sensing of Mines, Explosive Objects, and Obscured Targets XVII",
   "year": "2012",
-  "cites": 12,
+  "cites": 13,
   "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:TQgYirikUcIC",
   "kind": "conference"
  },
@@ -49,7 +49,7 @@
   "authors": "SM Kurtz, JA Ochoa, E Lau, Y Shkolnikov, BB Pavri, D Frisch, et al",
   "venue": "Pacing and Clinical Electrophysiology 33 (6), 705-711",
   "year": "2010",
-  "cites": 268,
+  "cites": 269,
   "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:u5HHmVD_uO8C",
   "kind": "journal"
  },
@@ -117,7 +117,7 @@
   "kind": "abstract"
  },
  {
-  "title": "Valley Polarization and Susceptibility of Composite Fermions around a Filling Factor",
+  "title": "Valley Polarization and Susceptibility of Composite Fermions around a Filling Factor ν = 3/2",
   "authors": "NC Bishop, M Padmanabhan, K Vakili, YP Shkolnikov, EP De Poortere, et al",
   "venue": "Physical Review Letters 98 (26), 266404",
   "year": "2007",
@@ -166,7 +166,7 @@
   "authors": "O Gunawan, YP Shkolnikov, K Vakili, T Gokmen, EP De Poortere, et al",
   "venue": "Physical Review Letters 97 (18), 186404",
   "year": "2006",
-  "cites": 429,
+  "cites": 430,
   "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:Tyk-4Ss8FVUC",
   "kind": "journal"
  },
@@ -378,7 +378,7 @@
   "kind": "abstract"
  },
  {
-  "title": "Low-temperature,in situtunable, uniaxial stress measurements in semiconductors using a piezoelectric actuator",
+  "title": "Low-temperature, in situ tunable, uniaxial stress measurements in semiconductors using a piezoelectric actuator",
   "authors": "M Shayegan, K Karrai, YP Shkolnikov, K Vakili, EP De Poortere, S Manus",
   "venue": "Applied Physics Letters 83 (25), 5235-5237",
   "year": "2003",
@@ -387,7 +387,7 @@
   "kind": "journal"
  },
  {
-  "title": "Field-effect persistent photoconductivity in AlAs and GaAs quantum wells withbarriers",
+  "title": "Field-effect persistent photoconductivity in AlAs and GaAs quantum wells with AlₓGa₁₋ₓAs barriers",
   "authors": "EP De Poortere, YP Shkolnikov, M Shayegan",
   "venue": "Physical Review B 67 (15), 153303",
   "year": "2003",
@@ -445,7 +445,7 @@
   "authors": "YP Shkolnikov, EP De Poortere, E Tutuc, M Shayegan",
   "venue": "Physical Review Letters 89 (22), 226805",
   "year": "2002",
-  "cites": 226,
+  "cites": 227,
   "scholar": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=zTtAbu4AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=zTtAbu4AAAAJ:W7OEmFMy1HYC",
   "kind": "journal"
  },

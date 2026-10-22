@@ -45,7 +45,8 @@
     },
     "words": 448,
     "description": "A new Anthropic paper asks whether small models can self-replicate across vulnerable devices, but bandwidth and storage limits make that slow and noisy. The nearer threat needs only a few compromised systems serving models that direct edge devices: low-intensity agents that hide in IoT noise and exploit prompt injection and misconfigured permissions",
-    "topic": "Trust & Safety"
+    "topic": "Trust & Safety",
+    "audience": "research"
   },
   {
     "slug": "simulated-pain",
@@ -109,7 +110,8 @@
     },
     "words": 1152,
     "description": "A test of TypeSafe's Jev decision model against the game-theory benchmark from How to Fake a Theory of Mind. Jev is near-perfect on dominant-strategy games but largely ignores the opponent's payoffs, and scores 30% on second-order false-belief stories while reporting over 70% confidence. It is fast and cheap for scoring options, but it is not a trustworthy decision system",
-    "topic": "Agents in Practice"
+    "topic": "Agents in Practice",
+    "audience": "research"
   },
   {
     "slug": "human-attention",
@@ -141,7 +143,8 @@
     },
     "words": 483,
     "description": "A benchmark for the person writing the prompt rather than the model: draft a wish an adversarial genie cannot twist. You will fail, and that is the point. Natural language conveys intent but never completely specifies it, so more capable agents find more solutions outside the stated goal. Properties that must hold need enforcement outside the model",
-    "topic": "Trust & Safety"
+    "topic": "Trust & Safety",
+    "audience": "research"
   },
   {
     "slug": "benchmark-is-bad",
@@ -157,7 +160,8 @@
     },
     "words": 447,
     "description": "Much of the evaluation-awareness literature reads benchmark sensitivity as scheming. Through the causal framework from the deception paper, a model that scores differently when it detects benchmark formatting shows the oldest lesson in deployed ML: training, test, and deployment data must share a distribution. Recognizing an evaluation's fingerprints is not awareness of being evaluated",
-    "topic": "Trust & Safety"
+    "topic": "Trust & Safety",
+    "audience": "research"
   },
   {
     "slug": "graywick-incident",
@@ -189,7 +193,8 @@
       "height": 719,
       "alt": "Generated with ChatGPT"
     },
-    "words": 547
+    "words": 547,
+    "audience": "research"
   },
   {
     "title": "Do AI Models Deceive, or Are They Just Role-Playing?",
@@ -205,7 +210,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 543
+    "words": 543,
+    "audience": "research"
   },
   {
     "title": "The SaaS Apocalypse Prediction, Four Months On",
@@ -349,7 +355,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 691
+    "words": 691,
+    "audience": "research"
   },
   {
     "title": "Agentic Loops: The Gambler's Fallacy at Cloud Scale",
@@ -429,7 +436,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 1030
+    "words": 1030,
+    "audience": "research"
   },
   {
     "title": "The Humanistic View of AI",
@@ -536,7 +544,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 758
+    "words": 758,
+    "audience": "research"
   },
   {
     "title": "The Monkey Business Inside Your System Prompt",
@@ -552,7 +561,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 1612
+    "words": 1612,
+    "audience": "research"
   },
   {
     "title": "Written by the Thing It's Warning You About",
@@ -624,7 +634,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 547
+    "words": 547,
+    "audience": "research"
   },
   {
     "title": "The AI Model Gives You Balanced Analysis. Balance Is Not Always True",
@@ -747,7 +758,8 @@
       "height": 719,
       "alt": "Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices"
     },
-    "words": 578
+    "words": 578,
+    "audience": "research"
   },
   {
     "title": "Stop Adding AI Slop to Your Word Salad",
@@ -838,7 +850,8 @@
       "height": 720,
       "alt": ""
     },
-    "words": 673
+    "words": 673,
+    "audience": "research"
   },
   {
     "title": "The Selfish Case for Mentorship",
