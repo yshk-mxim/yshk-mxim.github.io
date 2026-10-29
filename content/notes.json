@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "enterprise-agentic-controls-addendum",
+    "title": "Formal Addendum: Enterprise-Wide Agentic Controls — CRM, Calendar, and Customer Notification",
+    "date": "2026-10-28",
+    "kind": "Technical addendum",
+    "summary": "An illustrative formal model of agentic controls across CRM, Calendar, and customer notification. A conditional enterprise safety proposition, a ten-variable booking workflow checked by exhaustive enumeration with zero violations, counterexamples from eight faulty variants, and how the proof obligations scale",
+    "source_md": "enterprise_agentic_controls_formal_addendum_crm_calendar_publication_verified.md"
+  }
+]

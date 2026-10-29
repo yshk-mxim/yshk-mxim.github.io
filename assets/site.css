@@ -264,6 +264,18 @@ figcaption { font-size: .92rem; font-style: italic; color: var(--muted); margin-
 .article-body hr::before { content: "*\2003*\2003*"; color: var(--faint); }
 .article-body pre { font: .88rem/1.55 var(--mono); margin-left: 1.5rem; overflow-x: auto; white-space: pre-wrap; }
 
+.note-body { font-size: clamp(1.02rem, .98rem + .25vw, 1.12rem); }
+.note-body math { font-size: 1.05em; }
+.note-body math[display="block"] { overflow-x: auto; overflow-y: hidden; padding: .25rem 0; }
+.note-body p, .note-body li { overflow-wrap: anywhere; }
+.table-scroll { overflow-x: auto; }
+@media (min-width: 60rem) { .note-body .table-scroll { margin-left: -6rem; margin-right: -6rem; } }
+.notes-list .summary { max-width: var(--measure); }
+.article-body table { border-collapse: collapse; font-size: .9em; line-height: 1.45; min-width: 100%; }
+.article-body th, .article-body td { text-align: left; vertical-align: top; padding: .45rem .7rem .45rem 0; border-bottom: 1px solid var(--rule); }
+.article-body th { font-weight: 600; }
+.article-body td[style*="right"], .article-body th[style*="right"] { text-align: right; }
+.article-body code { font: .85em var(--mono); }
 .article-foot { max-width: var(--measure); margin: 3.5rem auto 0; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-size: 1rem; }
 .article-foot p { margin: 0 0 1rem; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }

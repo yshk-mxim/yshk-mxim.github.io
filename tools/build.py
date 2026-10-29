@@ -36,6 +36,7 @@ def load(name):
 
 profile, papers, writing = load("profile"), load("papers"), load("writing")
 projects, lab, pubs = load("projects"), load("lab"), load("publications")
+notes = load("notes")
 by_slug = {w["slug"]: w for w in writing if w.get("slug")}
 links_by = {l["label"]: l["url"] for l in profile["links"]}
 local_by_source = {w["source"].rstrip("/"): f"/writing/{w['slug']}/" for w in writing if w.get("slug")}
@@ -460,6 +461,12 @@ def build_research():
 </div></div></li>""")
     software = [i for g in projects["groups"] if g["title"] == "Open source" for i in g["items"] if i.get("url")]
     sw = "".join(item_dl(i) for i in software)
+    notes_section = ""
+    if notes:
+        ni = "".join(f'''<li id="{n['slug']}"><h3><a href="/research/{n['slug']}/">{e(n['title'])}</a></h3>
+<div class="meta">{e(n['kind'])}<span class="sep">·</span>{fmt_date(n['date'])}</div>
+<p class="summary">{e(n['summary'])}</p></li>''' for n in notes)
+        notes_section = f'<h2 class="section" id="notes">Technical notes</h2>\n<ul class="list notes-list">{ni}</ul>'
     body = f"""
 <div class="page-head">
 <h1>Research</h1>
@@ -468,6 +475,7 @@ def build_research():
 </div>
 <h2 class="section">Preprints and working papers, 2026</h2>
 <ul class="list">{''.join(items)}</ul>
+{notes_section}
 <h2 class="section" id="publications">Publications, 2002&ndash;2013</h2>
 <p class="prose">{e(profile['scholar'])} Citation counts are from {link('https://scholar.google.com/citations?user=zTtAbu4AAAAJ&hl=en', 'Google Scholar')}.</p>
 {publications_html()}
@@ -617,6 +625,28 @@ def build_articles():
              head_extra=jsonld(ld), description=w["description"] + ".")
 
 
+def build_notes():
+    for n in notes:
+        body_html = (CONTENT / "notes" / f"{n['slug']}.html").read_text()
+        body = f"""
+<article>
+<header class="article-head">
+<a class="crumb" href="/research/">&larr; Research</a>
+<h1>{e(n['title'])}</h1>
+<div class="meta">{e(profile['name'])}<span class="sep">·</span>{e(n['kind'])}<span class="sep">·</span><time datetime="{n['date']}">{fmt_date(n['date'])}</time></div>
+</header>
+<div class="article-body note-body">
+{body_html}
+</div>
+</article>
+"""
+        ld = {"@context": "https://schema.org", "@type": "TechArticle", "headline": n["title"],
+              "datePublished": n["date"], "author": {"@type": "Person", "name": profile["name"], "url": SITE_URL},
+              "description": n["summary"], "url": f"{SITE_URL}/research/{n['slug']}/"}
+        page(f"/research/{n['slug']}/", n["title"], body, active="Research", og_type="article",
+             head_extra=jsonld(ld), description=n["summary"] + ".")
+
+
 def item_dl(i):
     title = link(i["url"], e(i["title"])) if i.get("url") else e(i["title"])
     extra = ""
@@ -732,6 +762,7 @@ def main():
     build_research()
     build_writing_index()
     build_articles()
+    build_notes()
     build_projects()
     build_lab()
     build_about()
@@ -739,6 +770,7 @@ def main():
     build_feed()
     paths = ["/", "/research/", "/writing/", "/projects/", "/lab/", "/about/"]
     paths += [f"/writing/{w['slug']}/" for w in writing if is_local(w)]
+    paths += [f"/research/{n['slug']}/" for n in notes]
     paths += [f"/papers/{p['pdf']}" for p in papers]
     paths.append("/employment_july_2026.html")
     build_sitemap(paths)
