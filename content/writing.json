@@ -1,5 +1,22 @@
 [
   {
+    "slug": "three-questions-i-ask-before-investing-rd",
+    "title": "Three Questions I Ask Before Investing in R&D",
+    "date": "2026-10-27",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/three-questions-i-ask-before-investing-rd-yakov-shkolnikov-phiyc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 518,
+    "description": "Early in my career, I was skeptical of simple rules for making business decisions. Later, I've come to appreciate how three simple questions can help avoid investing in technologies that may never produce value. But when does investment discipline become a barrier to innovation?",
+    "topic": "Work & Economics",
+    "audience": "research"
+  },
+  {
     "slug": "beyond-ai-benchmarks",
     "title": "Beyond AI Benchmarks: Measuring Agreement on What Matters to Business",
     "date": "2026-10-20",
