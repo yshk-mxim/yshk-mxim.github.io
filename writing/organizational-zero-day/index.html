@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day · Yakov Shkolnikov</title>
+<meta name="description" content="An organization&#x27;s attack surface extends to vendors, employees&#x27; families, personal accounts, and the AI agents people rely on. Inexpensive self-hosted LLMs can map these exposures for months, waiting for an attack chain to form. Compromising one critical employee or supplier may be enough to handicap the entire organization.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/organizational-zero-day/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day">
+<meta property="og:description" content="An organization&#x27;s attack surface extends to vendors, employees&#x27; families, personal accounts, and the AI agents people rely on. Inexpensive self-hosted LLMs can map these exposures for months, waiting for an attack chain to form. Compromising one critical employee or supplier may be enough to handicap the entire organization.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/organizational-zero-day/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/organizational-zero-day/cover-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/writing/organizational-zero-day/cover-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day", "datePublished": "2026-11-02", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "An organization's attack surface extends to vendors, employees' families, personal accounts, and the AI agents people rely on. Inexpensive self-hosted LLMs can map these exposures for months, waiting for an attack chain to form. Compromising one critical employee or supplier may be enough to handicap the entire organization", "url": "https://yakovshkolnikov.com/writing/organizational-zero-day/", "isBasedOn": "https://www.linkedin.com/pulse/agentic-loitering-munitions-glide-path-organizational-shkolnikov-fbkhc/", "image": "https://yakovshkolnikov.com/writing/organizational-zero-day/cover-og.jpg"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day</h1>
+<div class="meta"><time datetime="2026-11-02">November 2, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Trust &amp; Safety</div>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/agentic-loitering-munitions-glide-path-organizational-shkolnikov-fbkhc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1280" height="719" style="view-transition-name: hero-organizational-zero-day"></figure>
+<div class="article-body">
+<p>Recently, I wrote about <em>agentic loitering munitions</em>: persistent AI agents that can quietly wait for opportunities to attack the enterprise network. While that article focused on threats to networks, a much bigger threat is that this technology can attack the organization itself.</p>
+<h2>Human networks</h2>
+<p>An organization is a system of people, technologies, and relationships, with an attack surface extending far beyond its employees and devices.</p>
+<p>Its job postings, social media announcements, and employee profiles reveal clues about technology deployments and organizational structures. Leaked credentials and stolen session tokens provide potential ways to bypass access controls. This extends to vendors, contractors, and other supply-chain partners that have their own people and system exposures.</p>
+<p>An organization's employees also have lives outside work. Their spouses, children, friends, and other trusted relationships connect them to personal devices and social network accounts that corporate security teams typically don't observe. Employees may share passwords and even passkeys, while credential-recovery mechanisms create dependencies beyond the corporate identity system. Advertising networks and data brokers may also expose information about individuals' locations and routines.</p>
+<p>Knowledge of these exposures isn't new. Human-centered attack graphs and multi-stage social engineering have been proposed in security research, and elements of AI-assisted operations have already been observed. State intelligence agencies have long cultivated human targets and exploited organizational graphs of people and technology to steal secrets.</p>
+<p>But these operations were expensive, relying on skilled human labor and difficult manual investigations.</p>
+<blockquote><strong>AI changes the economics.</strong></blockquote>
+<p>A persistent intelligence system can perform substantial portions of this analysis using inexpensive, self-hosted LLMs to continuously monitor organizational weaknesses. It can propose hypothetical attack paths, perform investigations, and revisit the list of weaknesses over months or years, waiting for additional weaknesses to create a successful attack chain.</p>
+<p>But this isn't simply cheaper reconnaissance. GenAI provides the ability to preserve findings and be selective about when to expend resources. Rather than indiscriminately phishing or monitoring cell-phone locations, an adversarial AI system can use this information to manipulate trust, blackmail, and otherwise compromise relationships extending beyond work.</p>
+<p>Replying to a discussion-board post about someone's hobby may be more credible than a corporate phishing email. An otherwise ordinary discussion could become a vehicle for a tailored malicious download, disguised as something useful, such as a fishing planner. And the availability of capable open-weight cybersecurity models makes this easier than ever before.</p>
+<p>Attacks could also target not only people employees trust, but the AI agents they rely on. Think of a mass gaslighting attack in which agents are fed false information to influence employee decisions or cause them to disregard user instructions.</p>
+<p>An adversary may need to compromise only one critical employee or supplier to handicap the entire organization.</p>
+<blockquote><strong>This is the glide path to an organizational zero-day.</strong></blockquote>
+<p>This is not necessarily an attack exploiting an unknown software vulnerability. It is a large-scale, AI-mediated attack on the individual decision-makers of a company and the technologies they rely on.</p>
+<p>AI effectively gives non-state actors selected capabilities that historically required state-actor resources, while giving state actors a large force multiplier.</p>
+<p>And the cat is already out of the bag, with much of the agent infrastructure and capability already broadly disseminated.</p>
+<h2>Defense unknown</h2>
+<p>This new reality requires thinking beyond conventional security protections: approved devices, verified individuals, device-bound sessions, and verification of intent.</p>
+<p>Even if all four were broadly enforced—far beyond what is currently standard—they would not be sufficient.</p>
+<p>Beyond these protections, we need ways to establish the integrity and provenance of information, including agent-generated information, that leads to consequential authorization decisions. I don't think we yet have a complete solution to that problem.</p>
+<p>We have spent decades securing technical networks. But the next adversary will attack the human network as well.</p>
+<blockquote><strong>And the organizational zero-day may not be a vulnerability in any individual product. It may be a vulnerability in the organization itself.</strong></blockquote>
+<p>Previous article: <a href="https://yakovshkolnikov.com/writing/agentic-loitering-munitions/">https://yakovshkolnikov.com/writing/agentic-loitering-munitions/</a></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/agentic-loitering-munitions-glide-path-organizational-shkolnikov-fbkhc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/specify-the-transitions/"><small>Previous</small>Enterprise-Wide Agentic Autonomy: Specify the Transitions, Not Just the Gate</a><span></span></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated November 6, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>

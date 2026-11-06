@@ -1,5 +1,38 @@
 [
   {
+    "slug": "organizational-zero-day",
+    "title": "Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day",
+    "date": "2026-11-02",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/agentic-loitering-munitions-glide-path-organizational-shkolnikov-fbkhc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 641,
+    "description": "An organization's attack surface extends to vendors, employees' families, personal accounts, and the AI agents people rely on. Inexpensive self-hosted LLMs can map these exposures for months, waiting for an attack chain to form. Compromising one critical employee or supplier may be enough to handicap the entire organization",
+    "topic": "Trust & Safety"
+  },
+  {
+    "slug": "specify-the-transitions",
+    "title": "Enterprise-Wide Agentic Autonomy: Specify the Transitions, Not Just the Gate",
+    "date": "2026-10-29",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/enterprise-wide-agentic-autonomy-specify-transitions-just-shkolnikov-x1qrc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1279,
+      "height": 720,
+      "alt": ""
+    },
+    "words": 813,
+    "description": "Confining agents to single applications removes most of the value of autonomy but keeps much of the risk. Enterprise-scale agents need a map of permitted business states and transitions, because a later rollback does not undo a forbidden intermediate state, such as a customer notified of a meeting never committed to the calendar",
+    "topic": "Agents in Practice",
+    "audience": "research"
+  },
+  {
     "slug": "three-questions-i-ask-before-investing-rd",
     "title": "Three Questions I Ask Before Investing in R&D",
     "date": "2026-10-27",

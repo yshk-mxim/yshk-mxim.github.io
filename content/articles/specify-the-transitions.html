@@ -1,0 +1,47 @@
+<p>This week's article zooms out to expand the scope from single task agents to organization-scale agents.</p>
+
+<p>Correctly and securely implemented agentic AI can offer something different from a traditional digital transformation push. The promise is that agents can independently plan and execute complex workflows that react both to user requests and to the data to create complex work product.</p>
+
+<blockquote>Limiting agents to individual applications and predefined workflows requiring human triggers or approval removes much of that value. Ironically, a poorly configured limited agentic use may still expose the company to much of the security and execution risk, just without the upside of the autonomy.</blockquote>
+
+<p>Two of my recent preprints provide some insight I've used in resolving this at enterprise scale. The question here is how to prove that the enterprise remains within permitted business states and transitions when autonomous agents operate across connected systems. But with autonomous agents, the specification has to cover every execution trajectory admitted by the model, not just a fixed workflow.</p>
+
+<p>The uncomfortable part of the following formal process is to realize that you cannot determine the trajectory of agents and that it requires you to fully admit to risks of connected tools and systems.</p>
+
+<blockquote>But the advantage is that you can establish bounded execution under a verified specification and implementation, and separately measure typical cost and risk of execution of the overall system.</blockquote>
+
+<p>One complication for enterprise-scale applications is that even a transition between otherwise allowed states may be disallowed, and intermediate states may themselves be forbidden. For example, a business operating a CRM and a calendar application, may require both systems to agree and the system cannot enter a state where only one has been updated. A later rollback does not make a forbidden intermediate state acceptable. Both the resulting states and the transitions themselves must be permitted. For example, the CRM may have already notified a customer of a meeting that was never committed to the calendar.</p>
+
+<blockquote>Rolling back the CRM record doesn't remove the impact of the false notification to the customer.</blockquote>
+
+<p>This implies not only authentication and authorization but also a detailed map of allowed states and transitions between states the system is allowed to operate in. Especially with adversarial agentic threats, the system should never end in an undefined state or have an uncovered transition between states.</p>
+
+<p><strong>Sketch of the formal proofs for autonomous enterprise-scale agents</strong></p>
+
+<p>Most of the building blocks are standard formal methods (Jones; Abadi–Lamport; TLA+ at AWS).</p>
+
+<p>The formal proof of safety within the specification begins by verifying that the initial states meet the enterprise requirements, and that every transition admitted by the system preserves the required invariants and satisfies its authorization and trust conditions.</p>
+
+<p>Again, a formal guarantee is only as good as the completeness of the specification and the demonstrated conformity of the actual enterprise systems to it. Incomplete specifications and incorrect assumptions pose the same risk to the verification as incorrect execution.</p>
+
+<p>The enterprise, not the agentic framework owner, must define and maintain this specification. Especially when the connected systems include those not provided by the agentic vendor. Agent frameworks can provide enforcement points, but cannot define the business requirements of the systems they connect.</p>
+
+<p>Start with a threat scenario, standards, and inventory of systems and tools the agent has access to. Reduce risk by adding known controls (SQL injection for example), removing tools and system access that the agent doesn't need to execute, and instrument the traces the agentic system uses to navigate the system.</p>
+
+<p>The inventory and formal requirements must be enterprise-wide from the outset and the inventory cannot stop just at the tools exposed to an individual agent and must consider downstream side effects of agentic actions. This includes asynchronous operations, other agents, people, persistent agent state, and changes originating outside the agentic framework. It also requires verification of consistency of requirements and authorization.</p>
+
+<p>At enterprise scale, completing the proof will likely require business processes to be decomposed into subdomains to fully map out interface agreements and make requirements mapping tractable. But composability of all admitted interactions itself should be a subject of the proof so that agents can be permitted to operate across subdomains, rather than confined to individual applications.</p>
+
+<p>An agent’s ability to approve and delegate actions within their assigned authority should also be incorporated as the approval is itself an enterprise state transition.</p>
+
+<p>Stress-test to add in out-of-distribution data, agentic attacks, including Byzantine behavior and advanced persistent threats. This provides some margin to hopefully a lower threat deployment environment you will face.</p>
+
+<p>The final verification proof and its assumptions should be recorded and rechecked when enterprise systems are updated or replaced, with periodic checks for changes that were not reported.</p>
+
+<p>Related preprints:</p>
+
+<p>Composable Trust for Language Models: <a href="https://arxiv.org/abs/2607.13149">https://arxiv.org/abs/2607.13149</a></p>
+
+<p>Artificial Id: Drive and Persistent Alignment in Agentic AI: <a href="https://arxiv.org/abs/2609.11911">https://arxiv.org/abs/2609.11911</a></p>
+
+<p>Formal Addendum: Enterprise-Wide Agentic Controls — CRM, Calendar, and Customer Notification<em>:</em><a href="https://yakovshkolnikov.com/research/enterprise-agentic-controls-addendum/">https://yakovshkolnikov.com/research/enterprise-agentic-controls-addendum/</a></p>
