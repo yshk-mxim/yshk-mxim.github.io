@@ -1,5 +1,21 @@
 [
   {
+    "slug": "ai-needs-human-interface-revolution",
+    "title": "AI Needs a Human Interface Revolution",
+    "date": "2026-11-10",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/ai-needs-human-interface-revolution-yakov-shkolnikov-dqoec/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 631,
+    "description": "Modern AI products return information word by word, reminiscent of an Internet Gopher client over a slow connection, as if the graphical Web had never happened. Streaming tokens are a technical delivery mechanism, not a human-interface design principle. Human oversight of AI will be limited without visual display that lets people review, compare, and act on information",
+    "topic": "Using AI Well"
+  },
+  {
     "slug": "organizational-zero-day",
     "title": "Agentic Loitering Munitions: A Glide Path to an Organizational Zero-Day",
     "date": "2026-11-02",

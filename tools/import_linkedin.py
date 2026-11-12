@@ -234,9 +234,33 @@ def import_archive(path, slugs):
         return import_substack(p, soup, resources, slugs)
     art = soup.find("article")
     link = soup.find("link", rel="canonical")
-    source = canonical(link["href"] if link else p["WebMainResource"]["WebResourceURL"])
-    slug = slugs.get(source) or slug_from_url(source)
+    if art is None:  # newer saves keep the article in a preload subframe
+        for sf in p.get("WebSubframeArchives", []):
+            sub = BeautifulSoup(sf["WebMainResource"]["WebResourceData"].decode("utf-8", "replace"),
+                                "html.parser")
+            if sub.find("article"):
+                art = sub.find("article")
+                link = link or sub.find("link", rel="canonical")
+                resources.update({r["WebResourceURL"]: r["WebResourceData"]
+                                  for r in sf.get("WebSubresources", [])})
+                break
     title = " ".join(art.find("h1").get_text(" ", strip=True).split())
+    url = link["href"] if link else p["WebMainResource"]["WebResourceURL"]
+    if "/pulse/" not in url:  # saved from the feed; find the article's own URL in the page
+        # LinkedIn drops short words, so match the URL's words in order against the title's
+        words = re.findall(r"[a-z0-9]+", title.lower())
+        html = p["WebMainResource"]["WebResourceData"].decode("utf-8", "replace")
+
+        def matches(u):
+            it = iter(words)
+            got = slug_from_url(u).split("-")
+            return len(got) >= len(words) // 2 and all(w in it for w in got)
+        hits = [u for u in re.findall(r"https://www\.linkedin\.com/pulse/[a-z0-9-]+", html)
+                if matches(u)]
+        if hits:
+            url = hits[0]
+    source = canonical(url)
+    slug = slugs.get(source) or slug_from_url(source)
     t = art.find("time")
     date = datetime.strptime(t.get_text(strip=True), "%B %d, %Y").strftime("%Y-%m-%d")
 
@@ -244,7 +268,8 @@ def import_archive(path, slugs):
     for old in img_dir.glob("*.webp"):
         old.unlink()
     cover = None
-    head_img = art.find("header").find("img")
+    head_img = (art.find("header").find("img", class_="reader-cover-image__img")
+                or art.find("header").find("img"))
     if head_img and resources.get(head_img.get("src")):
         name, w, h = save_image(resources[head_img["src"]], img_dir, "cover")
         cap = art.find("header").find("figcaption")
