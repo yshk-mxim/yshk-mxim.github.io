@@ -9,10 +9,20 @@
           "url": "https://github.com/yshk-mxim/secure-browser"
         },
         {
+          "title": "LLM Trust: Composable Trust for Language Models",
+          "text": "Reference implementation of a proven authority boundary and a measured prompt-injection defense for language models. Code for the Composable Trust paper.",
+          "url": "https://github.com/yshk-mxim/llm-trust"
+        },
+        {
           "title": "SKIFF: Container Manager for Zero Trust Environments",
           "text": "Open-source container manager built for GCP and zero-trust workstations. Avoids nested virtualization and privileged socket mounts. Talks to the daemon over SSH with nothing persistent on the container host. Four-tier test suite, 94% coverage floor, anti-pattern linter, and per-framework compliance evidence (OWASP ASVS, NIST SSDF, NIST CSF, SLSA, CIS Docker Benchmark). MIT-licensed.",
           "url": "https://github.com/yshk-mxim/skiff-container-manager",
           "writing": "skiff"
+        },
+        {
+          "title": "RepNet: Linear-Phase Explainable Neural Networks",
+          "text": "Explainable networks built with SVD initialization, activation morphing, and an anti-superposition (d≤K) constraint. Code for the Bit-Identical Medical Deep Learning paper.",
+          "url": "https://github.com/yshk-mxim/repnet"
         },
         {
           "title": "Agent Memory: Persistent KV Cache for Multi-Agent Inference",
@@ -38,10 +48,6 @@
           "text": "Ensemble forecasting system designed for longevity, still running after a decade. Companion supply chain optimization algorithms for inventory risk-sizing, pricing integrity, and margin protection. Designed as integrated systems where ML, data engineering, and business logic are treated as a unified whole."
         },
         {
-          "title": "Neural DSP for Edge Deployment",
-          "text": "Replacing traditional signal processing pipelines with learned models for embedded systems. Targeting Cortex-M class MCUs and small NPUs. Neurosymbolic approaches that preserve physics constraints while reducing compute by orders of magnitude."
-        },
-        {
           "title": "Stateful Agent Architecture for Low-Latency Retrieval",
           "text": "Memory-safe context management for agentic workflows. Persistent state segmentation with retrieval from short contexts at low latency and low hallucination. Treats jailbreak detection as a buffer overflow problem."
         },
@@ -60,10 +66,6 @@
     {
       "title": "Safety-critical and clinical",
       "items": [
-        {
-          "title": "Agentic AI for Heart Failure Management",
-          "text": "Biomarker-driven heart failure system-of-care. Scalable to all patients in all care settings."
-        },
         {
           "title": "Computer Vision & Audio Sensing for Implantable Devices",
           "text": "Peer-reviewed publications in medical technology."
