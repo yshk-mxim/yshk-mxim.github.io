@@ -4,6 +4,11 @@
       "title": "Open source",
       "items": [
         {
+          "title": "Secure Browser: Disposable VPN-Locked Chrome for Untrusted Websites",
+          "text": "Disposable, VPN-locked Chrome for exploring untrusted websites on a Mac. Each session runs in a throwaway Apple Container VM and reaches Safari as pixels only, so a hostile page never touches the host. WireGuard kill switch, JIT disabled, enterprise policies, and self-updating rebuilds. Alpha. MIT-licensed.",
+          "url": "https://github.com/yshk-mxim/secure-browser"
+        },
+        {
           "title": "SKIFF: Container Manager for Zero Trust Environments",
           "text": "Open-source container manager built for GCP and zero-trust workstations. Avoids nested virtualization and privileged socket mounts. Talks to the daemon over SSH with nothing persistent on the container host. Four-tier test suite, 94% coverage floor, anti-pattern linter, and per-framework compliance evidence (OWASP ASVS, NIST SSDF, NIST CSF, SLSA, CIS Docker Benchmark). MIT-licensed.",
           "url": "https://github.com/yshk-mxim/skiff-container-manager",
