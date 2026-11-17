@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Making AI Worth Relying On · Yakov Shkolnikov</title>
+<meta name="description" content="Local models such as Gemma 4 26B-A4B now run on a laptop and could summarize a 300-page document in under 80 seconds. Moving everyday inference onto employee machines would make AI cheap enough to stop metering, private enough to trust, and a resilient backbone when the cloud or a data center goes down.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/making-ai-worth-relying/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="Making AI Worth Relying On">
+<meta property="og:description" content="Local models such as Gemma 4 26B-A4B now run on a laptop and could summarize a 300-page document in under 80 seconds. Moving everyday inference onto employee machines would make AI cheap enough to stop metering, private enough to trust, and a resilient backbone when the cloud or a data center goes down.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/making-ai-worth-relying/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/making-ai-worth-relying/cover-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="This image is generated with ChatGPT">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/writing/making-ai-worth-relying/cover-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Making AI Worth Relying On", "datePublished": "2026-11-17", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Local models such as Gemma 4 26B-A4B now run on a laptop and could summarize a 300-page document in under 80 seconds. Moving everyday inference onto employee machines would make AI cheap enough to stop metering, private enough to trust, and a resilient backbone when the cloud or a data center goes down", "url": "https://yakovshkolnikov.com/writing/making-ai-worth-relying/", "isBasedOn": "https://www.linkedin.com/pulse/making-ai-worth-relying-yakov-shkolnikov-2j2yc/", "image": "https://yakovshkolnikov.com/writing/making-ai-worth-relying/cover-og.jpg"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>Making AI Worth Relying On</h1>
+<div class="meta"><time datetime="2026-11-17">November 17, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Work &amp; Economics</div>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/making-ai-worth-relying-yakov-shkolnikov-2j2yc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="This image is generated with ChatGPT" width="1280" height="719" style="view-transition-name: hero-making-ai-worth-relying"><figcaption>This image is generated with ChatGPT</figcaption></figure>
+<div class="article-body">
+<p><strong>AI needs to be inexpensive enough for everyday use, secure enough to trust, and local and distributed enough to provide a backbone for resilience against data-center and cloud outages.</strong></p>
+<p>In the past year, AI has undergone an interesting transition. It has become useful enough for workflows and users to rely on it. But as AI spending has grown, we've started to limit which users can access AI and how much they can use it, while still treating its uptime as optional.</p>
+<p>And yet this is an anomaly. We don't limit how many documents employees can edit in Word, how many calculations they can execute in Excel, how many emails they can send, or how many websites they can visit, within reason, on company computers. Nor do we treat the ability to do those day-to-day tasks as optional.</p>
+<h2>Yesterday's Frontier AI, Today's Laptop</h2>
+<figure><img alt="Single-user server grade performance on laptop" height="837" loading="lazy" src="fig-1.webp" width="1488"/><figcaption>Single-user server grade performance on laptop</figcaption></figure>
+<p>With most of the focus on the frontier models, a no less significant revolution has been getting much less coverage. That is that local AI running directly on low-powered hardware is getting good enough to support real work.</p>
+<p>Consider Google's Gemma 4 26B-A4B. Its published intelligence benchmarks put it roughly at the level of GPT-4.5 and o3-mini High. Not across the board, but with web search from <a href="https://www.linkedin.com/company/youdotcom/">You.com</a>, enterprise context from Microsoft Work IQ, and a good harness, it may be more useful in many practical workflows.</p>
+<p>But unlike those frontier models, Gemma 4 can run on a local laptop.</p>
+<p>And it isn't a slouch either. To give you an idea of speed, based on measured inference rates, using the Soundness technology stack on an M5 Max laptop, processing a dense, 300-page business document and generating a two-page summary would take less than 80 seconds. Combined with an optimal caching strategy, such as with Agent Memory, returning to the same document even days later would take less than 20 seconds. And application-specific optimizations can drive performance much further.</p>
+<h2>Why This Matters for Enterprises</h2>
+<p>I expect much of the inference that runs in the cloud today to move onto employee computers and other local computing infrastructure.</p>
+<blockquote>Companies will gain a local computing backbone for resilience to cloud and data-center outages, less dependence on centralized services, greater security and privacy, and more predictable budgets.</blockquote>
+<p>It will give employees freedom to experiment, automate repetitive tasks, and create scripts, the equivalent of Word and Excel macros, without requiring large IT projects or multi-day workshops to enable that capability.</p>
+<p>And this will reduce the need for financial controls around every interaction. We don't track every spreadsheet calculation. Why should we budget for every AI inference call?</p>
+<h2>A Different Computing Economy</h2>
+<p>Microsoft's Foundry Local, Apple's Foundation Models framework, AWS Strands Agents, and Google's LiteRT-LM already point toward that transition: a future with a more graduated split between local and cloud computing, including application-specific AI on phones and in SaaS applications, laptop-class AI, enterprise data-center AI, and cloud-scale AI.</p>
+<p>Moreover, rather than friction between intelligence, cost, and security, each of these axes can reinforce the others. An agent that knows the policy doesn't need to waste compute on disallowed behavior, and by restricting its outputs to permitted outcomes, it becomes more likely to be right.</p>
+<p>These improvements, combined with scalable architecture, enterprise controls, and out-of-the-box configuration, can improve enterprise ROI from both sides: higher returns and lower required investment.</p>
+<hr/>
+<p>At <strong>Soundness AI</strong>, our vision is to make this transition practical: intelligence that is highly secure and governed, resilient, and too cheap to meter for day-to-day use.</p>
+<p><strong>See related previous articles:</strong></p>
+<ul>
+<li><a href="/writing/server-speed-agents-on-a-laptop/">Server-Speed Multi-Turn Agentic AI and Long-Term Agent Persistence (Agent Memory)</a></li>
+<li><a href="https://www.linkedin.com/newsletters/beyond-ai-s-jagged-frontier-7525955150436466690/">Beyond AI's Jagged Frontier — LinkedIn Newsletter</a></li>
+<li>Featured articles on my LinkedIn profile</li></ul>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/making-ai-worth-relying-yakov-shkolnikov-2j2yc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/agentic-snowball-effect/"><small>Previous</small>The Agentic Snowball Effect</a><span></span></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated November 17, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://www.linkedin.com/newsletters/beyond-ai-s-jagged-frontier-7525955150436466690/" rel="noopener">LinkedIn Newsletter</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>

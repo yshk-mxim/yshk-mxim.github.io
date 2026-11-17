@@ -1,5 +1,37 @@
 [
   {
+    "slug": "making-ai-worth-relying",
+    "title": "Making AI Worth Relying On",
+    "date": "2026-11-17",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/making-ai-worth-relying-yakov-shkolnikov-2j2yc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": "This image is generated with ChatGPT"
+    },
+    "words": 616,
+    "description": "Local models such as Gemma 4 26B-A4B now run on a laptop and could summarize a 300-page document in under 80 seconds. Moving everyday inference onto employee machines would make AI cheap enough to stop metering, private enough to trust, and a resilient backbone when the cloud or a data center goes down",
+    "topic": "Work & Economics"
+  },
+  {
+    "slug": "agentic-snowball-effect",
+    "title": "The Agentic Snowball Effect",
+    "date": "2026-11-13",
+    "venue": "LinkedIn",
+    "source": "https://www.linkedin.com/pulse/agentic-snowball-effect-yakov-shkolnikov-5npbc/",
+    "cover": {
+      "src": "cover.webp",
+      "width": 1280,
+      "height": 719,
+      "alt": ""
+    },
+    "words": 796,
+    "description": "Per-agent limits do not bound system load. One employee search can fan out through emails, meetings, and documents into hundreds of agent and tool calls, and retries against a struggling system make it worse. Enterprises need limits on total load across the whole system, or agents can exhaust budgets and degrade shared services",
+    "topic": "Agents in Practice"
+  },
+  {
     "slug": "ai-needs-human-interface-revolution",
     "title": "AI Needs a Human Interface Revolution",
     "date": "2026-11-10",

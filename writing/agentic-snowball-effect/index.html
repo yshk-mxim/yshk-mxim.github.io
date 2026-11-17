@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Agentic Snowball Effect · Yakov Shkolnikov</title>
+<meta name="description" content="Per-agent limits do not bound system load. One employee search can fan out through emails, meetings, and documents into hundreds of agent and tool calls, and retries against a struggling system make it worse. Enterprises need limits on total load across the whole system, or agents can exhaust budgets and degrade shared services.">
+<meta name="author" content="Yakov Shkolnikov">
+<link rel="canonical" href="https://yakovshkolnikov.com/writing/agentic-snowball-effect/">
+<link rel="alternate" type="application/rss+xml" title="Yakov Shkolnikov: Writing" href="/feed.xml">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7f1d1d">
+<meta property="og:site_name" content="Yakov Shkolnikov">
+<meta property="og:title" content="The Agentic Snowball Effect">
+<meta property="og:description" content="Per-agent limits do not bound system load. One employee search can fan out through emails, meetings, and documents into hundreds of agent and tool calls, and retries against a struggling system make it worse. Enterprises need limits on total load across the whole system, or agents can exhaust budgets and degrade shared services.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yakovshkolnikov.com/writing/agentic-snowball-effect/">
+<meta property="og:image" content="https://yakovshkolnikov.com/writing/agentic-snowball-effect/cover-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Agentic Snowball Effect">
+<meta name="twitter:image" content="https://yakovshkolnikov.com/writing/agentic-snowball-effect/cover-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preload" href="/assets/fonts/source-serif-4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Agentic Snowball Effect", "datePublished": "2026-11-13", "author": {"@type": "Person", "name": "Yakov Shkolnikov", "url": "https://yakovshkolnikov.com"}, "description": "Per-agent limits do not bound system load. One employee search can fan out through emails, meetings, and documents into hundreds of agent and tool calls, and retries against a struggling system make it worse. Enterprises need limits on total load across the whole system, or agents can exhaust budgets and degrade shared services", "url": "https://yakovshkolnikov.com/writing/agentic-snowball-effect/", "isBasedOn": "https://www.linkedin.com/pulse/agentic-snowball-effect-yakov-shkolnikov-5npbc/", "image": "https://yakovshkolnikov.com/writing/agentic-snowball-effect/cover-og.jpg"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="site-name" href="/">Yakov Shkolnikov</a>
+<div class="header-right">
+<nav class="site-nav" aria-label="Main"><a href="/">Home</a><a href="/research/">Research</a><a href="/writing/" aria-current="page">Writing</a><a href="/projects/">Projects</a><a href="/lab/">Lab</a><a href="/about/">About</a></nav>
+<button class="theme-toggle" type="button" hidden aria-label="Switch colour theme"></button>
+</div>
+</div></header>
+<main id="main" class="wrap">
+<article>
+<header class="article-head">
+<a class="crumb" href="/writing/">&larr; Writing</a>
+<h1>The Agentic Snowball Effect</h1>
+<div class="meta"><time datetime="2026-11-13">November 13, 2026</time><span class="sep">·</span>3 min read<span class="sep">·</span>Agents in Practice</div>
+<p class="origin">Originally published on LinkedIn. <a href="https://www.linkedin.com/pulse/agentic-snowball-effect-yakov-shkolnikov-5npbc/" class="ext" rel="noopener">Read the original</a></p>
+</header>
+<figure class="cover"><img src="cover.webp" alt="" width="1280" height="719" style="view-transition-name: hero-agentic-snowball-effect"></figure>
+<div class="article-body">
+<p><strong><em>Just because you give agents limits doesn't mean your system will stay stable</em></strong></p>
+<p>Companies deploying agents to work across their enterprise domain need to consider more than just per-agent limits. In large autonomous systems, agents that trigger other agents that trigger tools can result in a cascading breakdown of cost and load controls. Companies need to consider this before their agents take down their systems or exhaust their budgets.</p>
+<p><strong>One Search Can Lead to Hundreds More</strong></p>
+<p>Imagine an employee looking for information on a project. The search finds an initial set of emails, then links to a set of meetings that lead to documents in a database, which lead to another set of documents and even back to emails.</p>
+<p>At each point, each branch in this decision may have a limit on how many links to explore and how many tools to call. But that doesn't mean the overall load is limited, except perhaps through a very large ceiling on total calls.</p>
+<p>The agent isn't failing here. It is doing exactly what it was asked to do, which is an extensive search to respond to an employee. It is not violating any policies or rules. It may be accessing only the information it has access to, but that action can lead to an overload of the system. And when combined with many different users, it may result in large tenant-wide degradation of service and an unexpected jump in inference costs.</p>
+<p>Agents exploring enterprise data may encounter cycles and many-to-many connections that an agent cannot see other than through navigation and the execution of expensive inference and tool calls.</p>
+<p>This is a known problem. In <em>When Agents Do Not Stop</em>, researchers identified 68 agent-loop failures across 47 software projects. Other experiments show that tool calls, even when reasonable on their own, can drive up costs and runtime under the policies the agents have been asked to follow.</p>
+<p><strong>When Load Creates More Load</strong></p>
+<p>The other issue is that as the load on the system increases, there's a chance of causing a cascading failure, such as retries and rechecks as overall system stability drops.</p>
+<p>It is possible that agents, precisely because of limits and controls, as well as the sheer limitation on a system's ability to respond, may significantly worsen the outcome. They are trying to finish the work while repeatedly hitting the same system as it refuses to give them access.</p>
+<p><strong>Local Limits Do Not Protect the Whole System</strong></p>
+<p>The issue with per-user, per-app, per-tool, or per-database limits is that they do not consider the interaction and overall load on the system.</p>
+<p>In typical queuing analysis, for example, for large compute clusters, I, as well as many others, have observed that jobs are not uniformly scheduled throughout the day, but tend to peak during the early morning workday hours as users come in.</p>
+<p>And just a few searches for that lost email or document from the day before could be enough for a small number of jobs to occupy the full capacity of the system, preventing other users from accessing it.</p>
+<p>When this occurs over a network between multiple locations, it can overload large portions of the system and result in significant degradation or even denial-of-service-like effects on the company's ability to serve other applications, including non-AI applications relying on the same networks and systems.</p>
+<p><strong>The Agentic Snowball</strong></p>
+<figure><img alt="" height="837" loading="lazy" src="fig-1.webp" width="1488"/></figure>
+<p>Similar problems have been observed in large mesh networks, including Zigbee, where many individually legitimate messages can create packet storms that overwhelm shared resources.</p>
+<p>The result may be possible to observe in logs during a postmortem, but the issue with these cascading failures is that they can escalate extremely quickly.</p>
+<p>Like a snowball rolling downhill and getting larger, by the time you're analyzing the logs and real-time dashboards, you may already be outside the normal operation of the system.</p>
+<p>The kill switches themselves, which communicate with agents, may be fighting for network and computing availability to execute. And that's assuming those kill switches have already been set up.</p>
+<p>There is already work on detecting cycles in agent behavior, including HashiCorp's cycle detection.</p>
+<p><strong>Designing for the Whole System</strong></p>
+<p>When companies design agentic workloads, they need to consider the overall system, understand where circuit breakers are required, what kind of detection of cycles and other bad behaviors is needed, and do a gradual rollout of agentic workflows, especially when agents are allowed to trigger other agents.</p>
+<p><strong>References</strong></p>
+<ul>
+<li>Hou et al. (2026). <em>When Agents Do Not Stop: Uncovering Infinite Agentic Loops in LLM Agents.</em></li>
+<li>Lee et al. (2026). <em>Overthinking Loops in Agents: A Structural Risk via MCP Tools.</em></li>
+<li>HashiCorp. <em>Consul Agentic Runtime Fabric: Cycle Detection.</em></li></ul>
+<p>For more articles exploring AI engineering, economics, security, and the emerging applications of AI, follow my LinkedIn newsletter or my website. Both links on my profile <a href="https://www.linkedin.com/in/yakov-shkolnikov/">https://www.linkedin.com/in/yakov-shkolnikov/</a></p>
+</div>
+<footer class="article-foot">
+<p class="meta">This copy is archived from <a href="https://www.linkedin.com/pulse/agentic-snowball-effect-yakov-shkolnikov-5npbc/" class="ext" rel="noopener">LinkedIn</a>, where the original remains the published version.</p>
+<nav class="pager" aria-label="More writing"><a href="/writing/ai-needs-human-interface-revolution/"><small>Previous</small>AI Needs a Human Interface Revolution</a><a class="next" href="/writing/making-ai-worth-relying/"><small>Next</small>Making AI Worth Relying On</a></nav>
+</footer>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<span>&copy; 2026 Yakov Shkolnikov<span class="sep">·</span>Updated November 17, 2026</span>
+<nav aria-label="Elsewhere"><a href="https://www.linkedin.com/in/yakov-shkolnikov/" rel="noopener">LinkedIn</a><a href="https://www.linkedin.com/newsletters/beyond-ai-s-jagged-frontier-7525955150436466690/" rel="noopener">LinkedIn Newsletter</a><a href="https://github.com/yshk-mxim" rel="noopener">GitHub</a><a href="https://scholar.google.com/citations?user=zTtAbu4AAAAJ&amp;hl=en" rel="noopener">Google Scholar</a><a href="https://theincompleteguidetoai.substack.com" rel="noopener">Substack</a><a href="/employment_july_2026.html">Employment Calculator</a><a href="/feed.xml">RSS</a></nav>
+</div></footer>
+<script>
+(function(){
+  var b=document.querySelector('.theme-toggle'), root=document.documentElement;
+  var sys=window.matchMedia('(prefers-color-scheme: dark)');
+  function cur(){return root.dataset.theme||(sys.matches?'dark':'light');}
+  function label(){
+    var next=cur()==='dark'?'Light':'Dark';
+    b.innerHTML=(next==='Dark'
+      ?'<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M6 1a7 7 0 1 0 9 9A6 6 0 0 1 6 1z"/></svg>'
+      :'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4"/></g></svg>')+next;
+    b.setAttribute('aria-label','Switch to '+next.toLowerCase()+' theme');
+  }
+  b.hidden=false; label();
+  b.addEventListener('click',function(){
+    var t=cur()==='dark'?'light':'dark'; root.dataset.theme=t;
+    try{localStorage.setItem('theme',t);}catch(e){}
+    label();
+  });
+  sys.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>
