@@ -403,7 +403,7 @@ def build_home():
 """
     person = {
         "@context": "https://schema.org", "@type": "Person", "name": profile["name"], "url": SITE_URL,
-        "jobTitle": ["CIO, Reynova", "Founder, Soundness AI"],
+        "jobTitle": ["Founder, Soundness AI"],
         "image": SITE_URL + profile["portrait"]["src"],
         "sameAs": [l["url"] for l in profile["links"]],
         "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Princeton University"},
